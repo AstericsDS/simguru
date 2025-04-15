@@ -9,7 +9,7 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="min-h-screen bg-[url('/public/backgrounds/homepage.png')] bg-cover">
+<body class="min-h-screen bg-[#e7decc] bg-cover">
     <div class="navbar bg-[#006569] shadow-sm">
         <div class="navbar-start">
             <img src="logos/unj.png" alt="Logo UNJ" class="w-14">

@@ -13,22 +13,22 @@
     <div class="navbar bg-[#006569] shadow-sm">
         <div class="navbar-start">
             <img src="logos/unj.png" alt="Logo UNJ" class="w-14">
-            <h1 class="ml-4 font-semibold text-xl">UNIVERSITAS NEGERI JAKARTA</h1>
+            <h1 class="ml-4 font-semibold text-xl cursor-default">UNIVERSITAS NEGERI JAKARTA</h1>
         </div>
         <div class="navbar-end">
-            <button class="btn btn-ghost">
+            <button class="btn {{request()->routeIs('homepage') ? 'btn-active bg-[#006569] brightness-150 border-none' : 'btn-ghost'}}">
                 Home
             </button>
-            <button class="btn btn-ghost">
+            <button class="btn {{request()->routeIs('') ? 'btn-active bg-[#006569] brightness-150 border-none' : 'btn-ghost'}}">
                 Manage User
             </button>
-            <button class="btn btn-ghost">
+            <button class="btn {{request()->routeIs('') ? 'btn-active bg-[#006569] brightness-150 border-none' : 'btn-ghost'}}">
                 Fasilitas
             </button>
-            <button class="btn btn-ghost">
+            <button class="btn {{request()->routeIs('') ? 'btn-active bg-[#006569] brightness-150 border-none' : 'btn-ghost'}}">
                 Layanan
             </button>
-            <button class="btn btn-ghost">
+            <button class="btn {{request()->routeIs('') ? 'btn-active bg-[#006569] brightness-150 border-none' : 'btn-ghost'}}">
                 Feedback
             </button>
             <button class="btn btn-ghost btn-circle">

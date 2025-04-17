@@ -10,7 +10,7 @@
 </head>
 
 <body class="min-h-screen bg-[#e7decc] bg-cover">
-    <div class="navbar bg-[#006569] shadow-sm">
+    <div class="navbar bg-[#006569] shadow-sm w-full sticky top-0 z-50 px-40 h-25">
         <div class="navbar-start">
             <img src="logos/unj.png" alt="Logo UNJ" class="w-14">
             <h1 class="ml-4 font-semibold text-xl">UNIVERSITAS NEGERI JAKARTA</h1>

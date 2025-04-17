@@ -51,15 +51,20 @@
       <div class="col-span-2 font-bold text-4xl">KAMPUS A</div>
       <div class="col-span-2 row-span-2">
         <div class="grid grid-flow-row gap-3 font-semibold">
-          <div class="grid grid-cols-[150px_10px_auto]">
+          <div class="grid grid-cols-[150px_10px_500px]">
             <div>Alamat</div>
             <div>:</div>
             <div>alo</div>
           </div>
-          <div class="grid grid-cols-[150px_10px_auto]">
+          <div class="grid grid-cols-[150px_10px_500px]">
             <div>Jumlah Gedung</div>
             <div>:</div>
             <div>alo</div>
+          </div>
+          <div class="grid grid-cols-[150px_10px_500px]">
+            <div>Luas</div>
+            <div>:</div>
+            <div>200.000m^2</div>
           </div>
           <div class="grid grid-cols-2 gap-2">
             <a href="" class="btn bg-yellow-500">Edit</a>
@@ -140,7 +145,7 @@
         </div>
       </div>
     </a> --}}
-    <a href="">
+    <a href="/tambahgedung">
       <div class="card group h-53 outline-3 outline-dashed outline-[#006569] transition-all duration-400">
         <div class="card-body">
           <p class="font-bold text-[#006569] text-2xl text-center group-hover:text-3xl transition-all duration-400">Tambah Gedung</p>

@@ -25,13 +25,13 @@
         </div>
       </div>
     </a> --}}
-    <a href=" 0">
+    {{-- <a href=" 0">
       <div class="card group h-53 outline-3 outline-dashed outline-[#006569] transition-all duration-400">
         <div class="card-body">
           <p class="font-bold text-[#006569] text-2xl text-center group-hover:text-3xl transition-all duration-400">Tambah Kampus</p>
           <p class="font-extrabold text-[#006569] text-4xl text-center group-hover:text-6xl transition-all duration-400">+</p>
         </div>
       </div>
-    </a>
+    </a> --}}
   </div>
 </div>

@@ -120,7 +120,7 @@
         </div>
       </div>
     </a> --}}
-        <a href="">
+        <a href="/tambahgedung">
             <div class="card group h-53 outline-3 outline-dashed outline-[#006569] transition-all duration-400">
                 <div class="card-body">
                     <p class="font-bold text-[#006569] text-2xl text-center group-hover:text-3xl transition-all duration-400">Tambah Gedung</p>

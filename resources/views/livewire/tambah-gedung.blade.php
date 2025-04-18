@@ -1,5 +1,6 @@
 <div class="py-5 px-40">
-    <div class="mb-10 text-4xl text-[#006569] font-bold">
+    <div class="mb-10 text-4xl text-[#006569] font-bold ">
+        <a href="/kampus"><img class="size-5 mb-4" src="{{ asset('logos/back-svgrepo-com.svg') }}" alt=""></a>
         <h3>Tambah Gedung</h3>
     </div>
     <div class="flex flex-col gap-4">

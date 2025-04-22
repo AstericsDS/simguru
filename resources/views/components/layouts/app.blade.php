@@ -59,12 +59,13 @@
         <div class="drawer-side z-60">
             <label for="profile-drawer" aria-label="close-sidebar" class="drawer-overlay"></label>
             <ul class="menu bg-[#006569] text-white min-h-full w-80 p-4 pt-20">
-                <div class="btn btn-ghost btn-circle btn-xl">
+                <div class="btn btn-ghost btn-circle btn-xl mb-3">
                     <img class="invert" src="{{ asset('logos/user.svg') }}" alt="">
                 </div>
-                <li><a href="">Profile</a></li>
-                <li><a href="">Change Password</a></li>
-                <li><a href="">Logout</a></li>
+                <li class="menu-title"><a>username</a></li>
+                <li><a>Profile</a></li>
+                <li><a>Change Password</a></li>
+                <li><a>Logout</a></li>
             </ul>
         </div>
     </div>

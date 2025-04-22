@@ -8,12 +8,12 @@
         <textarea placeholder="Masukkan deskripsi gedung" type="text" class="textarea bg-[#006569] w-full "></textarea>
         <div class="grid grid-cols-2 gap-2">
             <fieldset class="fieldset">
-                <legend class="fieldset-legend text-[#006569]">Pick a file</legend>
+                <legend class="fieldset-legend text-[#006569]">Masukkan Gambar Gedung</legend>
                 <input type="file" class="file-input bg-[#006569]" />
                 <label class="fieldset-label text-[#006569]">Max size 2MB</label>
               </fieldset>
             <fieldset class="fieldset">
-                <legend class="fieldset-legend text-[#006569]">Pick a file</legend>
+                <legend class="fieldset-legend text-[#006569]">Masukkan Denah Gedung</legend>
                 <input type="file" class="file-input bg-[#006569]" />
                 <label class="fieldset-label text-[#006569]">Max size 2MB</label>
               </fieldset>
@@ -21,6 +21,7 @@
         <div class="flex gap-2">
             <input placeholder="Masukkan Jumlah Lantai" type="number" class="input bg-[#006569]">
             <input placeholder="Masukkan Luas Gedung" type="number" class="input bg-[#006569]">
+            <input placeholder="Fakultas" type="number" class="input bg-[#006569]">
         </div>
         <button class="btn btn-success">Save</button>
     </div>

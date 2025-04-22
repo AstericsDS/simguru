@@ -46,12 +46,22 @@
                 <div class="grid grid-cols-[150px_10px_auto]">
                     <div>Alamat</div>
                     <div>:</div>
-                    <div>alo</div>
+                    <div>Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220</div>
                 </div>
                 <div class="grid grid-cols-[150px_10px_auto]">
                     <div>Jumlah Gedung</div>
                     <div>:</div>
-                    <div>alo</div>
+                    <div>10</div>
+                </div>
+                <div class="grid grid-cols-[150px_10px_auto]">
+                    <div>Luas</div>
+                    <div>:</div>
+                    <div>1.000 hektar</div>
+                </div>
+                <div class="grid grid-cols-[150px_10px_auto]">
+                    <div>Fakultas</div>
+                    <div>:</div>
+                    <div>FMIPA, FT, FBS, FE, FIP, FISH, </div>
                 </div>
                 <div class="grid grid-cols-2 gap-2">
                     <a href="" class="btn bg-yellow-500">Edit</a>
@@ -81,7 +91,7 @@
             </figure>
             <div class="card-body items-center text-center">
                 <h2 class="card-title">Gedung Dewi Sartono</h2>
-                <p class="text-xs ">Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220</p>
+                <p class="text-xs ">Jl. Rawamangun Muka, RT.11/RW14, Rawamangun, Pulo Gadung, Jakarta Timur, Daerah Khusus Jakarta, 13320</p>
                 <div class="card-actions">
                     <a href="" class="btn bg-white text-black">Details</a>
                 </div>

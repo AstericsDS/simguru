@@ -1,4 +1,4 @@
-<div class="py-5 px-40">
+<div class="w-full py-5 px-40">
     <div class="mb-10 text-4xl text-[#006569] font-bold ">
         <a href="/kampus"><img class="size-5 mb-4" src="{{ asset('logos/back-svgrepo-com.svg') }}" alt=""></a>
         <h3>Tambah Gedung</h3>
@@ -21,7 +21,7 @@
         <div class="flex gap-2">
             <input placeholder="Masukkan Jumlah Lantai" type="number" class="input bg-[#006569]">
             <input placeholder="Masukkan Luas Gedung" type="number" class="input bg-[#006569]">
-            <input placeholder="Fakultas" type="number" class="input bg-[#006569]">
+            <input placeholder="Fakultas" type="text" class="input bg-[#006569]">
         </div>
         <button class="btn btn-success">Save</button>
     </div>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="icon" href="/logos/unj.png" type="image/x-icon">
     <title>{{ $title ?? config('app.name') }}</title>
     @vite('resources/css/app.css')
 </head>
@@ -57,7 +57,7 @@
                     </div>
                     <div class="dropdown">
                         <button tabindex="1" class="btn btn-ghost btn-circle static">
-                            <img src="{{ asset('logos/user.svg') }}" alt="User" class="w-6 invert">
+                            <img src="/logos/user.svg" alt="User" class="w-6 invert">
                         </button>
                         <ul tabindex="1" class="menu menu-sm dropdown-content w-40 bg-white absolute right-1 shadow-sm rounded-box outline outline-gray-200 text-black">
                             <li class="hover:bg-gray-200 rounded-sm"><a>ubah password</a></li>

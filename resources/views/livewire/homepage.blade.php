@@ -1,6 +1,7 @@
-<div class="container py-5 px-40">
-  <div class="grid grid-cols-4 gap-3 mt-12">
-    <div class="card bg-base-100 shadow-sm">
+<div class="w-full py-5 px-5 lg:px-40">
+  {{-- card box --}}
+  <div class="grid lg:grid-cols-4 gap-3 mt-12">
+    <div class="card bg-base-100 shadow-lg">
       <figure>
         <img
           src="backgrounds/unj_bersih.jpeg"
@@ -9,11 +10,8 @@
       </figure>
       <div class="card-body items-center text-center">
         <h2 class="card-title">Kampus A</h2>
-        <p class="text-left">Kampus Utama UNJ</p>
-        <p class="text-xs text-left">Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220</p>
-        <div class="card-actions my-3">
-          <a href="kampus" class="btn bg-white text-black">Details</a>
-        </div>
+        <p class="text-xs text-center mb-3 not-lg:hidden">Jl. R.Mangun Muka Raya...Daerah Khusus Ibukota Jakarta 13220</p>
+        <a href="kampus" class="btn bg-white text-black outline-none hover:bg-gray-200 rounded-lg w-full">Details</a>
       </div>
     </div>
     {{-- <a href="/kampus">

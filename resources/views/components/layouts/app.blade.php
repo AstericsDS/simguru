@@ -9,17 +9,20 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="min-h-screen bg-[#e7decc] bg-cover">
-    <div class="drawer drawer-end">
+<body class="min-h-screen bg-[url(/public/backgrounds/watermark.jpeg)] bg-cover">
+    <div class="drawer">
         <input id="profile-drawer" type="checkbox" class="drawer-toggle">
         <div class="drawer-content">
-            <div class="navbar bg-[#006569] shadow-sm w-full sticky top-0 z-50 px-40">
+            <div class="navbar bg-[#006569] shadow-sm w-full sticky top-0 z-50 px-5 lg:px-40">
                 <div class="navbar-start">
-                    <img src="logos/unj.png" alt="Logo UNJ" class="w-14">
-                    <h1 class="ml-4 font-semibold text-xl">UNIVERSITAS NEGERI JAKARTA</h1>
+                    <label for="profile-drawer" class="btn btn-ghost btn-circle lg:hidden">
+                        <img src="{{ asset('logos/peminjaman.png') }}" alt="sidebar" class="lg:hidden w-7 mr-5">
+                    </label>
+                    <img src="logos/unj.png" alt="Logo UNJ" class="w-7 sm:w-10 lg:w-14">
+                    {{-- <h1 class="ml-4 font-semibold text-xl not-lg:hidden">UNIVERSITAS NEGERI JAKARTA</h1> --}}
                 </div>
                 <div class="navbar-end">
-                    <div class="">
+                    <div class="not-lg:hidden">
                         <button class="btn btn-ghost">
                             Home
                         </button>
@@ -45,27 +48,40 @@
                                 <span class="badge badge-xs badge-primary indicator-item"></span>
                             </div>
                         </button>
-                        <div tabindex="0" class="menu dropdown-content w-96 h-50 bg-white absolute right-1 shadow rounded-box">
+                        <ul tabindex="0" class="menu menu-sm dropdown-content w-40 lg:w-96 h-full bg-white absolute right-1/3 shadow-sm rounded-box outline outline-gray-200">
+                            <div class="flex justify-between items-center px-2">
+                                <p class="text-black font-medium">Notifikasi</p>
 
-                        </div>
+                            </div>
+                        </ul>
                     </div>
-                    <label for="profile-drawer" class="btn btn-ghost btn-circle">
-                        <img src="{{ asset('logos/user.svg') }}" alt="User" class="w-6 invert">
-                    </label>
+                    <div class="dropdown">
+                        <button tabindex="1" class="btn btn-ghost btn-circle static">
+                            <img src="{{ asset('logos/user.svg') }}" alt="User" class="w-6 invert">
+                        </button>
+                        <ul tabindex="1" class="menu menu-sm dropdown-content w-40 bg-white absolute right-1 shadow-sm rounded-box outline outline-gray-200 text-black">
+                            <li class="hover:bg-gray-200 rounded-sm"><a>ubah password</a></li>
+                            <hr class="my-1 -mx-2 border-gray-200">
+                            <li class="hover:bg-gray-200 rounded-sm"><a>logout</a></li>
+                        </ul>
+                    </div>
+                    {{-- <label for="profile-drawer" class="btn btn-ghost btn-circle sm:hidden md:hidden lg:hidden">
+                    </label> --}}
                 </div>
             </div>
             {{ $slot }}
         </div>
+        {{-- Drawer for mobile view --}}
         <div class="drawer-side z-60">
             <label for="profile-drawer" aria-label="close-sidebar" class="drawer-overlay"></label>
-            <ul class="menu bg-[#006569] text-white min-h-full w-80 p-4 pt-20">
+            <ul class="menu bg-[#006569] text-white min-h-full min-w-60 p-4 pt-20">
                 <div class="btn btn-ghost btn-circle btn-xl mb-3">
                     <img class="invert" src="{{ asset('logos/user.svg') }}" alt="">
                 </div>
-                <li class="menu-title"><a>username</a></li>
-                <li><a>Profile</a></li>
-                <li><a>Change Password</a></li>
-                <li><a>Logout</a></li>
+                <li><a>Home</a></li>
+                <li><a>Fasilitas</a></li>
+                <li><a>Layanan</a></li>
+                <li><a>Feedback</a></li>
             </ul>
         </div>
     </div>

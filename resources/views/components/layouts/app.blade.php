@@ -9,8 +9,8 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="min-h-screen bg-[url('/public/backgrounds/homepage.png')] bg-cover">
-    <div class="navbar bg-[#006569] shadow-sm">
+<body class="min-h-screen bg-[url('/public/backgrounds/unj.png')] bg-cover">
+    <div class="navbar bg-[#006569] shadow-sm text-white">
         <div class="navbar-start">
             <img src="logos/unj.png" alt="Logo UNJ" class="w-14">
             <h1 class="ml-4 font-semibold text-xl">UNIVERSITAS NEGERI JAKARTA</h1>
@@ -20,16 +20,10 @@
                 Home
             </button>
             <button class="btn btn-ghost">
-                Manage User
+                Content
             </button>
             <button class="btn btn-ghost">
                 Fasilitas
-            </button>
-            <button class="btn btn-ghost">
-                Layanan
-            </button>
-            <button class="btn btn-ghost">
-                Feedback
             </button>
             <button class="btn btn-ghost btn-circle">
                 <div class="indicator">

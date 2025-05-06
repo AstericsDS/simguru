@@ -1,4 +1,4 @@
-<div class="w-full py-5 px-5 lg:px-40">
+<div class="w-full px-5 lg:px-40">
   {{-- card box --}}
   <div class="grid lg:grid-cols-4 gap-3 mt-12">
     <div class="card bg-base-100 shadow-lg">

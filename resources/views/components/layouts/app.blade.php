@@ -6,19 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/logos/unj.png" type="image/x-icon">
     <title>{{ $title ?? config('app.name') }}</title>
-    @vite('resources/css/app.css')
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="min-h-screen bg-[url(/public/backgrounds/watermark.jpeg)] bg-cover">
+<body class="min-h-screen bg-fixed bg-[url('/public/backgrounds/watermark.jpeg')] bg-cover">
     <div class="drawer">
         <input id="profile-drawer" type="checkbox" class="drawer-toggle">
         <div class="drawer-content">
-            <div class="navbar bg-[#006569] shadow-sm w-full sticky top-0 z-50 px-5 lg:px-40">
+            <div class="navbar bg-[#006569] shadow-sm w-full h-17 sticky top-0 z-50 px-5 lg:px-40 rounded-b-3xl">
                 <div class="navbar-start">
                     <label for="profile-drawer" class="btn btn-ghost btn-circle lg:hidden">
-                        <img src="{{ asset('logos/peminjaman.png') }}" alt="sidebar" class="lg:hidden w-7 mr-5">
+                        <img src="{{ asset('logos/peminjaman.png') }}" alt="sidebar" class="w-5 mr-5 lg:hidden">
                     </label>
-                    <img src="logos/unj.png" alt="Logo UNJ" class="w-7 sm:w-10 lg:w-14">
+                    <img src="/logos/unj.png" alt="Logo UNJ" class="w-7 sm:w-10 lg:w-14">
                     {{-- <h1 class="ml-4 font-semibold text-xl not-lg:hidden">UNIVERSITAS NEGERI JAKARTA</h1> --}}
                 </div>
                 <div class="navbar-end">
@@ -26,9 +26,9 @@
                         <button class="btn btn-ghost">
                             Home
                         </button>
-                        <button class="btn btn-ghost">
+                        {{-- <button class="btn btn-ghost">
                             Manage User
-                        </button>
+                        </button> --}}
                         <button class="btn btn-ghost">
                             Fasilitas
                         </button>
@@ -39,7 +39,7 @@
                             Feedback
                         </button>
                     </div>
-                    <div class="dropdown">
+                    <div class="dropdown dropdown-end">
                         <button tabindex="0" class="btn btn-ghost btn-circle static">
                             <div class="indicator">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -48,18 +48,18 @@
                                 <span class="badge badge-xs badge-primary indicator-item"></span>
                             </div>
                         </button>
-                        <ul tabindex="0" class="menu menu-sm dropdown-content w-40 lg:w-96 h-full bg-white absolute right-1/3 shadow-sm rounded-box outline outline-gray-200">
+                        <ul tabindex="0" class="menu menu-sm dropdown-content w-40 lg:w-96 h-full bg-white absolute shadow-sm rounded-box outline outline-gray-200">
                             <div class="flex justify-between items-center px-2">
                                 <p class="text-black font-medium">Notifikasi</p>
 
                             </div>
                         </ul>
                     </div>
-                    <div class="dropdown">
+                    <div class="dropdown dropdown-end">
                         <button tabindex="1" class="btn btn-ghost btn-circle static">
                             <img src="/logos/user.svg" alt="User" class="w-6 invert">
                         </button>
-                        <ul tabindex="1" class="menu menu-sm dropdown-content w-40 bg-white absolute right-1 shadow-sm rounded-box outline outline-gray-200 text-black">
+                        <ul tabindex="1" class="menu menu-sm dropdown-content w-40 bg-white absolute shadow-sm rounded-box outline outline-gray-200 text-black">
                             <li class="hover:bg-gray-200 rounded-sm"><a>ubah password</a></li>
                             <hr class="my-1 -mx-2 border-gray-200">
                             <li class="hover:bg-gray-200 rounded-sm"><a>logout</a></li>
@@ -70,6 +70,28 @@
                 </div>
             </div>
             {{ $slot }}
+            <footer class="footer sm:footer-horizontal bg-[#006569] text-neutral-content p-10 mt-5">
+                <nav>
+                  <h6 class="footer-title">Services</h6>
+                  <a class="link link-hover">Branding</a>
+                  <a class="link link-hover">Design</a>
+                  <a class="link link-hover">Marketing</a>
+                  <a class="link link-hover">Advertisement</a>
+                </nav>
+                <nav>
+                  <h6 class="footer-title">Company</h6>
+                  <a class="link link-hover">About us</a>
+                  <a class="link link-hover">Contact</a>
+                  <a class="link link-hover">Jobs</a>
+                  <a class="link link-hover">Press kit</a>
+                </nav>
+                <nav>
+                  <h6 class="footer-title">Legal</h6>
+                  <a class="link link-hover">Terms of use</a>
+                  <a class="link link-hover">Privacy policy</a>
+                  <a class="link link-hover">Cookie policy</a>
+                </nav>
+              </footer>
         </div>
         {{-- Drawer for mobile view --}}
         <div class="drawer-side z-60">

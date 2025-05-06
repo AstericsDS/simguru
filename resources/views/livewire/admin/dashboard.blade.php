@@ -1,4 +1,4 @@
-<div class="mx-20">
+<div class="w-full p-5 lg:px-40">
     {{-- <h1 class="text-center mt-4 font-bold text-3xl">CONTENT</h1> --}}
     <div class="flex justify-between mt-15">
         <div class="card card-side bg-[#117074] card-sm w-1/6">

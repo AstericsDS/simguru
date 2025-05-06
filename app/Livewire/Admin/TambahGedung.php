@@ -8,6 +8,6 @@ class TambahGedung extends Component
 {
     public function render()
     {
-        return view('livewire.tambah-gedung');
+        return view('livewire.admin.tambah-gedung');
     }
 }

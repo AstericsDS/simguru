@@ -1,8 +1,8 @@
-<div class="w-full px-5 lg:px-40">
+<div class="w-full p-5 lg:px-40">
     {{-- Breadcrumbs --}}
-    <div class="flex flex-col mt-5">
-        <a href="/" class="size-5"><img src="{{ asset('logos/back-svgrepo-com.svg') }}" alt=""></a>
-        <div class="breadcrumbs text-sm text-[#006569] py-5">
+    <div class="flex flex-col my-5">
+        <a href="/kampus" class="size-5"><img src="{{ asset('logos/back-svgrepo-com.svg') }}" alt=""></a>
+        <div class="breadcrumbs text-sm text-[#006569]">
             <ul>
                 <li><a class="">Kampus A</a></li>
                 <li><a class="">Gedung Dewi Sartika</a></li>
@@ -10,38 +10,19 @@
         </div>
     </div>
     {{-- Building Details --}}
-    <div class="group grid grid-flow-col-dense grid-rows-3 gap-4 text-[#006569]">
-        <div class="row-span-3 flex mr-15">
-            <div class="carousel w-full w-max-full">
-                <div id="slide1" class="carousel-item relative w-full w-max-full">
-                    <img src="{{ asset('backgrounds/unj_bersih.jpeg') }}" class="w-full w-max-full bg-contain" />
-                    <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                        <a href="#slide4" class="btn btn-circle not-lg:hidden">❮</a>
-                        <a href="#slide2" class="btn btn-circle not-lg:hidden">❯</a>
-                    </div>
+    <div class="grid grid-flow-col-dense grid-rows-3 gap-4 text-[#006569] justify-items-center">
+        <div class="row-span-3 flex lg:mr-15">
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide"><img src="/backgrounds/unj_bersih.jpeg" alt=""></div>
+                  <div class="swiper-slide">Slide 2</div>
+                  <div class="swiper-slide">Slide 3</div>
                 </div>
-                <div id="slide2" class="carousel-item relative w-full w-max-full">
-                    <img src="https://img.daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.webp" class="w-full w-max-full" />
-                    <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                        <a href="#slide1" class="btn btn-circle not-lg:hidden">❮</a>
-                        <a href="#slide3" class="btn btn-circle not-lg:hidden">❯</a>
-                    </div>
-                </div>
-                <div id="slide3" class="carousel-item relative w-full w-max-full">
-                    <img src="https://img.daisyui.com/images/stock/photo-1414694762283-acccc27bca85.webp" class="w-full w-max-full" />
-                    <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                        <a href="#slide2" class="btn btn-circle not-lg:hidden">❮</a>
-                        <a href="#slide4" class="btn btn-circle not-lg:hidden">❯</a>
-                    </div>
-                </div>
-                <div id="slide4" class="carousel-item relative w-full w-max-full">
-                    <img src="https://img.daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.webp" class="w-full w-max-full" />
-                    <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                        <a href="#slide3" class="btn btn-circle not-lg:hidden">❮</a>
-                        <a href="#slide1" class="btn btn-circle not-lg:hidden">❯</a>
-                    </div>
-                </div>
-            </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-scrollbar"></div>
+              </div>
         </div>
         <div class="row-span-3 not-lg:hidden">
             <div class="font-bold text-4xl mb-7">Gedung Dewi Sartika</div>
@@ -98,13 +79,78 @@
         </div>
     </div>
     {{-- Lantai Box --}}
-    <div class="grid grid-cols-1 gap-3 mt-12">
-        <div class="card card-sm bg-[#006569] shadow-sm h-max">
-            <div class="card-body">
-                <h2 class="card-title text-2xl">Lantai 1</h2>
-                <div class="card-actions justify-end">
-                    <a href="" class="btn bg-white text-black">Details</a>
+    <div class="grid  grid-cols-1 gap-3 mt-12 text-white">
+        <div class="bg-[#006569]  collapse collapse-arrow border border-gray-300">
+            <input type="checkbox" class="peer" />
+            <div class="collapse-title bg-[#006569] text-xl font-bold">
+              Lantai 1
+            </div>
+            <div class="collapse-content grid gap-2 bg-white peer-checked:pt-5">
+                <div class="card card-sm bg-[#006569] shadow-xl h-max">
+                    <div class="flex items-center justify-between p-3">
+                        <div class="flex flex-wrap gap-2">
+                            <div>Ruangan 101</div>
+                            <div class="badge badge-sm badge-soft badge-success self-center">
+                                Tersedia
+                            </div>
+                        </div>
+                        <div >
+                            <a href="" class="btn btn-md place-content-end bg-white text-black border-none hover:bg-gray-200">Details</a>
+                        </div>
+                    </div>
                 </div>
+                <div class="card card-sm bg-[#006569] shadow-xl h-max">
+                    <div class="flex items-center justify-between p-3">
+                        <div class="flex flex-wrap gap-2">
+                            <div>Ruangan 101</div>
+                            <div class="badge badge-sm badge-soft badge-error self-center">
+                                Digunakan
+                            </div>
+                        </div>
+                        <div >
+                            <a href="/ruang" class="btn btn-md place-content-end bg-white text-black border-none hover:bg-gray-200">Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card-sm bg-[#006569] shadow-xl h-max">
+                    <div class="flex items-center justify-between p-3">
+                        <div class="flex flex-wrap gap-2">
+                            <div>Ruangan 101</div>
+                            <div class="badge badge-sm badge-soft badge-warning self-center">
+                                Perbaikan
+                            </div>
+                        </div>
+                        <div >
+                            <a href="" class="btn btn-md place-content-end bg-white text-black border-none hover:bg-gray-200">Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-[#006569] collapse collapse-arrow border border-gray-300">
+            <input type="checkbox" class="peer" />
+            <div class="collapse-title bg-[#006569] text-xl font-bold">
+              Lantai 2
+            </div>
+            <div class="collapse-content grid gap-2 bg-white peer-checked:pt-5">
+            <div class="card card-sm bg-[#006569] shadow-xl h-max">
+                <div class="flex justify-between p-2">
+                    <h2 class="self-center">Ruangan 201</h2>
+                    <a href="" class="btn bg-white text-black border-none hover:bg-gray-200">Details</a>
+                </div>
+            </div>
+            <div class="card card-sm bg-[#006569] shadow-xl h-max">
+                <div class="flex justify-between p-2">
+                    <h2 class="self-center">Ruangan 202</h2>
+                    <a href="" class="btn bg-white text-black border-none hover:bg-gray-200">Details</a>
+                </div>
+            </div>
+            <div class="card card-sm bg-[#006569] shadow-xl h-max">
+                <div class="flex justify-between p-2">
+                    <h2 class="self-center">Ruangan 203</h2>
+                    <a href="" class="btn bg-white text-black border-none hover:bg-gray-200">Details</a>
+                </div>
+            </div>
             </div>
         </div>
         {{-- <a href="/kampus">

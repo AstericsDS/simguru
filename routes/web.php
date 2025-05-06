@@ -1,11 +1,12 @@
 <?php
 
+use App\Livewire\Dashboard;
 use App\Livewire\EditKampus;
 use App\Livewire\Gedung;
 use App\Livewire\Login;
 use App\Livewire\Homepage;
 use App\Livewire\Kampus;
-use App\Livewire\Tablelist;
+use App\Livewire\Ruang;
 use App\Livewire\TambahGedung;
 use Illuminate\Support\Facades\Route;
 
@@ -15,4 +16,5 @@ Route::get('/kampus', Kampus::class)->name('kampus');
 Route::get('/gedung', Gedung::class)->name('gedung');
 Route::get('/tambahgedung', TambahGedung::class)->name('tambah-gedung');
 Route::get('/edit', EditKampus::class)->name('edit-kampus');
-Route::get('/list', Tablelist::class)->name('tablelist');
+Route::get('/admin/dashboard', Dashboard::class)->name('admin.dashboard');
+Route::get('/ruang', Ruang::class)->name('ruang');

@@ -18,21 +18,20 @@
     </div>
     @foreach($kampusList as $kampus)
         <div class="mb-8">
-            <!-- Kampus -->
+            {{-- Kampus --}}
             <button
                 wire:click="toggleKampus({{ $kampus['id'] }})"
                 class="w-full flex items-center justify-between font-bold text-xl bg-white border border-black px-4 py-2 rounded focus:outline-none"
->
+            >
                 <span>{{ $kampus['nama'] }}</span>
                 <svg class="w-5 h-5 ml-2 transition-transform duration-200 {{ ($openKampus[$kampus['id']] ?? false) ? 'rotate-90' : '' }}" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path d="M9 5l7 7-7 7"/>
                 </svg>
             </button>
-
             @if($openKampus[$kampus['id']] ?? false)
                 @foreach($kampus['gedung'] as $gedung)
                     <div class="ml-8 mt-2">
-                        <!-- Gedung -->
+                        {{-- Gedung --}}
                         <button
                             wire:click="toggleGedung({{ $gedung['id'] }})"
                             class="w-full text-left font-semibold bg-white border border-black px-4 py-2 rounded focus:outline-none flex items-center"
@@ -45,7 +44,7 @@
                         @if($openGedung[$gedung['id']] ?? false)
                             @foreach($gedung['lantai'] as $lantai)
                                 <div class="ml-8 mt-2">
-                                    <!-- Lantai -->
+                                    {{-- Lantai --}}
                                     <button
                                         wire:click="toggleLantai({{ $lantai['id'] }})"
                                         class="w-full text-left font-medium bg-white border border-black px-4 py-2 rounded focus:outline-none flex items-center"
@@ -58,6 +57,7 @@
                                     @if($openLantai[$lantai['id']] ?? false)
                                         <ul class="ml-8 mt-2 space-y-2">
                                             @foreach($lantai['ruangan'] as $ruangan)
+                                                {{-- Ruang --}}
                                                 <li class="flex items-center bg-white border border-black rounded px-4 py-2">
                                                     <span class="flex-1">{{ $ruangan['nama'] }}</span>
                                                     <button class="bg-teal-700 text-white px-6 py-1 rounded hover:bg-teal-800 text-sm">Details</button>
@@ -65,7 +65,6 @@
                                             @endforeach
                                         </ul>
                                     @endif
-                                    
                                 </div>
                             @endforeach
                         @endif

@@ -16,12 +16,12 @@
             <h1 class="ml-4 font-semibold text-xl">UNIVERSITAS NEGERI JAKARTA</h1>
         </div>
         <div class="navbar-end">
-            <button class="btn btn-ghost">
-                Home
-            </button>
-            <button class="btn btn-ghost">
+            <a href="/" class="btn btn-ghost">
+                Dashboard
+            </a>
+            <a href="/content" class="btn btn-ghost">
                 Content
-            </button>
+            </a>
             <button class="btn btn-ghost">
                 Fasilitas
             </button>

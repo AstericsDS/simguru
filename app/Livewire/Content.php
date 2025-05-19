@@ -33,38 +33,11 @@ class Content extends Component
                 ],
             ]
         ],
-        [
-            'id' => 2,
-            'nama' => 'Kampus B',
-            'gedung' => [
-                [
-                    'id' => 2,
-                    'nama' => 'Gedung A',
-                    'lantai' => [
-                        [
-                            'id' => 3,
-                            'nama' => 'Lantai 1',
-                            'ruangan' => [
-                                ['id' => 3, 'nama' => 'Ruang 101'],
-                            ]
-                        ],
-                        [
-                            'id' => 4,
-                            'nama' => 'Lantai 2',
-                            'ruangan' => [
-                                ['id' => 4, 'nama' => 'Ruang 201'],
-                            ]
-                        ],
-                    ]
-                ],
-            ]
-        ],
     ];
 
     public $openKampus = [];
     public $openGedung = [];
     public $openLantai = [];
-    public $search = '';
 
     public function toggleKampus($kampusId)
     {

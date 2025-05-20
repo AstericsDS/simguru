@@ -23,7 +23,7 @@
                 <td>Kampus A</td>
                 <td>Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220</td>
                 <td>50</td>
-                <td>15</td>
+                <td>10</td>
                 {{-- <td>
                     <span class="badge bg-primary">Menunggu Persetujuan</span>
                 </td> --}}
@@ -36,9 +36,9 @@
             <tr>
                 <td>2</td>
                 <td>Kampus B</td>
-                <td>Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220</td>
+                <td>Jl. Velodrome No.2, RW.6, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220</td>
                 <td>50</td>
-                <td>15</td>
+                <td>10</td>
                 {{-- <td>
                     <span class="badge bg-primary">Menunggu Persetujuan</span>
                 </td> --}}
@@ -50,10 +50,10 @@
             </tr>
             <tr>
                 <td>3</td>
-                <td>Kampus C</td>
-                <td>Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220</td>
+                <td>Kampus D</td>
+                <td>Jl. Halimun Raya No.2 8, RT.15/RW.2, Guntur, Kecamatan Setiabudi, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12980</td>
                 <td>50</td>
-                <td>15</td>
+                <td>10</td>
                 {{-- <td>
                     <span class="badge bg-primary">Menunggu Persetujuan</span>
                 </td> --}}
@@ -65,10 +65,10 @@
             </tr>
             <tr>
                 <td>4</td>
-                <td>Kampus D</td>
-                <td>Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220</td>
+                <td>Kampus E</td>
+                <td>Jl. Taman Setia Budi I No.2 2, RT.2/RW.2, Kuningan, Kecamatan Setiabudi, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12910</td>
                 <td>50</td>
-                <td>15</td>
+                <td>10</td>
                 {{-- <td>
                     <span class="badge bg-primary">Menunggu Persetujuan</span>
                 </td> --}}

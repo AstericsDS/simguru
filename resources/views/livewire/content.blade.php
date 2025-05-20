@@ -4,14 +4,13 @@
         <div class="relative">
             <input
                 type="text"
-                placeholder="Cari..."
+                placeholder="Search..."
                 class="border border-black rounded-full px-4 py-1 w-56 focus:outline-none focus:ring-2 focus:ring-teal-400"
                 wire:model="search"
             >
             <span class="absolute right-3 top-1.5 text-gray-400">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <circle cx="11" cy="11" r="8" />
-                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
                 </svg>
             </span>
         </div>

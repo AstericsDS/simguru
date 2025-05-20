@@ -1,5 +1,5 @@
 <div class="container w-4xl mx-auto bg-white rounded-sm flex flex-col items-center pb-8 text-black">
-    <img src="logos/unj.png" alt="Logo UNJ" class="absolute left-1/2 translate-x-[-50%] w-30 top-32">
+    <img src="logos/unj.png" alt="Logo UNJ" class="absolute left-1/2 translate-x-[-50%] w-15 top-32">
     <div class="pt-20 pb-10 px-28 w-full">
         <h1 class="text-center font-semibold text-xl">
             Manajemen Gedung dan Ruang

@@ -13,7 +13,43 @@ class Content extends Component
             'gedung' => [
                 [
                     'id' => 1,
-                    'nama' => 'Gedung A',
+                    'nama' => 'Gedung Dewi Sartika',
+                    'lantai' => [
+                        [
+                            'id' => 1,
+                            'nama' => 'Lantai 1',
+                            'ruangan' => [
+                                ['id' => 1, 'nama' => 'Ruang 101'],
+                            ]
+                        ],
+                        [
+                            'id' => 2,
+                            'nama' => 'Lantai 2',
+                            'ruangan' => [
+                                ['id' => 2, 'nama' => 'Ruang 201'],
+                            ]
+                        ],
+                    ],
+                    'id' => 2,
+                    'nama' => 'Gedung RA Kartini',
+                    'lantai' => [
+                        [
+                            'id' => 1,
+                            'nama' => 'Lantai 1',
+                            'ruangan' => [
+                                ['id' => 1, 'nama' => 'Ruang 101'],
+                            ]
+                        ],
+                        [
+                            'id' => 2,
+                            'nama' => 'Lantai 2',
+                            'ruangan' => [
+                                ['id' => 2, 'nama' => 'Ruang 201'],
+                            ]
+                        ],
+                    ],
+                    'id' => 3,
+                    'nama' => 'Gedung Pustikom',
                     'lantai' => [
                         [
                             'id' => 1,

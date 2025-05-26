@@ -2,11 +2,17 @@
 
 use App\Livewire\Content;
 use App\Livewire\Dashboard;
+use App\Livewire\Gedung;
 use App\Livewire\Login;
 use App\Livewire\Homepage;
+use App\Livewire\Kampus;
+use App\Livewire\Fasilitas;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', Dashboard::class)->name('homepage');
+Route::get('/', Homepage::class)->name('homepage');
 Route::get('/login', Login::class)->name('login');
 Route::get('/content', Content::class)->name('content');
-// Route::get('/dashboard', Dashboard::class)->name('dashboard');
+Route::get('/dashboard', Dashboard::class)->name('dashboard');
+Route::get('/fasilitas', Fasilitas::class)->name('fasilitas');
+Route::get('/kampus', Kampus::class)->name('kampus');
+Route::get('/gedung', Gedung::class)->name('gedung');

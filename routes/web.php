@@ -15,6 +15,6 @@ Route::get('/login', Login::class)->name('login');
 Route::get('/kampus', Kampus::class)->name('kampus');
 Route::get('/gedung', Gedung::class)->name('gedung');
 Route::get('/admin/tambahgedung', TambahGedung::class)->name('admin.tambah-gedung');
-Route::get('/admin//edit', EditKampus::class)->name('edit-kampus');
+Route::get('/admin/edit', EditKampus::class)->name('edit-kampus');
 Route::get('/admin/dashboard', Dashboard::class)->name('admin.dashboard');
 Route::get('/ruang', Ruang::class)->name('ruang');

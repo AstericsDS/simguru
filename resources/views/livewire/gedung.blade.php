@@ -4,7 +4,7 @@
         <a href="/" class="size-5"><img src="{{ asset('logos/back-svgrepo-com.svg') }}" alt=""></a>
         <div class="breadcrumbs text-sm text-[#006569] py-5">
             <ul>
-                <li><a class="">Kampus A</a></li>
+                <li><a href="/kampus" class="">Kampus A</a></li>
                 <li><a class="">Gedung Dewi Sartika</a></li>
             </ul>
         </div>
@@ -101,7 +101,7 @@
     <div class="grid grid-cols-1 gap-3 mt-12">
         <div class="card card-sm bg-[#006569] shadow-sm h-max">
             <div class="card-body">
-                <h2 class="card-title text-2xl">Lantai 1</h2>
+                <h2 class="card-title text-2xl text-white">Lantai 1</h2>
                 <div class="card-actions justify-end">
                     <a href="" class="btn bg-white text-black">Details</a>
                 </div>

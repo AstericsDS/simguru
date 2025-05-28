@@ -1,8 +1,6 @@
 <div class="container w-2xl mx-auto bg-white rounded-sm flex flex-col items-center pb-16 text-black">
-    <!-- Logo diperbesar dan diposisikan di atas form -->
     <img src="logos/unj.png" alt="Logo UNJ" class="w-32 mx-auto mt-1">
-    
-    <div class="pt-3 pb-3 px-10 w-full max-w-md"> <!-- Ditambahkan max-w-md untuk membatasi lebar form -->
+    <div class="pt-3 pb-3 px-10 w-full max-w-md">
         <h1 class="text-center font-semibold text-xl">
             Manajemen Gedung dan Ruang
         </h1>

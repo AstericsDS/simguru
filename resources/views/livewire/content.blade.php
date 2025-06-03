@@ -1,5 +1,5 @@
 <div class="max-w-4xl mx-auto py-8 text-white">
-    <h1 class="text-3xl font-bold mb-8 text-black">Daftar Isi</h1>
+    <h1 class="text-3xl font-bold mb-8 text-black dark:text-white">Daftar Isi</h1>
 
     @foreach($kampusList as $kampus)
     <div class="bg-teal-700 collapse collapse-arrow border border-gray-300 rounded mb-4">

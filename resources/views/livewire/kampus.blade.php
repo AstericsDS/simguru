@@ -13,28 +13,28 @@
         <div class="row-span-3 flex mr-15">
             <div class="carousel w-full w-max-full">
                 <div id="slide1" class="carousel-item relative w-full w-max-full">
-                    <img src="{{ asset('images/kampus.png') }}" class="w-full w-max-full bg-contain"/>
+                    <img src="{{ asset('images/unj_bersih.jpeg') }}" class="w-full h-64 object-cover rounded-lg"/>
                     <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
                         <a href="#slide4" class="btn btn-circle not-lg:hidden">❮</a>
                         <a href="#slide2" class="btn btn-circle not-lg:hidden">❯</a>
                     </div>
                 </div>
                 <div id="slide2" class="carousel-item relative w-full w-max-full">
-                    <img src="https://img.daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.webp" class="w-full w-max-full" />
+                    <img src="{{ asset('images/unj_bersih.jpeg') }}" class="w-full h-64 object-cover rounded-lg"/>
                     <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
                         <a href="#slide1" class="btn btn-circle not-lg:hidden">❮</a>
                         <a href="#slide3" class="btn btn-circle not-lg:hidden">❯</a>
                     </div>
                 </div>
                 <div id="slide3" class="carousel-item relative w-full w-max-full">
-                    <img src="https://img.daisyui.com/images/stock/photo-1414694762283-acccc27bca85.webp" class="w-full w-max-full" />
+                    <img src="{{ asset('images/unj_bersih.jpeg') }}" class="w-full h-64 object-cover rounded-lg"/>
                     <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
                         <a href="#slide2" class="btn btn-circle not-lg:hidden">❮</a>
                         <a href="#slide4" class="btn btn-circle not-lg:hidden">❯</a>
                     </div>
                 </div>
                 <div id="slide4" class="carousel-item relative w-full w-max-full">
-                    <img src="https://img.daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.webp" class="w-150" />
+                    <img src="{{ asset('images/unj_bersih.jpeg') }}" class="w-full h-64 object-cover rounded-lg"/>
                     <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
                         <a href="#slide3" class="btn btn-circle not-lg:hidden">❮</a>
                         <a href="#slide1" class="btn btn-circle not-lg:hidden">❯</a>
@@ -98,11 +98,30 @@
             </div>
         </div>
     </div>
+
+    <div class="flex justify-between items-center mb-3 mt-10 border-t border-gray-300 pt-3">
+        <div class="relative w-64">
+            <input 
+                type="text" 
+                class="border border-gray-300 rounded-full px-3 py-2 w-full pr-10 focus:outline-none focus:ring-2 focus:ring-teal-700" 
+                placeholder="Search...">
+            <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">
+                <svg class="w-5 h-5 text-gray-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
+                </svg>
+            </span>
+        </div>
+        <a href="/tambahgedung" 
+        class="bg-teal-700 text-white btn px-4 py-2 rounded-full flex items-center gap-2 hover:bg-teal-800">
+            + Tambah
+        </a>
+    </div>
+
     {{-- Gedung Box --}}
     <div class="grid lg:grid-cols-4 gap-3 mt-12">
         <div class="card bg-base-100 shadow-sm">
             <figure>
-                <img src="images/gedung.png" alt="Kampus_A_UNJ" />
+                <img src="images/unj_bersih.jpeg" alt="Kampus_A_UNJ" />
             </figure>
             <div class="card-body items-center text-center">
                 <h2 class="card-title">Gedung Dewi Sartika</h2>

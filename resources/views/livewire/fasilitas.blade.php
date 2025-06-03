@@ -1,35 +1,49 @@
-<div class="w-full py-5 px-5 lg:px-40">
-  {{-- card box --}}
-  <div class="grid lg:grid-cols-4 gap-3 mt-12">
-    <div class="card bg-base-100 shadow-lg">
-      <figure>
-        <img
-          src="images/kampus.png"
-          alt="Kampus_A_UNJ"
-          />
-      </figure>
-      <div class="card-body items-center text-center">
-        <h2 class="card-title">Kampus A</h2>
-        <p class="text-xs text-center mb-3 not-lg:hidden">Jl. R.Mangun Muka Raya...Daerah Khusus Ibukota Jakarta 13220</p>
-        <a href="kampus" class="btn bg-white text-black outline-none hover:bg-gray-200 rounded-lg w-full">Details</a>
-      </div>
+<div class="container mt-4">
+    <div class="flex justify-between items-center mb-3">
+        <div class="relative w-64">
+            <input 
+                type="text" 
+                class="border border-gray-300 rounded-full px-3 py-2 w-full pr-10 focus:outline-none focus:ring-2 focus:ring-teal-700" 
+                placeholder="Search...">
+            <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">
+                <svg class="w-5 h-5 text-gray-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
+                </svg>
+            </span>
+        </div>
+        <a href="/tambahkampus" 
+        class="bg-teal-700 text-white btn px-4 py-2 rounded-full flex items-center gap-2 hover:bg-teal-800">
+            + Tambah
+        </a>
     </div>
-    {{-- <a href="/kampus">
-      <div class="card group bg-[url(/public/backgrounds/unj_bersih.jpeg)] bg-cover h-53 ">
-        <div class="card-body rounded-box backdrop-brightness-75 group-hover:backdrop-brightness-50 group-hover:backdrop-blur-xs transition-all duration-400">
-          <h2 class="card-title text-3xl group-hover:text-2xl transition-all duration-400">Kampus A</h2>
-          <p class="hidden group-hover:inline transition-all duration-400">Kampus utama UNJ</p>
-          <p class="hidden text-xs group-hover:inline transition-all duration-400">Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220</p>
-        </div>
-      </div>
-    </a> --}}
-    {{-- <a href=" 0">
-      <div class="card group h-53 outline-3 outline-dashed outline-[#006569] transition-all duration-400">
-        <div class="card-body">
-          <p class="font-bold text-[#006569] text-2xl text-center group-hover:text-3xl transition-all duration-400">Tambah Kampus</p>
-          <p class="font-extrabold text-[#006569] text-4xl text-center group-hover:text-6xl transition-all duration-400">+</p>
-        </div>
-      </div>
-    </a> --}}
-  </div>
+    <table class="bg-white border border-gray-300 table table-bordered">
+        <thead class="bg-teal-700 text-white text-center table-success">
+            <tr>
+                <th>NO</th>
+                <th>NAMA KAMPUS</th>
+                <th>ALAMAT</th>
+                <th>JUMLAH GEDUNG</th>
+                <th>LUAS KAMPUS</th>
+                <th>FAKULTAS</th>
+                <th>AKSI</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Kampus A</td>
+                <td>Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220</td>
+                <td>10</td>
+                <td>1.000 hektar</td>
+                <td>FMIPA, FT, FBS, FE, FIP, FISH</td>
+                <td>
+                    <a href="/kampus" class="btn rounded-full">
+                        <svg class="w-6 h-6 text-teal-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 14v4.833A1.166 1.166 0 0 1 16.833 20H5.167A1.167 1.167 0 0 1 4 18.833V7.167A1.166 1.166 0 0 1 5.167 6h4.618m4.447-2H20v5.768m-7.889 2.121 7.778-7.778"/>
+                        </svg>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>

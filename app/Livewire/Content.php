@@ -20,6 +20,17 @@ class Content extends Component
                             'nama' => 'Lantai 1',
                             'ruangan' => [
                                 ['id' => 1, 'nama' => 'Ruang 101'],
+                                ['id' => 2, 'nama' => 'Ruang 102'],
+                                ['id' => 3, 'nama' => 'Ruang 103'],
+                            ]
+                        ],
+                        [
+                            'id' => 2,
+                            'nama' => 'Lantai 2',
+                            'ruangan' => [
+                                ['id' => 3, 'nama' => 'Ruang 201'],
+                                ['id' => 3, 'nama' => 'Ruang 202'],
+                                ['id' => 3, 'nama' => 'Ruang 203'],
                             ]
                         ],
                     ]

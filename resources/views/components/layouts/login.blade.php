@@ -7,7 +7,7 @@
         <title>{{ $title ?? 'Page Title' }}</title>
         @vite('resources/css/app.css')
     </head>
-    <body class="bg-[url('/public/backgrounds/unj.png')] bg-cover min-h-screen flex justify-center items-center">
+    <body class="bg-[url('/public/backgrounds/watermark_unj.png')] bg-cover min-h-screen flex justify-center items-center">
         {{ $slot }}
     </body>
 </html>

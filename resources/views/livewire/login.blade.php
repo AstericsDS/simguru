@@ -1,8 +1,8 @@
-<div class="container w-2xl mx-auto bg-white rounded-xl flex flex-col items-center pb-16 text-black">
+<div class="container w-2xl mx-auto bg-white rounded-xl border border-gray-200 flex flex-col items-center pb-16 text-black">
     <img src="logos/unj.png" alt="Logo UNJ" class="w-32 mx-auto mt-1">
     <div class="pt-3 pb-3 px-10 w-full max-w-md">
         <h1 class="text-center font-semibold text-xl">
-            Manajemen Gedung dan Ruang
+            Sistem Informasi Manajemen Gedung dan Ruang
         </h1>
         <hr class="border-2 border-gray-200 mt-4 mb-6">
         <form action="" class="flex flex-col mt-4 gap-4">

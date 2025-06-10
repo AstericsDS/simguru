@@ -4,10 +4,10 @@ namespace App\Livewire;
 
 use Livewire\Component;
 
-class Tambahruang extends Component
+class TambahRuang extends Component
 {
     public function render()
     {
-        return view('livewire.tambahruang');
+        return view('livewire.tambah-ruang');
     }
 }

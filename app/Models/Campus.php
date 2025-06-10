@@ -11,7 +11,7 @@ class Campus extends Model
 {
     /** @use HasFactory<\Database\Factories\CampusFactory> */
     use HasFactory, HasUlids;
-    protected $guarded = [];
+    protected $fillable = ['name', 'address', 'description', 'images_path', 'role'];
     public function user(): BelongsTo {
         return $this->belongsTo(User::class, 'admin_id');
     }

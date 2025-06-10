@@ -17,7 +17,11 @@ class BuildingFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->word(),
+            'floor' => $this->faker->numberBetween(1, 10),
+            'description' => $this->faker->paragraph(5),
+            'images_path' => $this->faker->word(),
+            'status' => $this->faker->boolean(),
         ];
     }
 }

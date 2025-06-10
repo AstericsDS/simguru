@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('buildings', function (Blueprint $table) {
             $table->ulid('id')->primary();
-            $table->foreignUlid('admin_id')->constrained('users');
-            $table->foreignUlid('campus_id')->constrained('campuses');
+            $table->foreignUlid('admin_id')->nullable()->constrained('users');
+            $table->foreignUlid('campus_id')->nullable()->constrained('campuses');
             $table->string('name');
             $table->integer('floor');
             $table->text('description');

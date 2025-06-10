@@ -95,7 +95,7 @@
             </div>
         </div>
     </div>
-    <table class="bg-white text-black border border-gray-300 table table-bordered">
+    <table class="border border-gray-300 table table-bordered">
         <thead class="bg-teal-700 text-white text-center table-success">
             <tr>
                 <th>No</th>
@@ -107,14 +107,16 @@
                 <th>Aksi</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="bg-white text-black text-center">
             <tr>
                 <td>1</td>
                 <td>Kampus Rawamangun Muka</td>
-                <td>Gedung Pustikom</td>
-                <td>Ruang Rapat Progress</td>
-                <td>25</td>
-                <td>Bukan Kelas</td>
+                <td>Gedung Dewi Sartika</td>
+                <td>Ruang 301</td>
+                <td>40</td>
+                <td>
+                    <span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-red-900 dark:text-red-300">Kelas</span>
+                </td>
                 <td>
                     <a href="" class="btn rounded-full">
                         <svg class="w-6 h-6 text-teal-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">

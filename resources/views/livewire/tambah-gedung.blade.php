@@ -102,13 +102,13 @@
                 <th>Aksi</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="bg-white text-black text-center">
             <tr>
                 <td>1</td>
                 <td>Kampus Rawamangun Muka</td>
-                <td>Gedung Pustikom</td>
+                <td>Gedung Dewi Sartika</td>
                 <td>Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220</td>
-                <td>4</td>
+                <td>10</td>
                 <td>
                     <a href="" class="btn rounded-full">
                         <svg class="w-6 h-6 text-teal-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">

@@ -112,7 +112,7 @@
                 <th>Aksi</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="bg-white text-black text-center">
             <tr>
                 <td>1</td>
                 <td>Kampus Rawamangun Muka</td>

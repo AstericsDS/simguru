@@ -5,9 +5,9 @@ use App\Livewire\Gedung;
 use App\Livewire\Login;
 use App\Livewire\Homepage;
 use App\Livewire\Kampus;
-use App\Livewire\Tambahgedung;
-use App\Livewire\Tambahkampus;
-use App\Livewire\Tambahruang;
+use App\Livewire\TambahGedung;
+use App\Livewire\TambahKampus;
+use App\Livewire\TambahRuang;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', Homepage::class)->name('homepage');

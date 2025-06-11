@@ -4,7 +4,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>{{ $title ?? 'SIMGURU' }}</title>
     @vite('resources/css/app.css')
 </head>
@@ -25,7 +24,7 @@
                     <div class="flex items-center">
                         <img src="/logos/unj.png" class="h-10 me-3" alt="Logo" />
                         <span class="text-white text-lg font-extrabold m-0 leading-none">
-                            Sistem Managemen Gedung dan Ruang <br>
+                            Sistem Manajemen Gedung dan Ruang <br>
                             <span class="text-white text-sm font-semibold m-0">
                                 Universitas Negeri Jakarta
                             </span>

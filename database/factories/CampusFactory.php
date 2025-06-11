@@ -21,9 +21,10 @@ class CampusFactory extends Factory
             'name' => fake()->word(),
             // 'admin_id' => User::factory(),
             'address' => fake()->address(),
+            'contact' => fake()->randomNumber(5, true),
+            'email' => fake()->email(),
             'description' => fake()->paragraph(),
-            'images_path' => fake()->image(null, 640, 480),
-            'role' => fake()->boolean()
+            'images_path' => null,
         ];
     }
 }

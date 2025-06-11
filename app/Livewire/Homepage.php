@@ -2,12 +2,17 @@
 
 namespace App\Livewire;
 
+use App\Models\Campus;
 use Livewire\Component;
+use App\Models\Building;
 
 class Homepage extends Component
 {
     public function render()
     {
-        return view('livewire.homepage');
+        return view('livewire.homepage', [
+            'campusCount' => Campus::count(),
+            'buildingCount' => Building::count()
+        ]);
     }
 }

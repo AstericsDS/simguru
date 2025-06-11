@@ -5,18 +5,18 @@
         <div class="max-w-sm p-6 bg-white rounded-lg shadow-md text-center mr-4">
             <h3 class="text-xl font-semibold mb-2 text-gray-800">Jumlah Kampus</h3>
             <p class="text-3xl font-bold text-blue-600">
-                4
+                {{ $campusCount }}
             </p>
-            <p class="mt-2 text-gray-600">Sebanyak <span>4</span> kampus sudah terdaftar di UNJ</p>
+            <p class="mt-2 text-gray-600">Sebanyak <span>{{ $campusCount }}</span> kampus sudah terdaftar di UNJ</p>
         </div>
 
         <!-- Card Gedung -->
         <div class="max-w-sm p-6 bg-white rounded-lg shadow-md text-center ml-4 mr-4">
             <h3 class="text-xl font-semibold mb-2 text-gray-800">Jumlah Gedung</h3>
             <p class="text-3xl font-bold text-green-600">
-                150
+                {{ $buildingCount }}
             </p>
-            <p class="mt-2 text-gray-600">Sebanyak <span>150</span> gedung sudah terdaftar di UNJ</p>
+            <p class="mt-2 text-gray-600">Sebanyak <span>{{ $buildingCount }}</span> gedung sudah terdaftar di UNJ</p>
         </div>
 
         <!-- Card Ruang -->
@@ -39,100 +39,93 @@
     </div>
 
     <div class="max-w-full w-full bg-white rounded-lg shadow-sm p-4 md:p-6 mt-6">
-    <div class="flex justify-between mb-3">
-        <div class="flex justify-center items-center">
-            <h5 class="text-xl font-bold leading-none text-gray-900 pe-1">Informasi Kampus</h5>
-            <svg data-popover-target="chart-info" data-popover-placement="bottom" class="w-3.5 h-3.5 text-gray-500 hover:text-gray-900 cursor-pointer ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm0 16a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm1-5.034V12a1 1 0 0 1-2 0v-1.418a1 1 0 0 1 1.038-.999 1.436 1.436 0 0 0 1.488-1.441 1.501 1.501 0 1 0-3-.116.986.986 0 0 1-1.037.961 1 1 0 0 1-.96-1.037A3.5 3.5 0 1 1 11 11.466Z"/>
-            </svg>
-            <div data-popover id="chart-info" role="tooltip" class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-xs opacity-0 w-72">
-                <div class="p-3 space-y-2">
-                    <h3 class="font-semibold text-gray-900">Kampus, Gedung, dan Ruang</h3>
-                    <p>Data ini menunjukkan persentase penggunaan ruang di gedung-gedung kampus. Setiap segmen mewakili kategori berbeda seperti ruang kuliah, laboratorium, dan fasilitas umum.</p>
-                    <h3 class="font-semibold text-gray-900">Keterangan</h3>
-                    <p>Informasi ini membantu dalam pengelolaan ruang kampus agar penggunaan lebih efisien dan sesuai kebutuhan mahasiswa serta staf pengajar.</p>
-                    <a href="#" class="flex items-center font-medium text-blue-600 hover:text-blue-700 hover:underline">Pelajari lebih lanjut <svg class="w-2 h-2 ms-1.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-                </svg></a>
+        <div class="flex justify-between mb-3">
+            <div class="flex justify-center items-center">
+                <h5 class="text-xl font-bold leading-none text-gray-900 pe-1">Informasi Kampus</h5>
+                <svg data-popover-target="chart-info" data-popover-placement="bottom" class="w-3.5 h-3.5 text-gray-500 hover:text-gray-900 cursor-pointer ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm0 16a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm1-5.034V12a1 1 0 0 1-2 0v-1.418a1 1 0 0 1 1.038-.999 1.436 1.436 0 0 0 1.488-1.441 1.501 1.501 0 1 0-3-.116.986.986 0 0 1-1.037.961 1 1 0 0 1-.96-1.037A3.5 3.5 0 1 1 11 11.466Z" />
+                </svg>
+                <div data-popover id="chart-info" role="tooltip" class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-xs opacity-0 w-72">
+                    <div class="p-3 space-y-2">
+                        <h3 class="font-semibold text-gray-900">Kampus, Gedung, dan Ruang</h3>
+                        <p>Data ini menunjukkan persentase penggunaan ruang di gedung-gedung kampus. Setiap segmen mewakili kategori berbeda seperti ruang kuliah, laboratorium, dan fasilitas umum.</p>
+                        <h3 class="font-semibold text-gray-900">Keterangan</h3>
+                        <p>Informasi ini membantu dalam pengelolaan ruang kampus agar penggunaan lebih efisien dan sesuai kebutuhan mahasiswa serta staf pengajar.</p>
+                        <a href="#" class="flex items-center font-medium text-blue-600 hover:text-blue-700 hover:underline">Pelajari lebih lanjut <svg class="w-2 h-2 ms-1.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
+                            </svg></a>
+                    </div>
+                    <div data-popper-arrow></div>
                 </div>
-                <div data-popper-arrow></div>
             </div>
+            <div>
+                <button type="button" data-tooltip-target="data-tooltip" data-tooltip-placement="bottom" class="hidden sm:inline-flex items-center justify-center text-gray-500 w-8 h-8 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 rounded-lg text-sm"><svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 18">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 1v11m0 0 4-4m-4 4L4 8m11 4v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3" />
+                    </svg><span class="sr-only">Download data</span>
+                </button>
+                <div id="data-tooltip" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip">
+                    Download CSV
+                    <div class="tooltip-arrow" data-popper-arrow></div>
+                </div>
             </div>
+        </div>
+
         <div>
-            <button type="button" data-tooltip-target="data-tooltip" data-tooltip-placement="bottom" class="hidden sm:inline-flex items-center justify-center text-gray-500 w-8 h-8 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 rounded-lg text-sm"><svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 18">
-        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 1v11m0 0 4-4m-4 4L4 8m11 4v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3"/>
-    </svg><span class="sr-only">Download data</span>
-            </button>
-            <div id="data-tooltip" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip">
-                Download CSV
-                <div class="tooltip-arrow" data-popper-arrow></div>
+            <div class="flex" id="devices">
+                <div class="flex items-center me-4">
+                    <input id="desktop" type="checkbox" value="desktop" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-2">
+                    <label for="desktop" class="ms-2 text-sm font-medium text-gray-900">Gedung A</label>
+                </div>
+                <div class="flex items-center me-4">
+                    <input id="tablet" type="checkbox" value="tablet" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-2">
+                    <label for="tablet" class="ms-2 text-sm font-medium text-gray-900">Gedung B</label>
+                </div>
+                <div class="flex items-center me-4">
+                    <input id="mobile" type="checkbox" value="mobile" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-2">
+                    <label for="mobile" class="ms-2 text-sm font-medium text-gray-900">Gedung C</label>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div>
-        <div class="flex" id="devices">
-        <div class="flex items-center me-4">
-            <input id="desktop" type="checkbox" value="desktop" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-2">
-            <label for="desktop" class="ms-2 text-sm font-medium text-gray-900">Gedung A</label>
-        </div>
-        <div class="flex items-center me-4">
-            <input id="tablet" type="checkbox" value="tablet" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-2">
-            <label for="tablet" class="ms-2 text-sm font-medium text-gray-900">Gedung B</label>
-        </div>
-        <div class="flex items-center me-4">
-            <input id="mobile" type="checkbox" value="mobile" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-2">
-            <label for="mobile" class="ms-2 text-sm font-medium text-gray-900">Gedung C</label>
-        </div>
-        </div>
-    </div>
+        <!-- Donut Chart -->
+        <div class="py-6 w-full" id="donut-chart" style="min-height: 400px;"></div>
 
-    <!-- Donut Chart -->
-    <div class="py-6 w-full" id="donut-chart" style="min-height: 400px;"></div>
-
-    <div class="grid grid-cols-1 items-center border-gray-200 border-t justify-between">
-        <div class="flex justify-between items-center pt-5">
-        <!-- Button -->
-        <button
-            id="dropdownDefaultButton"
-            data-dropdown-toggle="lastDaysdropdown"
-            data-dropdown-placement="bottom"
-            class="text-sm font-medium text-gray-500 hover:text-gray-900 text-center inline-flex items-center"
-            type="button">
-            Last 7 days
-            <svg class="w-2.5 m-2.5 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-            </svg>
-        </button>
-        <div id="lastDaysdropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44">
-            <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownDefaultButton">
-                <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Yesterday</a>
-                </li>
-                <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Today</a>
-                </li>
-                <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Last 7 days</a>
-                </li>
-                <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Last 30 days</a>
-                </li>
-                <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Last 90 days</a>
-                </li>
-            </ul>
+        <div class="grid grid-cols-1 items-center border-gray-200 border-t justify-between">
+            <div class="flex justify-between items-center pt-5">
+                <!-- Button -->
+                <button id="dropdownDefaultButton" data-dropdown-toggle="lastDaysdropdown" data-dropdown-placement="bottom" class="text-sm font-medium text-gray-500 hover:text-gray-900 text-center inline-flex items-center" type="button">
+                    Last 7 days
+                    <svg class="w-2.5 m-2.5 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                    </svg>
+                </button>
+                <div id="lastDaysdropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44">
+                    <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownDefaultButton">
+                        <li>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Yesterday</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Today</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Last 7 days</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Last 30 days</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Last 90 days</a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="#" class="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-blue-600 hover:text-blue-700 hover:bg-gray-100 px-3 py-2">
+                    Traffic analysis
+                    <svg class="w-2.5 h-2.5 ms-1.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
+                    </svg>
+                </a>
+            </div>
         </div>
-        <a
-            href="#"
-            class="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-blue-600 hover:text-blue-700 hover:bg-gray-100 px-3 py-2">
-            Traffic analysis
-            <svg class="w-2.5 h-2.5 ms-1.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-            </svg>
-        </a>
-        </div>
-    </div>
     </div>
 </div>
 <!-- Load ApexCharts -->
@@ -140,107 +133,113 @@
 
 <!-- JavaScript: Donut Chart & Checkbox Handler -->
 <script>
-const getChartOptions = () => {
-    return {
-        series: [400, 30, 20, 1050],
-        colors: ["#1C64F2", "#16BDCA", "#FDBA8C", "#E74694"],
-        chart: {
-            height: '100%',
-            width: '100%',
-            type: "donut",
-            toolbar: { show: false },
-            animations: { enabled: true },
-        },
-        stroke: {
-            colors: ["transparent"],
-        },
-        plotOptions: {
-            pie: {
-                donut: {
-                    labels: {
-                        show: true,
-                        name: {
+    const getChartOptions = () => {
+        return {
+            series: [400, 30, 20, 1050],
+            colors: ["#1C64F2", "#16BDCA", "#FDBA8C", "#E74694"],
+            chart: {
+                height: '100%',
+                width: '100%',
+                type: "donut",
+                toolbar: {
+                    show: false
+                },
+                animations: {
+                    enabled: true
+                },
+            },
+            stroke: {
+                colors: ["transparent"],
+            },
+            plotOptions: {
+                pie: {
+                    donut: {
+                        labels: {
                             show: true,
-                            fontFamily: "Inter, sans-serif",
-                            offsetY: 20,
-                        },
-                        total: {
-                            showAlways: true,
-                            show: true,
-                            label: "Total Ruang",
-                            fontFamily: "Inter, sans-serif",
-                            formatter: function (w) {
-                                const sum = w.globals.seriesTotals.reduce((a, b) => a + b, 0);
-                                return sum + " ruang";
+                            name: {
+                                show: true,
+                                fontFamily: "Inter, sans-serif",
+                                offsetY: 20,
+                            },
+                            total: {
+                                showAlways: true,
+                                show: true,
+                                label: "Total Ruang",
+                                fontFamily: "Inter, sans-serif",
+                                formatter: function(w) {
+                                    const sum = w.globals.seriesTotals.reduce((a, b) => a + b, 0);
+                                    return sum + " ruang";
+                                },
+                            },
+                            value: {
+                                show: true,
+                                fontFamily: "Inter, sans-serif",
+                                offsetY: -20,
+                                formatter: function(value) {
+                                    return value + " ruang";
+                                },
                             },
                         },
-                        value: {
-                            show: true,
-                            fontFamily: "Inter, sans-serif",
-                            offsetY: -20,
-                            formatter: function (value) {
-                                return value + " ruang";
-                            },
-                        },
+                        size: "80%",
                     },
-                    size: "80%",
                 },
             },
-        },
-        grid: {
-            padding: {
-                top: -2,
-            },
-        },
-        labels: ["Ruang Kelas", "Laboratorium", "Perpustakaan", "Fasilitas Umum"],
-        dataLabels: { enabled: false },
-        legend: {
-            position: "bottom",
-            fontFamily: "Inter, sans-serif",
-        },
-        responsive: [{
-            breakpoint: 768,
-            options: {
-                chart: {
-                    height: 320,
+            grid: {
+                padding: {
+                    top: -2,
                 },
-                legend: {
-                    position: "bottom"
+            },
+            labels: ["Ruang Kelas", "Laboratorium", "Perpustakaan", "Fasilitas Umum"],
+            dataLabels: {
+                enabled: false
+            },
+            legend: {
+                position: "bottom",
+                fontFamily: "Inter, sans-serif",
+            },
+            responsive: [{
+                breakpoint: 768,
+                options: {
+                    chart: {
+                        height: 320,
+                    },
+                    legend: {
+                        position: "bottom"
+                    }
                 }
-            }
-        }]
-    }
-}
-
-if (document.getElementById("donut-chart") && typeof ApexCharts !== 'undefined') {
-    const chart = new ApexCharts(document.getElementById("donut-chart"), getChartOptions());
-    chart.render();
-
-    const checkboxes = document.querySelectorAll('#devices input[type="checkbox"]');
-
-    function handleCheckboxChange(event, chart) {
-        const checkbox = event.target;
-        if (checkbox.checked) {
-            switch(checkbox.value) {
-                case 'desktop': // Gedung A
-                    chart.updateSeries([50, 20, 15, 15]);
-                    break;
-                case 'tablet': // Gedung B
-                    chart.updateSeries([30, 40, 10, 20]);
-                    break;
-                case 'mobile': // Gedung C
-                    chart.updateSeries([25, 25, 25, 25]);
-                    break;
-                default:
-                    chart.updateSeries([40, 30, 20, 10]);
-            }
-        } else {
-            chart.updateSeries([40, 30, 20, 10]);
+            }]
         }
     }
 
-    checkboxes.forEach((checkbox) => {
-        checkbox.addEventListener('change', (event) => handleCheckboxChange(event, chart));
-    });
-}
+    if (document.getElementById("donut-chart") && typeof ApexCharts !== 'undefined') {
+        const chart = new ApexCharts(document.getElementById("donut-chart"), getChartOptions());
+        chart.render();
+
+        const checkboxes = document.querySelectorAll('#devices input[type="checkbox"]');
+
+        function handleCheckboxChange(event, chart) {
+            const checkbox = event.target;
+            if (checkbox.checked) {
+                switch (checkbox.value) {
+                    case 'desktop': // Gedung A
+                        chart.updateSeries([50, 20, 15, 15]);
+                        break;
+                    case 'tablet': // Gedung B
+                        chart.updateSeries([30, 40, 10, 20]);
+                        break;
+                    case 'mobile': // Gedung C
+                        chart.updateSeries([25, 25, 25, 25]);
+                        break;
+                    default:
+                        chart.updateSeries([40, 30, 20, 10]);
+                }
+            } else {
+                chart.updateSeries([40, 30, 20, 10]);
+            }
+        }
+
+        checkboxes.forEach((checkbox) => {
+            checkbox.addEventListener('change', (event) => handleCheckboxChange(event, chart));
+        });
+    }
 </script>

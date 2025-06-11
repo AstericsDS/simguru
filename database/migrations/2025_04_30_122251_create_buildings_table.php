@@ -15,11 +15,13 @@ return new class extends Migration
             $table->ulid('id')->primary();
             $table->foreignUlid('admin_id')->nullable()->constrained('users');
             $table->foreignUlid('campus_id')->nullable()->constrained('campuses');
-            $table->string('name')->nullable();
-            $table->integer('floor')->nullable();
-            $table->text('description')->nullable();
+            $table->string('name');
+            $table->string('area');
+            $table->integer('floor');
+            $table->text('description');
+            $table->text('address');
             $table->string('images_path')->nullable();
-            $table->boolean('status')->nullable();
+            $table->boolean('status');
             $table->timestamps();
         });
     }

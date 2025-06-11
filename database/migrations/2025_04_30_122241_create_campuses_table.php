@@ -16,9 +16,10 @@ return new class extends Migration
             $table->foreignUlid('admin_id')->nullable()->constrained('users');
             $table->string('name');
             $table->string('address');
+            $table->string('contact');
+            $table->string('email');
             $table->text('description');
-            $table->string('images_path');
-            $table->boolean('role');
+            $table->string('images_path')->nullable();
             $table->timestamps();
         });
     }

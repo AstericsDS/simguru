@@ -9,7 +9,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="min-h-screen bg-fixed bg-[url('/public/backgrounds/watermark.jpeg')] bg-cover">
+<body class="min-h-screen bg-fixed bg-[url(/public/backgrounds/watermark.jpeg)] bg-cover">
     <div class="drawer">
         <input id="profile-drawer" type="checkbox" class="drawer-toggle">
         <div class="drawer-content">
@@ -24,19 +24,19 @@
                 <div class="navbar-end">
                     <div class="not-lg:hidden">
                         <button class="btn btn-ghost">
-                            Home
+                            Kampus
                         </button>
                         {{-- <button class="btn btn-ghost">
                             Manage User
                         </button> --}}
                         <button class="btn btn-ghost">
-                            Fasilitas
+                            Gedung
                         </button>
                         <button class="btn btn-ghost">
-                            Layanan
+                            Ruang
                         </button>
                         <button class="btn btn-ghost">
-                            Feedback
+                            Statistik
                         </button>
                     </div>
                     <div class="dropdown dropdown-end">
@@ -100,10 +100,10 @@
                 <div class="btn btn-ghost btn-circle btn-xl mb-3">
                     <img class="invert" src="{{ asset('logos/user.svg') }}" alt="">
                 </div>
-                <li><a>Home</a></li>
-                <li><a>Fasilitas</a></li>
-                <li><a>Layanan</a></li>
-                <li><a>Feedback</a></li>
+                <li><a>Kampus</a></li>
+                <li><a>Gedung</a></li>
+                <li><a>Ruang</a></li>
+                <li><a>Statistik</a></li>
             </ul>
         </div>
     </div>

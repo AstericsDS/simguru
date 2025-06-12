@@ -10,7 +10,7 @@ class Dashboard extends Component
 {
     public function render()
     {
-        return view('livewire.homepage', [
+        return view('livewire.dashboard', [
             'campusCount' => Campus::count(),
             'buildingCount' => Building::count()
         ]);

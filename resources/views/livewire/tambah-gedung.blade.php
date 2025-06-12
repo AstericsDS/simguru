@@ -6,7 +6,7 @@
         <span class="text-2xl font-bold text-gray-800 leading-none">
             Daftar Gedung UNJ <br>
             <span class="text-sm font-semibold text-gray-800">
-                Daftar gedung yang terdaftar di UNJ (Klik "+Tambah" untuk menambah gedung)
+                Daftar gedung yang terdaftar di UNJ (Klik "Tambah" untuk menambah gedung)
             </span>
         </span>
         @if (session()->has('message'))
@@ -25,8 +25,8 @@
             </span>
         </div>
         <!-- Modal toggle -->
-        <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="btn text-white bg-teal-700 px-4 py-2 rounded-md flex items-center gap-2 hover:bg-teal-800 focus:ring-4 focus:outline-none font-medium text-sm text-center shadow-none border-none" type="button">
-            Tambahan
+        <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="btn text-white bg-teal-700 px-4 py-2 rounded-md flex items-center gap-2 hover:bg-teal-800 focus:ring-4 focus:outline-none font-bold text-sm text-center shadow-none border-none" type="button">
+            Tambah
         </button>
         <!-- Main modal -->
         <div wire:ignore.self id="crud-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -124,13 +124,13 @@
                         <td>{{ $building->floor }}</td>
                         <td>{{ $building->area }}</td>
                         <td class="flex gap-2 justify-center">
-                            <a href="" class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 font-medium rounded-lg text-sm size-12 flex justify-center items-center">
-                                <span class="material-symbols-rounded" style="font-size: 20px">
+                            <a href="" class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 font-medium rounded-lg text-sm size-12 flex justify-center items-center transition-all">
+                                <span class="material-symbols-rounded" style="font-size: 20px; font-weight: bold;">
                                     edit
                                 </span>
                             </a>
-                            <a href="" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 font-medium rounded-lg text-sm size-12 flex justify-center items-center">
-                                <span class="material-symbols-rounded" style="font-size: 20px">
+                            <a href="" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 font-medium rounded-lg text-sm size-12 flex justify-center items-center transition-all">
+                                <span class="material-symbols-rounded" style="font-size: 20px; font-weight: bold;">
                                     visibility
                                 </span>
                             </a>

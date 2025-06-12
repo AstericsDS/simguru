@@ -11,7 +11,7 @@
 
 <body class="min-h-screen bg-gray-100">
     <!-- Navbar -->
-    <nav id="navbar" class="fixed top-0 left-0 z-0 w-full h-16 bg-teal-700 transition-all duration-300">
+    <nav id="navbar" class="fixed top-0 left-0 z-1 w-full h-16 bg-teal-700 transition-all duration-300">
         <div class="px-3 py-3 lg:px-5">
             <div class="flex items-center justify-between">
                 <div class="flex items-center">

@@ -47,7 +47,7 @@ class TambahGedung extends Component
     public function render()
     {
         $building = Building::with('campus')
-            ->when($this->searchBar !== '', fn(Builder $query) => $query->where('name', 'like', '%'. $this->searchBar . '%'))->paginate(10);
+            ->when($this->searchBar !== '', fn(Builder $query) => $query->where('name', 'like', '%' . $this->searchBar . '%'))->paginate(10);
         return view('livewire.tambah-gedung', [
             'campuses' => Campus::all(),
             'buildings' => $building

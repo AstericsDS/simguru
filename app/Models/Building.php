@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Building extends Model
 {
     use HasFactory, HasUlids;
-    protected $fillable = ['name', 'floor', 'description', 'images_path', 'status'];
+    protected $fillable = ['campus_id', 'name', 'floor', 'description', 'images_path', 'status', 'area', 'address'];
     public function user(): BelongsTo {
         return $this->belongsTo(User::class, 'admin_id');
     }

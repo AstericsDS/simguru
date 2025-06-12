@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
         
         Campus::factory()
             ->count(4)
-            ->has(Building::factory()->count(7))
+            ->has(Building::factory()->count(3))
             ->create();
         // Campus::factory()->count(5)->create();
     }

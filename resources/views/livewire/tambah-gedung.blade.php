@@ -49,10 +49,10 @@
                             </div>
                             <div class="col-span-2">
                                 <label for="category" class="block mb-2 text-sm font-medium text-gray-900">Lokasi Kampus</label>
-                                <select id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+                                <select wire:model="campus_id" id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
                                     <option selected="" disabled>Pilih Kampus</option>
                                     @foreach ($campuses as $campus)
-                                        <option value="{{ $campus->name }}">{{ $campus->name }}</option>
+                                        <option value="{{ $campus->id }}">{{ $campus->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -99,6 +99,7 @@
                 <th>Lokasi Kampus</th>
                 <th>Alamat Gedung</th>
                 <th>Jumlah Lantai</th>
+                <th>Area</th>
                 <th>Aksi</th>
             </tr>
         </thead>
@@ -110,6 +111,7 @@
                     <td>{{ $building->campus->name }}</td>
                     <td>{{ $building->address }}</td>
                     <td>{{ $building->floor }}</td>
+                    <td>{{ $building->area }}</td>
                     <td class="flex gap-2">
                         <a href="" class="btn rounded-full">
                             <svg class="w-6 h-6 text-teal-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">

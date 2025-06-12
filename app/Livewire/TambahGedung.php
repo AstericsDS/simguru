@@ -8,7 +8,7 @@ use App\Models\Building;
 
 class TambahGedung extends Component
 {
-    public $name, $address, $floor, $area, $description;
+    public $name, $address, $floor, $area, $description, $campus_id;
     public $status = 0;
 
     public function rules() {
@@ -19,6 +19,7 @@ class TambahGedung extends Component
             'area' => 'required|integer',
             'status' => 'required',
             'description' => 'required',
+            'campus_id' => 'required'
         ];
     }
 

@@ -22,10 +22,10 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         
+        // Campus::factory()->count(5)->create();
         Campus::factory()
             ->count(4)
             ->has(Building::factory()->count(3))
             ->create();
-        // Campus::factory()->count(5)->create();
     }
 }

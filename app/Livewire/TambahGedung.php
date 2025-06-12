@@ -5,13 +5,19 @@ namespace App\Livewire;
 use App\Models\Campus;
 use Livewire\Component;
 use App\Models\Building;
+use Illuminate\Database\Eloquent\Builder;
+use Livewire\WithPagination;
 
 class TambahGedung extends Component
 {
+    use WithPagination;
+    
     public $name, $address, $floor, $area, $description, $campus_id;
     public $status = 0;
+    public $searchBar = '';
 
-    public function rules() {
+    public function rules()
+    {
         return [
             'name' => 'required',
             'address' => 'required',
@@ -23,18 +29,29 @@ class TambahGedung extends Component
         ];
     }
 
-    public function save() {
+    public function store()
+    {
         $validate = $this->validate();
         Building::create($validate);
         $this->reset();
-        session()->flash('success', 'Gedung berhasil dibuat');
+        return redirect()->route('tambah-gedung')->with('message', 'Gedung berhasil dibuat');
+    }
+
+    public function updating($key): void
+    {
+        if ($key === 'searchBar') {
+            $this->resetPage();
+        }
     }
 
     public function render()
     {
+        $building = Building::with('campus')
+            ->when($this->searchBar !== '', fn(Builder $query) => $query->where('name', 'like', '%'. $this->searchBar . '%'))->paginate(10);
         return view('livewire.tambah-gedung', [
             'campuses' => Campus::all(),
-            'buildings' => Building::paginate(10),
+            'buildings' => $building
         ]);
     }
+
 }

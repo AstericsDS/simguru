@@ -49,8 +49,11 @@
                     <form class="p-4 md:p-5">
                         <div class="grid gap-4 mb-4 grid-cols-2">
                             <div class="col-span-2">
-                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Nama Gedung</label>
-                                <input wire:model="name" type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="" required="">
+                                <label for="name" class="block mb-2 text-sm font-medium {{ $errors->has('floor') ? 'text-red-700' : 'text-gray-900' }}">Nama Gedung</label>
+                                <input wire:model="name" type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 {{ $errors->has('floor') ? 'border-red-500' : 'border-gray-300' }}" placeholder="" required="">
+                                @error('name')
+                                    <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
+                                @enderror
                             </div>
                             <div class="col-span-2">
                                 <label for="category" class="block mb-2 text-sm font-medium {{ $errors->has('floor') ? 'text-red-700' : 'text-gray-900' }}">Lokasi Kampus</label>
@@ -65,8 +68,11 @@
                                 @enderror
                             </div>
                             <div class="col-span-2">
-                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Alamat Gedung</label>
-                                <input wire:model="address" type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="" required="">
+                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 {{ $errors->has('floor') ? 'text-red-700' : 'text-gray-900' }}">Alamat Gedung</label>
+                                <input wire:model="address" type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 {{ $errors->has('floor') ? 'border-red-500' : 'border-gray-300' }}" placeholder="" required="">
+                                @error('address')
+                                    <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
+                                @enderror
                             </div>
                             <div class="col-span-2">
                                 <label for="name" class="block mb-2 text-sm font-medium {{ $errors->has('floor') ? 'text-red-700' : 'text-gray-900' }}">Jumlah Lantai</label>
@@ -87,8 +93,11 @@
                                 <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50" aria-describedby="user_avatar_help" id="user_avatar" type="file">
                             </div>
                             <div class="col-span-2">
-                                <label for="description" class="block mb-2 text-sm font-medium text-gray-900">Deskripsi Gedung</label>
-                                <textarea wire:model="description" id="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-teal-500 focus:border-teal-500" placeholder=""></textarea>
+                                <label for="description" class="block mb-2 text-sm font-medium text-gray-900 {{ $errors->has('area') ? 'text-red-700' : 'text-gray-900' }}">Deskripsi Gedung</label>
+                                <textarea wire:model="description" id="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-teal-500 focus:border-teal-500 {{ $errors->has('area') ? 'border-red-500' : 'border-gray-300' }}" placeholder=""></textarea>
+                                @error('description')
+                                    <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
+                                @enderror
                             </div>
                         </div>
                         <div class="flex justify-end">

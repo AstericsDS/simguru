@@ -29,6 +29,19 @@ class TambahGedung extends Component
         ];
     }
 
+    public function messages() {
+        return [
+            'name.required' => 'Nama gedung harus diisi',
+            'address.required' => 'Alamat harus diisi',
+            'floor.required' => 'Jumlah lantai harus diisi',
+            'area.required' => 'Luas gedung harus diisi',
+            'description.required' => 'Deskripsi harus diisi',
+            'campus_id.required' => 'Harus pilih salah satu kampus',
+            'floor.integer' => 'Jumlah lantai harus berupa angka',
+            'area.integer' => 'Luas area harus berupa angka'
+        ];
+    }
+
     public function store()
     {
         $validate = $this->validate();

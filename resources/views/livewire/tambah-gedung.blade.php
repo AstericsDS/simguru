@@ -138,7 +138,7 @@
                     </tr>
                 @endforeach
                 <div class="bg-white">
-                    {{ $buildings->links() }}
+                    {{ $buildings->links('pagination::tailwind') }}
                 </div>
             </tbody>
         </table>

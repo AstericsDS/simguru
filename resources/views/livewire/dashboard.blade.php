@@ -1,245 +1,184 @@
-<!-- HTML: Card dan Donut Chart -->
 <div>
-    <div class="flex justify-around p-6 bg-gray-100">
-        <!-- Card Kampus -->
-        <div class="max-w-sm p-6 bg-white rounded-lg shadow-md text-center mr-4">
-            <h3 class="text-xl font-semibold mb-2 text-gray-800">Jumlah Kampus</h3>
-            <p class="text-3xl font-bold text-blue-600">
-                {{ $campusCount }}
+    <!-- Statistik Card -->
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-6">
+        <div class="bg-white rounded-lg shadow p-5">
+            <h6 class="text-gray-500 mb-2 font-normal">Total Kampus UNJ</h6>
+            <h4 class="text-2xl font-semibold mb-3 flex items-center gap-2">
+                4
+                <span class="inline-flex items-center px-2 py-1 text-xs font-medium bg-blue-100 text-blue-700 rounded border border-blue-700">
+                    <i class="ti ti-trending-up"></i> Kampus UNJ
+                </span>
+            </h4>
+            <p class="text-sm text-gray-500">
+                Sebanyak <span class="text-blue-600">4</span> Kampus yang terdaftar di UNJ
             </p>
-            <p class="mt-2 text-gray-600">Sebanyak <span>{{ $campusCount }}</span> kampus sudah terdaftar di UNJ</p>
         </div>
 
-        <!-- Card Gedung -->
-        <div class="max-w-sm p-6 bg-white rounded-lg shadow-md text-center ml-4 mr-4">
-            <h3 class="text-xl font-semibold mb-2 text-gray-800">Jumlah Gedung</h3>
-            <p class="text-3xl font-bold text-green-600">
-                {{ $buildingCount }}
+        <div class="bg-white rounded-lg shadow p-5">
+            <h6 class="text-gray-500 mb-2 font-normal">Total Gedung</h6>
+            <h4 class="text-2xl font-semibold mb-3 flex items-center gap-2">
+                150
+                <span class="inline-flex items-center px-2 py-1 text-xs font-medium bg-green-100 text-green-700 rounded border border-green-700">
+                    <i class="ti ti-trending-up"></i> 70.5%
+                </span>
+            </h4>
+            <p class="text-sm text-gray-500">
+                Sebanyak <span class="text-green-600">150</span> Gedung yang terdaftar di UNJ
             </p>
-            <p class="mt-2 text-gray-600">Sebanyak <span>{{ $buildingCount }}</span> gedung sudah terdaftar di UNJ</p>
         </div>
 
-        <!-- Card Ruang -->
-        <div class="max-w-sm p-6 bg-white rounded-lg shadow-md text-center ml-4 mr-4">
-            <h3 class="text-xl font-semibold mb-2 text-gray-800">Jumlah Ruang</h3>
-            <p class="text-3xl font-bold text-yellow-600">
+        <div class="bg-white rounded-lg shadow p-5">
+            <h6 class="text-gray-500 mb-2 font-normal">Total Ruang</h6>
+            <h4 class="text-2xl font-semibold mb-3 flex items-center gap-2">
                 1,500
+                <span class="inline-flex items-center px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-700 rounded border border-yellow-700">
+                    <i class="ti ti-trending-down"></i> 27.4%
+                </span>
+            </h4>
+            <p class="text-sm text-gray-500">
+                Sebanyak <span class="text-yellow-600">1,500</span> Ruang yang terdaftar di UNJ
             </p>
-            <p class="mt-2 text-gray-600">Sebanyak <span>1,500</span> ruang sudah terdaftar di UNJ</p>
         </div>
 
-        <!-- Card Kelas -->
-        <div class="max-w-sm p-6 bg-white rounded-lg shadow-md text-center ml-4">
-            <h3 class="text-xl font-semibold mb-2 text-gray-800">Jumlah Kelas</h3>
-            <p class="text-3xl font-bold text-red-600">
+        <div class="bg-white rounded-lg shadow p-5">
+            <h6 class="text-gray-500 mb-2 font-normal">Total Kelas</h6>
+            <h4 class="text-2xl font-semibold mb-3 flex items-center gap-2">
                 400
+                <span class="inline-flex items-center px-2 py-1 text-xs font-medium bg-red-100 text-red-700 rounded border border-red-700">
+                    <i class="ti ti-trending-down"></i> 27.4%
+                </span>
+            </h4>
+            <p class="text-sm text-gray-500">
+                Sebanyak <span class="text-red-600">400</span> Ruang yang terdaftar sebagai Kelas
             </p>
-            <p class="mt-2 text-gray-600">Sebanyak <span>400</span> kelas sudah terdaftar di UNJ</p>
         </div>
     </div>
 
-    <div class="max-w-full w-full bg-white rounded-lg shadow-sm p-4 md:p-6 mt-6">
-        <div class="flex justify-between mb-3">
-            <div class="flex justify-center items-center">
-                <h5 class="text-xl font-bold leading-none text-gray-900 pe-1">Informasi Kampus</h5>
-                <svg data-popover-target="chart-info" data-popover-placement="bottom" class="w-3.5 h-3.5 text-gray-500 hover:text-gray-900 cursor-pointer ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm0 16a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm1-5.034V12a1 1 0 0 1-2 0v-1.418a1 1 0 0 1 1.038-.999 1.436 1.436 0 0 0 1.488-1.441 1.501 1.501 0 1 0-3-.116.986.986 0 0 1-1.037.961 1 1 0 0 1-.96-1.037A3.5 3.5 0 1 1 11 11.466Z" />
-                </svg>
-                <div data-popover id="chart-info" role="tooltip" class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-xs opacity-0 w-72">
-                    <div class="p-3 space-y-2">
-                        <h3 class="font-semibold text-gray-900">Kampus, Gedung, dan Ruang</h3>
-                        <p>Data ini menunjukkan persentase penggunaan ruang di gedung-gedung kampus. Setiap segmen mewakili kategori berbeda seperti ruang kuliah, laboratorium, dan fasilitas umum.</p>
-                        <h3 class="font-semibold text-gray-900">Keterangan</h3>
-                        <p>Informasi ini membantu dalam pengelolaan ruang kampus agar penggunaan lebih efisien dan sesuai kebutuhan mahasiswa serta staf pengajar.</p>
-                        <a href="#" class="flex items-center font-medium text-blue-600 hover:text-blue-700 hover:underline">Pelajari lebih lanjut <svg class="w-2 h-2 ms-1.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
-                            </svg></a>
-                    </div>
-                    <div data-popper-arrow></div>
-                </div>
-            </div>
-            <div>
-                <button type="button" data-tooltip-target="data-tooltip" data-tooltip-placement="bottom" class="hidden sm:inline-flex items-center justify-center text-gray-500 w-8 h-8 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 rounded-lg text-sm"><svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 18">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 1v11m0 0 4-4m-4 4L4 8m11 4v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3" />
-                    </svg><span class="sr-only">Download data</span>
-                </button>
-                <div id="data-tooltip" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip">
-                    Download CSV
-                    <div class="tooltip-arrow" data-popper-arrow></div>
-                </div>
+    <!-- Statistik Penggunaan Gedung dan Ruang -->
+    <div class="bg-white rounded-lg shadow p-5 mb-6">
+        <div class="flex justify-between items-center mb-4">
+            <h5 class="text-lg font-semibold">Statistik Penggunaan Gedung dan Ruang</h5>
+            <div class="space-x-2">
+                <button id="btn-bulan" class="bg-gray-200 text-gray-700 px-3 py-1 rounded">Bulan</button>
+                <button id="btn-minggu" class="bg-blue-600 text-white px-3 py-1 rounded">Minggu</button>
             </div>
         </div>
-
         <div>
-            <div class="flex" id="devices">
-                <div class="flex items-center me-4">
-                    <input id="desktop" type="checkbox" value="desktop" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-2">
-                    <label for="desktop" class="ms-2 text-sm font-medium text-gray-900">Gedung A</label>
-                </div>
-                <div class="flex items-center me-4">
-                    <input id="tablet" type="checkbox" value="tablet" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-2">
-                    <label for="tablet" class="ms-2 text-sm font-medium text-gray-900">Gedung B</label>
-                </div>
-                <div class="flex items-center me-4">
-                    <input id="mobile" type="checkbox" value="mobile" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-2">
-                    <label for="mobile" class="ms-2 text-sm font-medium text-gray-900">Gedung C</label>
-                </div>
-            </div>
+            <div id="visitor-chart-1" style="display:none;"></div>
+            <div id="visitor-chart"></div>
         </div>
+    </div>
 
-        <!-- Donut Chart -->
-        <div class="py-6 w-full" id="donut-chart" style="min-height: 400px;"></div>
+    <!-- Jumlah Kampus dan Ruang -->
+    <div class="bg-white rounded-lg shadow p-5 mb-6">
+        <h5 class="text-lg font-semibold mb-4">Jumlah Kampus dan Ruang</h5>
+        <div id="sales-report-chart"></div>
+    </div>
 
-        <div class="grid grid-cols-1 items-center border-gray-200 border-t justify-between">
-            <div class="flex justify-between items-center pt-5">
-                <!-- Button -->
-                <button id="dropdownDefaultButton" data-dropdown-toggle="lastDaysdropdown" data-dropdown-placement="bottom" class="text-sm font-medium text-gray-500 hover:text-gray-900 text-center inline-flex items-center" type="button">
-                    Last 7 days
-                    <svg class="w-2.5 m-2.5 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
-                    </svg>
-                </button>
-                <div id="lastDaysdropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44">
-                    <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownDefaultButton">
-                        <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Yesterday</a>
-                        </li>
-                        <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Today</a>
-                        </li>
-                        <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Last 7 days</a>
-                        </li>
-                        <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Last 30 days</a>
-                        </li>
-                        <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Last 90 days</a>
-                        </li>
-                    </ul>
-                </div>
-                <a href="#" class="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-blue-600 hover:text-blue-700 hover:bg-gray-100 px-3 py-2">
-                    Traffic analysis
-                    <svg class="w-2.5 h-2.5 ms-1.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
-                    </svg>
-                </a>
-            </div>
+    <!-- Status Penggunaan Gedung dan Ruang -->
+    <div class="bg-white rounded-lg shadow p-5">
+        <h5 class="text-lg font-semibold mb-4">Status Penggunaan Gedung dan Ruang</h5>
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200 text-sm">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-4 py-2 text-left font-medium text-gray-700">KAMPUS</th>
+                        <th class="px-4 py-2 text-left font-medium text-gray-700">GEDUNG</th>
+                        <th class="px-4 py-2 text-left font-medium text-gray-700">LANTAI</th>
+                        <th class="px-4 py-2 text-left font-medium text-gray-700">RUANG</th>
+                        <th class="px-4 py-2 text-right font-medium text-gray-700">STATUS</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                    <tr>
+                        <td class="px-4 py-2 text-gray-600"><a href="#" class="hover:underline">KAMPUS A</a></td>
+                        <td class="px-4 py-2">GEDUNG SFD TOWER A</td>
+                        <td class="px-4 py-2">9</td>
+                        <td class="px-4 py-2 flex items-center gap-2">
+                            <i class="fas fa-circle text-gray-500 text-xs"></i> CLASS ROOM TYPE-1 (905)
+                        </td>
+                        <td class="px-4 py-2 text-right">RUANG KELAS</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-2 text-gray-600"><a href="#" class="hover:underline">KAMPUS B</a></td>
+                        <td class="px-4 py-2">GEDUNG B</td>
+                        <td class="px-4 py-2">3</td>
+                        <td class="px-4 py-2 flex items-center gap-2">
+                            <i class="fas fa-circle text-yellow-500 text-xs"></i> Pending
+                        </td>
+                        <td class="px-4 py-2 text-right">-</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-2 text-gray-600"><a href="#" class="hover:underline">KAMPUS C</a></td>
+                        <td class="px-4 py-2">GEDUNG C</td>
+                        <td class="px-4 py-2">5</td>
+                        <td class="px-4 py-2 flex items-center gap-2">
+                            <i class="fas fa-circle text-green-500 text-xs"></i> Approved
+                        </td>
+                        <td class="px-4 py-2 text-right">-</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
-<!-- Load ApexCharts -->
+
+@push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-
-<!-- JavaScript: Donut Chart & Checkbox Handler -->
 <script>
-    const getChartOptions = () => {
-        return {
-            series: [400, 30, 20, 1050],
-            colors: ["#1C64F2", "#16BDCA", "#FDBA8C", "#E74694"],
-            chart: {
-                height: '100%',
-                width: '100%',
-                type: "donut",
-                toolbar: {
-                    show: false
-                },
-                animations: {
-                    enabled: true
-                },
-            },
-            stroke: {
-                colors: ["transparent"],
-            },
-            plotOptions: {
-                pie: {
-                    donut: {
-                        labels: {
-                            show: true,
-                            name: {
-                                show: true,
-                                fontFamily: "Inter, sans-serif",
-                                offsetY: 20,
-                            },
-                            total: {
-                                showAlways: true,
-                                show: true,
-                                label: "Total Ruang",
-                                fontFamily: "Inter, sans-serif",
-                                formatter: function(w) {
-                                    const sum = w.globals.seriesTotals.reduce((a, b) => a + b, 0);
-                                    return sum + " ruang";
-                                },
-                            },
-                            value: {
-                                show: true,
-                                fontFamily: "Inter, sans-serif",
-                                offsetY: -20,
-                                formatter: function(value) {
-                                    return value + " ruang";
-                                },
-                            },
-                        },
-                        size: "80%",
-                    },
-                },
-            },
-            grid: {
-                padding: {
-                    top: -2,
-                },
-            },
-            labels: ["Ruang Kelas", "Laboratorium", "Perpustakaan", "Fasilitas Umum"],
-            dataLabels: {
-                enabled: false
-            },
-            legend: {
-                position: "bottom",
-                fontFamily: "Inter, sans-serif",
-            },
-            responsive: [{
-                breakpoint: 768,
-                options: {
-                    chart: {
-                        height: 320,
-                    },
-                    legend: {
-                        position: "bottom"
-                    }
-                }
-            }]
-        }
-    }
+    document.addEventListener('DOMContentLoaded', function () {
+        // Chart Minggu (default tampil)
+        var optionsMinggu = {
+            chart: { type: 'bar', height: 350 },
+            series: [{ name: 'Penggunaan', data: [50, 80, 65, 90, 70, 100, 85] }], // data disesuaikan
+            xaxis: { categories: ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'] }
+        };
+        var chartMinggu = new ApexCharts(document.querySelector("#visitor-chart"), optionsMinggu);
+        chartMinggu.render();
 
-    if (document.getElementById("donut-chart") && typeof ApexCharts !== 'undefined') {
-        const chart = new ApexCharts(document.getElementById("donut-chart"), getChartOptions());
-        chart.render();
+        // Chart Bulan (disembunyikan)
+        var optionsBulan = {
+            chart: { type: 'line', height: 350 },
+            series: [{ name: 'Penggunaan', data: [300, 400, 350, 450, 420, 480, 460] }], // data disesuaikan
+            xaxis: { categories: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul'] }
+        };
+        var chartBulan = new ApexCharts(document.querySelector("#visitor-chart-1"), optionsBulan);
+        chartBulan.render();
 
-        const checkboxes = document.querySelectorAll('#devices input[type="checkbox"]');
+        // Chart Sales Report (Jumlah Kampus dan Ruang)
+        var optionsSales = {
+            chart: { type: 'area', height: 350 },
+            series: [{ name: 'Jumlah', data: [4, 150, 1500, 400] }], // data sesuai total kampus, gedung, ruang, kelas
+            xaxis: { categories: ['Kampus', 'Gedung', 'Ruang', 'Kelas'] }
+        };
+        var chartSales = new ApexCharts(document.querySelector("#sales-report-chart"), optionsSales);
+        chartSales.render();
 
-        function handleCheckboxChange(event, chart) {
-            const checkbox = event.target;
-            if (checkbox.checked) {
-                switch (checkbox.value) {
-                    case 'desktop': // Gedung A
-                        chart.updateSeries([50, 20, 15, 15]);
-                        break;
-                    case 'tablet': // Gedung B
-                        chart.updateSeries([30, 40, 10, 20]);
-                        break;
-                    case 'mobile': // Gedung C
-                        chart.updateSeries([25, 25, 25, 25]);
-                        break;
-                    default:
-                        chart.updateSeries([40, 30, 20, 10]);
-                }
-            } else {
-                chart.updateSeries([40, 30, 20, 10]);
-            }
-        }
+        // Tombol switch chart bulan/minggu
+        const btnBulan = document.getElementById('btn-bulan');
+        const btnMinggu = document.getElementById('btn-minggu');
+        const chartBulanDiv = document.getElementById('visitor-chart-1');
+        const chartMingguDiv = document.getElementById('visitor-chart');
 
-        checkboxes.forEach((checkbox) => {
-            checkbox.addEventListener('change', (event) => handleCheckboxChange(event, chart));
+        btnBulan.addEventListener('click', function() {
+            btnBulan.classList.add('bg-blue-600', 'text-white');
+            btnBulan.classList.remove('bg-gray-200', 'text-gray-700');
+            btnMinggu.classList.remove('bg-blue-600', 'text-white');
+            btnMinggu.classList.add('bg-gray-200', 'text-gray-700');
+
+            chartBulanDiv.style.display = 'block';
+            chartMingguDiv.style.display = 'none';
         });
-    }
+
+        btnMinggu.addEventListener('click', function() {
+            btnMinggu.classList.add('bg-blue-600', 'text-white');
+            btnMinggu.classList.remove('bg-gray-200', 'text-gray-700');
+            btnBulan.classList.remove('bg-blue-600', 'text-white');
+            btnBulan.classList.add('bg-gray-200', 'text-gray-700');
+
+            chartMingguDiv.style.display = 'block';
+            chartBulanDiv.style.display = 'none';
+        });
+    });
 </script>
+@endpush

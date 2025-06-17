@@ -1,212 +1,188 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
+<html lang="id" x-data="{ sidebarOpen: true, initialLoad: true }" x-init="setTimeout(() => initialLoad = false, 50)">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $title ?? 'SIMGURU' }}</title>
-    @vite('resources/css/app.css')
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"/>
+    <title>Sistem Informasi Manajemen Gedung dan Ruang</title>
+    <link rel="icon" href="{{ asset('img/logo.png') }}">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    @vite(['resources/css/app.css'])
+    @livewireStyles
 </head>
 
-<body class="min-h-screen bg-gray-100">
-    <!-- Navbar -->
-    <nav id="navbar" class="fixed top-0 left-0 z-1 w-full h-16 bg-teal-700 transition-all duration-300">
-        <div class="px-3 py-3 lg:px-5">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center">
-                    <!-- Tombol toggle sidebar -->
-                    <button id="toggleSidebar" class="p-2 text-white rounded-lg hover:bg-gray-100 hover:text-teal-700 me-3" type="button" aria-label="Toggle sidebar">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 6H6m12 4H6m12 4H6m12 4H6"/>
-                        </svg>
-                    </button>
-                    <!-- Logo dan judul -->
-                    <div class="flex items-center">
-                        <img src="/logos/unj.png" class="h-10 me-3" alt="Logo" />
-                        <span class="text-white text-lg font-extrabold m-0 leading-none">
-                            Sistem Manajemen Gedung dan Ruang <br>
-                            <span class="text-white text-sm font-semibold m-0">
-                                Universitas Negeri Jakarta
-                            </span>
-                        </span>
-                    </div>
-                </div>
-                <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                    <button type="button" class="relative inline-flex items-center p-3 text-sm font-medium text-center text-white bg-teal-700 rounded-lg hover:bg-teal-800 mr-4 cursor-pointer">
-                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
-                            <path d="m10.036 8.278 9.258-7.79A1.979 1.979 0 0 0 18 0H2A1.987 1.987 0 0 0 .641.541l9.395 7.737Z"/>
-                            <path d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z"/>
-                        </svg>
-                        <span class="sr-only">Notifikasi</span>
-                        <div class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2">5</div>
-                    </button>
-                    <div class="flex items-center">
-                        <div class="relative">
-                            <div id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" class="relative w-10 h-10 overflow-hidden bg-gray-100 hover:bg-gray-200 rounded-full cursor-pointer">
-                                <svg class="absolute w-12 h-12 text-gray-400 hover:text-gray-500 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
-                                </svg>
-                            </div>
-                            <div id="userDropdown" class="z-10 hidden bg-gray-100 divide-y divide-gray-100 rounded-lg shadow-sm w-44">
-                                <div class="px-4 py-3 text-sm text-gray-900">
-                                    <div>Admin</div>
-                                    <div class="font-medium truncate">admin@email.com</div>
-                                </div>
-                                <div class="py-1">
-                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">Logout</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <button data-collapse-toggle="navbar-user" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-user" aria-expanded="false">
-                        <span class="sr-only">Open main menu</span>
-                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
-                        </svg>
-                    </button>
-                </div>
-            </div>
+<body class="bg-gray-100 min-h-screen flex">
+
+    {{-- Sidebar fixed --}}
+    <nav
+        :class="sidebarOpen ? 'w-64' : 'w-16'"
+        class="bg-white shadow-md flex flex-col fixed left-0 top-0 h-screen z-30 overflow-hidden transition-width duration-300 ease-in-out"
+        style="min-width:64px;"
+    >
+        <div class="flex items-center p-4 space-x-2">
+            <img src="/logos/unj.png" alt="logo" class="w-10 h-auto" />
+            <span
+                class="text-teal-800 font-bold text-3xl truncate ml-3"
+                :class="sidebarOpen ? 'inline' : 'hidden'"
+            >SIMGURU</span>
         </div>
+
+        @php $currentUrl = url()->current(); @endphp
+        <ul class="mt-4 flex flex-col space-y-1 px-2">
+            <li>
+                <a href="{{ url('/') }}"
+                    class="flex items-center p-2 rounded hover:bg-teal-100 {{ $currentUrl == url('dashboard') ? 'bg-teal-200 font-semibold' : '' }}">
+                    <span class="text-xl mr-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
+                        </svg>
+                    </span>
+                    <span :class="sidebarOpen ? 'inline' : 'hidden'">Dashboard</span>
+                </a>
+            </li>
+            <li class="mt-6 mb-2 px-2 text-xs font-semibold text-gray-500 uppercase tracking-wide" :class="sidebarOpen ? 'block' : 'hidden'">Menu Universitas</li>
+            <li>
+                <a href="{{ url('tambah-kampus') }}"
+                    class="flex items-center p-2 rounded hover:bg-teal-100 {{ $currentUrl == url('tambah-kampus') ? 'bg-teal-200 font-semibold' : '' }}">
+                    <span class="text-xl mr-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0 0 12 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75Z" />
+                        </svg>
+                    </span>
+                    <span :class="sidebarOpen ? 'inline' : 'hidden'">Tambah Kampus</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('tambah-gedung') }}"
+                    class="flex items-center p-2 rounded hover:bg-teal-100 {{ $currentUrl == url('tambah-gedung') ? 'bg-teal-200 font-semibold' : '' }}">
+                    <span class="text-xl mr-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />
+                        </svg>
+                    </span>
+                    <span :class="sidebarOpen ? 'inline' : 'hidden'">Tambah Gedung</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('tambah-ruang') }}"
+                    class="flex items-center p-2 rounded hover:bg-teal-100 {{ $currentUrl == url('tambah-ruang') ? 'bg-teal-200 font-semibold' : '' }}">
+                    <span class="text-xl mr-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z" />
+                        </svg>
+                    </span>
+                    <span :class="sidebarOpen ? 'inline' : 'hidden'">Tambah Ruang</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('detail-all') }}"
+                    class="flex items-center p-2 rounded hover:bg-teal-100 {{ $currentUrl == url('veiw-detail-all') ? 'bg-teal-200 font-semibold' : '' }}">
+                    <span class="text-xl mr-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z" />
+                        </svg>
+                    </span>
+                    <span :class="sidebarOpen ? 'inline' : 'hidden'">Detail Ruang & Gedung</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('rekapitulasi') }}"
+                    class="flex items-center p-2 rounded hover:bg-teal-100 {{ $currentUrl == url('view-rekap') ? 'bg-teal-200 font-semibold' : '' }}">
+                    <span class="text-xl mr-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0 1 18 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375m-8.25-3 1.5 1.5 3-3.75" />
+                        </svg>
+                    </span>
+                    <span :class="sidebarOpen ? 'inline' : 'hidden'">Rekapitulasi Gedung</span>
+                </a>
+            </li>
+
+            <li class="mt-6 mb-2 px-2 text-xs font-semibold text-gray-500 uppercase tracking-wide" :class="sidebarOpen ? 'block' : 'hidden'">Menu Perubahan Data</li>
+            <li>
+                <a href="{{ url('perubahan-data') }}"
+                    class="flex items-center p-2 rounded hover:bg-teal-100 {{ $currentUrl == url('perubahan-data') ? 'bg-teal-200 font-semibold' : '' }}">
+                    <span class="text-xl mr-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z" />
+                        </svg>
+                    </span>
+                    <span :class="sidebarOpen ? 'inline' : 'hidden'">Daftar Perubahan Data</span>
+                </a>
+            </li>
+        </ul>
     </nav>
 
-    <!-- Sidebar -->
-    <div id="sidebar" class="fixed top-16 left-0 w-64 h-[calc(100vh-64px)] bg-white border-r border-gray-200 shadow-lg -translate-x-64">
-        <div class="h-full px-3 pb-4 pt-3 overflow-y-auto">
-            <!-- Menu sidebar -->
-            <ul class="space-y-2">
-                <li>
-                    <a href="/" class="flex items-center p-2 rounded-lg hover:bg-gray-100">
-                        <svg class="w-6 h-6 text-teal-700" fill="currentColor" viewBox="0 0 24 24">
-                            <path fill-rule="evenodd" d="M4.857 3A1.857 1.857 0 0 0 3 4.857v4.286C3 10.169 3.831 11 4.857 11h4.286A1.857 1.857 0 0 0 11 9.143V4.857A1.857 1.857 0 0 0 9.143 3H4.857Zm10 0A1.857 1.857 0 0 0 13 4.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 21 9.143V4.857A1.857 1.857 0 0 0 19.143 3h-4.286Zm-10 10A1.857 1.857 0 0 0 3 14.857v4.286C3 20.169 3.831 21 4.857 21h4.286A1.857 1.857 0 0 0 11 19.143v-4.286A1.857 1.857 0 0 0 9.143 13H4.857Zm10 0A1.857 1.857 0 0 0 13 14.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 21 19.143v-4.286A1.857 1.857 0 0 0 19.143 13h-4.286Z" clip-rule="evenodd"/>
-                        </svg>
-                        <span class="text-teal-700 text-sm font-semibold ms-3">Dashboard</span>
-                    </a>
-                </li>
-                <!-- Judul sebelum menu -->
-                <div class="flex items-center p-2 mt-4">
-                    <h3 class="text-sm font-semibold text-gray-700">Penambahan</h3>
-                </div>
-                <li>
-                    <a href="/tambah-kampus" class="flex items-center p-2 rounded-lg hover:bg-gray-100">
-                        <svg class="w-6 h-6 text-teal-700" fill="currentColor" viewBox="0 0 24 24">
-                            <path fill-rule="evenodd" d="M10.915 2.345a2 2 0 0 1 2.17 0l7 4.52A2 2 0 0 1 21 8.544V9.5a1.5 1.5 0 0 1-1.5 1.5H19v6h1a1 1 0 1 1 0 2H4a1 1 0 1 1 0-2h1v-6h-.5A1.5 1.5 0 0 1 3 9.5v-.955a2 2 0 0 1 .915-1.68l7-4.52ZM17 17v-6h-2v6h2Zm-6-6h2v6h-2v-6Zm-2 6v-6H7v6h2Z" clip-rule="evenodd"/>
-                            <path d="M2 21a1 1 0 0 1 1-1h18a1 1 0 1 1 0 2H3a1 1 0 0 1-1-1Z"/>
-                        </svg>
-                        <span class="text-teal-700 text-sm font-semibold ms-3">Tambah Kampus</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/tambah-gedung" class="flex items-center p-2 rounded-lg hover:bg-gray-100">
-                        <svg class="w-6 h-6 text-teal-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                            <path fill-rule="evenodd" d="M4 4a1 1 0 0 1 1-1h14a1 1 0 1 1 0 2v14a1 1 0 1 1 0 2H5a1 1 0 1 1 0-2V5a1 1 0 0 1-1-1Zm5 2a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H9Zm5 0a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1h-1Zm-5 4a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1a1 1 0 0 0-1-1H9Zm5 0a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1a1 1 0 0 0-1-1h-1Zm-3 4a2 2 0 0 0-2 2v3h2v-3h2v3h2v-3a2 2 0 0 0-2-2h-2Z" clip-rule="evenodd"/>
-                        </svg>
-                        <span class="text-teal-700 text-sm font-semibold ms-3">Tambah Gedung</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/tambah-ruang" class="flex items-center p-2 rounded-lg hover:bg-gray-100">
-                        <svg class="w-6 h-6 text-teal-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M14 19V5h4a1 1 0 0 1 1 1v11h1a1 1 0 0 1 0 2h-6Z"/>
-                            <path fill-rule="evenodd" d="M12 4.571a1 1 0 0 0-1.275-.961l-5 1.428A1 1 0 0 0 5 6v11H4a1 1 0 0 0 0 2h1.86l4.865 1.39A1 1 0 0 0 12 19.43V4.57ZM10 11a1 1 0 0 1 1 1v.5a1 1 0 0 1-2 0V12a1 1 0 0 1 1-1Z" clip-rule="evenodd"/>
-                        </svg>
-                        <span class="text-teal-700 text-sm font-semibold ms-3">Tambah Ruang</span>
-                    </a>
-                </li>
-                <div class="flex items-center p-2 mt-4">
-                    <h3 class="text-sm font-semibold text-gray-700">Detail</h3>
-                </div>
-                <li>
-                    <a href="" class="flex items-center p-2 rounded-lg hover:bg-gray-100">
-                        <span class="text-teal-700 text-sm font-semibold ms-3">Lihat Kampus/Gedung/Ruang</span>
-                    </a>
-                </li>
-                <div class="flex items-center p-2 mt-4">
-                    <h3 class="text-sm font-semibold text-gray-700">Perubahan Data</h3>
-                </div>
-                <li>
-                    <a href="" class="flex items-center p-2 rounded-lg hover:bg-gray-100">
-                        <span class="text-teal-700 text-sm font-semibold ms-3">Lihat Perubahan Data</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="" class="flex items-center p-2 rounded-lg hover:bg-gray-100">
-                        <span class="text-teal-700 text-sm font-semibold ms-3">Log Perubahan Data</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
+    {{-- Kontainer utama header + konten --}}
+    <div
+        class="flex flex-col flex-grow min-h-screen"
+        :style="{
+            marginLeft: sidebarOpen ? '16rem' : '4rem',
+            transition: initialLoad ? 'none' : 'margin-left 0.3s ease-in-out'
+        }"
+    >
+        {{-- Header --}}
+        <header class="bg-white shadow flex items-center justify-between px-4 md:px-6 h-16 sticky top-0 z-20">
+            <div class="flex items-center space-x-4">
+                {{-- Tombol collapse sidebar --}}
+                <button
+                    @click="sidebarOpen = !sidebarOpen"
+                    aria-label="Toggle sidebar"
+                    class="text-teal-600 hover:text-teal-800 focus:outline-none focus:ring-2 focus:ring-teal-500 rounded p-1"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                </button>
 
-    <!-- Main Content -->
-    <div id="main-content" class="transition-all duration-300 pt-7 ml-0">
-        <div class="p-8">
+                {{-- Search bar --}}
+                <div class="relative w-64 md:w-96">
+                    <input
+                        type="search"
+                        placeholder="Search here..."
+                        class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                    />
+                    <div class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Tombol messages dan user --}}
+            <div class="flex items-center space-x-4">
+                {{-- Messages button --}}
+                <button
+                    aria-label="Messages"
+                    class="text-gray-600 hover:text-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 rounded p-1"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                    </svg>
+                </button>
+                {{-- Dropdown messages (komentar dulu) --}}
+                {{-- <div>Dropdown messages here</div> --}}
+
+                {{-- User button --}}
+                <button
+                    aria-label="User menu"
+                    class="text-gray-600 hover:text-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 rounded p-1"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                    </svg>
+                </button>
+                {{-- Dropdown user (komentar dulu) --}}
+                {{-- <div>Dropdown user here</div> --}}
+            </div>
+        </header>
+
+        {{-- Main content --}}
+        <main class="flex-grow p-6 overflow-auto">
             {{ $slot }}
-        </div>
+        </main>
     </div>
 
-    <script>
-        // Toggle sidebar khusus desktop
-        const sidebar = document.getElementById('sidebar');
-        const mainContent = document.getElementById('main-content');
-        const toggleBtn = document.getElementById('toggleSidebar');
-
-        let sidebarOpen = true; // status awal sidebar terbuka
-
-        // Fungsi untuk menambahkan kelas animasi saat toggle
-        function addSidebarTransition() {
-            sidebar.classList.add('transition-transform', 'duration-300');
-            mainContent.classList.add('transition-all', 'duration-300');
-        }
-
-        // Fungsi untuk menghapus kelas animasi (dipakai saat load/resize)
-        function removeSidebarTransition() {
-            sidebar.classList.remove('transition-transform', 'duration-300');
-            mainContent.classList.remove('transition-all', 'duration-300');
-        }
-
-        // Toggle sidebar saat tombol diklik
-        toggleBtn.addEventListener('click', () => {
-            addSidebarTransition(); // aktifkan animasi saat toggle
-            sidebarOpen = !sidebarOpen;
-            if (sidebarOpen) {
-                sidebar.classList.remove('-translate-x-64');
-                mainContent.classList.add('ml-64');
-            } else {
-                sidebar.classList.add('-translate-x-64');
-                mainContent.classList.remove('ml-64');
-            }
-        });
-
-        // Fungsi handle resize untuk set posisi sidebar tanpa animasi
-        function handleResize() {
-            removeSidebarTransition(); // nonaktifkan animasi saat resize/load
-            if (window.innerWidth < 1024) {
-                sidebar.classList.add('-translate-x-64');
-                mainContent.classList.remove('ml-64');
-                sidebarOpen = false;
-            } else {
-                sidebar.classList.remove('-translate-x-64');
-                mainContent.classList.add('ml-64');
-                sidebarOpen = true;
-            }
-        }
-
-        // Pasang event listener resize dan panggil sekali saat load
-        window.addEventListener('resize', handleResize);
-        handleResize();
-    </script>
-
-    {{-- <!-- Main Content Area -->
-    <main class="p-4 sm:ml-64 mt-14">
-        {{ $slot }}
-    </main> --}}
-
-    <!-- Flowbite JS -->
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
-
-    <!-- Apexchart JS -->
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.46.0/dist/apexcharts.min.js"></script>
+    @livewireScripts
+    @stack('scripts')
 </body>
 
 </html>

@@ -11,7 +11,7 @@
 
 <body class="bg-gray-100 min-h-screen flex">
 
-    {{-- Sidebar fixed --}}
+    {{-- Sidebar --}}
     <nav
         :class="sidebarOpen ? 'w-64' : 'w-16'"
         class="bg-white shadow-md flex flex-col fixed left-0 top-0 h-screen z-30 overflow-hidden transition-width duration-300 ease-in-out"
@@ -110,7 +110,7 @@
         </ul>
     </nav>
 
-    {{-- Kontainer utama header + konten --}}
+    {{-- Header dan Main Content --}}
     <div
         class="flex flex-col flex-grow min-h-screen"
         :style="{
@@ -119,13 +119,13 @@
         }"
     >
         {{-- Header --}}
-        <header class="bg-white shadow flex items-center justify-between px-4 md:px-6 h-16 sticky top-0 z-20">
+        <header class="bg-teal-700 shadow flex items-center justify-between px-4 md:px-6 h-16 sticky top-0 z-20">
             <div class="flex items-center space-x-4">
                 {{-- Tombol collapse sidebar --}}
                 <button
                     @click="sidebarOpen = !sidebarOpen"
                     aria-label="Toggle sidebar"
-                    class="text-teal-600 hover:text-teal-800 focus:outline-none focus:ring-2 focus:ring-teal-500 rounded p-1"
+                    class="text-white hover:text-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 rounded p-1"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
@@ -133,7 +133,7 @@
                 </button>
 
                 {{-- Search bar --}}
-                <div class="relative w-64 md:w-96">
+                <div class="relative w-64 md:w-64">
                     <input
                         type="search"
                         placeholder="Search here..."
@@ -152,10 +152,11 @@
                 {{-- Messages button --}}
                 <button
                     aria-label="Messages"
-                    class="text-gray-600 hover:text-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 rounded p-1"
+                    class="text-white hover:text-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 rounded p-1"
                 >
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                        <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
+                    <path d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z" />
                     </svg>
                 </button>
                 {{-- Dropdown messages (komentar dulu) --}}
@@ -164,10 +165,10 @@
                 {{-- User button --}}
                 <button
                     aria-label="User menu"
-                    class="text-gray-600 hover:text-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 rounded p-1"
+                    class="text-white hover:text-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 rounded p-1"
                 >
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                        <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" clip-rule="evenodd" />
                     </svg>
                 </button>
                 {{-- Dropdown user (komentar dulu) --}}
@@ -183,6 +184,12 @@
 
     @livewireScripts
     @stack('scripts')
+
+    <!-- Flowbite JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+
+    <!-- Apexchart JS -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.46.0/dist/apexcharts.min.js"></script>
 </body>
 
 </html>

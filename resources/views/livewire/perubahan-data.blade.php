@@ -4,9 +4,9 @@
     {{-- Judul halaman --}}
     <div class="flex justify-center text-center items-center mb-6 mt-6">
         <span class="text-2xl font-bold text-gray-800 leading-none">
-            Daftar Ruang UNJ <br>
+            Daftar Perubahan Data <br>
             <span class="text-sm font-semibold text-gray-800">
-                Daftar ruangan yang terdaftar di UNJ (Klik "+Tambah" untuk menambah ruangan)
+                Daftar perubahan data
             </span>
         </span>
     </div>
@@ -20,8 +20,8 @@
             </span>
         </div> --}}
         <!-- Modal toggle -->
-        <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="btn text-white bg-teal-700 px-4 py-2 rounded-full flex items-center gap-2 hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-full text-sm px-5 py-2.5 text-center" type="button">
-            Tambah
+        {{-- <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="btn text-white bg-teal-700 px-4 py-2 rounded-full flex items-center gap-2 hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-full text-sm px-5 py-2.5 text-center" type="button">
+            Tambah --}}
         </button>
         <!-- Main modal -->
         <div id="crud-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -104,51 +104,61 @@
         <thead class="bg-teal-700 text-white text-center table-success">
             <tr>
                 <th>No</th>
-                <th>Nama Ruang</th>
-                <th>Lokasi Kampus</th>
-                <th>Lokasi Gedung</th>
-                <th>Lokasi Lantai</th>
-                <th>Kapasitas</th>
-                <th>Status</th>
+                <th>Klasifikasi</th>
+                <th>Jenis Data</th>
+                <th>Data Pengajuan Perubahan</th>
+                <th>Data Disetujui</th>
+                <th>Status Perubahan Data</th>
+                <th>Keterangan</th>
+                <th>Nama Petugas</th>
+                <th>Petugas Approval</th>
+                <th>Tanggal Perubahan</th>
                 <th>Aksi</th>
             </tr>
         </thead>
         <tbody class="bg-white text-black text-center">
             <tr>
                 <td>1</td>
-                <td>Resepsionis</td>
-                <td>Rawamangun Muka</td>
-                <td>Raden Dewi Sartika</td>
-                <td>1</td>
-                <td>40</td>
+                <td>Data</td>
+                <td>Fakultas/Unit</td>
+                <td>FMIPA, FBS, FIK, FIS, FE, FPP, FIKK, FIKTI, FPPM, FMIPA</td>
+                <td>FMIPA, FBS, FIK, FIS, FE, FPP, FIKK, FIKTI, FPPM, FMIPA, PUSTIKOM, KEUANGAN</td>
                 <td>
-                    <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm">Bukan Kelas</span>
+                    <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm">Disetujui</span>
                 </td>
-                <td class="flex flex-col gap-2">
+                <td>-</td>
+                <td>Superadmin</td>
+                <td>Admin</td>
+                <td>11-06-2025 Pukul 13.17</td>
+                <td></td>
+                {{-- <td class="flex flex-col gap-2">
                     <a href="" type="button" class="px-1 py-1 text-xs font-medium text-center text-white bg-blue-700 rounded-sm hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
                         Edit
                     </a>
                     <a href="" type="button" class="px-1 py-1 text-xs font-medium text-center text-white bg-green-700 rounded-sm hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300">
                         Detail
                     </a>
-                </td>
+                </td> --}}
             </tr>
             <tr>
                 <td>2</td>
-                <td>Ruang 301</td>
-                <td>Rawamangun Muka</td>
-                <td>Raden Dewi Sartika</td>
-                <td>3</td>
-                <td>40</td>
+                <td>Dokumen</td>
+                <td>Dokumen Denah Lokasi Gedung</td>
+                <td>Denah Lokasi Gedung 2021.pdf</td>
+                <td>Denah Lokasi Gedung 2025.pdf</td>
                 <td>
-                    <span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm">Kelas</span>
+                    <span class="bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm">Pending</span>
                 </td>
-                <td class="flex flex-col gap-2">
-                    <a href="" type="button" class="px-1 py-1 text-xs font-medium text-center text-white bg-blue-700 rounded-sm hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                        Edit
+                <td>-</td>
+                <td>Iqbal</td>
+                <td></td>
+                <td>12-06-2025 Pukul 13.17</td>
+                <td class="text-center">
+                    <a href="#" class="btn btn-danger btn-sm mb-2">
+                        <i class="fa fa-times"></i> Tolak
                     </a>
-                    <a href="" type="button" class="px-1 py-1 text-xs font-medium text-center text-white bg-green-700 rounded-sm hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300">
-                        Detail
+                    <a href="#" class="btn btn-success btn-sm">
+                        <i class="fa fa-check"></i> Setujui
                     </a>
                 </td>
             </tr>

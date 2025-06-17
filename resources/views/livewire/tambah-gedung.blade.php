@@ -15,15 +15,15 @@
             </span>
         @endif
     </div>
-    <div class="flex justify-between items-center mb-3">
-        <div class="relative w-64">
+    <div class="flex justify-end items-center mb-3">
+        {{-- <div class="relative w-64">
             <input wire:model.live="searchBar" type="text" class="border border-gray-300 rounded-lg px-3 py-2 w-full pr-10 focus:outline-none focus:ring-2 focus:ring-teal-700 text-black" placeholder="Cari gedung">
             <span class="absolute right-5 top-1/2 -translate-y-1/2 text-gray-500 cursor-pointer">
                 <svg class="w-5 h-5 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                     <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" />
                 </svg>
             </span>
-        </div>
+        </div> --}}
         <!-- Modal toggle -->
         <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="btn text-white bg-teal-700 px-4 py-2 rounded-md flex items-center gap-2 hover:bg-teal-800 focus:ring-4 focus:outline-none font-bold text-sm text-center shadow-none border-none" type="button">
             Tambah

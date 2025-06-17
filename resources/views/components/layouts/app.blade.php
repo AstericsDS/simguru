@@ -5,6 +5,7 @@
     <link rel="icon" href="{{ asset('img/logo.png') }}">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     @vite(['resources/css/app.css'])
     @livewireStyles
 </head>
@@ -112,7 +113,7 @@
 
     {{-- Header dan Main Content --}}
     <div
-        class="flex flex-col flex-grow min-h-screen"
+        class="flex flex-col flex-grow min-h-screen overflow-auto"
         :style="{
             marginLeft: sidebarOpen ? '16rem' : '4rem',
             transition: initialLoad ? 'none' : 'margin-left 0.3s ease-in-out'

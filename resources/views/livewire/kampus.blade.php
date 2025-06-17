@@ -13,15 +13,15 @@
         <div class="row-span-3 flex items-center justify-center lg:mr-10">
             <div class="swiper">
                 <div class="swiper-wrapper">
-                  <div class="swiper-slide"><img src="/backgrounds/unj_bersih.jpeg" alt="Kampus A"></div>
-                  <div class="swiper-slide"><img src="/backgrounds/unj_bersih.jpeg" alt="Kampus A"></div>
-                  <div class="swiper-slide"><img src="/backgrounds/unj_bersih.jpeg" alt="Kampus A"></div>
+                    <div class="swiper-slide"><img src="/backgrounds/unj_bersih.jpeg" alt="Kampus A"></div>
+                    <div class="swiper-slide"><img src="/backgrounds/unj_bersih.jpeg" alt="Kampus A"></div>
+                    <div class="swiper-slide"><img src="/backgrounds/unj_bersih.jpeg" alt="Kampus A"></div>
                 </div>
                 <div class="swiper-pagination"></div>
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-scrollbar"></div>
-              </div>
+            </div>
         </div>
         <div class="row-span-3 not-lg:hidden">
             <div class="font-bold text-4xl mb-7">KAMPUS A</div>
@@ -29,7 +29,8 @@
                 <div class="grid grid-cols-[150px_10px_auto]">
                     <div>Alamat</div>
                     <div>:</div>
-                    <div>Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220</div>
+                    <div>Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah
+                        Khusus Ibukota Jakarta 13220</div>
                 </div>
                 <div class="grid grid-cols-[150px_10px_auto]">
                     <div>Jumlah Gedung</div>
@@ -59,7 +60,8 @@
                 <div class="grid grid-cols-[150px_10px_auto]">
                     <div>Alamat</div>
                     <div>:</div>
-                    <div>Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220</div>
+                    <div>Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah
+                        Khusus Ibukota Jakarta 13220</div>
                 </div>
                 <div class="grid grid-cols-[150px_10px_auto]">
                     <div>Jumlah Gedung</div>
@@ -87,9 +89,11 @@
             </figure>
             <div class="card-body items-center text-center">
                 <h2 class="card-title">Gedung Dewi Sartika</h2>
-                <p class="text-xs not-lg:hidden">Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220</p>
+                <p class="text-xs not-lg:hidden">Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota
+                    Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220</p>
                 <div class="card-actions">
-                    <a href="/gedung" class="btn bg-white text-black w-full hover:bg-gray-200 rounded-lg outline-none">Details</a>
+                    <a href="/gedung"
+                        class="btn bg-white text-black w-full hover:bg-gray-200 rounded-lg outline-none">Details</a>
                 </div>
             </div>
         </div>

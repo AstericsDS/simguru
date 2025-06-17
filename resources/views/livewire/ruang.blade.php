@@ -14,15 +14,15 @@
         <div class="row-span-3 flex lg:mr-15">
             <div class="swiper">
                 <div class="swiper-wrapper">
-                  <div class="swiper-slide"><img src="/backgrounds/unj_bersih.jpeg" alt=""></div>
-                  <div class="swiper-slide">Slide 2</div>
-                  <div class="swiper-slide">Slide 3</div>
+                    <div class="swiper-slide"><img src="/backgrounds/unj_bersih.jpeg" alt=""></div>
+                    <div class="swiper-slide">Slide 2</div>
+                    <div class="swiper-slide">Slide 3</div>
                 </div>
                 <div class="swiper-pagination"></div>
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-scrollbar"></div>
-              </div>
+            </div>
         </div>
         <div class="row-span-3 not-lg:hidden">
             <div class="font-bold text-4xl mb-7">Gedung Dewi Sartika</div>
@@ -30,7 +30,8 @@
                 <div class="grid grid-cols-[150px_10px_auto]">
                     <div>Alamat</div>
                     <div>:</div>
-                    <div>Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220</div>
+                    <div>Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah
+                        Khusus Ibukota Jakarta 13220</div>
                 </div>
                 <div class="grid grid-cols-[150px_10px_auto]">
                     <div>Jumlah Gedung</div>
@@ -58,7 +59,8 @@
                 <div class="grid grid-cols-[150px_10px_auto]">
                     <div>Alamat</div>
                     <div>:</div>
-                    <div>Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220</div>
+                    <div>Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah
+                        Khusus Ibukota Jakarta 13220</div>
                 </div>
                 <div class="grid grid-cols-[150px_10px_auto]">
                     <div>Jumlah Gedung</div>

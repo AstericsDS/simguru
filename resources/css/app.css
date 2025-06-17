@@ -12,6 +12,7 @@
         'Segoe UI Symbol', 'Noto Color Emoji';
     
     --color-muted-500: oklch(0.97 0.0013 286.38);
+    --color-unj-500: #006569
 }
 
 :root {

@@ -29,7 +29,7 @@ class TambahKampus extends Component
 
     public function render()
     {
-        return view('livewire.tambah-kampus', [
+        return view('livewire.admin.tambah-kampus', [
             'campuses' => Campus::all()
         ]);
     }

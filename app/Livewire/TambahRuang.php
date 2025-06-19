@@ -8,6 +8,6 @@ class TambahRuang extends Component
 {
     public function render()
     {
-        return view('livewire.tambah-ruang');
+        return view('livewire.admin.tambah-ruang');
     }
 }

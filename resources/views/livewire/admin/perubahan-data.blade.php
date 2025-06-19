@@ -127,8 +127,8 @@
                     <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm">Disetujui</span>
                 </td>
                 <td>-</td>
-                <td>Superadmin</td>
                 <td>Admin</td>
+                <td>Superadmin</td>
                 <td>11-06-2025 Pukul 13.17</td>
                 <td></td>
                 {{-- <td class="flex flex-col gap-2">
@@ -150,15 +150,15 @@
                     <span class="bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm">Pending</span>
                 </td>
                 <td>-</td>
-                <td>Iqbal</td>
-                <td></td>
+                <td>Admin</td>
+                <td>Superadmin</td>
                 <td>12-06-2025 Pukul 13.17</td>
                 <td class="text-center">
                     <a href="#" class="btn btn-danger btn-sm mb-2">
-                        <i class="fa fa-times"></i> Tolak
+                        Tolak
                     </a>
                     <a href="#" class="btn btn-success btn-sm">
-                        <i class="fa fa-check"></i> Setujui
+                        Setujui
                     </a>
                 </td>
             </tr>

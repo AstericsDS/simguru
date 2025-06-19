@@ -8,6 +8,6 @@ class Gedung extends Component
 {
     public function render()
     {
-        return view('livewire.gedung');
+        return view('livewire.admin.gedung');
     }
 }

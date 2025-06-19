@@ -8,6 +8,6 @@ class DetailAll extends Component
 {
     public function render()
     {
-        return view('livewire.detail-all');
+        return view('livewire.admin.detail-all');
     }
 }

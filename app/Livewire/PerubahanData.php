@@ -8,6 +8,6 @@ class PerubahanData extends Component
 {
     public function render()
     {
-        return view('livewire.perubahan-data');
+        return view('livewire.admin.perubahan-data');
     }
 }

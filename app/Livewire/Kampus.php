@@ -8,6 +8,6 @@ class Kampus extends Component
 {
     public function render()
     {
-        return view('livewire.kampus');
+        return view('livewire.admin.kampus');
     }
 }

@@ -1,155 +1,125 @@
-<div class="w-full px-5 lg:px-40">
-    {{-- Breadcrumbs --}}
-    <div class="flex flex-col mt-5">
-        <a href="/" class="size-5"><img src="{{ asset('logos/back-svgrepo-com.svg') }}" alt=""></a>
-        <div class="breadcrumbs text-sm text-[#006569] py-5">
-            <ul>
-                <li><a class="">Kampus A</a></li>
-            </ul>
-        </div>
-    </div>
-    {{-- Building Details --}}
-    <div class="grid grid-flow-col-dense grid-rows-3 gap-4 text-[#006569]">
-        <div class="row-span-3 flex mr-15">
-            <div class="carousel w-full w-max-full">
-                <div id="slide1" class="carousel-item relative w-full w-max-full">
-                    <img src="{{ asset('images/unj_bersih.jpeg') }}" class="w-full h-64 object-cover rounded-lg"/>
-                    <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                        <a href="#slide4" class="btn btn-circle not-lg:hidden">❮</a>
-                        <a href="#slide2" class="btn btn-circle not-lg:hidden">❯</a>
+<div class="container mx-auto px-4 py-6" x-data="{ showGedung: false }">
+    <div class="flex flex-col md:flex-row gap-8">
+        {{-- Slider Foto Kampus --}}
+        <div class="md:w-1/3">
+            <div id="kampus-carousel" class="relative w-full" data-carousel="slide">
+                <div class="relative h-56 overflow-hidden rounded-lg md:h-72">
+                    <div class="duration-700 ease-in-out" data-carousel-item="active">
+                        <img src="{{ asset('images/kampus_a.jpg') }}" class="absolute block w-full h-full object-cover" alt="Kampus A">
+                    </div>
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="{{ asset('images/unj_bersih.jpeg') }}" class="absolute block w-full h-full object-cover" alt="Plaza Kampus A">
                     </div>
                 </div>
-                <div id="slide2" class="carousel-item relative w-full w-max-full">
-                    <img src="{{ asset('images/unj_bersih.jpeg') }}" class="w-full h-64 object-cover rounded-lg"/>
-                    <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                        <a href="#slide1" class="btn btn-circle not-lg:hidden">❮</a>
-                        <a href="#slide3" class="btn btn-circle not-lg:hidden">❯</a>
-                    </div>
-                </div>
-                <div id="slide3" class="carousel-item relative w-full w-max-full">
-                    <img src="{{ asset('images/unj_bersih.jpeg') }}" class="w-full h-64 object-cover rounded-lg"/>
-                    <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                        <a href="#slide2" class="btn btn-circle not-lg:hidden">❮</a>
-                        <a href="#slide4" class="btn btn-circle not-lg:hidden">❯</a>
-                    </div>
-                </div>
-                <div id="slide4" class="carousel-item relative w-full w-max-full">
-                    <img src="{{ asset('images/unj_bersih.jpeg') }}" class="w-full h-64 object-cover rounded-lg"/>
-                    <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                        <a href="#slide3" class="btn btn-circle not-lg:hidden">❮</a>
-                        <a href="#slide1" class="btn btn-circle not-lg:hidden">❯</a>
-                    </div>
-                </div>
+                <button type="button" class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+                    <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/30 group-hover:bg-white/50">
+                        <svg class="w-5 h-5 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    </span>
+                </button>
+                <button type="button" class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+                    <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/30 group-hover:bg-white/50">
+                        <svg class="w-5 h-5 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </span>
+                </button>
             </div>
         </div>
-        <div class="row-span-3 not-lg:hidden">
-            <div class="font-bold text-4xl mb-7">KAMPUS A</div>
-            <div class="grid grid-flow-row gap-3 font-semibold">
-                <div class="grid grid-cols-[150px_10px_auto]">
-                    <div>Alamat</div>
-                    <div>:</div>
-                    <div>Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220</div>
+
+        {{-- Informasi Kampus (sejajar, tabel-like) --}}
+        <div class="md:w-2/3 flex flex-col">
+            <h2 class="text-2xl font-bold mb-6">Kampus Rawamangun Muka Universitas Negeri Jakarta</h2>
+            <div class="w-full">
+                <div class="grid grid-cols-1 sm:grid-cols-12 gap-y-3 gap-x-2">
+                    <div class="sm:col-span-3 font-semibold text-gray-500">Nama Kampus</div>
+                    <div class="sm:col-span-9 text-gray-800">Kampus Rawamangun Muka Universitas Negeri Jakarta</div>
+
+                    <div class="sm:col-span-3 font-semibold text-gray-500">Alamat</div>
+                    <div class="sm:col-span-9 text-gray-800">
+                        Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220
+                    </div>
+
+                    <div class="sm:col-span-3 font-semibold text-gray-500">No Telpon Kampus</div>
+                    <div class="sm:col-span-9 text-gray-800">(021) 4898486</div>
+
+                    <div class="sm:col-span-3 font-semibold text-gray-500">E-Mail Kampus</div>
+                    <div class="sm:col-span-9 text-gray-800">HumasKomunikasiDigital@unj.ac.id</div>
+
+                    <div class="sm:col-span-3 font-semibold text-gray-500">Jumlah Gedung</div>
+                    <div class="sm:col-span-9 text-gray-800">50</div>
+
+                    <div class="sm:col-span-3 font-semibold text-gray-500">Fakultas / Unit</div>
+                    <div class="sm:col-span-9 text-gray-800">FMIPA, FBS, FIK, FIS, FE, FPP, FIKK, FIKTI, FPPM, FMIPA</div>
+
+                    <div class="sm:col-span-3 font-semibold text-gray-500">Luas Wilayah Kampus</div>
+                    <div class="sm:col-span-9 text-gray-800">1.000 Hektar</div>
+
+                    <div class="sm:col-span-3 font-semibold text-gray-500">Deskripsi Kampus</div>
+                    <div class="sm:col-span-9 text-gray-800 text-justify">
+                        Kampus A Universitas Negeri Jakarta (UNJ) merupakan kampus utama yang berlokasi di Jalan Rawamangun Muka, Jakarta Timur. Kampus ini menjadi pusat administrasi universitas dan menyediakan berbagai fasilitas penting, seperti perpustakaan pusat, auditorium, serta beberapa gedung perkuliahan untuk Fakultas Ilmu Pendidikan, Fakultas Bahasa dan Seni, dan Fakultas Ilmu Sosial
+                    </div>
+
+                    <div class="sm:col-span-3 font-semibold text-gray-500">Dokumen Kampus</div>
+                    <div class="sm:col-span-9 text-gray-800">Dokumen.pdf</div>
                 </div>
-                <div class="grid grid-cols-[150px_10px_auto]">
-                    <div>Jumlah Gedung</div>
-                    <div>:</div>
-                    <div>10</div>
-                </div>
-                <div class="grid grid-cols-[150px_10px_auto]">
-                    <div>Luas</div>
-                    <div>:</div>
-                    <div>1.000 hektar</div>
-                </div>
-                <div class="grid grid-cols-[150px_10px_auto]">
-                    <div>Fakultas</div>
-                    <div>:</div>
-                    <div>FMIPA, FT, FBS, FE, FIP, FISH</div>
-                </div>
-                {{-- <div>Alamat</div> <div>:</div> <div>Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220</div>
-          <div>Jumlah gedung</div> <div>:</div> <div>200</div> --}}
             </div>
-        </div>
-    </div>
-    {{-- Mobile View --}}
-    <div class="lg:hidden text-xs text-[#006569]">
-        <div class="font-bold text-2xl lg:text-4xl my-5">KAMPUS A</div>
-        <div class="row-span-2">
-            <div class="grid grid-flow-row gap-3 font-semibold">
-                <div class="grid grid-cols-[150px_10px_auto]">
-                    <div>Alamat</div>
-                    <div>:</div>
-                    <div>Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220</div>
-                </div>
-                <div class="grid grid-cols-[150px_10px_auto]">
-                    <div>Jumlah Gedung</div>
-                    <div>:</div>
-                    <div>10</div>
-                </div>
-                <div class="grid grid-cols-[150px_10px_auto]">
-                    <div>Luas</div>
-                    <div>:</div>
-                    <div>1.000 hektar</div>
-                </div>
-                <div class="grid grid-cols-[150px_10px_auto]">
-                    <div>Fakultas</div>
-                    <div>:</div>
-                    <div>FMIPA, FT, FBS, FE, FIP, FISH, </div>
-                </div>
+            <div class="flex gap-2 mt-8">
+                <button 
+                    @click="showGedung = !showGedung" 
+                    type="button" 
+                    class="inline-flex items-center px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 transition"
+                >
+                    Lihat Gedung Kampus A UNJ
+                </button>
+                <a href="/detail-all" class="inline-flex items-center px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition">
+                    Kembali ke Daftar Kampus
+                </a>
             </div>
         </div>
     </div>
 
-    <div class="flex justify-between items-center mb-3 mt-10 border-t border-gray-300 pt-3">
-        <div class="relative w-64">
-            <input 
-                type="text" 
-                class="border border-gray-300 rounded-full px-3 py-2 w-full pr-10 focus:outline-none focus:ring-2 focus:ring-teal-700" 
-                placeholder="Search...">
-            <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">
-                <svg class="w-5 h-5 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
-                </svg>
-            </span>
-        </div>
-        <a href="/tambahgedung" 
-        class="bg-teal-700 text-white btn px-4 py-2 rounded-full flex items-center gap-2 hover:bg-teal-800">
-            + Tambah
-        </a>
-    </div>
-
-    {{-- Gedung Box --}}
-    <div class="grid lg:grid-cols-4 gap-3 mt-12">
-        <div class="card bg-base-100 shadow-sm">
-            <figure>
-                <img src="images/unj_bersih.jpeg" alt="Kampus_A_UNJ" />
-            </figure>
-            <div class="card-body items-center text-center">
-                <h2 class="card-title">Gedung Dewi Sartika</h2>
-                <p class="text-xs not-lg:hidden">Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220</p>
-                <div class="card-actions">
-                    <a href="/gedung" class="btn bg-white text-black w-full hover:bg-gray-200 rounded-lg outline-none">Details</a>
-                </div>
+    {{-- Daftar Gedung Kampus --}}
+    <div 
+        x-show="showGedung" 
+        x-transition:enter="transition transform ease-out duration-300"
+        x-transition:enter-start="opacity-0 translate-x-full"
+        x-transition:enter-end="opacity-100 translate-x-0"
+        x-transition:leave="transition transform ease-in duration-200"
+        x-transition:leave-start="opacity-100 translate-x-0"
+        x-transition:leave-end="opacity-0 translate-x-full"
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-10"
+    >
+        {{-- Card Gedung, ulangi/loop sesuai data --}}
+        <div class="bg-white rounded-lg shadow hover:shadow-lg transition overflow-hidden">
+            <img src="{{ asset('images/kampus_a.jpg') }}" alt="Rawamangun Muka" class="w-full h-40 object-cover">
+            <div class="p-4">
+                <h5 class="text-lg font-semibold mb-2">Gedung Rektorat</h5>
+                <p class="text-gray-600 text-sm mb-4">Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220</p>
+                <a href="veiw-gedung-rektorat" class="block w-full text-center px-4 py-2 bg-cyan-600 text-white rounded hover:bg-cyan-700 transition">Lihat Detail Gedung</a>
             </div>
         </div>
-
-        {{-- Secondary Design Card View --}}
-
-        {{-- <a href="/kampus">
-      <div class="card group bg-[url(/public/backgrounds/unj_bersih.jpeg)] bg-cover h-53 ">
-        <div class="card-body rounded-box backdrop-brightness-75 group-hover:backdrop-brightness-50 group-hover:backdrop-blur-xs transition-all duration-400">
-          <h2 class="card-title text-3xl group-hover:text-2xl transition-all duration-400">Gedung Dewi Sartika</h2>
-          <p class="hidden group-hover:inline transition-all duration-400">Kampus utama UNJ</p>
-          <p class="hidden text-xs group-hover:inline transition-all duration-400">Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220</p>
-        </div>
-      </div>
-    </a> --}}
-        {{-- <a href="/tambahgedung">
-            <div class="card group h-53 outline-3 outline-dashed outline-[#006569] transition-all duration-400">
-                <div class="card-body">
-                    <p class="font-bold text-[#006569] text-2xl text-center group-hover:text-3xl transition-all duration-400">Tambah Gedung</p>
-                    <p class="font-extrabold text-[#006569] text-6xl text-center group-hover:text-7xl transition-all duration-400">+</p>
-                </div>
+        <div class="bg-white rounded-lg shadow hover:shadow-lg transition overflow-hidden">
+            <img src="{{ asset('images/kampus_a.jpg') }}" alt="Kampus Pemuda" class="w-full h-40 object-cover">
+            <div class="p-4">
+                <h5 class="text-lg font-semibold mb-2">Gedung Pustikom</h5>
+                <p class="text-gray-600 text-sm mb-4">Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220</p>
+                <a href="#" class="block w-full text-center px-4 py-2 bg-cyan-600 text-white rounded hover:bg-cyan-700 transition">Lihat Detail Kampus</a>
             </div>
-        </a> --}}
+        </div>
+        <div class="bg-white rounded-lg shadow hover:shadow-lg transition overflow-hidden">
+            <img src="{{ asset('images/kampus_a.jpg') }}" alt="Kampus Pemuda" class="w-full h-40 object-cover">
+            <div class="p-4">
+                <h5 class="text-lg font-semibold mb-2">Gedung Raden Dewi Sartika</h5>
+                <p class="text-gray-600 text-sm mb-4">Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220</p>
+                <a href="#" class="block w-full text-center px-4 py-2 bg-cyan-600 text-white rounded hover:bg-cyan-700 transition">Lihat Detail Kampus</a>
+            </div>
+        </div>
+        <div class="bg-white rounded-lg shadow hover:shadow-lg transition overflow-hidden">
+            <img src="{{ asset('images/kampus_a.jpg') }}" alt="Kampus Pemuda" class="w-full h-40 object-cover">
+            <div class="p-4">
+                <h5 class="text-lg font-semibold mb-2">Gedung Raden Ajeng Kartini</h5>
+                <p class="text-gray-600 text-sm mb-4">Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220</p>
+                <a href="#" class="block w-full text-center px-4 py-2 bg-cyan-600 text-white rounded hover:bg-cyan-700 transition">Lihat Detail Kampus</a>
+            </div>
+        </div>
+        {{-- Tambahkan card lain sesuai kebutuhan --}}
     </div>
 </div>

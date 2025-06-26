@@ -5,9 +5,9 @@
             Sistem Informasi Manajemen Gedung dan Ruang
         </h1>
         <hr class="border-2 border-gray-200 mt-4 mb-6">
-        <form action="" class="flex flex-col mt-4 gap-4">
-            <input type="text" placeholder="NIM/NIDN/NUPTK" class="bg-gray rounded-sm py-2 px-3">
-            <input type="text" placeholder="Password" class="bg-gray rounded-sm py-2 px-3">
+        <form class="flex flex-col mt-4 gap-4" wire:submit="login">
+            <input type="text" placeholder="Nama" class="bg-gray rounded-sm py-2 px-3">
+            <input type="password" placeholder="Password" class="bg-gray rounded-sm py-2 px-3">
             <a href="/" class="btn bg-teal-700 text-white font-semibold rounded-md py-2 hover:brightness-90 cursor-pointer text-center">
                 LOGIN
             </a>

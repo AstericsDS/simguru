@@ -9,7 +9,8 @@ class TambahKampus extends Component
 {
     public $name, $address, $contact, $email, $description;
 
-    public function rules() {
+    public function rules()
+    {
         return [
             'name' => 'required',
             'address' => 'required',
@@ -20,11 +21,12 @@ class TambahKampus extends Component
 
     }
 
-    public function save() {
+    public function save()
+    {
         $validated = $this->validate();
         Campus::create($validated);
         $this->reset();
-        return redirect()->back();
+        return redirect()->route('tambah-kampus')->with('message', 'Kampus berhasil ditambah');
     }
 
     public function render()

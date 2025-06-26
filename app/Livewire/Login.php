@@ -10,6 +10,16 @@ use Livewire\Attributes\Title;
 #[Title('Login')]
 class Login extends Component
 {
+    public $name;
+    public $password;
+    protected $rules = [
+        'email' => 'required|email',
+        'password' => 'required'
+    ];
+    public function login() {
+        $this->validate();
+    }
+
     public function render()
     {
         return view('livewire.admin.login');

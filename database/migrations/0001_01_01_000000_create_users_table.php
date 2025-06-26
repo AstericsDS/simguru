@@ -15,7 +15,6 @@ return new class extends Migration
             $table->ulid('id')->primary();
             $table->foreignId('role')->nullable()->constrained('roles');
             $table->string('name')->nullable();
-            $table->string('nidn');
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

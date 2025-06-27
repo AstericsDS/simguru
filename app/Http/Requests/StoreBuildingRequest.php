@@ -26,7 +26,7 @@ class StoreBuildingRequest extends FormRequest
             'floor' => ['required', 'integer'],
             'description' => ['required'],
             'images_path' => ['required'],
-            'status' => ['required', 'boolean']
+            'status' => ['required']
         ];
     }
 }

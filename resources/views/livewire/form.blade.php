@@ -1,34 +1,41 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+<div>
     @if (session()->has('message'))
-        <h1 class="text-lg font-bold">
+        <div class="p-2 bg-green-200 text-green-800">
             {{ session('message') }}
-        </h1>
+        </div>
     @endif
-    <div>
-        <form wire:submit='save'>
-            <label for="name">Name</label>
-            <input type="text" name="name" wire:model="name">
-            <label for="name">Floor</label>
-            <input type="number" name="floor" wire:model="floor">
-            <label for="name">Description</label>
-            <input type="text" name="description" wire:model="description">
-            <label for="name">Images Path</label>
-            <input type="text" name="images_path" wire:model="images_path">
-            <label for="name">Status</label>
-            <input type="number" name="status" wire:model="status">
-            <button type="submit" class="bg-white text-black cursor-pointer">
-                Submit
-            </button>
-        </form>
-    </div>
-</body>
-</html>
+
+    <form wire:submit.prevent="save" class="space-y-4">
+        <div>
+            <label>Name</label>
+            <input type="text" wire:model.defer="name" class="input">
+            @error('name') <span class="text-red-600">{{ $message }}</span> @enderror
+        </div>
+
+        <div>
+            <label>Floor</label>
+            <input type="number" wire:model.defer="floor" class="input">
+            @error('floor') <span class="text-red-600">{{ $message }}</span> @enderror
+        </div>
+
+        <div>
+            <label>Description</label>
+            <textarea wire:model.defer="description" class="input"></textarea>
+            @error('description') <span class="text-red-600">{{ $message }}</span> @enderror
+        </div>
+
+        <div>
+            <label>Image Path</label>
+            <input type="text" wire:model.defer="images_path" class="input">
+            @error('images_path') <span class="text-red-600">{{ $message }}</span> @enderror
+        </div>
+
+        <div>
+            <label>Status</label>
+            <input type="text" wire:model.defer="status" class="input">
+            @error('status') <span class="text-red-600">{{ $message }}</span> @enderror
+        </div>
+
+        <button type="submit" class="btn">Submit</button>
+    </form>
+</div>

@@ -15,7 +15,7 @@
         <input id="profile-drawer" type="checkbox" class="drawer-toggle">
         <div class="drawer-content">
             {{-- navbar --}}
-            <div class="navbar bg-unj-500 shadow-sm w-full h-17 sticky top-0 z-50 px-5 lg:px-40">
+            <div class="navbar bg-unj-500 w-full h-20 fixed transition-all top-0 z-50 px-5 lg:px-60" id="navbar">
                 <div class="navbar-start">
                     <label for="profile-drawer" class="btn btn-ghost btn-circle lg:hidden">
                         <img src="{{ asset('logos/peminjaman.png') }}" alt="sidebar" class="w-5 mr-5 lg:hidden">
@@ -87,9 +87,9 @@
             </ul>
         </div>
     </div>
-    <footer class="footer sm:footer-horizontal bg-unj-500 text-white mt-5 p-10">
+    <footer class="footer sm:footer-horizontal bg-unj-500 text-white mt-5 p-10 px-70">
         <aside>
-            <img src="{{ asset('logos/unj.png') }}" alt="logo unj">
+            <img src="{{ asset('logos/Logo_UNJ_PTNBHl.png') }}" alt="logo unj" class="w-50">
         </aside>
         <nav>
             <h6 class="footer-title">Services</h6>
@@ -112,6 +112,7 @@
             <a class="link link-hover">Cookie policy</a>
         </nav>
     </footer>
+    <div class="text-center bg-unj-500">Copyright 2025 Pustikom</div>
 </body>
 
 </html>

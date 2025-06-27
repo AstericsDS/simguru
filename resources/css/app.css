@@ -16,7 +16,7 @@
 }
 
 :root {
-    --swiper-navigation-size:15px !important;
-    --swiper-navigation-color:#fff !important;
+    --swiper-navigation-size:25px !important;
+    --swiper-navigation-color:#fff;
   }
   

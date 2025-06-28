@@ -105,20 +105,11 @@
                                 <input class="block w-full text-sm text-gray-900 border rounded-lg cursor-pointer bg-gray-50" aria-describedby="user_avatar_help" id="user_avatar" type="file">
                             </div>
                             <div class="col-span-2">
-<<<<<<< HEAD
                                 <label for="description" class="block mb-2 text-sm font-medium {{ $errors->has('description') ? 'text-red-700' : 'text-gray-900' }}">Deskripsi Kampus</label>
                                 <textarea wire:model="description" name="description" id="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border focus:ring-teal-500 focus:border-teal-500 {{ $errors->has('description') ? 'border-red-500' : 'border-gray-300' }}" placeholder=""></textarea>
                                 @error('description')
                                     <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
                                 @enderror
-=======
-                                <label class="block mb-2 text-sm font-medium text-gray-900" for="user_avatar">Upload Dokumen Kampus</label>
-                                <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50" aria-describedby="user_avatar_help" id="user_avatar" type="file">
-                            </div>
-                            <div class="col-span-2">
-                                <label for="description" class="block mb-2 text-sm font-medium text-gray-900">Deskripsi Kampus</label>
-                                <textarea wire:model="description" id="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-teal-500 focus:border-teal-500" placeholder=""></textarea>
->>>>>>> refs/remotes/origin/content
                             </div>
                         </div>
                         <div class="flex justify-end">

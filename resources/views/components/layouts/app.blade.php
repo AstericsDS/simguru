@@ -15,26 +15,27 @@
         <input id="profile-drawer" type="checkbox" class="drawer-toggle">
         <div class="drawer-content">
             {{-- navbar --}}
-            <div class="navbar bg-unj-500 w-full h-20 fixed transition-all top-0 z-50 px-5 lg:px-60" id="navbar">
+            <div class="navbar bg-unj-500 w-full h-20 sticky transition-all top-0 z-50 px-5 lg:px-60" id="navbar">
                 <div class="navbar-start">
                     <label for="profile-drawer" class="btn btn-ghost btn-circle lg:hidden">
                         <img src="{{ asset('logos/peminjaman.png') }}" alt="sidebar" class="w-5 mr-5 lg:hidden">
                     </label>
-                    <img src="{{ asset('logos/unj.png') }}" alt="Logo UNJ" class="w-7 sm:w-10 lg:w-14">
+                    <img src="{{ asset('logos/unj2.png') }}" alt="Logo UNJ" class="w-7 sm:w-10 lg:w-14">
+                    SISTEM INFORMASI GEDUNG DAN RUANG
                 </div>
                 <div class="navbar-end">
                     <div class="not-lg:hidden">
                         <button class="btn btn-ghost">
-                            Kampus
+                            <a href="/#kampus">Kampus</a>
                         </button>
                         <button class="btn btn-ghost">
-                            Gedung
+                            <a href="/#gedung">Gedung</a>
                         </button>
                         <button class="btn btn-ghost">
-                            Ruang
+                            <a href="/ruang">Ruang</a>
                         </button>
                         <button class="btn btn-ghost">
-                            Statistik
+                            <a href="">Statistik</a>
                         </button>
                     </div>
                     <div class="dropdown dropdown-end">
@@ -89,7 +90,7 @@
     </div>
     <footer class="footer sm:footer-horizontal bg-unj-500 text-white mt-5 p-10 px-70">
         <aside>
-            <img src="{{ asset('logos/Logo_UNJ_PTNBHl.png') }}" alt="logo unj" class="w-50">
+            <img src="{{ asset('logos/UNJ22.png') }}" alt="logo unj" class="w-50">
         </aside>
         <nav>
             <h6 class="footer-title">Services</h6>

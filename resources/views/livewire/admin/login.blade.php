@@ -5,12 +5,12 @@
             Sistem Informasi Manajemen Gedung dan Ruang
         </h1>
         <hr class="border-2 border-gray-200 mt-4 mb-6">
-        <form class="flex flex-col mt-4 gap-4" wire:submit="login">
-            <input type="text" placeholder="Nama" class="bg-gray rounded-sm py-2 px-3">
-            <input type="password" placeholder="Password" class="bg-gray rounded-sm py-2 px-3">
-            <a href="/" class="btn bg-teal-700 text-white font-semibold rounded-md py-2 hover:brightness-90 cursor-pointer text-center">
+        <form wire:submit.prevent="login" class="flex flex-col mt-4 gap-4" wire:submit="login">
+            <input wire:model="name" type="text" placeholder="Nama" class="bg-gray rounded-sm py-2 px-3">
+            <input wire:model="password" type="password" placeholder="Password" class="bg-gray rounded-sm py-2 px-3">
+            <button type="submit" class="btn bg-teal-700 text-white font-semibold rounded-md py-2 hover:brightness-90 cursor-pointer text-center">
                 LOGIN
-            </a>
+            </button>
         </form>
     </div>
 </div>

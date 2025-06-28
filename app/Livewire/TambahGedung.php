@@ -43,7 +43,7 @@ class TambahGedung extends Component
         ];
     }
 
-    public function store()
+    public function save()
     {
         $validate = $this->validate();
         Building::create($validate);
@@ -71,11 +71,12 @@ class TambahGedung extends Component
     public function render()
     {
         $building = Building::with('campus')
-                    ->when($this->searchBar !== '', fn(Builder $query) 
-                    => $query->where('name', 'like', '%' . $this->searchBar . '%'))
-                    ->paginate(10);
+        ->when($this->searchBar !== '', fn(Builder $query) 
+        => $query->where('name', 'like', '%' . $this->searchBar . '%'))
+        ->paginate(10);
+
         return view('livewire.admin.tambah-gedung', [
-            'campuses' => $this->campuses,
+            'campuses' => Campus::all(),
             'buildings' => $building
         ]);
     }

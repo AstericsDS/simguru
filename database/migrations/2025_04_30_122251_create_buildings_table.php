@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('buildings', function (Blueprint $table) {
-            $table->ulid('id')->primary();
-            $table->foreignUlid('admin_id')->nullable()->constrained('users');
-            $table->foreignUlid('campus_id')->nullable()->constrained('campuses');
+            $table->id();
+            $table->foreignId('admin_id')->nullable()->constrained('users');
+            $table->foreignId('campus_id')->nullable()->constrained('campuses');
             $table->string('name');
             $table->string('area');
             $table->integer('floor');

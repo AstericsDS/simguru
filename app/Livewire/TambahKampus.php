@@ -15,10 +15,21 @@ class TambahKampus extends Component
             'name' => 'required',
             'address' => 'required',
             'contact' => 'required',
-            'email' => 'required',
+            'email' => 'required|email',
             'description' => 'required'
         ];
+    }
 
+    public function messages()
+    {
+        return [
+            'name.required' => 'Nama harus diisi',
+            'address.required' => 'Alamat harus diisi',
+            'contact.required' => 'Nomor telepon harus diisi',
+            'email.required' => 'Email harus diisi',
+            'email.email' => 'Masukkan alamat email yang valid',
+            'description.required' => 'Deskripsi harus diisi'
+        ];
     }
 
     public function save()

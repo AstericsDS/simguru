@@ -44,13 +44,16 @@
                     <div class="sm:col-span-9 text-gray-800">HumasKomunikasiDigital@unj.ac.id</div>
 
                     <div class="sm:col-span-3 font-semibold text-gray-500">Jumlah Gedung</div>
-                    <div class="sm:col-span-9 text-gray-800">50</div>
+                    <div class="sm:col-span-9 text-gray-800">15</div>
+                    
+                    <div class="sm:col-span-3 font-semibold text-gray-500">Jumlah Unjt</div>
+                    <div class="sm:col-span-9 text-gray-800">10</div>
 
                     <div class="sm:col-span-3 font-semibold text-gray-500">Fakultas / Unit</div>
                     <div class="sm:col-span-9 text-gray-800">FMIPA, FBS, FIK, FIS, FE, FPP, FIKK, FIKTI, FPPM, FMIPA</div>
 
                     <div class="sm:col-span-3 font-semibold text-gray-500">Luas Wilayah Kampus</div>
-                    <div class="sm:col-span-9 text-gray-800">1.000 Hektar</div>
+                    <div class="sm:col-span-9 text-gray-800">100.000 m2</div>
 
                     <div class="sm:col-span-3 font-semibold text-gray-500">Deskripsi Kampus</div>
                     <div class="sm:col-span-9 text-gray-800 text-justify">

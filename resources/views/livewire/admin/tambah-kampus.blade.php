@@ -105,11 +105,20 @@
                                 <input class="block w-full text-sm text-gray-900 border rounded-lg cursor-pointer bg-gray-50" aria-describedby="user_avatar_help" id="user_avatar" type="file">
                             </div>
                             <div class="col-span-2">
+<<<<<<< HEAD
                                 <label for="description" class="block mb-2 text-sm font-medium {{ $errors->has('description') ? 'text-red-700' : 'text-gray-900' }}">Deskripsi Kampus</label>
                                 <textarea wire:model="description" name="description" id="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border focus:ring-teal-500 focus:border-teal-500 {{ $errors->has('description') ? 'border-red-500' : 'border-gray-300' }}" placeholder=""></textarea>
                                 @error('description')
                                     <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
                                 @enderror
+=======
+                                <label class="block mb-2 text-sm font-medium text-gray-900" for="user_avatar">Upload Dokumen Kampus</label>
+                                <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50" aria-describedby="user_avatar_help" id="user_avatar" type="file">
+                            </div>
+                            <div class="col-span-2">
+                                <label for="description" class="block mb-2 text-sm font-medium text-gray-900">Deskripsi Kampus</label>
+                                <textarea wire:model="description" id="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-teal-500 focus:border-teal-500" placeholder=""></textarea>
+>>>>>>> refs/remotes/origin/content
                             </div>
                         </div>
                         <div class="flex justify-end">
@@ -134,7 +143,7 @@
                 <th>No Telp Kampus</th>
                 <th>Email Kampus</th>
                 <th>Jumlah Gedung</th>
-                {{-- <th>Jumlah Unit</th> --}}
+                <th>Jumlah Unit</th>
                 <th>Aksi</th>
             </tr>
         </thead>
@@ -146,10 +155,11 @@
                     <td>{{ $campus->address }}</td>
                     <td>{{ $campus->contact }}</td>
                     <td>{{ $campus->email }}</td>
-                    <td>{{ $campus->building->count() }}</td>
-                    {{-- <td>15</td> --}}
+                    {{-- <td>{{ $campus->building->count() }}</td> --}}
+                    <td>15</td>
+                    <td>10</td>
                     <td class="flex flex-col gap-2">
-                        <a href="" type="button" class="transition-all inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium text-center text-white bg-green-700 rounded-sm hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300">
+                        <a href="/kampus" type="button" class="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium text-center text-white bg-green-700 rounded-sm hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />

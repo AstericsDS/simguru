@@ -5,8 +5,9 @@ namespace App\Livewire;
 use App\Models\Campus;
 use Livewire\Component;
 use App\Models\Building;
-use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Layout;
 
+#[Layout('components.layouts.admin.dashboard')]
 class Dashboard extends Component
 {
     public function render()

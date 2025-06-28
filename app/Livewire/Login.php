@@ -17,13 +17,15 @@ class Login extends Component
         'name' => 'required',
         'password' => 'required'
     ];
+    
     public function login() {
         $credentials = $this->validate();
         if (Auth::attempt($credentials)) {
-            return $this->redirect(route('dashboard'), navigate:true);
-        } else {
-            dd('Gagal');
+            return redirect()->to(route('dashboard'));
         }
+        
+        $this->addError('login', 'Login Gagal');
+        
     }
 
     public function render()

@@ -127,7 +127,7 @@
                     <th>Lokasi Kampus</th>
                     <th width="500px">Alamat Gedung</th>
                     <th width="100px">Jumlah Lantai</th>
-                    <th width="100px">Area</th>
+                    <th width="100px">Luas</th>
                     <th width="100px">Aksi</th>
                 </tr>
             </thead>

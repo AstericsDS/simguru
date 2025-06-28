@@ -10,6 +10,6 @@
     </head>
     <body class="bg-[url('/public/backgrounds/watermark_unj.png')] bg-cover min-h-screen flex justify-center items-center">
         {{ $slot }}
-        @livewireScriptss
+        @livewireScripts
     </body>
 </html>

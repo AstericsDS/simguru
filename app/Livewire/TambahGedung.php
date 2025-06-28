@@ -7,7 +7,9 @@ use Livewire\Component;
 use App\Models\Building;
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\WithPagination;
+use Livewire\Attributes\Layout;
 
+#[Layout('components.layouts.admin.dashboard')]
 class TambahGedung extends Component
 {
     use WithPagination;

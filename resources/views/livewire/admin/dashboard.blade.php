@@ -54,6 +54,12 @@
         </div>
     </div>
 
+    <!-- Jumlah Kampus dan Ruang -->
+    <div class="bg-white rounded-lg shadow p-5 mb-6">
+        <h5 class="text-lg font-semibold mb-4">Jumlah Kampus dan Ruang</h5>
+        <div id="sales-report-chart"></div>
+    </div>
+
     <!-- Statistik Penggunaan Gedung dan Ruang -->
     <div class="bg-white rounded-lg shadow p-5 mb-6">
         <div class="flex justify-between items-center mb-4">
@@ -67,12 +73,6 @@
             <div id="visitor-chart-1" style="display:none;"></div>
             <div id="visitor-chart"></div>
         </div>
-    </div>
-
-    <!-- Jumlah Kampus dan Ruang -->
-    <div class="bg-white rounded-lg shadow p-5 mb-6">
-        <h5 class="text-lg font-semibold mb-4">Jumlah Kampus dan Ruang</h5>
-        <div id="sales-report-chart"></div>
     </div>
 
     <!-- Status Penggunaan Gedung dan Ruang -->
@@ -109,7 +109,7 @@
                         <td class="px-4 py-2 text-right">-</td>
                     </tr>
                     <tr>
-                        <td class="px-4 py-2 text-gray-600"><a href="#" class="hover:underline">KAMPUS C</a></td>
+                        <td class="px-4 py-2 text-gray-600"><a href="#" class="hover:underline">KAMPUS D</a></td>
                         <td class="px-4 py-2">GEDUNG C</td>
                         <td class="px-4 py-2">5</td>
                         <td class="px-4 py-2 flex items-center gap-2">

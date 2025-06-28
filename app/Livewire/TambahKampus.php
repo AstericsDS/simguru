@@ -4,7 +4,9 @@ namespace App\Livewire;
 
 use App\Models\Campus;
 use Livewire\Component;
+use Livewire\Attributes\Layout;
 
+#[Layout('components.layouts.admin.dashboard')]
 class TambahKampus extends Component
 {
     public $name, $address, $contact, $email, $description;

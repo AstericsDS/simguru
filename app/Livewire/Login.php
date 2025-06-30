@@ -20,7 +20,9 @@ class Login extends Component
     
     public function login() {
         $credentials = $this->validate();
+        
         if (Auth::attempt($credentials)) {
+            session()->regenerate();
             return redirect()->to(route('dashboard'));
         }
         

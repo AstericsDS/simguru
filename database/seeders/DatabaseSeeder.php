@@ -38,8 +38,16 @@ class DatabaseSeeder extends Seeder
         User::create([
             'role' => 1,
             'name' => 'Super Admin',
-            'password' => Hash::make('akuadmin')
+            'password' => Hash::make('0001')
         ]);
+
+        User::create([
+            'role' => 2,
+            'name' => 'Admin',
+            'password' => Hash::make('0000')
+        ]);
+
+        Campus::factory()->count(1)->create();
 
         // Campus::factory()
         //     ->count(1)

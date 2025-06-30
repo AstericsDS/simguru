@@ -5,9 +5,11 @@ namespace App\Livewire;
 use App\Models\Campus;
 use Livewire\Component;
 use App\Models\Building;
-use Illuminate\Database\Eloquent\Builder;
 use Livewire\WithPagination;
+use App\Models\PendingUpdate;
 use Livewire\Attributes\Layout;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Builder;
 
 #[Layout('components.layouts.admin.dashboard')]
 class TambahGedung extends Component
@@ -47,10 +49,21 @@ class TambahGedung extends Component
 
     public function save()
     {
-        $validate = $this->validate();
-        Building::create($validate);
+        $validated = $this->validate();
+        PendingUpdate::create([
+            'admin_id' => Auth::id(),
+            'type' => 'new',
+            'table' => 'buildings',
+            'record_id' => null,
+            'old_data' => null,
+            'new_data' => json_encode($validated),
+            'status' => 'pending',
+            'approved_by' => null,
+            'reject_reason' => null,
+        ]);
+
         $this->reset();
-        return redirect()->route('tambah-gedung')->with('message', 'Gedung berhasil dibuat');
+        return redirect()->route('tambah-gedung')->with('message', 'Berhasil');
     }
 
     public function updating($key): void

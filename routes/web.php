@@ -1,17 +1,18 @@
 <?php
 
-use App\Livewire\Content;
-use App\Livewire\Gedung;
 use App\Livewire\Login;
+use App\Livewire\Gedung;
+use App\Livewire\Kampus;
+use App\Livewire\Content;
 use App\Livewire\Dashboard;
 use App\Livewire\DetailAll;
 use App\Livewire\EditKampus;
-use App\Livewire\Kampus;
-use App\Livewire\VerifikasiData;
+use App\Livewire\TambahRuang;
 use App\Livewire\Rekapitulasi;
 use App\Livewire\TambahGedung;
 use App\Livewire\TambahKampus;
-use App\Livewire\TambahRuang;
+use App\Livewire\PerubahanData;
+use App\Livewire\VerifikasiData;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->prefix('admin')->group(function(){
@@ -24,7 +25,8 @@ Route::middleware(['auth'])->prefix('admin')->group(function(){
     Route::get('/tambah-ruang', TambahRuang::class)->name('tambah-ruang');
     Route::get('/edit-kampus', EditKampus::class)->name('edit-kampus');
     Route::get('/detail-all', DetailAll::class)->name('detail-all');
-    Route::get('/perubahan-data', VerifikasiData::class)->name('verifikasi-data');
+    Route::get('/perubahan-data', PerubahanData::class)->name('perubahan-data');
+    Route::get('/verifikasi-data', VerifikasiData::class)->name('verifikasi-data');
     Route::get('/rekapitulasi', Rekapitulasi::class)->name('rekapitulasi');
 });
 

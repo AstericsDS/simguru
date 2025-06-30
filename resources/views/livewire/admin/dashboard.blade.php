@@ -3,8 +3,8 @@
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-6">
         <div class="bg-white rounded-lg shadow p-5">
             <h6 class="text-gray-500 mb-2 font-normal">Total Kampus UNJ</h6>
-            <h4 class="text-2xl font-semibold mb-3 flex items-center gap-2">
-                4
+            <h4 class="text-2xl font-semibold mb-3 flex items-center gap-2 text-slate-500">
+                {{ $campusCount }}
                 <span class="inline-flex items-center px-2 py-1 text-xs font-medium bg-blue-100 text-blue-700 rounded border border-blue-700">
                     <i class="ti ti-trending-up"></i> Kampus UNJ
                 </span>
@@ -16,8 +16,8 @@
 
         <div class="bg-white rounded-lg shadow p-5">
             <h6 class="text-gray-500 mb-2 font-normal">Total Gedung</h6>
-            <h4 class="text-2xl font-semibold mb-3 flex items-center gap-2">
-                150
+            <h4 class="text-2xl font-semibold mb-3 flex items-center gap-2 text-slate-500">
+                {{ $buildingCount }}
                 <span class="inline-flex items-center px-2 py-1 text-xs font-medium bg-green-100 text-green-700 rounded border border-green-700">
                     <i class="ti ti-trending-up"></i> 70.5%
                 </span>
@@ -29,7 +29,7 @@
 
         <div class="bg-white rounded-lg shadow p-5">
             <h6 class="text-gray-500 mb-2 font-normal">Total Ruang</h6>
-            <h4 class="text-2xl font-semibold mb-3 flex items-center gap-2">
+            <h4 class="text-2xl font-semibold mb-3 flex items-center gap-2 text-slate-500">
                 1,500
                 <span class="inline-flex items-center px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-700 rounded border border-yellow-700">
                     <i class="ti ti-trending-down"></i> 27.4%
@@ -42,7 +42,7 @@
 
         <div class="bg-white rounded-lg shadow p-5">
             <h6 class="text-gray-500 mb-2 font-normal">Total Kelas</h6>
-            <h4 class="text-2xl font-semibold mb-3 flex items-center gap-2">
+            <h4 class="text-2xl font-semibold mb-3 flex items-center gap-2 text-slate-500">
                 400
                 <span class="inline-flex items-center px-2 py-1 text-xs font-medium bg-red-100 text-red-700 rounded border border-red-700">
                     <i class="ti ti-trending-down"></i> 27.4%
@@ -124,61 +124,85 @@
 </div>
 
 @push('scripts')
-<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Chart Minggu (default tampil)
-        var optionsMinggu = {
-            chart: { type: 'bar', height: 350 },
-            series: [{ name: 'Penggunaan', data: [50, 80, 65, 90, 70, 100, 85] }], // data disesuaikan
-            xaxis: { categories: ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'] }
-        };
-        var chartMinggu = new ApexCharts(document.querySelector("#visitor-chart"), optionsMinggu);
-        chartMinggu.render();
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Chart Minggu (default tampil)
+            var optionsMinggu = {
+                chart: {
+                    type: 'bar',
+                    height: 350
+                },
+                series: [{
+                    name: 'Penggunaan',
+                    data: [50, 80, 65, 90, 70, 100, 85]
+                }], // data disesuaikan
+                xaxis: {
+                    categories: ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min']
+                }
+            };
+            var chartMinggu = new ApexCharts(document.querySelector("#visitor-chart"), optionsMinggu);
+            chartMinggu.render();
 
-        // Chart Bulan (disembunyikan)
-        var optionsBulan = {
-            chart: { type: 'line', height: 350 },
-            series: [{ name: 'Penggunaan', data: [300, 400, 350, 450, 420, 480, 460] }], // data disesuaikan
-            xaxis: { categories: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul'] }
-        };
-        var chartBulan = new ApexCharts(document.querySelector("#visitor-chart-1"), optionsBulan);
-        chartBulan.render();
+            // Chart Bulan (disembunyikan)
+            var optionsBulan = {
+                chart: {
+                    type: 'line',
+                    height: 350
+                },
+                series: [{
+                    name: 'Penggunaan',
+                    data: [300, 400, 350, 450, 420, 480, 460]
+                }], // data disesuaikan
+                xaxis: {
+                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul']
+                }
+            };
+            var chartBulan = new ApexCharts(document.querySelector("#visitor-chart-1"), optionsBulan);
+            chartBulan.render();
 
-        // Chart Sales Report (Jumlah Kampus dan Ruang)
-        var optionsSales = {
-            chart: { type: 'area', height: 350 },
-            series: [{ name: 'Jumlah', data: [4, 150, 1500, 400] }], // data sesuai total kampus, gedung, ruang, kelas
-            xaxis: { categories: ['Kampus', 'Gedung', 'Ruang', 'Kelas'] }
-        };
-        var chartSales = new ApexCharts(document.querySelector("#sales-report-chart"), optionsSales);
-        chartSales.render();
+            // Chart Sales Report (Jumlah Kampus dan Ruang)
+            var optionsSales = {
+                chart: {
+                    type: 'area',
+                    height: 350
+                },
+                series: [{
+                    name: 'Jumlah',
+                    data: [4, 150, 1500, 400]
+                }], // data sesuai total kampus, gedung, ruang, kelas
+                xaxis: {
+                    categories: ['Kampus', 'Gedung', 'Ruang', 'Kelas']
+                }
+            };
+            var chartSales = new ApexCharts(document.querySelector("#sales-report-chart"), optionsSales);
+            chartSales.render();
 
-        // Tombol switch chart bulan/minggu
-        const btnBulan = document.getElementById('btn-bulan');
-        const btnMinggu = document.getElementById('btn-minggu');
-        const chartBulanDiv = document.getElementById('visitor-chart-1');
-        const chartMingguDiv = document.getElementById('visitor-chart');
+            // Tombol switch chart bulan/minggu
+            const btnBulan = document.getElementById('btn-bulan');
+            const btnMinggu = document.getElementById('btn-minggu');
+            const chartBulanDiv = document.getElementById('visitor-chart-1');
+            const chartMingguDiv = document.getElementById('visitor-chart');
 
-        btnBulan.addEventListener('click', function() {
-            btnBulan.classList.add('bg-blue-600', 'text-white');
-            btnBulan.classList.remove('bg-gray-200', 'text-gray-700');
-            btnMinggu.classList.remove('bg-blue-600', 'text-white');
-            btnMinggu.classList.add('bg-gray-200', 'text-gray-700');
+            btnBulan.addEventListener('click', function() {
+                btnBulan.classList.add('bg-blue-600', 'text-white');
+                btnBulan.classList.remove('bg-gray-200', 'text-gray-700');
+                btnMinggu.classList.remove('bg-blue-600', 'text-white');
+                btnMinggu.classList.add('bg-gray-200', 'text-gray-700');
 
-            chartBulanDiv.style.display = 'block';
-            chartMingguDiv.style.display = 'none';
+                chartBulanDiv.style.display = 'block';
+                chartMingguDiv.style.display = 'none';
+            });
+
+            btnMinggu.addEventListener('click', function() {
+                btnMinggu.classList.add('bg-blue-600', 'text-white');
+                btnMinggu.classList.remove('bg-gray-200', 'text-gray-700');
+                btnBulan.classList.remove('bg-blue-600', 'text-white');
+                btnBulan.classList.add('bg-gray-200', 'text-gray-700');
+
+                chartMingguDiv.style.display = 'block';
+                chartBulanDiv.style.display = 'none';
+            });
         });
-
-        btnMinggu.addEventListener('click', function() {
-            btnMinggu.classList.add('bg-blue-600', 'text-white');
-            btnMinggu.classList.remove('bg-gray-200', 'text-gray-700');
-            btnBulan.classList.remove('bg-blue-600', 'text-white');
-            btnBulan.classList.add('bg-gray-200', 'text-gray-700');
-
-            chartMingguDiv.style.display = 'block';
-            chartBulanDiv.style.display = 'none';
-        });
-    });
-</script>
+    </script>
 @endpush

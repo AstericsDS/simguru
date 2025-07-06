@@ -10,7 +10,7 @@
                 </span>
             </h4>
             <p class="text-sm text-gray-500">
-                Sebanyak <span class="text-blue-600">4</span> Kampus yang terdaftar di UNJ
+                Sebanyak <span class="text-blue-600">{{ $campusCount }}</span> Kampus yang terdaftar di UNJ
             </p>
         </div>
 
@@ -23,33 +23,33 @@
                 </span>
             </h4>
             <p class="text-sm text-gray-500">
-                Sebanyak <span class="text-green-600">150</span> Gedung yang terdaftar di UNJ
+                Sebanyak <span class="text-green-600">{{ $buildingCount }}</span> Gedung yang terdaftar di UNJ
             </p>
         </div>
 
         <div class="bg-white rounded-lg shadow p-5">
             <h6 class="text-gray-500 mb-2 font-normal">Total Ruang</h6>
             <h4 class="text-2xl font-semibold mb-3 flex items-center gap-2 text-slate-500">
-                1,500
+                {{ $roomCount }}
                 <span class="inline-flex items-center px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-700 rounded border border-yellow-700">
                     <i class="ti ti-trending-down"></i> 27.4%
                 </span>
             </h4>
             <p class="text-sm text-gray-500">
-                Sebanyak <span class="text-yellow-600">1,500</span> Ruang yang terdaftar di UNJ
+                Sebanyak <span class="text-yellow-600">{{ $roomCount }}</span> Ruang yang terdaftar di UNJ
             </p>
         </div>
 
         <div class="bg-white rounded-lg shadow p-5">
             <h6 class="text-gray-500 mb-2 font-normal">Total Kelas</h6>
             <h4 class="text-2xl font-semibold mb-3 flex items-center gap-2 text-slate-500">
-                400
+                {{ $classCount }}
                 <span class="inline-flex items-center px-2 py-1 text-xs font-medium bg-red-100 text-red-700 rounded border border-red-700">
                     <i class="ti ti-trending-down"></i> 27.4%
                 </span>
             </h4>
             <p class="text-sm text-gray-500">
-                Sebanyak <span class="text-red-600">400</span> Ruang yang terdaftar sebagai Kelas
+                Sebanyak <span class="text-red-600">{{ $classCount }}</span> Ruang yang terdaftar sebagai Kelas
             </p>
         </div>
     </div>

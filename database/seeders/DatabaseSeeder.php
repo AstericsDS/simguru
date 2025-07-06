@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Role;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Room;
 use App\Models\User;
 use App\Models\Campus;
 use App\Models\Building;
@@ -23,7 +24,7 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        
+
         // Campus::factory()->count(5)->create();
 
         // Create Roles
@@ -47,7 +48,19 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('0000')
         ]);
 
-        Campus::factory()->count(1)->create();
+        Campus::factory()->count(1)->has(Building::factory()->count(2)->has(Room::factory()->count(3)))->create();
+        // Campus::factory()
+        //     ->count(1)
+        //     ->has(
+        //         Building::factory()
+        //             ->count(2)
+        //             ->has(
+        //                 Room::factory()->count(3)
+        //             )
+        //     )
+        //     ->create();
+
+        // Campus::factory()->count(1)->has(Building::factory()->count(2))->create();
 
         // Campus::factory()
         //     ->count(1)

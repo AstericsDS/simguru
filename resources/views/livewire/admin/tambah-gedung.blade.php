@@ -9,21 +9,16 @@
                 Daftar gedung yang terdaftar di UNJ (Klik "Tambah" untuk menambah gedung)
             </span>
         </span>
-        @if (session()->has('message'))
-            <span class="bg-green-200 text-green-700 p-4 rounded-md">
-                {{ session('message') }}
-            </span>
-        @endif
     </div>
-    <div class="flex justify-end items-center mb-3">
-        {{-- <div class="relative w-64">
+    <div class="flex justify-between items-center mb-3">
+        <div class="relative w-64">
             <input wire:model.live="searchBar" type="text" class="border border-gray-300 rounded-lg px-3 py-2 w-full pr-10 focus:outline-none focus:ring-2 focus:ring-teal-700 text-black" placeholder="Cari gedung">
             <span class="absolute right-5 top-1/2 -translate-y-1/2 text-gray-500 cursor-pointer">
                 <svg class="w-5 h-5 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                     <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" />
                 </svg>
             </span>
-        </div> --}}
+        </div>
         <!-- Modal toggle -->
         <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="inline-flex items-center btn text-white bg-teal-700 px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-teal-800 focus:ring-4 focus:outline-none font-bold text-sm text-center shadow-none border-none" type="button">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -49,7 +44,7 @@
                         </button>
                     </div>
                     <!-- Modal body -->
-                    <form class="p-4 md:p-5">
+                    <form wire:submit="save" class="p-4 md:p-5">
                         <div class="grid gap-4 mb-4 grid-cols-2">
                             <div class="col-span-2">
                                 <label for="name" class="block mb-2 text-sm font-medium {{ $errors->has('name') ? 'text-red-700' : 'text-gray-900' }}">Nama Gedung</label>
@@ -104,7 +99,7 @@
                             </div>
                         </div>
                         <div class="flex justify-end">
-                            <button type="button" wire:click.prevent="save" class="text-white inline-flex items-center bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 font-semibold rounded-lg text-sm px-5 py-2.5 text-center cursor-pointer transition-all">
+                            <button type="submit" class="text-white inline-flex items-center bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:outline-none font-semibold rounded-lg text-sm px-5 py-2.5 text-center cursor-pointer transition-all focus:bg-teal-800">
                                 <span class="material-symbols-rounded" style="font-size: 22px">
                                     add
                                 </span>
@@ -179,5 +174,34 @@
                 </div>
             </tbody>
         </table>
+
+        {{-- Toast --}}
+        <div id="toast-slide" class="fixed bottom-5 -left-full z-50 transition-all duration-[1s] flex items-center w-full max-w-sm p-4 mb-4 text-gray-500 rounded-lg shadow-sm" role="alert">
+            <div id="toast-success-logo" class="inline-flex items-center justify-center shrink-0 w-8 h-8 text-green-500 bg-green-900 rounded-lg">
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                </svg>
+                <span class="sr-only">Check icon</span>
+            </div>
+            <div id="toast-error-logo" class="inline-flex items-center justify-center shrink-0 w-8 h-8 text-red-200 bg-red-800 rounded-lg">
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 11.793a1 1 0 1 1-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 0 1-1.414-1.414L8.586 10 6.293 7.707a1 1 0 0 1 1.414-1.414L10 8.586l2.293-2.293a1 1 0 0 1 1.414 1.414L11.414 10l2.293 2.293Z" />
+                </svg>
+                <span class="sr-only">Error icon</span>
+            </div>
+            <div id="toast-message" class="ms-3 text-sm font-medium cursor-default mr-2 text-black"></div>
+            <button type="button" class="ms-auto -mx-1.5 -my-1.5 px-2.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 hover:cursor-pointer transition-all" data-dismiss-target="#toast-slide" aria-label="Close">
+                <span class="sr-only">Close</span>
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                </svg>
+            </button>
+        </div>
     </div>
+    {{-- <button class="p-2 bg-blue-200 rounded-md text-black" wire:click='test'>
+        SUCCESS
+    </button>
+    <button class="p-2 bg-red-200 rounded-md text-black" wire:click='test2'>
+        FAIL
+    </button> --}}
 </div>

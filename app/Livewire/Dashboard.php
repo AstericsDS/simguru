@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Room;
 use App\Models\Campus;
 use Livewire\Component;
 use App\Models\Building;
@@ -14,7 +15,9 @@ class Dashboard extends Component
     {
         return view('livewire.admin.dashboard', [
             'campusCount' => Campus::count(),
-            'buildingCount' => Building::count()
+            'buildingCount' => Building::count(),
+            'roomCount' => Room::count(),
+            'classCount' => Room::where('status', 'class')->count()
         ]);
     }
 }

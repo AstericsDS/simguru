@@ -20,19 +20,19 @@
                     </tr>
                 </thead>
                 <tbody class="bg-white text-black text-center">
-                    @foreach ($updates as $update)
+                    @foreach ($updates as $index => $update)
                         <tr>
                             <td class="">
-                                {{ $loop->iteration }}
+                                {{ $updates->firstItem() + $index }}
                             </td>
                             <td>
                                 <span class="mr-2">{{ $update->parsed_new_data['name'] }}</span>
                                 @if ($update->table == 'campuses')
-                                    <span class="p-2 bg-green-200 text-green-500 rounded-md font-medium">Kampus</span>
+                                    <span class="p-2 bg-green-200 text-green-800 rounded-md font-medium">Kampus</span>
                                 @elseif ($update->table == 'buildings')
-                                    <span class="p-2 bg-blue-200 text-blue-500 rounded-md font-medium">Gedung</span>
+                                    <span class="p-2 bg-blue-200 text-blue-800 rounded-md font-medium">Gedung</span>
                                 @elseif ($update->table == 'rooms')
-                                    <span class="p-2 bg-purple-200 text-purple-500 rounded-md font-medium">Ruang</span>
+                                    <span class="p-2 bg-purple-200 text-purple-800 rounded-md font-medium">Ruang</span>
                                 @endif
                             </td>
                             <td class="py-6">
@@ -52,6 +52,9 @@
                             </td>
                         </tr>
                     @endforeach
+                    <div class="bg-white">
+                        {{ $updates->links('pagination::tailwind') }}
+                    </div>
                 </tbody>
             </table>
         </div>

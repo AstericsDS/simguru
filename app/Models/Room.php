@@ -14,4 +14,10 @@ class Room extends Model
     public function user(): BelongsTo {
         return $this->belongsTo(User::class, 'admin_id');
     }
+    public function campus(): BelongsTo {
+        return $this->belongsTo(Campus::class, 'campus_id');
+    }
+    public function building(): BelongsTo {
+        return $this->belongsTo(Building::class, 'building_id');
+    }
 }

@@ -17,7 +17,11 @@ class RoomFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->name,
+            'floor' => $this->faker->numberBetween(1, 10),
+            'capacity' => $this->faker->numberBetween(10,40),
+            'description' => $this->faker->sentence(),
+            'status' => 'class'
         ];
     }
 }

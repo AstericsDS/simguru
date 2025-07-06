@@ -19,6 +19,7 @@ class TambahGedung extends Component
     public $name, $address, $floor, $area, $description, $campus_id;
     public $status = 0;
     public $searchBar = '';
+    public $campuses = [];
 
     public function rules()
     {
@@ -50,7 +51,8 @@ class TambahGedung extends Component
     public function save()
     {
         $validated = $this->validate();
-        PendingUpdate::create([
+
+        $created = PendingUpdate::create([
             'admin_id' => Auth::id(),
             'type' => 'new',
             'table' => 'buildings',
@@ -62,8 +64,14 @@ class TambahGedung extends Component
             'reject_reason' => null,
         ]);
 
-        $this->reset();
-        return redirect()->route('tambah-gedung')->with('message', 'Berhasil');
+        if ($created) {
+            $this->reset(['name', 'address', 'floor', 'area', 'description']);
+            $this->dispatch('close-modal');
+            $this->dispatch('show-toast', status: 'success', message: 'Entri anda telah masuk dan akan segera diverifikasi.');
+        } else {
+            $this->dispatch('close-modal');
+            $this->dispatch('show-toast', status: 'fail', message: 'Maaf, entri anda tidak dapat diterima. Silakan coba lagi.');
+        }
     }
 
     public function updating($key): void
@@ -73,26 +81,30 @@ class TambahGedung extends Component
         }
     }
 
+    public function test()
+    {
+        $this->dispatch('show-toast', status: 'success', message: 'Entri anda telah masuk dan akan segera diverifikasi.');
+    }
+
+    public function test2()
+    {
+        $this->dispatch('show-toast', status: 'fail', message: 'Maaf, entri anda tidak dapat diterima. Silakan coba lagi.');
+    }
+
     public function mount()
     {
         $this->campuses = Campus::all();
-
-        // Automatically select the only campus
-        if ($this->campuses->count() === 1) {
-            $this->campus_id = $this->campuses->first()->id;
-        }
+        $this->campus_id = $this->campuses->first()->id;
     }
 
     public function render()
     {
-        $building = Building::with('campus')
-        ->when($this->searchBar !== '', fn(Builder $query) 
-        => $query->where('name', 'like', '%' . $this->searchBar . '%'))
-        ->paginate(10);
-
+        $buildings = Building::with('campus')
+            ->when($this->searchBar !== '', fn(Builder $query)
+                => $query->where('name', 'like', '%' . $this->searchBar . '%'))
+            ->paginate(10);
         return view('livewire.admin.tambah-gedung', [
-            'campuses' => Campus::all(),
-            'buildings' => $building
+            'buildings' => $buildings
         ]);
     }
 

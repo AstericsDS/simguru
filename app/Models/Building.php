@@ -18,4 +18,7 @@ class Building extends Model
     public function campus(): BelongsTo {
         return $this->belongsTo(Campus::class, 'campus_id');
     }
+    public function room(): HasMany {
+        return $this->hasMany(Room::class, 'building_id');
+    }
 }

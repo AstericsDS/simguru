@@ -11,6 +11,14 @@ class Room extends Model
 {
     /** @use HasFactory<\Database\Factories\RoomFactory> */
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'building_id',
+        'floor',
+        'capacity',
+        'description',
+        'status',
+    ];
     public function user(): BelongsTo {
         return $this->belongsTo(User::class, 'admin_id');
     }

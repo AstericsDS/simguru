@@ -9,14 +9,14 @@
     </div>
     <div class="flex justify-end items-center mb-3">
         <div class="overflow-x-auto">
-            <table class="w-full table-fixed border border-gray-300 bg-white text-black rounded-md" style="width: 100%">
+            <table class="w-full table-fixed border border-gray-300 bg-white text-black rounded-md">
                 <thead class="bg-teal-700 text-white text-center">
                     <tr>
-                        <th class="py-3">No</th>
-                        <th>Nama</th>
-                        <th>Data</th>
-                        <th>Admin</th>
-                        <th>Status</th>
+                        <th class="w-[70px] py-[10.5px]">No</th>
+                        <th class="w-[350px] py-[10.5px]">Nama</th>
+                        <th class="w-auto py-[10.5px]">Data</th>
+                        <th class="w-[200px] py-[10.5px]">Admin</th>
+                        <th class="w-[150px] py-[10.5px]">Status</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white text-black text-center">
@@ -26,7 +26,7 @@
                                 {{ $updates->firstItem() + $index }}
                             </td>
                             <td>
-                                <span class="mr-2">{{ $update->parsed_new_data['name'] }}</span>
+                                <span class="mr-2">{{ $update->parsed_new_data['Nama'] }}</span>
                                 @if ($update->table == 'campuses')
                                     <span class="p-2 bg-green-200 text-green-800 rounded-md font-medium">Kampus</span>
                                 @elseif ($update->table == 'buildings')

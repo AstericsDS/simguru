@@ -18,7 +18,7 @@ class TambahGedung extends Component
 
     public $name, $address, $floor, $area, $description, $campus_id;
     public $status = 0;
-    public $searchBar = '';
+    public $search = '';
     public $campuses = [];
 
     public function rules()
@@ -100,8 +100,8 @@ class TambahGedung extends Component
     public function render()
     {
         $buildings = Building::with('campus')
-            ->when($this->searchBar !== '', fn(Builder $query)
-                => $query->where('name', 'like', '%' . $this->searchBar . '%'))
+            ->when($this->search !== '', fn(Builder $query)
+                => $query->where('name', 'like', '%' . $this->search . '%'))
             ->paginate(10);
         return view('livewire.admin.tambah-gedung', [
             'buildings' => $buildings

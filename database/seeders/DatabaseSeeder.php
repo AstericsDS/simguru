@@ -48,7 +48,8 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('0000')
         ]);
 
-        Campus::factory()->count(1)->has(Building::factory()->count(2)->has(Room::factory()->count(3)))->create();
+        // Campus::factory()->count(1)->has(Building::factory()->count(2)->has(Room::factory()->count(3)))->create();
+        Campus::factory()->count(1)->has(Building::factory()->count(2))->create();
         // Campus::factory()
         //     ->count(1)
         //     ->has(

@@ -19,7 +19,7 @@ class CampusFactory extends Factory
     {
         return [
             'name' => fake()->word(),
-            // 'admin_id' => User::factory(),
+            'admin_id' => 2,
             'address' => fake()->address(),
             'contact' => fake()->randomNumber(5, true),
             'email' => fake()->email(),

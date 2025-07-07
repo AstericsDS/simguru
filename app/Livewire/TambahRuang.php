@@ -51,7 +51,9 @@ class TambahRuang extends Component
 
     public function save()
     {
-        $validated = $this->validate();
+        $validated = collect($this->validate());
+        $validated = $validated->except('campus_id');
+        
         $created = PendingUpdate::create([
             'admin_id' => Auth::id(),
             'type' => 'new',

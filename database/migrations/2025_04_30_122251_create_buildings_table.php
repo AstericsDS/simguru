@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('floor');
             $table->text('description');
             $table->text('address');
-            $table->string('images_path')->nullable();
+            $table->json('images_path')->nullable();
             $table->boolean('status');
             $table->timestamps();
         });

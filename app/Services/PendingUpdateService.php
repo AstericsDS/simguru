@@ -32,7 +32,9 @@ class PendingUpdateService
                 'floor' => 'Lantai',
                 'capacity' => 'Kapasitas',
                 'description' => 'Deskripsi',
-                'status' => 'Status',
+                'status' => fn($v) => [
+                    'Status' => $v === 'class' ? 'Kelas' : 'Bukan Kelas'
+                ],
             ],
         ];
 

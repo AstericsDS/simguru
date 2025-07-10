@@ -10,14 +10,18 @@ use App\Models\PendingUpdate;
 use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
+use Livewire\WithFileUploads;
 
 #[Layout('components.layouts.admin.dashboard')]
 class TambahRuang extends Component
 {
+    use WithFileUploads;
+
     public $name, $campus_id, $building_id, $floor, $capacity, $status, $area, $description;
     public $buildings = [];
     public $campuses = [];
     public $search = '';
+    public $images_path = [];
 
     public function rules()
     {
@@ -30,6 +34,8 @@ class TambahRuang extends Component
             'status' => 'required',
             'area' => 'required|integer',
             'description' => 'required',
+            'images_path.*' => 'required|file|image',
+            'images_path' => 'required|array',
         ];
     }
 
@@ -46,6 +52,8 @@ class TambahRuang extends Component
             'area.required' => 'Area harus dipilih',
             'area.integer' => 'Area harus berupa angka',
             'description' => 'Deskripsi harus diisi',
+            'images_path.required' => 'Foto harus diupload',
+            'images_path.image' => 'Foto harus berupa gambar',
         ];
     }
 
@@ -53,7 +61,15 @@ class TambahRuang extends Component
     {
         $validated = collect($this->validate());
         $validated = $validated->except('campus_id');
-        
+
+        $paths = [];
+        if ($this->images_path && is_array($this->images_path)) {
+            foreach ($this->images_path as $image) {
+                $paths[] = $image->store('temp');
+            }
+            $validated['images_path'] = $paths;
+        }
+
         $created = PendingUpdate::create([
             'admin_id' => Auth::id(),
             'type' => 'new',

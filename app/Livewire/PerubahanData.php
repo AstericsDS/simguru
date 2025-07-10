@@ -15,7 +15,6 @@ class PerubahanData extends Component
     public function render()
     {
         $updates = PendingUpdate::with(['admin', 'approver'])
-            ->where('status', 'pending')
             ->paginate(10); // You can change 10 to any per-page number
 
         // Then map the paginated items (not the whole collection)

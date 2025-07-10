@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('contact');
             $table->string('email');
             $table->text('description');
-            $table->string('images_path')->nullable();
+            $table->json('images_path')->nullable();
             $table->timestamps();
         });
     }

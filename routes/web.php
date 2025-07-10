@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Login;
+use App\Livewire\Campus;
 use App\Livewire\Gedung;
 use App\Livewire\Kampus;
 use App\Livewire\Content;
@@ -28,6 +29,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function(){
     Route::get('/perubahan-data', PerubahanData::class)->name('perubahan-data');
     Route::get('/verifikasi-data', VerifikasiData::class)->name('verifikasi-data');
     Route::get('/rekapitulasi', Rekapitulasi::class)->name('rekapitulasi');
+    Route::get('/campus', Campus::class)->name('campus');
 });
 
 Route::get('/login', Login::class)->name('login');

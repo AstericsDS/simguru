@@ -47,7 +47,11 @@
                             </td>
                             <td>
                                 @if ($update->status == 'pending')
-                                    <span class="p-2 bg-red-200 text-red-500 rounded-md">Pending</span>
+                                    <span class="p-2 bg-orange-200 text-orange-800 rounded-md">Pending</span>
+                                @elseif ($update->status == 'approved')
+                                    <span class="p-2 bg-green-200 text-green-800 rounded-md">Disetujui</span>
+                                @elseif ($update->status == 'rejected')
+                                    <span class="p-2 bg-red-200 text-red-800 rounded-md">Ditolak</span>
                                 @endif
                             </td>
                         </tr>

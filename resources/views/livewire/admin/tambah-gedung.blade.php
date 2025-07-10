@@ -48,7 +48,7 @@
                         <div class="grid gap-4 mb-4 grid-cols-2">
                             <div class="col-span-2">
                                 <label for="name" class="block mb-2 text-sm font-medium {{ $errors->has('name') ? 'text-red-700' : 'text-gray-900' }}">Nama Gedung</label>
-                                <input wire:model="name" type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 {{ $errors->has('name') ? 'border-red-500' : 'border-gray-300' }}" placeholder="" required="">
+                                <input wire:model="name" type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 {{ $errors->has('name') ? 'border-red-500' : 'border-gray-300' }}" placeholder="">
                                 @error('name')
                                     <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
                                 @enderror
@@ -67,28 +67,31 @@
                             </div>
                             <div class="col-span-2">
                                 <label for="name" class="block mb-2 text-sm font-medium text-gray-900 {{ $errors->has('address') ? 'text-red-700' : 'text-gray-900' }}">Alamat Gedung</label>
-                                <input wire:model="address" type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 {{ $errors->has('address') ? 'border-red-500' : 'border-gray-300' }}" placeholder="" required="">
+                                <input wire:model="address" type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 {{ $errors->has('address') ? 'border-red-500' : 'border-gray-300' }}" placeholder="">
                                 @error('address')
                                     <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="col-span-2">
                                 <label for="name" class="block mb-2 text-sm font-medium {{ $errors->has('floor') ? 'text-red-700' : 'text-gray-900' }}">Jumlah Lantai</label>
-                                <input wire:model="floor" type="text" name="name" id="name" class="bg-gray-50 border  text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 {{ $errors->has('floor') ? 'border-red-500' : 'border-gray-300' }}" placeholder="" required="">
+                                <input wire:model="floor" type="text" name="name" id="name" class="bg-gray-50 border  text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 {{ $errors->has('floor') ? 'border-red-500' : 'border-gray-300' }}" placeholder="">
                                 @error('floor')
                                     <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="col-span-2">
                                 <label for="name" class="block mb-2 text-sm font-medium {{ $errors->has('area') ? 'text-red-700' : 'text-gray-900' }}">Luas Gedung (m2)</label>
-                                <input wire:model="area" type="text" name="name" id="name" class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 {{ $errors->has('area') ? 'border-red-500' : 'border-gray-300' }}" placeholder="" required="">
+                                <input wire:model="area" type="text" name="name" id="name" class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 {{ $errors->has('area') ? 'border-red-500' : 'border-gray-300' }}" placeholder="">
                                 @error('area')
                                     <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="col-span-2">
                                 <label class="block mb-2 text-sm font-medium text-gray-900" for="user_avatar">Upload Foto Gedung</label>
-                                <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50" aria-describedby="user_avatar_help" id="user_avatar" type="file">
+                                <input wire:model='images_path' multiple class="block w-full text-sm text-gray-900 border rounded-lg cursor-pointer bg-gray-50 {{ $errors->has('description') ? 'text-red-700' : 'text-gray-900' }}" aria-describedby="user_avatar_help" id="user_avatar" type="file">
+                                @error('images_path')
+                                    <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
+                                @enderror
                             </div>
                             <div class="col-span-2">
                                 <label for="description" class="block mb-2 text-sm font-medium text-gray-900 {{ $errors->has('description') ? 'text-red-700' : 'text-gray-900' }}">Deskripsi Gedung</label>

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('floor');
             $table->integer('capacity');
             $table->text('description');
-            $table->string('images_path')->nullable();
+            $table->json('images_path')->nullable();
             $table->enum('status', ['class', 'not_class']);
             $table->timestamps();
         });

@@ -8,11 +8,15 @@ use App\Models\PendingUpdate;
 use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
+use Livewire\WithFileUploads;
 
 #[Layout('components.layouts.admin.dashboard')]
 class TambahKampus extends Component
 {
+    use WithFileUploads;
+
     public $name, $address, $contact, $email, $description;
+    public $images_path = [];
     public $search = '';
 
     public function rules()
@@ -20,9 +24,11 @@ class TambahKampus extends Component
         return [
             'name' => 'required',
             'address' => 'required',
-            'contact' => 'required',
+            'contact' => 'required|min:8',
             'email' => 'required|email',
-            'description' => 'required'
+            'description' => 'required',
+            'images_path.*' => 'required|file|image',
+            'images_path' => 'required|array',
         ];
     }
 
@@ -32,15 +38,26 @@ class TambahKampus extends Component
             'name.required' => 'Nama harus diisi',
             'address.required' => 'Alamat harus diisi',
             'contact.required' => 'Nomor telepon harus diisi',
+            'contact.min' => 'Nomor telepon minimal 8 digit',
             'email.required' => 'Email harus diisi',
             'email.email' => 'Masukkan alamat email yang valid',
-            'description.required' => 'Deskripsi harus diisi'
+            'description.required' => 'Deskripsi harus diisi',
+            'images_path.required' => 'Foto harus diupload',
+            'images_path.image' => 'Foto harus berupa gambar',
         ];
     }
 
     public function save()
     {
         $validated = $this->validate();
+        $paths = [];
+        if ($this->images_path && is_array($this->images_path)) {
+            foreach ($this->images_path as $image) {
+                $paths[] = $image->store('temp');
+            }
+            $validated['images_path'] = $paths;
+        }
+
         $created = PendingUpdate::create([
             'admin_id' => Auth::id(),
             'type' => 'new',

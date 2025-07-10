@@ -57,47 +57,47 @@
                         <div class="grid gap-4 mb-4 grid-cols-2">
                             <div class="col-span-2">
                                 <label for="name" class="block mb-2 text-sm font-medium {{ $errors->has('name') ? 'text-red-700' : 'text-gray-900' }}">Nama Kampus</label>
-                                <input wire:model="name" type="text" name="name" id="name" class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 {{ $errors->has('name') ? 'border-red-500' : 'border-gray-300' }}" placeholder="" required="">
+                                <input wire:model="name" type="text" name="name" id="name" class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 {{ $errors->has('name') ? 'border-red-500' : 'border-gray-300' }}" placeholder="">
                                 @error('name')
                                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="col-span-2">
                                 <label for="name" class="block mb-2 text-sm font-medium {{ $errors->has('address') ? 'text-red-700' : 'text-gray-900' }}">Alamat Kampus</label>
-                                <input wire:model="address" type="text" name="address" id="address" class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 {{ $errors->has('address') ? 'border-red-500' : 'border-gray-300' }}" placeholder="" required="">
+                                <input wire:model="address" type="text" name="address" id="address" class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 {{ $errors->has('address') ? 'border-red-500' : 'border-gray-300' }}" placeholder="">
                                 @error('address')
                                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="col-span-2">
                                 <label for="name" class="block mb-2 text-sm font-medium {{ $errors->has('contact') ? 'text-red-700' : 'text-gray-900' }}">No Telp Kampus</label>
-                                <input wire:model="contact" type="text" name="contact" id="contact" class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 {{ $errors->has('contact') ? 'border-red-500' : 'border-gray-300' }}" placeholder="" required="">
+                                <input wire:model="contact" type="text" name="contact" id="contact" class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 {{ $errors->has('contact') ? 'border-red-500' : 'border-gray-300' }}" placeholder="">
                                 @error('contact')
                                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="col-span-2">
                                 <label for="name" class="block mb-2 text-sm font-medium {{ $errors->has('email') ? 'text-red-700' : 'text-gray-900' }}">Email Kampus</label>
-                                <input wire:model="email" type="text" name="email" id="email" class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 {{ $errors->has('email') ? 'border-red-500' : 'border-gray-300' }}" placeholder="" required="">
+                                <input wire:model="email" type="text" name="email" id="email" class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 {{ $errors->has('email') ? 'border-red-500' : 'border-gray-300' }}" placeholder="">
                                 @error('email')
                                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
                             {{-- <div class="col-span-2">
                                 <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Jumlah Gedung</label>
-                                <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="" required="">
+                                <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                             </div>
                             <div class="col-span-2">
                                 <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Jumlah Unit</label>
-                                <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="" required="">
+                                <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                             </div> --}}
                             {{-- <div class="col-span-2">
                                 <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Luas Kampus (m2)</label>
-                                <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="" required="">
+                                <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                             </div> --}}
                             {{-- <div class="col-span-2 sm:col-span-1">
                                 <label for="price" class="block mb-2 text-sm font-medium text-gray-900">Price</label>
-                                <input type="number" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="" required="">
+                                <input type="number" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">
                             </div> --}}
                             {{-- <div class="col-span-2 sm:col-span-1">
                                 <label for="category" class="block mb-2 text-sm font-medium text-gray-900">Category</label>
@@ -111,11 +111,14 @@
                             </div> --}}
                             <div class="col-span-2">
                                 <label class="block mb-2 text-sm font-medium text-gray-900" for="user_avatar">Upload Foto Kampus</label>
-                                <input class="block w-full text-sm text-gray-900 border rounded-lg cursor-pointer bg-gray-50" aria-describedby="user_avatar_help" id="user_avatar" type="file">
+                                <input wire:model='images_path' multiple class="block w-full text-sm text-gray-900 border rounded-lg cursor-pointer bg-gray-50 {{ $errors->has('images_path') ? 'border-red-500' : 'border-gray-300' }}" aria-describedby="user_avatar_help" id="user_avatar" type="file">
+                                @error('images_path')
+                                    <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
+                                @enderror
                             </div>
                             <div class="col-span-2">
                                 <label for="description" class="block mb-2 text-sm font-medium {{ $errors->has('description') ? 'text-red-700' : 'text-gray-900' }}">Deskripsi Kampus</label>
-                                <textarea wire:model="description" name="description" id="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border focus:ring-teal-500 focus:border-teal-500 {{ $errors->has('description') ? 'border-red-500' : 'border-gray-300' }}" placeholder=""></textarea>
+                                <textarea wire:model="description" name="description" id="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border focus:ring-teal-500 focus:border-teal-500 bg-gray-50 {{ $errors->has('description') ? 'border-red-500' : 'border-gray-300' }}" placeholder=""></textarea>
                                 @error('description')
                                     <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
                                 @enderror

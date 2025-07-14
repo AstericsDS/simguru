@@ -2,7 +2,7 @@
     {{-- Hero --}}
     <div
         class="flex flex-col bg-[url(/public/backgrounds/homepage.png)] bg-cover bg-fixed min-h-screen bg-center justify-center items-center gap-5">
-        <img src="{{ asset('logos/unj22.png') }}" alt="logo unj" class="w-60">
+        <img src="{{ asset('logos/UNJ22.png') }}" alt="logo unj" class="w-60">
         <h1 class=" text-2xl lg:text-6xl text-white text-wrap w-3/7 text-center font-semibold">
             Sistem Informasi Manajemen Gedung dan Ruang
         </h1>
@@ -115,16 +115,16 @@
             </div>
         </div>
     </div>
-    <button class="btn border-none shadow-none mt-5 self-center rounded-full bg-unj-500">LIHAT KAMPUS</button>
+    <button class="btn border-none shadow-none mt-5 self-center rounded-full bg-unj-500">LIHAT GEDUNG</button>
     <div class="text-black text-center flex flex-col gap-3 pt-10" id="gedung">
         <h1 class="text-4xl font-semibold">Ruangan Universitas Negeri Jakarta</h1>
         <hr class="w-15 font-bold mx-auto border-gray-500 border">
     </div>
-    <div class="grid grid-cols-3 mt-5 gap-4">
+    <div class="grid grid-cols-3 mt-5">
         <a href="/kampus">
             <div class="card group bg-[url(/public/backgrounds/unj_bersih.jpeg)] bg-cover h-53 ">
                 <div
-                    class="card-body rounded-box backdrop-brightness-75 group-hover:backdrop-brightness-50 group-hover:backdrop-blur-xs transition-all duration-400">
+                    class="card-body backdrop-brightness-75 group-hover:backdrop-brightness-50 group-hover:backdrop-blur-xs transition-all duration-400">
                     <h2 class="card-title text-3xl group-hover:text-2xl transition-all duration-400">Kampus A</h2>
                     <p class="hidden group-hover:inline transition-all duration-400">Kampus utama UNJ</p>
                     <p class="hidden text-xs group-hover:inline transition-all duration-400">Jl. R.Mangun Muka Raya,
@@ -136,7 +136,7 @@
         <a href="/kampus">
             <div class="card group bg-[url(/public/backgrounds/unj_bersih.jpeg)] bg-cover h-53 ">
                 <div
-                    class="card-body rounded-box backdrop-brightness-75 group-hover:backdrop-brightness-50 group-hover:backdrop-blur-xs transition-all duration-400">
+                    class="card-body backdrop-brightness-75 group-hover:backdrop-brightness-50 group-hover:backdrop-blur-xs transition-all duration-400">
                     <h2 class="card-title text-3xl group-hover:text-2xl transition-all duration-400">Kampus A</h2>
                     <p class="hidden group-hover:inline transition-all duration-400">Kampus utama UNJ</p>
                     <p class="hidden text-xs group-hover:inline transition-all duration-400">Jl. R.Mangun Muka Raya,
@@ -148,7 +148,7 @@
         <a href="/kampus">
             <div class="card group bg-[url(/public/backgrounds/unj_bersih.jpeg)] bg-cover h-53 ">
                 <div
-                    class="card-body rounded-box backdrop-brightness-75 group-hover:backdrop-brightness-50 group-hover:backdrop-blur-xs transition-all duration-400">
+                    class="card-body backdrop-brightness-75 group-hover:backdrop-brightness-50 group-hover:backdrop-blur-xs transition-all duration-400">
                     <h2 class="card-title text-3xl group-hover:text-2xl transition-all duration-400">Kampus A</h2>
                     <p class="hidden group-hover:inline transition-all duration-400">Kampus utama UNJ</p>
                     <p class="hidden text-xs group-hover:inline transition-all duration-400">Jl. R.Mangun Muka Raya,
@@ -160,7 +160,7 @@
         <a href="/kampus">
             <div class="card group bg-[url(/public/backgrounds/unj_bersih.jpeg)] bg-cover h-53 ">
                 <div
-                    class="card-body rounded-box backdrop-brightness-75 group-hover:backdrop-brightness-50 group-hover:backdrop-blur-xs transition-all duration-400">
+                    class="card-body backdrop-brightness-75 group-hover:backdrop-brightness-50 group-hover:backdrop-blur-xs transition-all duration-400">
                     <h2 class="card-title text-3xl group-hover:text-2xl transition-all duration-400">Kampus A</h2>
                     <p class="hidden group-hover:inline transition-all duration-400">Kampus utama UNJ</p>
                     <p class="hidden text-xs group-hover:inline transition-all duration-400">Jl. R.Mangun Muka Raya,

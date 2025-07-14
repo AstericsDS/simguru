@@ -16,12 +16,14 @@ class CampusResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'admin' => new UserResource(User::find($this->admin_id)),
             'name' => $this->name,
             'address' => $this->address,
             'contact' => $this->contact,
             'email' => $this->email,
             'description' => $this->description,
+            'images_path' => json_decode($this->images_path),
         ];
     }
 }

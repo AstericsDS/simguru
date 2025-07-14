@@ -17,6 +17,7 @@ class BuildingResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'admin' => new UserResource(User::find($this->admin_id)),
             'campus' => new CampusResource(Campus::find($this->campus_id)),
             'name' => $this->name,
@@ -24,7 +25,7 @@ class BuildingResource extends JsonResource
             'floor' => $this->floor,
             'description' => $this->description,
             'address' => $this->address,
-            'imagesPath' => $this->images_path,
+            'imagesPath' => json_decode($this->images_path),
             'status' => $this->status,
         ];
     }

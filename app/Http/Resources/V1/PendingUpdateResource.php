@@ -3,13 +3,11 @@
 namespace App\Http\Resources\V1;
 
 use App\Models\User;
-use App\Models\Building;
 use Illuminate\Http\Request;
 use App\Http\Resources\V1\UserResource;
-use App\Http\Resources\V1\BuildingResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class RoomResource extends JsonResource
+class PendingUpdateResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -21,13 +19,14 @@ class RoomResource extends JsonResource
         return [
             'id' => $this->id,
             'admin' => new UserResource(User::find($this->admin_id)),
-            'building' => new BuildingResource(Building::find($this->building_id)),
-            'name' => $this->name,
-            'floor' => $this->floor,
-            'capacity' => $this->capacity,
-            'description' => $this->description,
-            'images_path' => json_decode($this->images_path),
+            'type' => $this->id,
+            'table' => $this->table,
+            'record_id' => $this->record_id,
+            'old_data' => $this->old_data,
+            'new_data' => json_decode($this->new_data),
             'status' => $this->status,
+            'approvedBy' => new UserResource(User::find($this->approved_by)),
+            'rejectReason' => $this->reject_reason,
         ];
     }
 }

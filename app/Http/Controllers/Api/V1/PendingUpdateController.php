@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Controllers\Controller;
-use App\Models\Campus;
+use App\Http\Resources\V1\PendingUpdateResource;
+use App\Models\PendingUpdate;
 use Illuminate\Http\Request;
-use App\Http\Resources\V1\CampusResource;
+use App\Http\Controllers\Controller;
 
-class CampusController extends Controller
+class PendingUpdateController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return CampusResource::collection(Campus::paginate(10));
+        return PendingUpdateResource::collection(PendingUpdate::paginate(10));
     }
 
     /**
@@ -28,15 +28,15 @@ class CampusController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Campus $campus)
+    public function show(PendingUpdate $update)
     {
-        return new CampusResource($campus);
+        return new PendingUpdateResource($update);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Campus $campus)
+    public function update(Request $request, PendingUpdate $pendingUpdate)
     {
         //
     }
@@ -44,7 +44,7 @@ class CampusController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Campus $campus)
+    public function destroy(PendingUpdate $pendingUpdate)
     {
         //
     }

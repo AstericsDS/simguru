@@ -3,17 +3,24 @@
 use App\Livewire\Dashboard;
 use App\Livewire\Admin\EditKampus;
 use App\Livewire\Gedung;
+use App\Livewire\Form;
+use App\Livewire\Debug;
 use App\Livewire\Login;
 use App\Livewire\ListKampus;
 use App\Livewire\Kampus;
 use App\Livewire\Ruang;
 use App\Livewire\Admin\TambahGedung;
 use App\Livewire\Homepage;
+use App\Livewire\ModelBinding;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', Homepage::class)->name('homepage');
 Route::get('/listkampus', ListKampus::class)->name('listKampus');
 Route::get('/login', Login::class)->name('login');
+Route::get('/form', Form::class)->name('form');
+
+Route::get('/debug', Debug::class)->name('debug');
+Route::get('/buildings/{building}', ModelBinding::class)->name('model');
 Route::get('/namakampus', Kampus::class)->name('kampus');
 Route::get('/namagedung', Gedung::class)->name('gedung');
 Route::get('/namaruang', Ruang::class)->name('ruang');

@@ -11,15 +11,16 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('pending_updates', function (Blueprint $table) {
-            $table->ulid('id')->primary();
-            $table->foreignUlid('admin_id')->constrained('users');
-            $table->string('table_name');
-            $table->string('record_id');
-            $table->json('old_data');
+            $table->id();
+            $table->foreignId('admin_id')->constrained('users');
+            $table->enum('type', ['modify', 'new'])->default('new');
+            $table->enum('table', ['campuses', 'buildings', 'rooms']);
+            $table->string('record_id')->nullable();
+            $table->json('old_data')->nullable();
             $table->json('new_data');
-            $table->boolean('is_approved');
-            $table->ulid('approved_by');
-            $table->text('reject_reason');
+            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
+            $table->foreignId('approved_by')->nullable()->constrained('users');
+            $table->text('reject_reason')->nullable();
             $table->timestamps();
         });
     }

@@ -9,7 +9,6 @@ use App\Models\Building;
 use App\Models\PendingUpdate;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -17,7 +16,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, HasUlids;
+    use HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -31,8 +30,6 @@ class User extends Authenticatable
     // ];
 
     protected $guarded = [];
-    protected $keyType = 'string';
-    protected $primaryKey = 'id';
 
     /**
      * The attributes that should be hidden for serialization.

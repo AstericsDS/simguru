@@ -1,11 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Requests\StoreBuildingRequest;
-use App\Http\Resources\BuildingResource;
 use App\Models\Building;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\QueryBuilder\AllowedFilter;
+use App\Http\Requests\StoreBuildingRequest;
+use App\Http\Resources\V1\BuildingResource;
+use Spatie\QueryBuilder\Enums\FilterOperator;
 
 class BuildingController extends Controller
 {
@@ -14,7 +18,14 @@ class BuildingController extends Controller
      */
     public function index()
     {
-        return BuildingResource::collection(Building::all());
+        $buildings = QueryBuilder::for(Building::class)
+            ->allowedFilters([
+                AllowedFilter::partial('name'),
+                AllowedFilter::operator('area', FilterOperator::DYNAMIC),
+            ])
+            ->paginate(10);
+
+        return BuildingResource::collection($buildings);
     }
 
     /**
@@ -47,7 +58,7 @@ class BuildingController extends Controller
     public function destroy(Building $building)
     {
         $delete = Building::find($building->id)->toArray();
-        if($building->delete()) {
+        if ($building->delete()) {
             return response()->json(['message' => 'Success', 'deleted' => $delete]);
         } else {
             return response()->json(['message' => 'Failed']);

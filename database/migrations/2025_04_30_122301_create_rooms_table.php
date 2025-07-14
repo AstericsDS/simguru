@@ -12,14 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('rooms', function (Blueprint $table) {
-            $table->ulid('id')->primary();
-            $table->foreignUlid('admin_id')->constrained('users');
-            $table->foreignUlid('building_id')->constrained('buildings');
+            $table->id();
+            $table->foreignId('admin_id')->nullable()->constrained('users');
+            $table->foreignId('building_id')->constrained('buildings');
             $table->string('name');
+            $table->integer('floor');
+            $table->integer('capacity');
             $table->text('description');
-            $table->string('images_path');
-            $table->boolean('is_classroom');
-            $table->boolean('status');
+            $table->json('images_path')->nullable();
+            $table->enum('status', ['class', 'not_class']);
             $table->timestamps();
         });
     }

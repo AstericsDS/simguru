@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\V1;
 
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class BuildingResource extends JsonResource
+class UserResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,11 +17,8 @@ class BuildingResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'role' => Role::find($this->role)->value('role'),
             'name' => $this->name,
-            'floor' => $this->floor,
-            'description' => $this->description,
-            'imagesPath' => $this->images_path,
-            'status' => $this->status
         ];
     }
 }

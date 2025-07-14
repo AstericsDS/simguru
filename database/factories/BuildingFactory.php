@@ -18,7 +18,10 @@ class BuildingFactory extends Factory
     {
         return [
             'name' => $this->faker->word(),
+            'admin_id' => 2,
             'floor' => $this->faker->numberBetween(1, 10),
+            'area' => $this->faker->numberBetween(20000, 30000),
+            'address' => $this->faker->address(),
             'description' => $this->faker->paragraph(5),
             'images_path' => $this->faker->word(),
             'status' => $this->faker->boolean(),

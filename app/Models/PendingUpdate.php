@@ -21,6 +21,9 @@ class PendingUpdate extends Model
         'approved_by',
         'reject_reason'
     ];
+    protected $casts = [
+        'images_path' => 'array',
+    ];
 
     public function admin(): BelongsTo {
         return $this->belongsTo(User::class, 'admin_id');

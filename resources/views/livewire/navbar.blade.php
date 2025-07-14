@@ -1,4 +1,4 @@
-<header class="bg-teal-700 shadow flex items-center justify-between px-4 md:px-6 h-16 sticky top-0 z-20">
+<header class="shadow flex items-center justify-between px-4 md:px-6 h-16 sticky top-0 z-20">
     <div class="flex items-center space-x-4">
         {{-- Tombol collapse sidebar --}}
         <button @click="sidebarOpen = !sidebarOpen" aria-label="Toggle sidebar" class="bg-white text-gray-700 hover:text-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 rounded p-2 cursor-pointer transition-all hover:bg-gray-100">
@@ -8,14 +8,14 @@
         </button>
 
         {{-- Search bar --}}
-        <div class="relative w-64 md:w-64">
+        {{-- <div class="relative w-64 md:w-64">
             <input type="search" placeholder="Search here..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500" />
             <div class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                 </svg>
             </div>
-        </div>
+        </div> --}}
     </div>
 
     {{-- Tombol messages dan user --}}
@@ -33,7 +33,7 @@
         </button> --}}
 
         {{-- Messages button --}}
-        <button id="dropdownNotificationButton" data-dropdown-toggle="dropdownNotification" class="relative inline-flex items-center text-sm font-medium text-center text-white hover:text-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 rounded p-1" type="button">
+        <button id="dropdownNotificationButton" data-dropdown-toggle="dropdownNotification" class="relative inline-flex items-center text-sm font-medium text-center text-gray-600 hover:text-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 rounded p-1" type="button">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                 <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
                 <path d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z" />

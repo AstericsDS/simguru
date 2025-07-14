@@ -1,4 +1,4 @@
-<div class="container mx-auto px-4">
+<div class="mx-auto px-4">
   <div class="flex justify-center text-center items-center mb-6 mt-6">
     <h2 class="text-2xl font-bold text-gray-800">Detail Manajemen Kampus Gedung dan Ruang Universitas Negeri Jakarta</h2>
   </div>

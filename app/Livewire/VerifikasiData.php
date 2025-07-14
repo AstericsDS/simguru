@@ -8,6 +8,7 @@ use Livewire\Component;
 use App\Models\Building;
 use App\Models\PendingUpdate;
 use Livewire\Attributes\Layout;
+use Illuminate\Support\Facades\Auth;
 use App\Services\PendingUpdateService;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,7 +17,7 @@ class VerifikasiData extends Component
 {
     public function accept($id)
     {
-        $update = PendingUpdate::findOrFail($id);
+        $update = PendingUpdate::find($id);
         $data = json_decode($update->new_data, true);
         switch ($update->table) {
             case 'campuses':
@@ -24,14 +25,13 @@ class VerifikasiData extends Component
                     $movedPaths = [];
 
                     foreach ($data['images_path'] as $path) {
-                        if (Storage::exists($path)) {
-                            $newPath = 'campuses/' . basename($path);
-                            Storage::move($path, $newPath);
-                            $movedPaths[] = $newPath;
-                        }
+                        $newPath = 'campuses/' . basename($path);
+                        Storage::move($path, $newPath);
+                        $movedPaths[] = $newPath;
                     }
 
                     $data['images_path'] = $movedPaths;
+                    $update->save();
                 }
                 Campus::create($data);
                 break;
@@ -40,14 +40,13 @@ class VerifikasiData extends Component
                     $movedPaths = [];
 
                     foreach ($data['images_path'] as $path) {
-                        if (Storage::exists($path)) {
-                            $newPath = 'campuses/' . basename($path);
-                            Storage::move($path, $newPath);
-                            $movedPaths[] = $newPath;
-                        }
+                        $newPath = 'buildings/' . basename($path);
+                        Storage::move($path, $newPath);
+                        $movedPaths[] = $newPath;
                     }
 
                     $data['images_path'] = $movedPaths;
+                    $update->save();
                 }
                 Building::create($data);
                 break;
@@ -56,14 +55,13 @@ class VerifikasiData extends Component
                     $movedPaths = [];
 
                     foreach ($data['images_path'] as $path) {
-                        if (Storage::exists($path)) {
-                            $newPath = 'campuses/' . basename($path);
-                            Storage::move($path, $newPath);
-                            $movedPaths[] = $newPath;
-                        }
+                        $newPath = 'rooms/' . basename($path);
+                        Storage::move($path, $newPath);
+                        $movedPaths[] = $newPath;
                     }
 
                     $data['images_path'] = $movedPaths;
+                    $update->save();
                 }
                 Room::create($data);
                 break;
@@ -72,6 +70,7 @@ class VerifikasiData extends Component
         }
 
         $update->status = 'approved';
+        $update->approved_by = Auth::id();
         $update->save();
     }
     public function reject($id)

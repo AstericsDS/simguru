@@ -1,4 +1,4 @@
-<div class="container mt-4">
+<div class="mt-4">
 
   <!-- Judul -->
   <div class="flex justify-center text-center items-center mb-6 mt-6">

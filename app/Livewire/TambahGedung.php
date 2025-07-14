@@ -66,6 +66,7 @@ class TambahGedung extends Component
             $validated['images_path'] = $paths;
         }
 
+        $validated['admin_id'] = Auth::id();
         $created = PendingUpdate::create([
             'admin_id' => Auth::id(),
             'type' => 'new',

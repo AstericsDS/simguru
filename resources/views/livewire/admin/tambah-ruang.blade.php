@@ -1,6 +1,6 @@
 {{-- Tambah Kampus --}}
 
-<div class="container mt-4">
+<div class="mt-4">
     {{-- Judul halaman --}}
     <div class="flex justify-center text-center items-center mb-6 mt-6">
         <span class="text-2xl font-bold text-gray-800 leading-none">

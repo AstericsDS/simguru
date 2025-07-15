@@ -82,7 +82,7 @@ class TambahRuang extends Component
             'reject_reason' => null,
         ]);
         if ($created) {
-            $this->reset(['name', 'floor', 'capacity', 'area', 'description']);
+            $this->reset(['name', 'floor', 'capacity', 'area', 'description', 'images_path']);
             $this->dispatch('close-modal');
             $this->dispatch('show-toast', status: 'success', message: 'Entri anda telah masuk dan akan segera diverifikasi.');
         } else {

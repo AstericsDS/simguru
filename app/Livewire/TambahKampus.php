@@ -71,7 +71,7 @@ class TambahKampus extends Component
             'reject_reason' => null,
         ]);
         if ($created) {
-            $this->reset(['name', 'address', 'contact', 'email', 'description']);
+            $this->reset(['name', 'address', 'contact', 'email', 'description', 'images_path']);
             $this->dispatch('close-modal');
             $this->dispatch('show-toast', status: 'success', message: 'Entri anda telah masuk dan akan segera diverifikasi.');
         } else {

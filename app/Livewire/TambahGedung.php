@@ -80,7 +80,7 @@ class TambahGedung extends Component
         ]);
 
         if ($created) {
-            $this->reset(['name', 'address', 'floor', 'area', 'description']);
+            $this->reset(['name', 'address', 'floor', 'area', 'description', 'images_path']);
             $this->dispatch('close-modal');
             $this->dispatch('show-toast', status: 'success', message: 'Entri anda telah masuk dan akan segera diverifikasi.');
         } else {

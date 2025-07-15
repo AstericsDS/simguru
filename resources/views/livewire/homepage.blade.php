@@ -20,48 +20,21 @@
     </div>
     {{-- card container for campus --}}
     <div class="flex flex-col lg:flex-row justify-center mt-3 gap-3">
-        <div class="card bg-unj-500 shadow-sm w-xs">
-            <figure>
-                <img src="backgrounds/unj_bersih.jpeg" alt="Kampus_A_UNJ" />
-            </figure>
-            <div class="card-body items-center text-center">
-                <h2 class="card-title">Kampus Rawamangun</h2>
-                <p class="text-xs not-lg:hidden">Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota
-                    Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220</p>
-                <div class="card-actions">
-                    <a href="/gedung"
-                        class="btn bg-white text-black w-full hover:bg-gray-200 rounded-lg outline-none">Details</a>
+        @foreach ($campuses as $campus)
+            <div class="card bg-unj-500 shadow-sm w-xs">
+                <figure>
+                    <img src="backgrounds/unj_bersih.jpeg" alt="Kampus_A_UNJ" />
+                </figure>
+                <div class="card-body items-center text-center">
+                    <h2 class="card-title">{{ $campus->name }}</h2>
+                    <p class="text-xs not-lg:hidden">{{ $campus->address }}</p>
+                    <div class="card-actions">
+                        <a href="/gedung"
+                            class="btn bg-white text-black w-full hover:bg-gray-200 rounded-lg outline-none">Details</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="card bg-unj-500 shadow-sm w-xs">
-            <figure>
-                <img src="backgrounds/unj_bersih.jpeg" alt="Kampus_A_UNJ" />
-            </figure>
-            <div class="card-body items-center text-center">
-                <h2 class="card-title">Kampus Rawamangun</h2>
-                <p class="text-xs not-lg:hidden">Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota
-                    Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220</p>
-                <div class="card-actions">
-                    <a href="/gedung"
-                        class="btn bg-white text-black w-full hover:bg-gray-200 rounded-lg outline-none">Details</a>
-                </div>
-            </div>
-        </div>
-        <div class="card bg-unj-500 shadow-sm w-xs">
-            <figure>
-                <img src="backgrounds/unj_bersih.jpeg" alt="Kampus_A_UNJ" />
-            </figure>
-            <div class="card-body items-center text-center">
-                <h2 class="card-title">Kampus Rawamangun</h2>
-                <p class="text-xs not-lg:hidden">Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota
-                    Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220</p>
-                <div class="card-actions">
-                    <a href="/gedung"
-                        class="btn bg-white text-black w-full hover:bg-gray-200 rounded-lg outline-none">Details</a>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
     <button class="btn border-none shadow-none mt-5 self-center rounded-full bg-unj-500"><a href="/listkampus">LIHAT
             KAMPUS</a></button>
@@ -72,48 +45,21 @@
     </div>
     {{-- card container for campus --}}
     <div class="flex flex-col lg:flex-row justify-center mt-3 gap-3">
-        <div class="card bg-unj-500 shadow-sm w-xs">
-            <figure>
-                <img src="backgrounds/unj_bersih.jpeg" alt="Kampus_A_UNJ" />
-            </figure>
-            <div class="card-body items-center text-center">
-                <h2 class="card-title">Kampus Rawamangun</h2>
-                <p class="text-xs not-lg:hidden">Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota
-                    Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220</p>
-                <div class="card-actions">
-                    <a href="/gedung"
-                        class="btn bg-white text-black w-full hover:bg-gray-200 rounded-lg outline-none">Details</a>
+        @foreach ($buildings as $building)
+            <div class="card bg-unj-500 shadow-sm w-xs">
+                <figure>
+                    <img src="backgrounds/unj_bersih.jpeg" alt="Kampus_A_UNJ" />
+                </figure>
+                <div class="card-body items-center text-center">
+                    <h2 class="card-title">{{ $building->name }}</h2>
+                    <p class="text-xs not-lg:hidden">{{ $building->address }}</p>
+                    <div class="card-actions">
+                        <a href="/gedung"
+                            class="btn bg-white text-black w-full hover:bg-gray-200 rounded-lg outline-none">Details</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="card bg-unj-500 shadow-sm w-xs">
-            <figure>
-                <img src="backgrounds/unj_bersih.jpeg" alt="Kampus_A_UNJ" />
-            </figure>
-            <div class="card-body items-center text-center">
-                <h2 class="card-title">Kampus Rawamangun</h2>
-                <p class="text-xs not-lg:hidden">Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota
-                    Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220</p>
-                <div class="card-actions">
-                    <a href="/gedung"
-                        class="btn bg-white text-black w-full hover:bg-gray-200 rounded-lg outline-none">Details</a>
-                </div>
-            </div>
-        </div>
-        <div class="card bg-unj-500 shadow-sm w-xs">
-            <figure>
-                <img src="backgrounds/unj_bersih.jpeg" alt="Kampus_A_UNJ" />
-            </figure>
-            <div class="card-body items-center text-center">
-                <h2 class="card-title">Kampus Rawamangun</h2>
-                <p class="text-xs not-lg:hidden">Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota
-                    Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220</p>
-                <div class="card-actions">
-                    <a href="/gedung"
-                        class="btn bg-white text-black w-full hover:bg-gray-200 rounded-lg outline-none">Details</a>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
     <button class="btn border-none shadow-none mt-5 self-center rounded-full bg-unj-500">LIHAT GEDUNG</button>
     <div class="text-black text-center flex flex-col gap-3 pt-10" id="gedung">
@@ -121,59 +67,25 @@
         <hr class="w-15 font-bold mx-auto border-gray-500 border">
     </div>
     <div class="grid grid-cols-3 mt-5">
-        <a href="/kampus">
-            <div class="card group bg-[url(/public/backgrounds/unj_bersih.jpeg)] bg-cover h-53 ">
-                <div
-                    class="card-body backdrop-brightness-75 group-hover:backdrop-brightness-50 group-hover:backdrop-blur-xs transition-all duration-400">
-                    <h2 class="card-title text-3xl group-hover:text-2xl transition-all duration-400">Kampus A</h2>
-                    <p class="hidden group-hover:inline transition-all duration-400">Kampus utama UNJ</p>
-                    <p class="hidden text-xs group-hover:inline transition-all duration-400">Jl. R.Mangun Muka Raya,
-                        RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta
-                        13220</p>
+        @foreach ($rooms as $room)
+            <a href="#">
+                <div class="card group bg-[url(/public/backgrounds/unj_bersih.jpeg)] bg-cover h-53 ">
+                    <div
+                        class="card-body backdrop-brightness-75 group-hover:backdrop-brightness-50 group-hover:backdrop-blur-xs transition-all duration-400">
+                        <h2 class="card-title hidden text-3xl group-hover:inline transition-all duration-400">{{ $room->name }}</h2>
+                        {{-- <p class="hidden group-hover:inline transition-all duration-400">{{ $room->building->campus->name }}</p>
+                        <p class="hidden group-hover:inline transition-all duration-400">{{ $room->building->name }}</p> --}}
+                        <p class="hidden text-xs group-hover:inline transition-all duration-400">{{ $room->description }}</p>
+                    </div>
                 </div>
-            </div>
-        </a>
-        <a href="/kampus">
-            <div class="card group bg-[url(/public/backgrounds/unj_bersih.jpeg)] bg-cover h-53 ">
-                <div
-                    class="card-body backdrop-brightness-75 group-hover:backdrop-brightness-50 group-hover:backdrop-blur-xs transition-all duration-400">
-                    <h2 class="card-title text-3xl group-hover:text-2xl transition-all duration-400">Kampus A</h2>
-                    <p class="hidden group-hover:inline transition-all duration-400">Kampus utama UNJ</p>
-                    <p class="hidden text-xs group-hover:inline transition-all duration-400">Jl. R.Mangun Muka Raya,
-                        RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta
-                        13220</p>
-                </div>
-            </div>
-        </a>
-        <a href="/kampus">
-            <div class="card group bg-[url(/public/backgrounds/unj_bersih.jpeg)] bg-cover h-53 ">
-                <div
-                    class="card-body backdrop-brightness-75 group-hover:backdrop-brightness-50 group-hover:backdrop-blur-xs transition-all duration-400">
-                    <h2 class="card-title text-3xl group-hover:text-2xl transition-all duration-400">Kampus A</h2>
-                    <p class="hidden group-hover:inline transition-all duration-400">Kampus utama UNJ</p>
-                    <p class="hidden text-xs group-hover:inline transition-all duration-400">Jl. R.Mangun Muka Raya,
-                        RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta
-                        13220</p>
-                </div>
-            </div>
-        </a>
-        <a href="/kampus">
-            <div class="card group bg-[url(/public/backgrounds/unj_bersih.jpeg)] bg-cover h-53 ">
-                <div
-                    class="card-body backdrop-brightness-75 group-hover:backdrop-brightness-50 group-hover:backdrop-blur-xs transition-all duration-400">
-                    <h2 class="card-title text-3xl group-hover:text-2xl transition-all duration-400">Kampus A</h2>
-                    <p class="hidden group-hover:inline transition-all duration-400">Kampus utama UNJ</p>
-                    <p class="hidden text-xs group-hover:inline transition-all duration-400">Jl. R.Mangun Muka Raya,
-                        RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta
-                        13220</p>
-                </div>
-            </div>
-        </a>
+            </a>
+        @endforeach
     </div>
     <div class="text-black text-center flex flex-col gap-3 pt-10" id="kampus">
         <h1 class="text-4xl font-semibold">Grafik Statistik Informasi Manajemen Gedung dan Ruang</h1>
         <hr class="w-15 font-bold mx-auto border-gray-500 border">
-        <p class="text-gray-500">Berikut adalah Grafik Statistik Informasi Manajemen Gedung dan Ruang Universitas Negeri Jakarta 2025</p>
+        <p class="text-gray-500">Berikut adalah Grafik Statistik Informasi Manajemen Gedung dan Ruang Universitas Negeri
+            Jakarta 2025</p>
     </div>
 </div>
 <script>

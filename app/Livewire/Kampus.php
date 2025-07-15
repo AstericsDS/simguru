@@ -2,12 +2,17 @@
 
 namespace App\Livewire;
 
+use App\Models\Building;
+use App\Models\Campus;
 use Livewire\Component;
 
 class Kampus extends Component
 {
     public function render()
     {
-        return view('livewire.kampus');
+        $buildings = Building::all();
+        return view('livewire.kampus',[
+            'campuses' => $buildings
+        ]);
     }
 }

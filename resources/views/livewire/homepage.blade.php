@@ -13,7 +13,7 @@
         </div>
     </div>
     {{-- judul container --}}
-    <div class="text-black text-center flex flex-col gap-3 pt-10" id="kampus">
+    <div class="text-black text-center flex flex-col gap-3 pt-30" id="kampus">
         <h1 class="text-4xl font-semibold">Universitas Negeri Jakarta Multi Kampus</h1>
         <hr class="w-15 font-bold mx-auto border-gray-500 border">
         <p class="text-gray-500">isinya kampus-kampus di unj</p>
@@ -29,17 +29,17 @@
                     <h2 class="card-title">{{ $campus->name }}</h2>
                     <p class="text-xs not-lg:hidden">{{ $campus->address }}</p>
                     <div class="card-actions">
-                        <a href="/gedung"
+                        <a href="/campus/{{ $campus->slug }}"
                             class="btn bg-white text-black w-full hover:bg-gray-200 rounded-lg outline-none">Details</a>
                     </div>
                 </div>
             </div>
         @endforeach
     </div>
-    <button class="btn border-none shadow-none mt-5 self-center rounded-full bg-unj-500"><a href="/listkampus">LIHAT
+    <button class="btn border-none shadow-none mt-5 self-center rounded-full bg-unj-500"><a href="/kampus">LIHAT
             KAMPUS</a></button>
     {{-- list beberapa gedung di UNJ --}}
-    <div class="text-black text-center flex flex-col gap-3 pt-10" id="gedung">
+    <div class="text-black text-center flex flex-col gap-3 pt-30" id="gedung">
         <h1 class="text-4xl font-semibold">Gedung - Gedung Universitas Negeri Jakarta</h1>
         <hr class="w-15 font-bold mx-auto border-gray-500 border">
     </div>
@@ -61,9 +61,10 @@
             </div>
         @endforeach
     </div>
-    <button class="btn border-none shadow-none mt-5 self-center rounded-full bg-unj-500">LIHAT GEDUNG</button>
-    <div class="text-black text-center flex flex-col gap-3 pt-10" id="gedung">
-        <h1 class="text-4xl font-semibold">Ruangan Universitas Negeri Jakarta</h1>
+    <button class="btn border-none shadow-none mt-5 self-center rounded-full bg-unj-500"><a href="/gedung">LIHAT
+            GEDUNG</a></button>
+    <div class="text-black text-center flex flex-col gap-3 pt-30" id="gedung">
+        <h1 class="text-4xl font-semibold" id="ruang">Ruangan Universitas Negeri Jakarta</h1>
         <hr class="w-15 font-bold mx-auto border-gray-500 border">
     </div>
     <div class="grid grid-cols-3 mt-5">
@@ -72,22 +73,45 @@
                 <div class="card group bg-[url(/public/backgrounds/unj_bersih.jpeg)] bg-cover h-53 ">
                     <div
                         class="card-body backdrop-brightness-75 group-hover:backdrop-brightness-50 group-hover:backdrop-blur-xs transition-all duration-400">
-                        <h2 class="card-title hidden text-3xl group-hover:inline transition-all duration-400">{{ $room->name }}</h2>
+                        <h2 class="card-title hidden text-3xl group-hover:inline transition-all duration-400">
+                            {{ $room->name }}</h2>
                         {{-- <p class="hidden group-hover:inline transition-all duration-400">{{ $room->building->campus->name }}</p>
                         <p class="hidden group-hover:inline transition-all duration-400">{{ $room->building->name }}</p> --}}
-                        <p class="hidden text-xs group-hover:inline transition-all duration-400">{{ $room->description }}</p>
+                        <p class="hidden text-xs group-hover:inline transition-all duration-400">
+                            {{ $room->description }}</p>
                     </div>
                 </div>
             </a>
         @endforeach
     </div>
-    <div class="text-black text-center flex flex-col gap-3 pt-10" id="kampus">
+    <div class="text-black text-center flex flex-col gap-3 pt-30" id="statistik">
         <h1 class="text-4xl font-semibold">Grafik Statistik Informasi Manajemen Gedung dan Ruang</h1>
         <hr class="w-15 font-bold mx-auto border-gray-500 border">
         <p class="text-gray-500">Berikut adalah Grafik Statistik Informasi Manajemen Gedung dan Ruang Universitas Negeri
             Jakarta 2025</p>
+        <div class="w-1/2 self-center" id="chart"></div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+<script>
+    var options = {
+        chart: {
+            type: 'line'
+        },
+        series: [{
+            name: 'sales',
+            data: [30, 40, 35, 50, 49, 60, 70, 91, 125]
+        }],
+        xaxis: {
+            categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
+        }
+    }
+
+    var chart = new ApexCharts(document.querySelector("#chart"), options);
+
+    chart.render();
+</script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const navbar = document.getElementById('navbar');

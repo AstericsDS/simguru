@@ -25,20 +25,21 @@
                 </div>
                 <div class="navbar-end">
                     <div class="not-lg:hidden">
-                        <button class="btn btn-ghost">
-                            <a href="/#kampus">Kampus</a>
+                        <button class="btn btn-ghost" onClick="document.getElementById('kampus').scrollIntoView();">
+                            Kampus
                         </button>
-                        <button class="btn btn-ghost">
-                            <a href="/#gedung">Gedung</a>
+                        <button class="btn btn-ghost" onClick="document.getElementById('gedung').scrollIntoView();">
+                            Gedung
                         </button>
-                        <button class="btn btn-ghost">
-                            <a href="/ruang">Ruang</a>
+                        <button class="btn btn-ghost" onClick="document.getElementById('ruang').scrollIntoView();">
+                            Ruang
                         </button>
-                        <button class="btn btn-ghost">
-                            <a href="">Statistik</a>
+                        <button class="btn btn-ghost" onClick="document.getElementById('statistik').scrollIntoView();">
+                            Statistik
                         </button>
                     </div>
-                    <div class="dropdown dropdown-end">
+                    {{-- notification and profile --}}
+                    {{-- <div class="dropdown dropdown-end">
                         <button tabindex="0" class="btn btn-ghost btn-circle static">
                             <div class="indicator">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
@@ -66,7 +67,7 @@
                             <hr class="my-1 -mx-2 border-gray-200">
                             <li class="hover:bg-gray-200 rounded-sm"><a>logout</a></li>
                         </ul>
-                    </div>
+                    </div> --}}
                     {{-- <label for="profile-drawer" class="btn btn-ghost btn-circle sm:hidden md:hidden lg:hidden">
                     </label> --}}
                 </div>

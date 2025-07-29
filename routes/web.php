@@ -15,15 +15,16 @@ use App\Livewire\ModelBinding;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', Homepage::class)->name('homepage');
-Route::get('/listkampus', ListKampus::class)->name('listKampus');
+Route::get('/kampus', ListKampus::class)->name('listKampus');
 Route::get('/login', Login::class)->name('login');
 Route::get('/form', Form::class)->name('form');
 
 Route::get('/debug', Debug::class)->name('debug');
 Route::get('/buildings/{building}', ModelBinding::class)->name('model');
-Route::get('/namakampus', Kampus::class)->name('kampus');
-Route::get('/namagedung', Gedung::class)->name('gedung');
-Route::get('/namaruang', Ruang::class)->name('ruang');
+Route::get('/kampus/{campus}', Kampus::class)->name('kampus');
+Route::get('/gedung/{building}', Gedung::class)->name('gedung');
+Route::get('/ruang/{room}', Ruang::class)->name('ruang');
 Route::get('/admin/tambahgedung', TambahGedung::class)->name('admin.tambah-gedung');
 Route::get('/admin/edit', EditKampus::class)->name('edit-kampus');
 Route::get('/admin/dashboard', Dashboard::class)->name('admin.dashboard');
+

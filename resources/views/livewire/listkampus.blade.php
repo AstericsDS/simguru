@@ -9,7 +9,7 @@
                 <div class="card-body items-center text-center">
                     <h2 class="card-title">{{ $campus->name }}</h2>
                     <p class="text-xs text-center mb-3 not-lg:hidden">{{$campus->address}}</p>
-                    <a href="kampus"
+                    <a href="/kampus/{{ $campus->slug }}"
                         class="btn bg-white text-black outline-none hover:bg-gray-200 rounded-lg w-full">Details</a>
                 </div>
             </div>

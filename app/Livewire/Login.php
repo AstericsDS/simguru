@@ -9,6 +9,7 @@ use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Auth;
 
 #[Title('Login')]
+#[Layout('components.layouts.login')]
 class Login extends Component
 {
     public $name, $password;
@@ -16,17 +17,17 @@ class Login extends Component
         'name' => 'required',
         'password' => 'required'
     ];
-    
+
     public function login() {
         $credentials = $this->validate();
-        
+
         if (Auth::attempt($credentials)) {
             session()->regenerate();
             return redirect()->to(route('dashboard'));
         }
-        
+
         $this->addError('login', 'Login Gagal');
-        
+
     }
 
     public function render()

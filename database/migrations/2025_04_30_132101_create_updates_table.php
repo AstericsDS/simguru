@@ -10,7 +10,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('pending_updates', function (Blueprint $table) {
+        Schema::create('updates', function (Blueprint $table) {
             $table->id();
             $table->foreignId('admin_id')->constrained('users');
             $table->enum('type', ['modify', 'new'])->default('new');
@@ -30,6 +30,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('pending_updates');
+        Schema::dropIfExists('updates');
     }
 };

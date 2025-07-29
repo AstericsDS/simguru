@@ -4,20 +4,19 @@ namespace App\Livewire;
 
 use App\Models\Room;
 use App\Models\Campus;
+use App\Models\Update;
 use Livewire\Component;
 use App\Models\Building;
-use App\Models\PendingUpdate;
-use Livewire\Attributes\Layout;
+use App\Services\UpdateService;
 use Illuminate\Support\Facades\Auth;
-use App\Services\PendingUpdateService;
 use Illuminate\Support\Facades\Storage;
 
-#[Layout('components.layouts.admin.dashboard')]
+
 class VerifikasiData extends Component
 {
     public function accept($id)
     {
-        $update = PendingUpdate::find($id);
+        $update = Update::find($id);
         $data = json_decode($update->new_data, true);
         switch ($update->table) {
             case 'campuses':
@@ -25,12 +24,29 @@ class VerifikasiData extends Component
                     $movedPaths = [];
 
                     foreach ($data['images_path'] as $path) {
-                        $newPath = 'campuses/' . basename($path);
-                        Storage::move($path, $newPath);
-                        $movedPaths[] = $newPath;
+                        $filename = basename($path);
+                        $oldPath = 'temp/' . $filename;
+                        $newPath = 'campuses/' . $filename;
+
+                        if (Storage::disk('public')->exists($oldPath)) {
+                            $file = Storage::disk('public')->get($oldPath);
+
+                            // Store file in new location
+                            Storage::disk('public')->put($newPath, $file);
+
+                            // Delete the old file
+                            Storage::disk('public')->delete($oldPath);
+
+                            // Save moved path
+                            $movedPaths[] = $newPath;
+                        } else {
+                            // Handle file not found (optional)
+                            Log::warning("File not found: " . $oldPath);
+                        }
                     }
 
                     $data['images_path'] = $movedPaths;
+                    $update->new_data = json_encode($data);
                     $update->save();
                 }
                 Campus::create($data);
@@ -40,12 +56,29 @@ class VerifikasiData extends Component
                     $movedPaths = [];
 
                     foreach ($data['images_path'] as $path) {
-                        $newPath = 'buildings/' . basename($path);
-                        Storage::move($path, $newPath);
-                        $movedPaths[] = $newPath;
+                        $filename = basename($path);
+                        $oldPath = 'temp/' . $filename;
+                        $newPath = 'campuses/' . $filename;
+
+                        if (Storage::disk('public')->exists($oldPath)) {
+                            $file = Storage::disk('public')->get($oldPath);
+
+                            // Store file in new location
+                            Storage::disk('public')->put($newPath, $file);
+
+                            // Delete the old file
+                            Storage::disk('public')->delete($oldPath);
+
+                            // Save moved path
+                            $movedPaths[] = $newPath;
+                        } else {
+                            // Handle file not found (optional)
+                            Log::warning("File not found: " . $oldPath);
+                        }
                     }
 
                     $data['images_path'] = $movedPaths;
+                    $update->new_data = json_encode($data);
                     $update->save();
                 }
                 Building::create($data);
@@ -55,12 +88,29 @@ class VerifikasiData extends Component
                     $movedPaths = [];
 
                     foreach ($data['images_path'] as $path) {
-                        $newPath = 'rooms/' . basename($path);
-                        Storage::move($path, $newPath);
-                        $movedPaths[] = $newPath;
+                        $filename = basename($path);
+                        $oldPath = 'temp/' . $filename;
+                        $newPath = 'campuses/' . $filename;
+
+                        if (Storage::disk('public')->exists($oldPath)) {
+                            $file = Storage::disk('public')->get($oldPath);
+
+                            // Store file in new location
+                            Storage::disk('public')->put($newPath, $file);
+
+                            // Delete the old file
+                            Storage::disk('public')->delete($oldPath);
+
+                            // Save moved path
+                            $movedPaths[] = $newPath;
+                        } else {
+                            // Handle file not found (optional)
+                            Log::warning("File not found: " . $oldPath);
+                        }
                     }
 
                     $data['images_path'] = $movedPaths;
+                    $update->new_data = json_encode($data);
                     $update->save();
                 }
                 Room::create($data);
@@ -75,19 +125,30 @@ class VerifikasiData extends Component
     }
     public function reject($id)
     {
-        $update = PendingUpdate::findOrFail($id);
+        $update = Update::findOrFail($id);
         $update->status = 'rejected';
         $update->save();
     }
+
+    public $filter = 'all';
+    public function setFilter($status)
+    {
+        $this->filter = $status;
+    }
+
     public function render()
     {
-        $datas = PendingUpdate::paginate(10);
-        $datas->getCollection()->transform(function ($update) {
-            return PendingUpdateService::transform($update);
+        $updates = Update::query();
+        if ($this->filter !== 'all') {
+            $updates->where('status', $this->filter);
+        }
+        $updates = $updates->paginate(10);
+        $updates->getCollection()->transform(function ($update) {
+            return UpdateService::transform($update);
         });
 
         return view('livewire.admin.verifikasi-data', [
-            'datas' => $datas,
-        ]);
+            'updates' => $updates,
+        ])->layout('components.layouts.admin.dashboard');
     }
 }

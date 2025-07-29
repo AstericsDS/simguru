@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Models\Campus;
 use App\Models\Building;
 
-class PendingUpdateService
+class UpdateService
 {
     public static function transform($update)
     {
@@ -39,7 +39,6 @@ class PendingUpdateService
         ];
 
         $map = $labelMaps[$update->table] ?? [];
-
         $update->parsed_new_data = $parsed
             ->mapWithKeys(function ($value, $key) use ($map) {
                 if (!isset($map[$key]))
@@ -51,7 +50,7 @@ class PendingUpdateService
                     : [$label => $value];
             })
             ->toArray();
-
+        // dd($update->parsed_new_data);
         return $update;
     }
 }

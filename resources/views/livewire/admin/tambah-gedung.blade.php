@@ -135,7 +135,6 @@
                         <td>{{ $building->address }}</td>
                         <td>{{ $building->floor }}</td>
                         <td>{{ $building->area }}</td>
-                        {{-- <td class="flex gap-2 justify-center"> --}}
                         <td class="flex flex-col gap-2">
                             <a href="" type="button" class="transition-all inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium text-center text-white bg-green-700 rounded-sm hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">

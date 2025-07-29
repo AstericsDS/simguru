@@ -4,7 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Campus;
 use Livewire\Component;
-use App\Models\PendingUpdate;
+use App\Models\Update;
 use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
@@ -53,13 +53,13 @@ class TambahKampus extends Component
         $paths = [];
         if ($this->images_path && is_array($this->images_path)) {
             foreach ($this->images_path as $image) {
-                $paths[] = $image->store('temp');
+                $paths[] = $image->store('temp', 'public');
             }
             $validated['images_path'] = $paths;
         }
 
         $validated['admin_id'] = Auth::id();
-        $created = PendingUpdate::create([
+        $created = Update::create([
             'admin_id' => Auth::id(),
             'type' => 'new',
             'table' => 'campuses',

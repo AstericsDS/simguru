@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class PendingUpdate extends Model
+class Update extends Model
 {
-    /** @use HasFactory<\Database\Factories\PendingUpdateFactory> */
+    /** @use HasFactory<\Database\Factories\UpdateFactory> */
     use HasFactory;
 
     protected $fillable = [

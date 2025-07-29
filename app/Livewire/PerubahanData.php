@@ -5,16 +5,16 @@ namespace App\Livewire;
 use App\Models\Campus;
 use Livewire\Component;
 use App\Models\Building;
-use App\Models\PendingUpdate;
+use App\Models\Update;
 use Livewire\Attributes\Layout;
-use App\Services\PendingUpdateService;
+use App\Services\UpdateService;
 
 #[Layout('components.layouts.admin.dashboard')]
 class PerubahanData extends Component
 {
     public function render()
     {
-        $updates = PendingUpdate::with(['admin', 'approver'])
+        $updates = Update::with(['admin', 'approver'])
             ->paginate(10); // You can change 10 to any per-page number
 
         // Then map the paginated items (not the whole collection)
@@ -89,7 +89,7 @@ class PerubahanData extends Component
         // });
         
         $updates->getCollection()->transform(function ($update) {
-            return PendingUpdateService::transform($update);
+            return UpdateService::transform($update);
         });
 
 

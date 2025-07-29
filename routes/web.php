@@ -13,6 +13,7 @@ use App\Livewire\Rekapitulasi;
 use App\Livewire\TambahGedung;
 use App\Livewire\TambahKampus;
 use App\Livewire\PerubahanData;
+use App\Livewire\VerifikasiNew;
 use App\Livewire\VerifikasiData;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function(){
     Route::get('/verifikasi-data', VerifikasiData::class)->name('verifikasi-data');
     Route::get('/rekapitulasi', Rekapitulasi::class)->name('rekapitulasi');
     Route::get('/campus', Campus::class)->name('campus');
+    // Route::get('/verifikasi/new', VerifikasiNew::class)->name('verifikasi-new');
 });
 
 Route::get('/login', Login::class)->name('login');

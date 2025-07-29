@@ -156,7 +156,6 @@
                     <td>{{ $campus->contact }}</td>
                     <td>{{ $campus->email }}</td>
                     <td>{{ $campus->building->count() }}</td>
-                    {{-- <td>10</td> --}}
                     <td class="flex flex-col gap-2">
                         <a href="/kampus" type="button" class="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium text-center text-white bg-green-700 rounded-sm hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">

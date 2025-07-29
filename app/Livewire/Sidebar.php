@@ -5,11 +5,10 @@ namespace App\Livewire;
 use Livewire\Component;
 use Livewire\Attributes\Title;
 
-#[Title('Homepage')]
-class Homepage extends Component
+class Sidebar extends Component
 {
     public function render()
     {
-        return view('livewire.homepage');
+        return view('livewire.sidebar');
     }
 }

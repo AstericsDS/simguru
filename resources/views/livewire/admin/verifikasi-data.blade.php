@@ -231,23 +231,7 @@
 
                                                             @foreach ($data['images_path'] as $image)
                                                                 <div class="hidden duration-700 ease-in-out" data-carousel-item="{{ $loop->index === 0 ? 'active' : '' }}">
-                                                                    @if ($update->status === 'approved')
-                                                                        @switch($update->table)
-                                                                            @case('campuses')
-                                                                                <img src="{{ asset('storage/campuses/' . $image) }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                                                                            @break
-
-                                                                            @case('buildings')
-                                                                                <img src="{{ asset('storage/buildings/' . $image) }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                                                                            @break
-
-                                                                            @case('rooms')
-                                                                                <img src="{{ asset('storage/rooms/' . $image) }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                                                                            @break
-                                                                        @endswitch
-                                                                    @else
-                                                                        <img src="{{ asset('storage/' . $image) }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                                                                    @endif
+                                                                    <img src="{{ asset('storage/' . $image) }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
                                                                 </div>
                                                             @endforeach
                                                         </div>
@@ -444,7 +428,6 @@
                                                 </div>
                                             </div>
                                         @break
-
                                     @endswitch
                                 </div>
                             </div>
@@ -457,44 +440,24 @@
     </div>
 </div>
 
-<script>
-    // Define your JavaScript function
-    function initializeMyJsFunction() {
-        // Your JS code here
-        initModals();
-    }
-
-    // Attach the function to Livewire's message.processed hook
-    document.addEventListener('livewire:load', function () {
-        Livewire.hook('message.processed', (message, component) => {
-            initModals();
+@script
+    {{-- <script>
+        Livewire.hook('component.init', ({ component, el }) => {
+            initFlowbite();
         });
-    });
-</script>
+    </script> --}}
 
-{{-- <script>
-    function rebindModalToggles() {
-        // Remove existing click listeners by cloning each node (safely resets event listeners)
-        const toggles = document.querySelectorAll('[data-modal-toggle]');
-        toggles.forEach((toggle) => {
-            const newToggle = toggle.cloneNode(true);
-            toggle.parentNode.replaceChild(newToggle, toggle);
-
-            newToggle.addEventListener('click', () => {
-                const targetId = newToggle.getAttribute('data-modal-toggle');
-                const modalEl = document.getElementById(targetId);
-                if (!modalEl) return;
-
-                modalEl.classList.toggle('hidden');
+    {{-- <script>
+        document.addEventListener("livewire:load", () => {
+            Livewire.hook('message.processed', (message, component) => {
+                // Re-initialize modals here
+                // Example if using Flowbite:
+                const modalToggles = document.querySelectorAll('[data-modal-toggle]');
+                modalToggles.forEach(toggle => {
+                    // Manually add click event or re-init library if needed
+                    // Example for Flowbite: no need if using Flowbite’s auto-bind
+                });
             });
         });
-    }
-
-    document.addEventListener('livewire:load', function () {
-        rebindModalToggles(); // Bind initially
-
-        Livewire.hook('message.processed', (message, component) => {
-            rebindModalToggles(); // Re-bind after every Livewire update
-        });
-    });
-</script> --}}
+    </script> --}}
+@endscript

@@ -142,7 +142,7 @@ class VerifikasiData extends Component
         if ($this->filter !== 'all') {
             $updates->where('status', $this->filter);
         }
-        $updates = $updates->paginate(10);
+        $updates = $updates->with('admin')->paginate(10);
         $updates->getCollection()->transform(function ($update) {
             return UpdateService::transform($update);
         });

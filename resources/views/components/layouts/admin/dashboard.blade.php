@@ -42,13 +42,6 @@
 
     @livewireScripts
     @stack('scripts')
-
-    <!-- Flowbite JS -->
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
-
-    <!-- Apexchart JS -->
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.46.0/dist/apexcharts.min.js"></script>
-
 </body>
 
 </html>

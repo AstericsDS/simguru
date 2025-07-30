@@ -16,21 +16,21 @@ class Login extends Component
         'name' => 'required',
         'password' => 'required'
     ];
-    
+
     public function login() {
         $credentials = $this->validate();
-        
+
         if (Auth::attempt($credentials)) {
             session()->regenerate();
             return redirect()->to(route('dashboard'));
         }
-        
+
         $this->addError('login', 'Login Gagal');
-        
+
     }
 
     public function render()
     {
-        return view('livewire.admin.login')->layout('components.layouts.login');
+        return view('livewire.login')->layout('components.layouts.login');
     }
 }

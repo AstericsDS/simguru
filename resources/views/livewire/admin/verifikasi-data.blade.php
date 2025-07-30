@@ -441,23 +441,13 @@
 </div>
 
 @script
-    {{-- <script>
-        Livewire.hook('component.init', ({ component, el }) => {
-            initFlowbite();
-        });
-    </script> --}}
-
-    {{-- <script>
-        document.addEventListener("livewire:load", () => {
-            Livewire.hook('message.processed', (message, component) => {
-                // Re-initialize modals here
-                // Example if using Flowbite:
-                const modalToggles = document.querySelectorAll('[data-modal-toggle]');
-                modalToggles.forEach(toggle => {
-                    // Manually add click event or re-init library if needed
-                    // Example for Flowbite: no need if using Flowbite’s auto-bind
-                });
-            });
-        });
-    </script> --}}
+    <script>
+        Livewire.hook('commit', ({ component, commit, respond, succeed, fail }) => {
+            succeed(({ snapshot, effect }) => {
+                setTimeout(() => {
+                    initFlowbite();
+                }, 100); // Adjust the delay as needed
+            })
+        })
+    </script>
 @endscript

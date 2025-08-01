@@ -9,13 +9,13 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="min-h-screen bg-fixed bg-[url(/public/backgrounds/watermark.jpeg)] bg-cover">
+<body class="min-h-screen overflow-x-hidden text-balance bg-fixed bg-[url(/public/backgrounds/watermark.jpeg)] bg-cover">
     <div class="drawer min-h-screen">
-        {{-- drawer toggle (drawer buat responsive) --}}
+        {{-- TOGGLE DRAWER (drawer buat responsive) --}}
         <input id="profile-drawer" type="checkbox" class="drawer-toggle">
         <div class="drawer-content">
-            {{-- navbar --}}
-            <div class="navbar bg-unj-500 w-full h-20 sticky transition-all top-0 z-50 px-5 lg:px-60" id="navbar">
+            {{-- NAVBAR --}}
+            <div class="navbar bg-unj w-full h-20 sticky transition-all top-0 z-50 px-5 lg:px-60" id="navbar">
                 <div class="navbar-start">
                     <label for="profile-drawer" class="btn btn-ghost btn-circle lg:hidden">
                         <img src="{{ asset('logos/peminjaman.png') }}" alt="sidebar" class="w-5 mr-5 lg:hidden">
@@ -78,18 +78,18 @@
         {{-- Drawer for mobile view --}}
         <div class="drawer-side z-60">
             <label for="profile-drawer" aria-label="close-sidebar" class="drawer-overlay"></label>
-            <ul class="menu bg-unj-500 text-white min-h-full min-w-60 p-4 pt-20">
+            <ul class="menu bg-unj text-white min-h-full min-w-60 p-4 pt-20">
                 <div class="btn btn-ghost btn-circle btn-xl mb-3">
                     <img class="invert" src="{{ asset('logos/user.svg') }}" alt="">
                 </div>
-                <li><a>Kampus</a></li>
-                <li><a>Gedung</a></li>
-                <li><a>Ruang</a></li>
-                <li><a>Statistik</a></li>
+                <li><button onClick="document.getElementById('kampus').scrollIntoView();">Kampus</button></li>
+                <li><button onClick="document.getElementById('kampus').scrollIntoView();">Gedung</button></li>
+                <li><button onClick="document.getElementById('kampus').scrollIntoView();">Ruang</button></li>
+                <li><button onClick="document.getElementById('kampus').scrollIntoView();">Statistik</button></li>
             </ul>
         </div>
     </div>
-    <footer class="footer sm:footer-horizontal bg-unj-500 text-white mt-5 p-10 px-70">
+    <footer class="footer sm:footer-horizontal bg-unj text-white mt-5 p-10 px-70">
         <aside>
             <img src="{{ asset('logos/UNJ22.png') }}" alt="logo unj" class="w-50">
         </aside>
@@ -114,7 +114,7 @@
             <a class="link link-hover">Cookie policy</a>
         </nav>
     </footer>
-    <div class="text-center bg-unj-500">Copyright 2025 Pustikom</div>
+    <div class="text-center bg-unj">Copyright 2025 Pustikom</div>
 </body>
 
 </html>

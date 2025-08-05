@@ -4,7 +4,7 @@
         <a href="/" class="size-5"><img src="{{ asset('logos/back-svgrepo-com.svg') }}" alt=""></a>
         <div class="breadcrumbs text-sm text-[#006569] py-5">
             <ul>
-                <li><a class="">{{ $campus->name }}</a></li>
+                <li><a href="/kampus/{{ $campus->slug }}">{{ $campus->name }}</a></li>
             </ul>
         </div>
     </div>

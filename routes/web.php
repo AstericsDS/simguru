@@ -19,8 +19,10 @@ use App\Livewire\VerifikasiNew;
 use App\Livewire\VerifikasiData;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\ListKampus;
+use App\Livewire\ListGedung;
 use App\Livewire\Ruang;
 use App\Livewire\Homepage;
+use App\Livewire\ListRuang;
 use App\Livewire\ModelBinding;
 
 // Admin
@@ -52,7 +54,9 @@ Route::get('/debug', Debug::class)->name('debug');
 // Public
 Route::get('/', Homepage::class)->name('homepage');
 Route::get('/kampus', ListKampus::class)->name('listKampus');
-Route::get('/buildings/{building}', ModelBinding::class)->name('model');
+Route::get('/gedung', ListGedung::class)->name('listGedung');
+Route::get('/ruang', ListRuang::class)->name('listRuang');
+// Route::get('/buildings/{building}', ModelBinding::class)->name('model');
 Route::get('/kampus/{campus}', Kampus::class)->name('kampus');
 Route::get('/gedung/{building}', Gedung::class)->name('gedung');
 Route::get('/ruang/{room}', Ruang::class)->name('ruang');

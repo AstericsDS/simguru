@@ -17,11 +17,13 @@
             {{-- NAVBAR --}}
             <div class="navbar bg-unj w-full h-20 sticky transition-all top-0 z-50 px-5 lg:px-60" id="navbar">
                 <div class="navbar-start">
-                    <label for="profile-drawer" class="btn btn-ghost btn-circle lg:hidden">
-                        <img src="{{ asset('logos/peminjaman.png') }}" alt="sidebar" class="w-5 mr-5 lg:hidden">
-                    </label>
-                    <img src="{{ asset('logos/unj2.png') }}" alt="Logo UNJ" class="w-7 sm:w-10 lg:w-14">
-                    SISTEM INFORMASI GEDUNG DAN RUANG
+                        <label for="profile-drawer" class="btn btn-ghost btn-circle lg:hidden">
+                            <img src="{{ asset('logos/peminjaman.png') }}" alt="sidebar" class="w-5 mr-5 lg:hidden">
+                        </label>
+                        <img src="{{ asset('logos/unj2.png') }}" alt="Logo UNJ" class="w-7 sm:w-10 lg:w-14">
+                        <a href="/" class="text-semibold ml-3 not-lg:text-xs">
+                            SISTEM INFORMASI GEDUNG DAN RUANG
+                        </a>
                 </div>
                 <div class="navbar-end">
                     <div class="not-lg:hidden">
@@ -89,11 +91,11 @@
             </ul>
         </div>
     </div>
-    <footer class="footer sm:footer-horizontal bg-unj text-white mt-5 p-10 px-70">
+    <footer class="footer sm:footer-horizontal bg-unj text-white mt-5 p-10 lg:px-70">
         <aside>
-            <img src="{{ asset('logos/UNJ22.png') }}" alt="logo unj" class="w-50">
+            <img src="{{ asset('logos/UNJ22.png') }}" alt="logo unj" class="w-20 lg:w-50">
         </aside>
-        <nav>
+        {{-- <nav>
             <h6 class="footer-title">Services</h6>
             <a class="link link-hover">Branding</a>
             <a class="link link-hover">Design</a>
@@ -112,7 +114,7 @@
             <a class="link link-hover">Terms of use</a>
             <a class="link link-hover">Privacy policy</a>
             <a class="link link-hover">Cookie policy</a>
-        </nav>
+        </nav> --}}
     </footer>
     <div class="text-center bg-unj">Copyright 2025 Pustikom</div>
 </body>

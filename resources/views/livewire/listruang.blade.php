@@ -1,18 +1,18 @@
 <div class="w-full px-5 lg:px-40">
-    <h1 class="mt-10 mb-2 text-black text-3xl text-center font-bold">List SEMUA Kampus di Universitas Negeri Jakarta</h1>
+    <h1 class="mt-10 mb-2 text-black text-3xl text-center font-bold">List SEMUA Ruang di Universitas Negeri Jakarta</h1>
     <hr class="w-15 font-bold mx-auto border-gray-500 border">
 
     {{-- card box --}}
     <div class="grid lg:grid-cols-4 gap-3 mt-12">
-        @foreach ($campuses as $campus)
+        @foreach ($rooms as $room)
             <div class="card bg-unj shadow-lg">
                 <figure>
                     <img src="backgrounds/unj_bersih.jpeg" alt="Kampus_A_UNJ" />
                 </figure>
                 <div class="card-body items-center text-center">
-                    <h2 class="card-title">{{ $campus->name }}</h2>
-                    <p class="text-xs text-center mb-3 not-lg:hidden">{{ $campus->address }}</p>
-                    <a href="/kampus/{{ $campus->slug }}"
+                    <h2 class="card-title">{{ $room->name }}</h2>
+                    <p class="text-xs text-center mb-3 not-lg:hidden">{{ $room->address }}</p>
+                    <a href="/kampus/{{ $room->slug }}"
                         class="btn border-none bg-white text-black outline-none hover:bg-gray-200 rounded-lg w-full">Details</a>
                 </div>
             </div>

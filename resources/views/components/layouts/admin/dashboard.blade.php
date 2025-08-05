@@ -7,6 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="icon" type="image" href="/logos/unj.png">
     <script src="https://kit.fontawesome.com/803b706a8d.js" crossorigin="anonymous"></script>
     <script>
         // On page load or when changing themes, best to add inline in `head` to avoid FOUC
@@ -42,6 +43,8 @@
 
     @livewireScripts
     @stack('scripts')
+
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 </body>
 
 </html>

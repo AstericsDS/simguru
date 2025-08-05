@@ -17,7 +17,7 @@ class Dashboard extends Component
             'campusCount' => Campus::count(),
             'buildingCount' => Building::count(),
             'roomCount' => Room::count(),
-            'classCount' => Room::where('status', 'class')->count()
+            'classCount' => Room::where('category', 'class')->count()
         ]);
     }
 }

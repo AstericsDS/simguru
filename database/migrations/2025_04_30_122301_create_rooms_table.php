@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('capacity');
             $table->text('description');
             $table->json('images_path');
-            $table->enum('status', ['class', 'not_class']);
+            $table->enum('category', ['class', 'not_class']);
             $table->timestamps();
         });
     }

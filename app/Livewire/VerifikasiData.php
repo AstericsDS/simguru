@@ -58,7 +58,7 @@ class VerifikasiData extends Component
                     foreach ($data['images_path'] as $path) {
                         $filename = basename($path);
                         $oldPath = 'temp/' . $filename;
-                        $newPath = 'campuses/' . $filename;
+                        $newPath = 'buildings/' . $filename;
 
                         if (Storage::disk('public')->exists($oldPath)) {
                             $file = Storage::disk('public')->get($oldPath);
@@ -90,7 +90,7 @@ class VerifikasiData extends Component
                     foreach ($data['images_path'] as $path) {
                         $filename = basename($path);
                         $oldPath = 'temp/' . $filename;
-                        $newPath = 'campuses/' . $filename;
+                        $newPath = 'rooms/' . $filename;
 
                         if (Storage::disk('public')->exists($oldPath)) {
                             $file = Storage::disk('public')->get($oldPath);
@@ -131,18 +131,22 @@ class VerifikasiData extends Component
     }
 
     public $filter = 'all';
+    public $sort = 'asc';
     public function setFilter($status)
     {
         $this->filter = $status;
     }
-
+    public function sortDate()
+    {
+        $this->sort = $this->sort === 'asc' ? 'desc' : 'asc';
+    }
     public function render()
     {
         $updates = Update::query();
         if ($this->filter !== 'all') {
             $updates->where('status', $this->filter);
         }
-        $updates = $updates->with('admin')->paginate(10);
+        $updates = $updates->with('admin')->orderBy('created_at', $this->sort)->paginate(10);
         $updates->getCollection()->transform(function ($update) {
             return UpdateService::transform($update);
         });

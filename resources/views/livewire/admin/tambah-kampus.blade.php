@@ -28,6 +28,7 @@
                 </svg>
             </span>
         </div>
+        
         <!-- Modal toggle -->
         <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="inline-flex items-center btn text-white bg-teal-700 px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-teal-800 focus:ring-4 focus:outline-none font-bold text-sm text-center shadow-none border-none" type="button">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -56,28 +57,28 @@
                     <form wire:submit.prevent='save' class="p-4 md:p-5">
                         <div class="grid gap-4 mb-4 grid-cols-2">
                             <div class="col-span-2">
-                                <label for="name" class="block mb-2 text-sm font-medium {{ $errors->has('name') ? 'text-red-700' : 'text-gray-900' }}">Nama Kampus</label>
+                                <label for="name" class="block mb-2 text-sm font-medium {{ $errors->has('name') ? 'text-red-700' : 'text-gray-900' }}">Nama</label>
                                 <input wire:model="name" type="text" name="name" id="name" class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 {{ $errors->has('name') ? 'border-red-500' : 'border-gray-300' }}" placeholder="">
                                 @error('name')
                                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="col-span-2">
-                                <label for="name" class="block mb-2 text-sm font-medium {{ $errors->has('address') ? 'text-red-700' : 'text-gray-900' }}">Alamat Kampus</label>
+                                <label for="name" class="block mb-2 text-sm font-medium {{ $errors->has('address') ? 'text-red-700' : 'text-gray-900' }}">Alamat</label>
                                 <input wire:model="address" type="text" name="address" id="address" class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 {{ $errors->has('address') ? 'border-red-500' : 'border-gray-300' }}" placeholder="">
                                 @error('address')
                                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="col-span-2">
-                                <label for="name" class="block mb-2 text-sm font-medium {{ $errors->has('contact') ? 'text-red-700' : 'text-gray-900' }}">No Telp Kampus</label>
+                                <label for="name" class="block mb-2 text-sm font-medium {{ $errors->has('contact') ? 'text-red-700' : 'text-gray-900' }}">Nomor Telepon</label>
                                 <input wire:model="contact" type="text" name="contact" id="contact" class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 {{ $errors->has('contact') ? 'border-red-500' : 'border-gray-300' }}" placeholder="">
                                 @error('contact')
                                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="col-span-2">
-                                <label for="name" class="block mb-2 text-sm font-medium {{ $errors->has('email') ? 'text-red-700' : 'text-gray-900' }}">Email Kampus</label>
+                                <label for="name" class="block mb-2 text-sm font-medium {{ $errors->has('email') ? 'text-red-700' : 'text-gray-900' }}">Email</label>
                                 <input wire:model="email" type="text" name="email" id="email" class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 {{ $errors->has('email') ? 'border-red-500' : 'border-gray-300' }}" placeholder="">
                                 @error('email')
                                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
@@ -110,14 +111,14 @@
                                 </select>
                             </div> --}}
                             <div class="col-span-2">
-                                <label class="block mb-2 text-sm font-medium text-gray-900" for="user_avatar">Upload Foto Kampus</label>
+                                <label class="block mb-2 text-sm font-medium text-gray-900" for="user_avatar">Upload Foto</label>
                                 <input wire:model='images_path' multiple class="block w-full text-sm text-gray-900 border rounded-lg cursor-pointer bg-gray-50 {{ $errors->has('images_path') ? 'border-red-500' : 'border-gray-300' }}" aria-describedby="user_avatar_help" id="user_avatar" type="file">
                                 @error('images_path')
                                     <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="col-span-2">
-                                <label for="description" class="block mb-2 text-sm font-medium {{ $errors->has('description') ? 'text-red-700' : 'text-gray-900' }}">Deskripsi Kampus</label>
+                                <label for="description" class="block mb-2 text-sm font-medium {{ $errors->has('description') ? 'text-red-700' : 'text-gray-900' }}">Deskripsi</label>
                                 <textarea wire:model="description" name="description" id="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border focus:ring-teal-500 focus:border-teal-500 bg-gray-50 {{ $errors->has('description') ? 'border-red-500' : 'border-gray-300' }}" placeholder=""></textarea>
                                 @error('description')
                                     <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
@@ -138,10 +139,10 @@
         <thead class="bg-teal-700 text-white text-center table-success">
             <tr>
                 <th>No</th>
-                <th>Nama Kampus</th>
-                <th>Alamat Kampus</th>
-                <th>No Telp Kampus</th>
-                <th>Email Kampus</th>
+                <th>Nama</th>
+                <th>Alamat</th>
+                <th>Nomor Telepon</th>
+                <th>Email</th>
                 <th>Jumlah Gedung</th>
                 {{-- <th>Jumlah Unit</th> --}}
                 <th>Aksi</th>

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
 
 #[Layout('components.layouts.admin.dashboard')]
-class TambahGedung extends Component
+class DaftarGedung extends Component
 {
     use WithPagination;
     use WithFileUploads;
@@ -82,16 +82,16 @@ class TambahGedung extends Component
         if ($created) {
             $this->reset(['name', 'address', 'floor', 'area', 'description', 'images_path']);
             $this->dispatch('close-modal');
-            $this->dispatch('show-toast', status: 'success', message: 'Entri anda telah masuk dan akan segera diverifikasi.');
+            $this->dispatch('toast', status: 'success', message: 'Entri anda telah masuk dan akan segera diverifikasi.');
         } else {
             $this->dispatch('close-modal');
-            $this->dispatch('show-toast', status: 'fail', message: 'Maaf, entri anda tidak dapat diterima. Silakan coba lagi.');
+            $this->dispatch('toast', status: 'fail', message: 'Maaf, entri anda tidak dapat diterima. Silakan coba lagi.');
         }
     }
 
     public function updating($key): void
     {
-        if ($key === 'searchBar') {
+        if ($key === 'search') {
             $this->resetPage();
         }
     }
@@ -107,7 +107,7 @@ class TambahGedung extends Component
             ->when($this->search !== '', fn(Builder $query)
                 => $query->where('name', 'like', '%' . $this->search . '%'))
             ->paginate(10);
-        return view('livewire.admin.tambah-gedung', [
+        return view('livewire.admin.daftar-gedung', [
             'buildings' => $buildings
         ]);
     }

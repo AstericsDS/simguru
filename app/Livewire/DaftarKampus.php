@@ -2,16 +2,16 @@
 
 namespace App\Livewire;
 
-use App\Models\Campus;
-use Livewire\Component;
 use App\Models\Update;
-use Livewire\Attributes\Layout;
+use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Campus;
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\WithFileUploads;
+use Livewire\Attributes\Layout;
 
 #[Layout('components.layouts.admin.dashboard')]
-class TambahKampus extends Component
+class DaftarKampus extends Component
 {
     use WithFileUploads;
 
@@ -73,17 +73,17 @@ class TambahKampus extends Component
         if ($created) {
             $this->reset(['name', 'address', 'contact', 'email', 'description', 'images_path']);
             $this->dispatch('close-modal');
-            $this->dispatch('show-toast', status: 'success', message: 'Entri anda telah masuk dan akan segera diverifikasi.');
+            $this->dispatch('toast', status: 'success', message: 'Entri anda telah masuk dan akan segera diverifikasi.');
         } else {
             $this->dispatch('close-modal');
-            $this->dispatch('show-toast', status: 'fail', message: 'Maaf, entri anda tidak dapat diterima. Silakan coba lagi.');
+            $this->dispatch('toast', status: 'fail', message: 'Maaf, entri anda tidak dapat diterima. Silakan coba lagi.');
         }
     }
-    
+
     public function render()
     {
         $campuses = Campus::when($this->search !== '', fn(Builder $query) => $query->where('name', 'like', '%' . $this->search . '%'))->get();
-        return view('livewire.admin.tambah-kampus', [
+        return view('livewire.admin.daftar-kampus', [
             'campuses' => $campuses
         ]);
     }

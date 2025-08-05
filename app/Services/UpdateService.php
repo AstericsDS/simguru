@@ -32,8 +32,8 @@ class UpdateService
                 'floor' => 'Lantai',
                 'capacity' => 'Kapasitas',
                 'description' => 'Deskripsi',
-                'status' => fn($v) => [
-                    'Status' => $v === 'class' ? 'Kelas' : 'Bukan Kelas'
+                'category' => fn($v) => [
+                    'Kategori' => $v === 'class' ? 'Kelas' : 'Bukan Kelas'
                 ],
             ],
         ];

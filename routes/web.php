@@ -1,27 +1,30 @@
 <?php
 
-use App\Livewire\Dashboard;
-use App\Livewire\Admin\EditKampus;
-use App\Livewire\Gedung;
 use App\Livewire\Form;
 use App\Livewire\Debug;
 use App\Livewire\Login;
+use App\Livewire\Ruang;
 use App\Livewire\Campus;
+use App\Livewire\Gedung;
 use App\Livewire\Kampus;
 use App\Livewire\Content;
+use App\Livewire\Homepage;
+use App\Livewire\Dashboard;
 use App\Livewire\DetailAll;
+use App\Livewire\ListKampus;
+use App\Livewire\DaftarRuang;
 use App\Livewire\TambahRuang;
+use App\Livewire\DaftarGedung;
+use App\Livewire\DaftarKampus;
+use App\Livewire\ModelBinding;
 use App\Livewire\Rekapitulasi;
 use App\Livewire\TambahGedung;
 use App\Livewire\TambahKampus;
 use App\Livewire\PerubahanData;
 use App\Livewire\VerifikasiNew;
 use App\Livewire\VerifikasiData;
+use App\Livewire\Admin\EditKampus;
 use Illuminate\Support\Facades\Route;
-use App\Livewire\ListKampus;
-use App\Livewire\Ruang;
-use App\Livewire\Homepage;
-use App\Livewire\ModelBinding;
 
 // Admin
 Route::middleware(['auth'])->prefix('admin')->group(function(){
@@ -30,8 +33,11 @@ Route::middleware(['auth'])->prefix('admin')->group(function(){
     Route::get('/kampus', Kampus::class)->name('kampus');
     Route::get('/gedung', Gedung::class)->name('gedung');
     Route::get('/tambah-kampus', TambahKampus::class)->name('tambah-kampus');
+    Route::get('/daftar-kampus', DaftarKampus::class)->name('daftar-kampus');
     Route::get('/tambah-gedung', TambahGedung::class)->name('tambah-gedung');
+    Route::get('/daftar-gedung', DaftarGedung::class)->name('daftar-gedung');
     Route::get('/tambah-ruang', TambahRuang::class)->name('tambah-ruang');
+    Route::get('/daftar-ruang', DaftarRuang::class)->name('daftar-ruang');
     Route::get('/edit-kampus', EditKampus::class)->name('edit-kampus');
     Route::get('/detail-all', DetailAll::class)->name('detail-all');
     Route::get('/perubahan-data', PerubahanData::class)->name('perubahan-data');

@@ -83,6 +83,40 @@
                                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
+                            <div class="col-span-2">
+                                <label for="fakultas_unit" class="block text-sm font-medium text-gray-900 mb-2">Fakultas/Unit</label>
+                                <div id="fakultas-unit-wrapper">
+                                    <div class="flex mb-2 space-x-2">
+                                        <input type="text" name="fakultas_unit[]" required
+                                            class="flex-1 border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            placeholder="" />
+                                        <button type="button" id="add-fakultas-unit"
+                                            class="bg-green-600 text-white rounded px-3 py-1 hover:bg-green-700 focus:outline-none">
+                                            +
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    const wrapper = document.getElementById('fakultas-unit-wrapper');
+                                    const addButton = document.getElementById('add-fakultas-unit');
+                                    addButton.addEventListener('click', function () {
+                                        const newInputGroup = document.createElement('div');
+                                        newInputGroup.className = 'flex mb-2 space-x-2';
+                                        newInputGroup.innerHTML = `
+                                            <input type="text" name="fakultas_unit[]" required class="flex-1 border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Fakultas / Unit" />
+                                            <button type="button" class="remove-fakultas-unit bg-red-500 text-white rounded px-3 py-1 hover:bg-red-600 focus:outline-none">-</button>
+                                        `;
+                                        wrapper.appendChild(newInputGroup);
+                                    });
+                                    wrapper.addEventListener('click', function (e) {
+                                        if (e.target.classList.contains('remove-fakultas-unit')) {
+                                            e.target.parentElement.remove();
+                                        }
+                                    });
+                                });
+                            </script>
                             {{-- <div class="col-span-2">
                                 <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Jumlah Gedung</label>
                                 <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="">

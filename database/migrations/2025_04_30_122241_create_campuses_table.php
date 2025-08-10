@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('admin_id')->nullable()->constrained('users');
             $table->string('name');
-            $table->string('slug')->unique();
+            // $table->string('slug')->unique();
             $table->string('address');
             $table->string('contact');
             $table->string('email');

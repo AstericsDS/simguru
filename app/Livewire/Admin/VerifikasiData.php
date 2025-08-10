@@ -50,6 +50,7 @@ class VerifikasiData extends Component
                     }
 
                     $data['images_path'] = $movedPaths;
+                    $update->new_data = $data;
 
                     // Update campus
                     $campus->update($data);
@@ -109,6 +110,7 @@ class VerifikasiData extends Component
                     }
 
                     $data['images_path'] = $movedPaths;
+                    $update->new_data = $data;
 
                     // Update building
                     $building->update($data);
@@ -129,7 +131,7 @@ class VerifikasiData extends Component
                     }
                     $data['images_path'] = $movedPaths;
 
-                    $newBuilding = Campus::create($data);
+                    $newBuilding = Building::create($data);
                     $update->record_id = $newBuilding->id;
                     $update->new_data = $data;
                 }
@@ -169,6 +171,7 @@ class VerifikasiData extends Component
                     }
 
                     $data['images_path'] = $movedPaths;
+                    $update->new_data = $data;
 
                     // Update campus
                     $room->update($data);
@@ -179,7 +182,7 @@ class VerifikasiData extends Component
                     foreach ($data['images_path'] as $path) {
                         if (str_starts_with($path, 'temp/')) {
                             $filename = basename($path);
-                            $newPath = 'campuses/' . $filename;
+                            $newPath = 'rooms/' . $filename;
                             if (Storage::disk('public')->exists($path)) {
                                 Storage::disk('public')->move($path, $newPath);
                             }

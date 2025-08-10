@@ -1,7 +1,6 @@
 <div class="text-black">
-
     {{-- Title --}}
-    <h1 class="text-2xl font-medium">Edit Kampus</h1>
+    <h1 class="text-2xl font-medium">Edit Ruang</h1>
 
     {{-- Content --}}
     <div class="mt-8">
@@ -17,28 +16,72 @@
                     </div>
 
                     <div class="{{ $is_pending ? 'tooltip tooltip-accent' : '' }}" data-tip="Mohon tunggu verifikasi super admin">
-                        <label for="address">Alamat</label>
-                        <input wire:model.live='address' type="text" id="address" class="bg-gray-50 border focus:outline-none focus:ring-unj transition-all {{ $is_pending ? 'text-gray-500' : 'text-gray-900' }} text-sm rounded-lg block w-full p-2.5 {{ $errors->has('address') ? 'border-red-500' : 'border-gray-300' }} my-2" {{ $is_pending ? 'disabled' : '' }}>
-                        @error('address')
+                        <label for="campus" >Lokasi Kampus</label>
+                        <select wire:model.change='campus_id' id="campus" class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 {{ $errors->has('campus_id') ? 'border-red-500' : 'border-gray-300' }} my-2">
+                            <option disabled>Pilih Kampus</option>
+                            @foreach ($campuses as $campus)
+                                <option value="{{ $campus->id }}">{{ $campus->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('campus_id')
+                            <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    
+                    <div class="{{ $is_pending ? 'tooltip tooltip-accent' : '' }}" data-tip="Mohon tunggu verifikasi super admin">
+                        <label for="building" >Lokasi Gedung</label>
+                        <select wire:model.change='building_id' id="building" class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 {{ $errors->has('building_id') ? 'border-red-500' : 'border-gray-300' }} my-2">
+                            <option disabled>Pilih Gedung</option>
+                            @foreach ($buildings as $building)
+                                <option value="{{ $building->id }}">{{ $building->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('building_id')
+                            <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div class="{{ $is_pending ? 'tooltip tooltip-accent' : '' }}" data-tip="Mohon tunggu verifikasi super admin">
+                        <label for="floor" >Lokasi Lantai</label>
+                        <select wire:model='floor' id="category" class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 {{ $errors->has('floor') ? 'border-red-500' : 'border-gray-300' }} my-2">
+                            <option disabled>Pilih Lantai</option>
+                            @for ($i = 1; $i <= $floor; $i++)
+                                <option value="{{ $i }}">Lantai {{ $i }}</option>
+                            @endfor
+                        </select>
+                        @error('floor')
+                            <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div class="{{ $is_pending ? 'tooltip tooltip-accent' : '' }}" data-tip="Mohon tunggu verifikasi super admin">
+                        <label for="area">Luas</label>
+                        <input wire:model.live='area' type="text" id="area" class="bg-gray-50 border focus:outline-none focus:ring-unj transition-all {{ $is_pending ? 'text-gray-500' : 'text-gray-900' }} text-sm rounded-lg block w-full p-2.5 {{ $errors->has('area') ? 'border-red-500' : 'border-gray-300' }} my-2" {{ $is_pending ? 'disabled' : '' }}>
+                        @error('area')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
 
                     <div class="{{ $is_pending ? 'tooltip tooltip-accent' : '' }}" data-tip="Mohon tunggu verifikasi super admin">
-                        <label for="contact">Nomor Telepon</label>
-                        <input wire:model.live='contact' type="text" id="contact" class="bg-gray-50 border focus:outline-none focus:ring-unj transition-all {{ $is_pending ? 'text-gray-500' : 'text-gray-900' }} text-sm rounded-lg block w-full p-2.5 {{ $errors->has('contact') ? 'border-red-500' : 'border-gray-300' }} my-2" {{ $is_pending ? 'disabled' : '' }}>
-                        @error('contact')
+                        <label for="capacity">Kapasitas</label>
+                        <input wire:model.live='capacity' type="text" id="capacity" class="bg-gray-50 border focus:outline-none focus:ring-unj transition-all {{ $is_pending ? 'text-gray-500' : 'text-gray-900' }} text-sm rounded-lg block w-full p-2.5 {{ $errors->has('capacity') ? 'border-red-500' : 'border-gray-300' }} my-2" {{ $is_pending ? 'disabled' : '' }}>
+                        @error('capacity')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
 
                     <div class="{{ $is_pending ? 'tooltip tooltip-accent' : '' }}" data-tip="Mohon tunggu verifikasi super admin">
-                        <label for="email">Email</label>
-                        <input wire:model.live='email' type="text" id="email" class="bg-gray-50 border focus:outline-none focus:ring-unj transition-all {{ $is_pending ? 'text-gray-500' : 'text-gray-900' }} text-sm rounded-lg block w-full p-2.5 {{ $errors->has('email') ? 'border-red-500' : 'border-gray-300' }} my-2" {{ $is_pending ? 'disabled' : '' }}>
-                        @error('email')
-                            <p class="text-sm text-red-600">{{ $message }}</p>
+                        <label for="category" >Kategori</label>
+                        <select wire:model='category' id="category" class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 {{ $errors->has('category') ? 'border-red-500' : 'border-gray-300' }} my-2">
+                            <option disabled>Pilih Kategori</option>
+                            <option value="class">Kelas</option>
+                            <option value="not_class">Bukan Kelas</option>
+                        </select>
+                        @error('category')
+                            <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
                         @enderror
                     </div>
+
 
                     <div class="{{ $is_pending ? 'tooltip tooltip-accent' : '' }}" data-tip="Mohon tunggu verifikasi super admin">
                         <label for="description">Deskripsi</label>
@@ -53,7 +96,7 @@
                 <div class="w-full flex flex-col gap-2">
                     <div class="carousel w-full rounded-md">
                         @foreach ($images_path as $image)
-                            <div id="item{{ $loop->iteration }}" class="carousel-item w-full hover:brightness-75 transition-all duration-300 group relative {{count($images_path) <= 1 ? 'cursor-not-allowed' : 'cursor-pointer'}}" {{ count($images_path) > 1 ? "wire:click=removeImage($loop->index)" : '' }}>
+                            <div id="item{{ $loop->iteration }}" class="carousel-item w-full hover:brightness-75 transition-all duration-300 group relative {{ count($images_path) <= 1 ? 'cursor-not-allowed' : 'cursor-pointer' }}" {{ count($images_path) > 1 ? "wire:click=removeImage($loop->index)" : '' }}>
                                 {{-- <img src="{{ asset('storage/' . $image) }}" class="w-full" /> --}}
                                 @if ($image instanceof \Illuminate\Http\UploadedFile)
                                     <img src="{{ $image->temporaryUrl() }}" class="w-full" />

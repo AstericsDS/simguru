@@ -22,16 +22,16 @@ class DaftarKampus extends Component
     public $campusImages = [];
     public Campus $selectedCampus;
 
-    public function updatedName($value)
-    {
-        $this->slug = Str::slug($value);
-    }
+    // public function updatedName($value)
+    // {
+    //     $this->slug = Str::slug($value);
+    // }
 
     public function rules()
     {
         return [
             'name' => 'required',
-            'slug' => 'required|unique:campuses,slug',
+            // 'slug' => 'required|unique:campuses,slug',
             'address' => 'required',
             'contact' => 'required|min:8',
             'email' => 'required|email',
@@ -68,7 +68,7 @@ class DaftarKampus extends Component
         }
 
         $validated['admin_id'] = Auth::id();
-        $validated['slug'] = $this->slug;
+        // $validated['slug'] = $this->slug;
         $created = Update::create([
             'admin_id' => Auth::id(),
             'type' => 'new',

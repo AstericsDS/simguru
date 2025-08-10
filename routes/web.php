@@ -53,11 +53,11 @@ Route::get('/login', Login::class)->name('login');
 // Debug API
 Route::get('/form', Form::class)->name('form');
 Route::get('/debug', Debug::class)->name('debug');
+Route::get('/buildings/{building}', ModelBinding::class)->name('model');
 
 // Public
 Route::get('/', Homepage::class)->name('homepage');
 Route::get('/kampus', ListKampus::class)->name('listKampus');
-Route::get('/buildings/{building}', ModelBinding::class)->name('model');
 Route::get('/kampus/{campus}', Kampus::class)->name('kampus');
 Route::get('/gedung/{building}', Gedung::class)->name('gedung');
 Route::get('/ruang/{room}', Ruang::class)->name('ruang');

@@ -14,6 +14,7 @@ class Campus extends Model
     protected $fillable = [
         'admin_id',
         'name',
+        'slug',
         'address',
         'contact',
         'email',

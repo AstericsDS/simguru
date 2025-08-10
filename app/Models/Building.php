@@ -15,6 +15,7 @@ class Building extends Model
         'admin_id',
         'campus_id',
         'name',
+        'slug',
         'area',
         'floor',
         'description',

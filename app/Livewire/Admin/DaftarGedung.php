@@ -1,39 +1,40 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Admin;
 
-use App\Models\Update;
-use Livewire\Component;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Campus;
-use Illuminate\Database\Eloquent\Builder;
+use Livewire\Component;
+use App\Models\Building;
 use Livewire\WithFileUploads;
+use Livewire\WithPagination;
+use App\Models\Update;
 use Livewire\Attributes\Layout;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Builder;
 
 #[Layout('components.layouts.admin.dashboard')]
-class DaftarKampus extends Component
+class DaftarGedung extends Component
 {
+    use WithPagination;
     use WithFileUploads;
 
-    public $name, $address, $contact, $email, $description, $slug;
-    public $images_path = [];
+    public $name, $address, $floor, $area, $description, $campus_id, $slug;
+    public $status = 0;
     public $search = '';
-
-    public function updatedName($value)
-    {
-        $this->slug = Str::slug($value);
-    }
+    public $campuses = [];
+    public $images_path = [];
 
     public function rules()
     {
         return [
             'name' => 'required',
-            'slug' => 'required|unique:campuses,slug',
             'address' => 'required',
-            'contact' => 'required|min:8',
-            'email' => 'required|email',
+            'floor' => 'required|integer',
+            'area' => 'required|integer',
+            'status' => 'required',
             'description' => 'required',
+            'campus_id' => 'required',
+            'slug' => 'required|unique:buildings,slug',
             'images_path.*' => 'required|file|image',
             'images_path' => 'required|array',
         ];
@@ -42,13 +43,14 @@ class DaftarKampus extends Component
     public function messages()
     {
         return [
-            'name.required' => 'Nama harus diisi',
+            'name.required' => 'Nama gedung harus diisi',
             'address.required' => 'Alamat harus diisi',
-            'contact.required' => 'Nomor telepon harus diisi',
-            'contact.min' => 'Nomor telepon minimal 8 digit',
-            'email.required' => 'Email harus diisi',
-            'email.email' => 'Masukkan alamat email yang valid',
+            'floor.required' => 'Jumlah lantai harus diisi',
+            'area.required' => 'Luas gedung harus diisi',
             'description.required' => 'Deskripsi harus diisi',
+            'campus_id.required' => 'Harus pilih salah satu kampus',
+            'floor.integer' => 'Jumlah lantai harus berupa angka',
+            'area.integer' => 'Luas area harus berupa angka',
             'images_path.required' => 'Foto harus diupload',
             'images_path.image' => 'Foto harus berupa gambar',
         ];
@@ -70,7 +72,7 @@ class DaftarKampus extends Component
         $created = Update::create([
             'admin_id' => Auth::id(),
             'type' => 'new',
-            'table' => 'campuses',
+            'table' => 'buildings',
             'record_id' => null,
             'old_data' => null,
             'new_data' => json_encode($validated),
@@ -78,8 +80,9 @@ class DaftarKampus extends Component
             'approved_by' => null,
             'reject_reason' => null,
         ]);
+
         if ($created) {
-            $this->reset(['name', 'address', 'contact', 'email', 'description', 'images_path']);
+            $this->reset(['name', 'address', 'floor', 'area', 'description', 'images_path']);
             $this->dispatch('close-modal');
             $this->dispatch('toast', status: 'success', message: 'Entri anda telah masuk dan akan segera diverifikasi.');
         } else {
@@ -88,11 +91,27 @@ class DaftarKampus extends Component
         }
     }
 
+    public function updating($key): void
+    {
+        if ($key === 'search') {
+            $this->resetPage();
+        }
+    }
+    public function mount()
+    {
+        $this->campuses = Campus::all();
+        $this->campus_id = $this->campuses->first()->id;
+    }
+
     public function render()
     {
-        $campuses = Campus::when($this->search !== '', fn(Builder $query) => $query->where('name', 'like', '%' . $this->search . '%'))->get();
-        return view('livewire.admin.daftar-kampus', [
-            'campuses' => $campuses
+        $buildings = Building::with('campus')
+            ->when($this->search !== '', fn(Builder $query)
+                => $query->where('name', 'like', '%' . $this->search . '%'))
+            ->paginate(10);
+        return view('livewire.admin.daftar-gedung', [
+            'buildings' => $buildings
         ]);
     }
+
 }

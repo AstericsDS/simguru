@@ -6,12 +6,15 @@
 @import "tailwindcss";
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 @import './swiper';
-@plugin 'daisyui';
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark;
+}
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
+
 
 @theme {
     --font-sans: "Poppins", "Instrument Sans", ui-sans-serif, system-ui,

@@ -16,7 +16,6 @@ use App\Livewire\DaftarRuang;
 use App\Livewire\TambahRuang;
 use App\Livewire\DaftarGedung;
 use App\Livewire\DaftarKampus;
-use App\Livewire\ModelBinding;
 use App\Livewire\Rekapitulasi;
 use App\Livewire\TambahGedung;
 use App\Livewire\TambahKampus;
@@ -25,6 +24,8 @@ use App\Livewire\VerifikasiNew;
 use App\Livewire\VerifikasiData;
 use App\Livewire\Admin\EditKampus;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\ListGedung;
+use App\Livewire\ListRuang;
 
 // Admin
 Route::middleware(['auth'])->prefix('admin')->group(function(){
@@ -54,11 +55,14 @@ Route::get('/login', Login::class)->name('login');
 // Debug API
 Route::get('/form', Form::class)->name('form');
 Route::get('/debug', Debug::class)->name('debug');
-Route::get('/buildings/{building}', ModelBinding::class)->name('model');
+// Route::get('/buildings/{building}', ModelBinding::class)->name('model');
 
 // Public
 Route::get('/', Homepage::class)->name('homepage');
 Route::get('/kampus', ListKampus::class)->name('listKampus');
+Route::get('/gedung', ListGedung::class)->name('listGedung');
+Route::get('/ruang', ListRuang::class)->name('listRuang');
+// Route::get('/buildings/{building}', ModelBinding::class)->name('model');
 Route::get('/kampus/{campus}', Kampus::class)->name('kampus');
 Route::get('/gedung/{building}', Gedung::class)->name('gedung');
 Route::get('/ruang/{room}', Ruang::class)->name('ruang');

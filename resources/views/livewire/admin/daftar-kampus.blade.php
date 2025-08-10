@@ -35,9 +35,9 @@
 
         </div>
 
-        <!-- Main modal -->
+        <!-- Add modal -->
         <div x-data="{ state: false }" @modal.window="state = !state" @keydown.window.escape="state = false">
-            <div x-show="state" class="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 flex items-center justify-center" x-transition:enter="transition ease-in-out duration-250" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in-out duration-250" x-transition:leave-end="opacity-0">
+            <div x-show="state" class="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 flex items-center justify-center overflow-y-auto" x-transition:enter="transition ease-in-out duration-250" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in-out duration-250" x-transition:leave-end="opacity-0">
                 <div x-show="state" @click.outside="state = false" class="relative bg-white rounded-lg shadow-sm w-2xl p-2 opacity-100 z-50" x-transition:enter="transition ease-in-out duration-250" x-transition:enter-start="scale-50" x-transition:enter-end="scale-100" x-transition:leave="transition ease-in-out duration-250" x-transition:leave-end="scale-50">
 
                     <!-- Modal header -->
@@ -118,21 +118,6 @@
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
-                        {{-- Classic --}}
-                        {{-- <th scope="col" class="px-6 py-3">
-                            Product name
-                        </th> --}}
-
-                        {{-- Sortable --}}
-                        {{-- <th scope="col" class="px-6 py-3"> --}}
-                        {{-- <div class="flex items-center"> --}}
-                        {{-- Color --}}
-                        {{-- <a href="#"><svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z" />
-                                    </svg></a>
-                            </div>
-                        </th> --}}
-
                         <th scope="col" class="px-6 py-3">
                             Nama
                         </th>
@@ -154,25 +139,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{-- Example --}}
-                    {{-- <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Apple MacBook Pro 17"
-                        </th>
-                        <td class="px-6 py-4">
-                            Silver
-                        </td>
-                        <td class="px-6 py-4">
-                            Laptop
-                        </td>
-                        <td class="px-6 py-4">
-                            $2999
-                        </td>
-                        <td class="px-6 py-4 text-right">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                        </td>
-                    </tr> --}}
-
                     @foreach ($campuses as $campus)
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -190,6 +156,16 @@
                             <td class="px-6 py-4">
                                 {{ $campus->contact }}
                             </td>
+                            <td class="px-6 py-4">
+                                <button wire:click='view({{ $campus->id }})' type="button" class="transition-all cursor-pointer hover:text-blue-500 hover:bg-gray-300 rounded-xl p-2 mx-auto" data-tip="Gambar">
+                                    <i class="fa-solid fa-images"></i>
+                                </button>
+                                @if ($campus->admin_id === Auth::id())
+                                    <a href="{{route('edit-kampus', $campus->id)}}" wire:navigate class="transition-all cursor-pointer hover:text-yellow-900 hover:bg-yellow-200 rounded-xl p-2 mx-auto">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </a>
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -197,18 +173,41 @@
         </div>
     </div>
 
+
+    <!-- View modal -->
+    <div x-data="{ state: false }" @view.window="state = !state" @keydown.window.escape="state = false">
+        <div x-show="state" class="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 flex items-center justify-center" x-transition:enter="transition ease-in-out duration-250" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in-out duration-250" x-transition:leave-end="opacity-0">
+            <div x-show="state" @click.outside="state = false" class="relative bg-white max-h-screen overflow-y-auto rounded-lg shadow-sm w-5xl opacity-100 z-50" x-transition:enter="transition ease-in-out duration-250" x-transition:enter-start="scale-50" x-transition:enter-end="scale-100" x-transition:leave="transition ease-in-out duration-250" x-transition:leave-end="scale-50">
+
+                <!-- Modal header -->
+                <div class="flex items-center justify-between border-b rounded-t border-gray-200 p-8 pb-6">
+                    <h3 class="text-lg font-semibold text-gray-900">
+                        Gambar Kampus
+                    </h3>
+                    <button @click="state = false" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center transition-all hover:cursor-pointer">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="p-8 pt-0">
+                    <div class="carousel carousel-vertical rounded-box h-[500px] w-full">
+                        @foreach ($campusImages as $image)
+                            <div class="carousel-item h-full">
+                                <img src="{{ asset('storage/' . $image) }}" alt="campus" class="w-full object-cover rounded-md">
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     {{-- Toast --}}
-    <div x-data="{ state: false, 'status': '', 'message': ''}"
-         x-show="state"
-         @toast.window="state = true; status = $event.detail.status; message = $event.detail.message; setTimeout( () => state = false, 3000 )"
-         :class="{'bg-green-100': status === 'success', 'bg-red-100': status === 'fail'}"
-         x-transition:enter="transform transition ease-in-out duration-1000"
-         x-transition:enter-start="-translate-x-full opacity-0"
-         x-transition:enter-end="translate-x-0 opacity-100"
-         x-transition:leave="transform transition ease-in-out duration-1000"
-         x-transition:leave-start="opacity-100"
-         x-transition:leave-end="-translate-x-5/4 opacity-0"
-         class="fixed bottom-5 left-5 flex w-fit z-30 p-4 rounded-md shadow-lg items-center gap-4">
+    <div x-data="{ state: false, 'status': '', 'message': '' }" x-show="state" @toast.window="state = true; status = $event.detail.status; message = $event.detail.message; setTimeout( () => state = false, 3000 )" :class="{ 'bg-green-100': status === 'success', 'bg-red-100': status === 'fail' }" x-transition:enter="transform transition ease-in-out duration-1000" x-transition:enter-start="-translate-x-full opacity-0" x-transition:enter-end="translate-x-0 opacity-100" x-transition:leave="transform transition ease-in-out duration-1000" x-transition:leave-start="opacity-100" x-transition:leave-end="-translate-x-5/4 opacity-0" class="fixed bottom-5 left-5 flex w-fit z-30 p-4 rounded-md shadow-lg items-center gap-4">
 
         {{-- Success Logo --}}
         <div :class="status === 'success' ? 'inline-flex' : 'hidden'" class="items-center justify-center shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">

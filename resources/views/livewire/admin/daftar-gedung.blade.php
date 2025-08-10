@@ -201,10 +201,52 @@
                             <td class="px-6 py-4">
                                 {{ $building->area }}
                             </td>
+                            <td class="px-6 py-4">
+                                <button wire:click='view({{ $building->id }})' type="button" class="transition-all cursor-pointer hover:text-blue-500 hover:bg-gray-300 rounded-xl p-2 mx-auto" data-tip="Gambar">
+                                    <i class="fa-solid fa-images"></i>
+                                </button>
+                                @if ($building->admin_id === Auth::id())
+                                    <a href="{{ route('edit-gedung', $building->id) }}" wire:navigate class="transition-all cursor-pointer hover:text-yellow-900 hover:bg-yellow-200 rounded-xl p-2 mx-auto">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </a>
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
+        </div>
+    </div>
+
+    <!-- View modal -->
+    <div x-data="{ state: false }" @view.window="state = !state" @keydown.window.escape="state = false">
+        <div x-show="state" class="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 flex items-center justify-center" x-transition:enter="transition ease-in-out duration-250" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in-out duration-250" x-transition:leave-end="opacity-0">
+            <div x-show="state" @click.outside="state = false" class="relative bg-white max-h-screen overflow-y-auto rounded-lg shadow-sm w-5xl opacity-100 z-50" x-transition:enter="transition ease-in-out duration-250" x-transition:enter-start="scale-50" x-transition:enter-end="scale-100" x-transition:leave="transition ease-in-out duration-250" x-transition:leave-end="scale-50">
+
+                <!-- Modal header -->
+                <div class="flex items-center justify-between border-b rounded-t border-gray-200 p-8 pb-6">
+                    <h3 class="text-lg font-semibold text-gray-900">
+                        Gambar Gedung
+                    </h3>
+                    <button @click="state = false" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center transition-all hover:cursor-pointer">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="p-8 pt-0 tooltip tooltip-accent w-full" data-tip="Scroll untuk melihat">
+                    <div class="carousel carousel-vertical rounded-box h-[500px] w-full">
+                        @foreach ($buildingImages as $image)
+                            <div class="carousel-item h-full">
+                                <img src="{{ asset('storage/' . $image) }}" alt="campus" class="w-full object-cover rounded-md">
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

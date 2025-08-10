@@ -17,12 +17,13 @@ class DaftarGedung extends Component
 {
     use WithPagination;
     use WithFileUploads;
+    public Building $selectedBuilding;
 
     public $name, $address, $floor, $area, $description, $campus_id, $slug;
-    public $status = 0;
     public $search = '';
     public $campuses = [];
     public $images_path = [];
+    public $buildingImages = [];
 
     public function rules()
     {
@@ -31,10 +32,9 @@ class DaftarGedung extends Component
             'address' => 'required',
             'floor' => 'required|integer',
             'area' => 'required|integer',
-            'status' => 'required',
             'description' => 'required',
             'campus_id' => 'required',
-            'slug' => 'required|unique:buildings,slug',
+            // 'slug' => 'required|unique:buildings,slug',
             'images_path.*' => 'required|file|image',
             'images_path' => 'required|array',
         ];
@@ -68,7 +68,7 @@ class DaftarGedung extends Component
         }
 
         $validated['admin_id'] = Auth::id();
-        $validated['slug'] = $this->slug;
+        // $validated['slug'] = $this->slug;
         $created = Update::create([
             'admin_id' => Auth::id(),
             'type' => 'new',
@@ -101,6 +101,13 @@ class DaftarGedung extends Component
     {
         $this->campuses = Campus::all();
         $this->campus_id = $this->campuses->first()->id;
+    }
+
+    public function view($id)
+    {
+        $this->selectedBuilding = Building::find($id);
+        $this->buildingImages = $this->selectedBuilding->images_path;
+        $this->dispatch('view');
     }
 
     public function render()

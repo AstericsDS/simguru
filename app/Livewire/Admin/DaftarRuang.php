@@ -16,12 +16,13 @@ use Livewire\WithFileUploads;
 class DaftarRuang extends Component
 {
     use WithFileUploads;
-
+    public Room $selectedRoom;
     public $name, $campus_id, $building_id, $floor, $capacity, $category, $area, $description, $slug;
     public $buildings = [];
     public $campuses = [];
     public $search = '';
     public $images_path = [];
+    public $room_images = [];
 
     public function rules()
     {
@@ -33,7 +34,7 @@ class DaftarRuang extends Component
             'capacity' => 'required|integer',
             'category' => 'required',
             'area' => 'required|integer',
-            'slug' => 'required|unique:rooms,slug',
+            // 'slug' => 'required|unique:rooms,slug',
             'description' => 'required',
             'images_path.*' => 'required|file|image',
             'images_path' => 'required|array',
@@ -61,7 +62,6 @@ class DaftarRuang extends Component
     public function save()
     {
         $validated = collect($this->validate());
-        $validated = $validated->except('campus_id');
 
         $paths = [];
         if ($this->images_path && is_array($this->images_path)) {
@@ -71,7 +71,7 @@ class DaftarRuang extends Component
             $validated['images_path'] = $paths;
         }
         $validated['admin_id'] = Auth::id();
-        $validated['slug'] = $this->slug;
+        // $validated['slug'] = $this->slug;
         $created = Update::create([
             'admin_id' => Auth::id(),
             'type' => 'new',
@@ -127,6 +127,12 @@ class DaftarRuang extends Component
         }
     }
 
+    public function view($id)
+    {
+        $this->selectedRoom = Room::find($id);
+        $this->room_images = $this->selectedRoom->images_path;
+        $this->dispatch('view');
+    }
 
     public function render()
     {

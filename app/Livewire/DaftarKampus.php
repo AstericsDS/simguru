@@ -9,20 +9,27 @@ use App\Models\Campus;
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\Layout;
+use Illuminate\Support\Str;
 
 #[Layout('components.layouts.admin.dashboard')]
 class DaftarKampus extends Component
 {
     use WithFileUploads;
 
-    public $name, $address, $contact, $email, $description;
+    public $name, $address, $contact, $email, $description, $slug;
     public $images_path = [];
     public $search = '';
+
+    public function updatedName($value)
+    {
+        $this->slug = Str::slug($value);
+    }
 
     public function rules()
     {
         return [
             'name' => 'required',
+            'slug' => 'required|unique:campuses,slug',
             'address' => 'required',
             'contact' => 'required|min:8',
             'email' => 'required|email',
@@ -59,6 +66,7 @@ class DaftarKampus extends Component
         }
 
         $validated['admin_id'] = Auth::id();
+        $validated['slug'] = $this->slug;
         $created = Update::create([
             'admin_id' => Auth::id(),
             'type' => 'new',

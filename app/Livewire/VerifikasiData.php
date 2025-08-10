@@ -39,10 +39,11 @@ class VerifikasiData extends Component
 
                             // Save moved path
                             $movedPaths[] = $newPath;
-                        } else {
-                            // Handle file not found (optional)
-                            Log::warning("File not found: " . $oldPath);
                         }
+                        // else {
+                        //     // Handle file not found (optional)
+                        //     Log::warning("File not found: " . $oldPath);
+                        // }
                     }
 
                     $data['images_path'] = $movedPaths;
@@ -71,10 +72,11 @@ class VerifikasiData extends Component
 
                             // Save moved path
                             $movedPaths[] = $newPath;
-                        } else {
-                            // Handle file not found (optional)
-                            Log::warning("File not found: " . $oldPath);
                         }
+                        // else {
+                        //     // Handle file not found (optional)
+                        //     Log::warning("File not found: " . $oldPath);
+                        // }
                     }
 
                     $data['images_path'] = $movedPaths;
@@ -103,10 +105,11 @@ class VerifikasiData extends Component
 
                             // Save moved path
                             $movedPaths[] = $newPath;
-                        } else {
-                            // Handle file not found (optional)
-                            Log::warning("File not found: " . $oldPath);
                         }
+                        // else {
+                        //     // Handle file not found (optional)
+                        //     Log::warning("File not found: " . $oldPath);
+                        // }
                     }
 
                     $data['images_path'] = $movedPaths;

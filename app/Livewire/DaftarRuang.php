@@ -17,7 +17,7 @@ class DaftarRuang extends Component
 {
     use WithFileUploads;
 
-    public $name, $campus_id, $building_id, $floor, $capacity, $category, $area, $description;
+    public $name, $campus_id, $building_id, $floor, $capacity, $category, $area, $description, $slug;
     public $buildings = [];
     public $campuses = [];
     public $search = '';
@@ -33,6 +33,7 @@ class DaftarRuang extends Component
             'capacity' => 'required|integer',
             'category' => 'required',
             'area' => 'required|integer',
+            'slug' => 'required|unique:rooms,slug',
             'description' => 'required',
             'images_path.*' => 'required|file|image',
             'images_path' => 'required|array',
@@ -70,6 +71,7 @@ class DaftarRuang extends Component
             $validated['images_path'] = $paths;
         }
         $validated['admin_id'] = Auth::id();
+        $validated['slug'] = $this->slug;
         $created = Update::create([
             'admin_id' => Auth::id(),
             'type' => 'new',

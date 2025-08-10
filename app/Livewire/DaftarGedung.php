@@ -18,7 +18,7 @@ class DaftarGedung extends Component
     use WithPagination;
     use WithFileUploads;
 
-    public $name, $address, $floor, $area, $description, $campus_id;
+    public $name, $address, $floor, $area, $description, $campus_id, $slug;
     public $status = 0;
     public $search = '';
     public $campuses = [];
@@ -34,6 +34,7 @@ class DaftarGedung extends Component
             'status' => 'required',
             'description' => 'required',
             'campus_id' => 'required',
+            'slug' => 'required|unique:buildings,slug',
             'images_path.*' => 'required|file|image',
             'images_path' => 'required|array',
         ];
@@ -67,6 +68,7 @@ class DaftarGedung extends Component
         }
 
         $validated['admin_id'] = Auth::id();
+        $validated['slug'] = $this->slug;
         $created = Update::create([
             'admin_id' => Auth::id(),
             'type' => 'new',

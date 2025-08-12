@@ -30,12 +30,12 @@ class DaftarGedung extends Component
     {
         return [
             'name' => 'required',
+            'slug' => 'required|unique:buildings,slug',
             'address' => 'required',
             'floor' => 'required|integer',
             'area' => 'required|integer',
             'description' => 'required',
             'campus_id' => 'required',
-            // 'slug' => 'required|unique:buildings,slug',
             'images_path.*' => 'required|file|image',
             'images_path' => 'required|array',
         ];
@@ -74,7 +74,7 @@ class DaftarGedung extends Component
         }
 
         $validated['admin_id'] = Auth::id();
-        // $validated['slug'] = $this->slug;
+        $validated['slug'] = $this->slug;
         $created = Update::create([
             'admin_id' => Auth::id(),
             'type' => 'new',

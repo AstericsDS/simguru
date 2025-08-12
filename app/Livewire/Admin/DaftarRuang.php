@@ -29,13 +29,13 @@ class DaftarRuang extends Component
     {
         return [
             'name' => 'required',
+            'slug' => 'required|unique:rooms,slug',
             'campus_id' => 'required',
             'building_id' => 'required',
             'floor' => 'required',
             'capacity' => 'required|integer',
             'category' => 'required',
             'area' => 'required|integer',
-            // 'slug' => 'required|unique:rooms,slug',
             'description' => 'required',
             'images_path.*' => 'required|file|image',
             'images_path' => 'required|array',
@@ -77,7 +77,7 @@ class DaftarRuang extends Component
             $validated['images_path'] = $paths;
         }
         $validated['admin_id'] = Auth::id();
-        // $validated['slug'] = $this->slug;
+        $validated['slug'] = $this->slug;
         $created = Update::create([
             'admin_id' => Auth::id(),
             'type' => 'new',

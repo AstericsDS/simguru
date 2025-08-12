@@ -10,6 +10,8 @@ use App\Livewire\Kampus;
 use App\Livewire\Content;
 use App\Livewire\Homepage;
 use App\Livewire\ListKampus;
+use App\Livewire\ListGedung;
+use App\Livewire\ListRuang;
 use App\Livewire\TambahRuang;
 use App\Livewire\ModelBinding;
 use App\Livewire\TambahGedung;

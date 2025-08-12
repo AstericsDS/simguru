@@ -8,6 +8,8 @@ use Livewire\Component;
 use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Auth;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Str;
+
 
 #[Layout('components.layouts.admin.dashboard')]
 class EditKampus extends Component
@@ -15,11 +17,12 @@ class EditKampus extends Component
     use WithFileUploads;
     public Campus $campus;
     public Update $update;
-    public $name, $address, $contact, $email, $description;
+    public $name, $address, $contact, $email, $description, $slug;
     public $images_path = [];
     public $new_images = [];
     public $new_data = [];
     public bool $is_pending;
+
     private function sameImages()
     {
         $existing = array_map('strval', $this->campus->images_path ?? []);
@@ -39,6 +42,7 @@ class EditKampus extends Component
         }
         $this->new_data = json_decode($this->update->new_data, true);
         $this->name = $this->new_data['name'] ?? $campus->name;
+        $this->slug = $this->new_data['slug'] ?? $campus->slug;
         $this->address = $this->new_data['address'] ?? $campus->address;
         $this->contact = $this->new_data['contact'] ?? $campus->contact;
         $this->email = $this->new_data['email'] ?? $campus->email;
@@ -51,6 +55,7 @@ class EditKampus extends Component
     {
         return [
             'name' => 'required',
+            'slug' => 'required|unique:campuses,slug,',
             'address' => 'required',
             'contact' => 'required|min:8',
             'email' => 'required|email',
@@ -81,6 +86,10 @@ class EditKampus extends Component
         $this->new_images = []; // reset upload field
     }
 
+    public function updatedName($value)
+    {
+        $this->slug = Str::slug($value);
+    }
 
     public function save()
     {
@@ -99,6 +108,7 @@ class EditKampus extends Component
         $validated = $this->validate();
         $validated['images_path'] = $finalPaths;
         $validated['admin_id'] = Auth::id();
+        $validated['slug'] = $this->slug;
 
         $updated = $this->update->update([
             'old_data' => $this->update->new_data,

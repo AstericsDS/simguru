@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Storage;
 
 class VerifikasiData extends Component
 {
+    public Update $selectedUpdate;
+    public $images_path = [];
     public function accept($id)
     {
         $update = Update::find($id);
@@ -225,6 +227,10 @@ class VerifikasiData extends Component
     public function sortDate()
     {
         $this->sort = $this->sort === 'asc' ? 'desc' : 'asc';
+    }
+    public function view($id)
+    {
+
     }
     public function render()
     {

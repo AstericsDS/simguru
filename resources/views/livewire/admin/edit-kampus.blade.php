@@ -50,7 +50,7 @@
 
                 </div>
 
-                <div class="w-full flex flex-col gap-2">
+                <div class="w-full flex flex-col gap-2 my-auto">
                     <div class="carousel w-full rounded-md">
                         @foreach ($images_path as $image)
                             <div id="item{{ $loop->iteration }}" class="carousel-item w-full hover:brightness-75 transition-all duration-300 group relative {{count($images_path) <= 1 ? 'cursor-not-allowed' : 'cursor-pointer'}}" {{ count($images_path) > 1 ? "wire:click=removeImage($loop->index)" : '' }}>

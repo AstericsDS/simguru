@@ -193,7 +193,7 @@
                 </div>
 
                 <!-- Modal body -->
-                <div class="p-8 pt-0">
+                <div class="p-8 pt-0 tooltip tooltip-accent" data-tip="Scroll untuk melihat gambar">
                     <div class="carousel carousel-vertical rounded-box h-[500px] w-full">
                         @foreach ($campusImages as $image)
                             <div class="carousel-item h-full">

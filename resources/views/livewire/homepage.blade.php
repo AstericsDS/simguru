@@ -54,7 +54,7 @@
                     <h2 class="card-title">{{ $building->name }}</h2>
                     <p class="text-xs not-lg:hidden">{{ $building->address }}</p>
                     <div class="card-actions">
-                        <a href="/gedung"
+                        <a href="/gedung/{{ $building->slug }}"
                             class="btn bg-white text-black w-full hover:bg-gray-200 rounded-lg outline-none">Details</a>
                     </div>
                 </div>

@@ -21,7 +21,7 @@
                             <img src="{{ asset('logos/peminjaman.png') }}" alt="sidebar" class="w-5 mr-5 lg:hidden">
                         </label>
                         <img src="{{ asset('logos/unj2.png') }}" alt="Logo UNJ" class="w-7 sm:w-10 lg:w-14">
-                        <a href="/" class="text-semibold ml-3 not-lg:text-xs">
+                        <a href="/" class="font-semibold ml-3 not-lg:text-xs">
                             SISTEM INFORMASI GEDUNG DAN RUANG
                         </a>
                 </div>
@@ -38,6 +38,9 @@
                         </button>
                         <button class="btn btn-ghost" onClick="document.getElementById('statistik').scrollIntoView();">
                             Statistik
+                        </button>
+                        <button class="btn btn-ghost" onClick="document.getElementById('statistik').scrollIntoView();">
+                            Jadwal Ruangan
                         </button>
                     </div>
                     {{-- notification and profile --}}

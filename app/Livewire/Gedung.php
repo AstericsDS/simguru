@@ -8,11 +8,17 @@ use Livewire\Component;
 
 class Gedung extends Component
 {
+    public Building $building;
+
+    public function mount(Building $building)
+    {
+        $this->building = $building;
+    }
+
     public function render()
     {
-        $rooms = Room::all();
         return view('livewire.gedung',[
-            'buildings' => $rooms,
+            'building' => $this->building,
         ]);
     }
 }

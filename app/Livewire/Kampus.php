@@ -8,12 +8,15 @@ use Livewire\Component;
 
 class Kampus extends Component
 {
-    public string $campus;
-    public Campus $kampus;
+    public Campus $campus;
 
-    public function mount()
+    public function mount(Campus $campus)
     {
-        $this->kampus = Campus::where('slug', $this->campus)->firstOrFail();
+        $this->campus = $campus;
+    }
+
+    public function back(){
+        return back();
     }
 
     public function render()
@@ -21,7 +24,7 @@ class Kampus extends Component
         $buildings = Building::all();
         return view('livewire.kampus', [
             'buildings' => $buildings,
-            'campus' => $this->kampus,
+            'campus' => $this->campus,
         ]);
     }
 }

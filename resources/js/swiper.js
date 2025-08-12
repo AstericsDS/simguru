@@ -3,7 +3,7 @@ import 'swiper/css/bundle';
 
 const swiper = new Swiper('.swiper', {
     autoplay: {
-        delay: 3000,
+        delay: 5000,
     },
     effect: "coverflow",
     centeredSlides: true,

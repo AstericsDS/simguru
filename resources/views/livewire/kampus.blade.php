@@ -1,7 +1,8 @@
+{{-- {{ dd($campus) }} --}}
 <div class="w-full px-5 lg:px-40">
     {{-- Breadcrumbs --}}
     <div class="flex flex-col mt-5">
-        <a href="/" class="size-5"><img src="{{ asset('logos/back-svgrepo-com.svg') }}" alt=""></a>
+        <a href="/" class="text-unj flex"><img src="{{ asset('logos/back-svgrepo-com.svg') }}" class="size-5" alt=""> kembali ke list kampus</a>
         <div class="breadcrumbs text-sm text-[#006569] py-5">
             <ul>
                 <li><a href="/kampus/{{ $campus->slug }}">{{ $campus->name }}</a></li>
@@ -9,23 +10,36 @@
         </div>
     </div>
     {{-- Building Details --}}
-    <div class="grid grid-flow-col-dense grid-rows-3 gap-4 text-[#006569] justify-items-center">
-        <div class="row-span-3 flex items-center justify-center lg:mr-10">
-            <div class="swiper">
-                <div class="swiper-wrapper">
-                    @foreach ($campus->images_path as $image)
-
-                    <div class="swiper-slide"><img src="{{ $image }}" alt="Kampus A"></div>
-
-                    @endforeach
+    <div class="flex gap-4 text-unj justify-items-center">
+        <div class="flex items-center justify-center lg:mr-10">
+            {{-- Swiper Slider --}}
+            @if (is_null($campus->images_path))
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><img src="{{ asset('backgrounds/DUMMY.png') }}" alt="{{ $campus->name }}"></div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-scrollbar"></div>
                 </div>
-                <div class="swiper-pagination"></div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-scrollbar"></div>
-            </div>
+            @else
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        @foreach ($campus->images_path as $image)
+                            <div class="swiper-slide"><img src="{{ asset('storage/' . $image) }}" alt="{{ $campus->name }}"></div>
+                        @endforeach
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-scrollbar"></div>
+                </div>
+            @endif
+            {{-- End of Swiper Slider --}}
         </div>
-        <div class="row-span-3 not-lg:hidden">
+        <div class="not-lg:hidden">
             <div class="font-bold text-4xl mb-7">{{ $campus->name }}</div>
             <div class="grid grid-flow-row gap-3 font-semibold">
                 <div class="grid grid-cols-[150px_10px_auto]">
@@ -82,22 +96,32 @@
         </div>
     </div>
     {{-- Gedung Box --}}
-    <div class="grid lg:grid-cols-4 gap-3 mt-12">
-        <div class="card bg-base-100 shadow-sm">
-            <figure>
-                <img src="backgrounds/unj_bersih.jpeg" alt="Kampus_A_UNJ" />
-            </figure>
-            <div class="card-body items-center text-center">
-                <h2 class="card-title">Gedung Dewi Sartika</h2>
-                <p class="text-xs not-lg:hidden">Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota
-                    Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220</p>
-                <div class="card-actions">
-                    <a href="/gedung"
-                        class="btn bg-white text-black w-full hover:bg-gray-200 rounded-lg outline-none">Details</a>
-                </div>
-            </div>
-        </div>
 
+    <div class="grid lg:grid-cols-4 gap-3 mt-12">
+        @if (!is_null($buildings))
+            @foreach ($buildings as $building)
+                <div class="card bg-unj shadow-sm">
+                    <figure>
+                        @if (is_null($building->images_path))
+                            <img src="{{ asset('backgrounds/unj_bersih.jpeg') }}" alt="Kampus_A_UNJ" />
+                        @else
+                            <img src="{{ Storage::get($building->images_path[0]) }}" alt="Kampus_A_UNJ" />
+                        @endif
+                    </figure>
+                    <div class="card-body items-center text-center">
+                        <h2 class="card-title">{{ $building->name }}</h2>
+                        <p class="text-xs not-lg:hidden">Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo
+                            Gadung,
+                            Kota
+                            Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220</p>
+                        <div class="card-actions">
+                            <a href="/gedung"
+                                class="btn bg-white text-black w-full hover:bg-gray-200 rounded-lg outline-none">Details</a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        @endif
         {{-- Secondary Design Card View --}}
 
         {{-- <a href="/kampus">

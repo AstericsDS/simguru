@@ -11,6 +11,7 @@ use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Str;
 
 #[Layout('components.layouts.admin.dashboard')]
 class DaftarRuang extends Component
@@ -56,6 +57,11 @@ class DaftarRuang extends Component
             'images_path.required' => 'Foto harus diupload',
             'images_path.image' => 'Foto harus berupa gambar',
         ];
+    }
+
+    public function updatedName($value)
+    {
+        $this->slug = Str::slug($value);
     }
 
     public function save()

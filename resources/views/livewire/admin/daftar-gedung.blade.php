@@ -60,7 +60,7 @@
                         <div class="grid gap-4 mb-4 grid-cols-2">
                             <div class="col-span-2">
                                 <label for="name" class="block mb-2 text-sm font-medium">Nama</label>
-                                <input wire:model="name" type="text" id="name" class="bg-gray-50 border focus:outline-none focus:ring-unj transition-all text-gray-900 text-sm rounded-lg block w-full p-2.5 {{ $errors->has('name') ? 'border-red-500' : 'border-gray-300' }}">
+                                <input wire:model.live="name" type="text" id="name" class="bg-gray-50 border focus:outline-none focus:ring-unj transition-all text-gray-900 text-sm rounded-lg block w-full p-2.5 {{ $errors->has('name') ? 'border-red-500' : 'border-gray-300' }}">
                                 @error('name')
                                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                                 @enderror

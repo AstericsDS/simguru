@@ -23,7 +23,7 @@
         @foreach ($campuses as $campus)
             <div class="card bg-unj shadow-sm w-xs">
                 <figure>
-                    <img src="backgrounds/unj_bersih.jpeg" alt="Kampus_A_UNJ" />
+                    <img src="{{ asset('storage/' . $campus->images_path[0]) }}" alt="Kampus_A_UNJ" />
                 </figure>
                 <div class="card-body items-center text-center">
                     <h2 class="card-title">{{ $campus->name }}</h2>
@@ -48,7 +48,7 @@
         @foreach ($buildings as $building)
             <div class="card bg-unj shadow-sm w-xs">
                 <figure>
-                    <img src="backgrounds/unj_bersih.jpeg" alt="Kampus_A_UNJ" />
+                    <img src="{{ asset('storage/' . $building->images_path[0]) }}" alt="Kampus_A_UNJ" />
                 </figure>
                 <div class="card-body items-center text-center">
                     <h2 class="card-title">{{ $building->name }}</h2>

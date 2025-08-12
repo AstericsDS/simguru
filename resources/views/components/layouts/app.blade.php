@@ -9,7 +9,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="min-h-screen overflow-x-hidden text-balance bg-fixed bg-[url(/public/backgrounds/watermark.jpeg)] bg-cover">
+<body class="min-h-screen overflow-x-hidden text-balance bg-fixed bg-white bg-cover">
     <div class="drawer min-h-screen">
         {{-- TOGGLE DRAWER (drawer buat responsive) --}}
         <input id="profile-drawer" type="checkbox" class="drawer-toggle">

@@ -9,6 +9,7 @@ use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use App\Models\Update;
 use Livewire\Attributes\Layout;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -54,6 +55,11 @@ class DaftarGedung extends Component
             'images_path.required' => 'Foto harus diupload',
             'images_path.image' => 'Foto harus berupa gambar',
         ];
+    }
+
+    public function updatedName($value)
+    {
+        $this->slug = Str::slug($value);
     }
 
     public function save()

@@ -91,6 +91,7 @@
                 <li><button onClick="document.getElementById('kampus').scrollIntoView();">Gedung</button></li>
                 <li><button onClick="document.getElementById('kampus').scrollIntoView();">Ruang</button></li>
                 <li><button onClick="document.getElementById('kampus').scrollIntoView();">Statistik</button></li>
+                <li><button onClick="document.getElementById('kampus').scrollIntoView();">Jadwal Ruangan</button></li>
             </ul>
         </div>
     </div>
@@ -98,26 +99,30 @@
         <aside>
             <img src="{{ asset('logos/UNJ22.png') }}" alt="logo unj" class="w-20 lg:w-50">
         </aside>
-        {{-- <nav>
-            <h6 class="footer-title">Services</h6>
-            <a class="link link-hover">Branding</a>
-            <a class="link link-hover">Design</a>
-            <a class="link link-hover">Marketing</a>
-            <a class="link link-hover">Advertisement</a>
+        <nav>
+            <h6 class="footer-title">Tautan Cepat</h6>
+            <a class="link link-hover">Beranda</a>
+            <a class="link link-hover">Panduan</a>
+            <a class="link link-hover">Fasilitas</a>
+            <a class="link link-hover">Pemesanan</a>
+            <a class="link link-hover">Kalender</a>
+            <a class="link link-hover">Kontak</a>
         </nav>
         <nav>
-            <h6 class="footer-title">Company</h6>
-            <a class="link link-hover">About us</a>
-            <a class="link link-hover">Contact</a>
-            <a class="link link-hover">Jobs</a>
-            <a class="link link-hover">Press kit</a>
+            <h6 class="footer-title">Gedung & Ruangan</h6>
+            <a class="link link-hover">Gedung Rektorat</a>
+            <a class="link link-hover">Fakultas Ilmu Pendidikan</a>
+            <a class="link link-hover">Fakultas Teknik</a>
+            <a class="link link-hover">Fakultas Ekonomi</a>
+            <a class="link link-hover">Gedung Serba Guna</a>
+            <a class="link link-hover">Laboratorium</a>
         </nav>
         <nav>
             <h6 class="footer-title">Legal</h6>
             <a class="link link-hover">Terms of use</a>
             <a class="link link-hover">Privacy policy</a>
             <a class="link link-hover">Cookie policy</a>
-        </nav> --}}
+        </nav>
     </footer>
     <div class="text-center bg-unj">Copyright 2025 Pustikom</div>
 </body>

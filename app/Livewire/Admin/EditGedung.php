@@ -9,6 +9,7 @@ use App\Models\Building;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 #[Layout('components.layouts.admin.dashboard')]
 class EditGedung extends Component
@@ -16,7 +17,7 @@ class EditGedung extends Component
     use WithFileUploads;
     public Building $building;
     public Update $update;
-    public $name, $campus_id, $area, $floor, $address, $description;
+    public $name, $campus_id, $area, $floor, $address, $description, $slug;
     public $images_path = [];
     public $new_images = [];
     public $new_data = [];
@@ -55,6 +56,7 @@ class EditGedung extends Component
     {
         return [
             'name' => 'required',
+            'slug' => 'required|unique:buildings,slug,',
             'campus_id' => 'required',
             'area' => 'required|integer',
             'floor' => 'required|integer',
@@ -88,6 +90,11 @@ class EditGedung extends Component
         $this->new_images = []; // reset upload field
     }
 
+    public function updatedName($value)
+    {
+        $this->slug = Str::slug($value);
+    }
+
 
     public function save()
     {
@@ -106,6 +113,7 @@ class EditGedung extends Component
         $validated = $this->validate();
         $validated['images_path'] = $finalPaths;
         $validated['admin_id'] = Auth::id();
+        $validated['slug'] = $this->slug;
 
         $updated = $this->update->update([
             'old_data' => $this->update->new_data,

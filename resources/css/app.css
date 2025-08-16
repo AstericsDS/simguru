@@ -58,3 +58,8 @@
     /* UNJ */
     --color-unj: #006369;
 }
+
+html {
+    scroll-behavior: smooth;
+    outline: 1px solid red;
+}

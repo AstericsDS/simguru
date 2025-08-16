@@ -10,6 +10,8 @@ use App\Livewire\Kampus;
 use App\Livewire\Content;
 use App\Livewire\Homepage;
 use App\Livewire\ListKampus;
+use App\Livewire\ListGedung;
+use App\Livewire\ListRuang;
 use App\Livewire\TambahRuang;
 use App\Livewire\ModelBinding;
 use App\Livewire\TambahGedung;
@@ -57,14 +59,17 @@ Route::get('/login', Login::class)->name('login');
 // Debug API
 Route::get('/form', Form::class)->name('form');
 Route::get('/debug', Debug::class)->name('debug');
-Route::get('/buildings/{building}', ModelBinding::class)->name('model');
+// Route::get('/buildings/{building}', ModelBinding::class)->name('model');
 
 // Public
 Route::get('/', Homepage::class)->name('homepage');
 Route::get('/kampus', ListKampus::class)->name('listKampus');
-Route::get('/kampus/{campus}', Kampus::class)->name('kampus');
-Route::get('/gedung/{building}', Gedung::class)->name('gedung');
-Route::get('/ruang/{room}', Ruang::class)->name('ruang');
+Route::get('/gedung', ListGedung::class)->name('listGedung');
+Route::get('/ruang', ListRuang::class)->name('listRuang');
+// Route::get('/buildings/{building}', ModelBinding::class)->name('model');
+Route::get('/kampus/{campus:slug}', Kampus::class)->name('kampus');
+Route::get('/gedung/{building:slug}', Gedung::class)->name('gedung');
+Route::get('/ruang/{room:slug}', Ruang::class)->name('ruang');
 // Route::get('/admin/tambahgedung', TambahGedung::class)->name('admin.tambah-gedung');
 // Route::get('/admin/edit', EditKampus::class)->name('edit-kampus');
 // Route::get('/admin/dashboard', Dashboard::class)->name('admin.dashboard');

@@ -1,10 +1,10 @@
-<div class="flex flex-col w-full">
+<div class="flex flex-col min-w-full">
     {{-- Hero --}}
     <div
         class="flex flex-col bg-[url(/public/backgrounds/homepage.png)] bg-cover bg-fixed min-h-screen bg-center justify-center items-center gap-5">
         <img src="{{ asset('logos/UNJ22.png') }}" alt="logo unj" class="w-60">
         <h1 class=" text-2xl lg:text-6xl text-white text-wrap w-3/7 text-center font-semibold">
-            Sistem Informasi Manajemen Gedung dan Ruang
+            SISTEM INFORMASI GEDUNG DAN RUANG
         </h1>
         {{-- login button --}}
         <div class="btn btn-xl w-34 bg-unj border-none shadow-none">
@@ -16,20 +16,20 @@
     <div class="text-black text-center flex flex-col gap-3 pt-30" id="kampus">
         <h1 class="text-4xl font-semibold">Universitas Negeri Jakarta Multi Kampus</h1>
         <hr class="w-15 font-bold mx-auto border-gray-500 border">
-        <p class="text-gray-500">isinya kampus-kampus di unj</p>
+        <p class="text-gray-500">Kampus-Kampus UNJ</p>
     </div>
     {{-- card container for campus --}}
-    <div class="flex flex-col lg:flex-row justify-center mt-3 gap-3">
+    <div class="flex flex-wrap justify-center mt-3 gap-3">
         @foreach ($campuses as $campus)
             <div class="card bg-unj shadow-sm w-xs">
                 <figure>
-                    <img src="backgrounds/unj_bersih.jpeg" alt="Kampus_A_UNJ" />
+                    <img src="{{ asset('storage/' . $campus->images_path[0]) }}" alt="Kampus_A_UNJ" />
                 </figure>
                 <div class="card-body items-center text-center">
                     <h2 class="card-title">{{ $campus->name }}</h2>
                     <p class="text-xs not-lg:hidden">{{ $campus->address }}</p>
                     <div class="card-actions">
-                        <a href="/campus/{{ $campus->slug }}"
+                        <a href="/kampus/{{ $campus->slug }}"
                             class="btn bg-white text-black w-full hover:bg-gray-200 rounded-lg outline-none">Details</a>
                     </div>
                 </div>
@@ -44,11 +44,11 @@
         <hr class="w-15 font-bold mx-auto border-gray-500 border">
     </div>
     {{-- card container for campus --}}
-    <div class="flex flex-col lg:flex-row justify-center mt-3 gap-3">
+    <div class="flex flex-wrap justify-center mt-3 gap-3">
         @foreach ($buildings as $building)
             <div class="card bg-unj shadow-sm w-xs">
                 <figure>
-                    <img src="backgrounds/unj_bersih.jpeg" alt="Kampus_A_UNJ" />
+                    <img src="{{ asset('storage/' . $building->images_path[0]) }}" alt="Kampus_A_UNJ" />
                 </figure>
                 <div class="card-body items-center text-center">
                     <h2 class="card-title">{{ $building->name }}</h2>

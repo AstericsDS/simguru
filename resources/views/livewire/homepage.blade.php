@@ -12,6 +12,30 @@
             <a href="/login">login</a>
         </div>
     </div>
+
+    <div class="card card-side bg-unj w-2/3 self-center shadow-sm mt-30 p-5">
+        <figure class="w-150">
+            <img src="{{ asset('backgrounds/unj_bersih.jpeg') }}" alt="kampus" />
+        </figure>
+        <div class="card-body">
+            <h2 class="card-title">SISTEM INFORMASI GEDUNG DAN RUANG</h2>
+            <p>SISTEM INFORMASI GEDUNG DAN RUANG adalah platform yang menyediakan informasi lengkap mengenai gedung dan
+                ruang yang ada di Universitas Negeri Jakarta.</p>
+            <div class="card-actions justify-end">
+                {{-- <button class="btn btn-primary">Watch</button> --}}
+            </div>
+        </div>
+    </div>
+
+    <div class="text-black text-center flex flex-col gap-3 pt-30 lg:px-60" id="jadwal">
+        <h1 class="text-4xl font-semibold">Jadwal Ruangan</h1>
+        <hr class="w-15 font-bold mx-auto border-gray-500 border">
+        {{-- <p class="text-gray-500">Kampus-Kampus UNJ</p> --}}
+    </div>
+
+    @livewire('component.jadwalruangan')
+    <div class="text-black mx-60" id='calendar'></div>
+
     {{-- judul container --}}
     <div class="text-black text-center flex flex-col gap-3 pt-30" id="kampus">
         <h1 class="text-4xl font-semibold">Universitas Negeri Jakarta Multi Kampus</h1>
@@ -19,9 +43,9 @@
         <p class="text-gray-500">Kampus-Kampus UNJ</p>
     </div>
     {{-- card container for campus --}}
-    <div class="flex flex-wrap justify-center mt-3 gap-3 lg:mx-60">
+    <div class="flex flex-wrap justify-center mt-3 gap-3 lg:mx-50">
         @foreach ($campuses as $campus)
-            <div class="card bg-unj shadow-sm w-xs">
+            <div class="card bg-unj shadow-sm w-md">
                 <figure>
                     <img src="{{ asset('storage/' . $campus->images_path[0]) }}" alt="Kampus_A_UNJ" />
                 </figure>
@@ -44,9 +68,9 @@
         <hr class="w-15 font-bold mx-auto border-gray-500 border">
     </div>
     {{-- card container for campus --}}
-    <div class="flex flex-wrap justify-center mt-3 gap-3 lg:mx-60">
+    <div class="flex flex-wrap justify-center mt-3 gap-3 lg:mx-50">
         @foreach ($buildings as $building)
-            <div class="card bg-unj shadow-sm w-xs">
+            <div class="card bg-unj shadow-sm w-md">
                 <figure>
                     <img src="{{ asset('storage/' . $building->images_path[0]) }}" alt="Kampus_A_UNJ" />
                 </figure>
@@ -63,13 +87,14 @@
     </div>
     <button class="btn border-none shadow-none mt-5 self-center rounded-full bg-unj"><a href="/gedung">LIHAT
             GEDUNG</a></button>
-    <div class="text-black text-center flex flex-col gap-3 pt-30" id="gedung">
+    {{-- Ruangan container --}}
+    <div class="text-black text-center flex flex-col gap-3 pt-30" id="ruang">
         <h1 class="text-4xl font-semibold" id="ruang">Ruangan Universitas Negeri Jakarta</h1>
         <hr class="w-15 font-bold mx-auto border-gray-500 border">
     </div>
-    <div class="flex flex-wrap justify-center mt-3 gap-3 lg:mx-60">
+    <div class="flex flex-wrap justify-center mt-3 gap-3 lg:mx-50">
         @foreach ($rooms as $room)
-            <div class="card bg-unj shadow-sm w-xs">
+            <div class="card bg-unj shadow-sm w-md">
                 <figure>
                     <img src="{{ asset('storage/' . $room->images_path[0]) }}" alt="Kampus_A_UNJ" />
                 </figure>
@@ -78,8 +103,29 @@
                     <h1>{{ $room->building->name }}</h1>
                     <h1>{{ $room->description }}</h1>
                     <ul>
-                        <li><img src="{{ asset('logos/gedung.svg') }}" class="size-3.5 inline"> Lantai : {{ $room->floor }}</li>
-                        <li><img src="{{ asset('logos/kapasitas.svg') }}" class="size-3.5 inline"> Kapasitas : {{ $room->capacity }}</li>
+                        <li class="flex gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide lucide-building2-icon lucide-building-2">
+                                <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
+                                <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
+                                <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
+                                <path d="M10 6h4" />
+                                <path d="M10 10h4" />
+                                <path d="M10 14h4" />
+                                <path d="M10 18h4" />
+                            </svg> Lantai :
+                            {{ $room->floor }}</li>
+                        <li class="flex gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide lucide-users-icon lucide-users">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                                <path d="M16 3.128a4 4 0 0 1 0 7.744" />
+                                <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                                <circle cx="9" cy="7" r="4" />
+                            </svg>Kapasitas :
+                            {{ $room->capacity }}</li>
                     </ul>
                     <div class="card-actions">
                         <a href="/gedung/{{ $room->slug }}"
@@ -92,7 +138,8 @@
     <div class="text-black text-center flex flex-col gap-3 pt-30" id="statistik">
         <h1 class="text-4xl font-semibold">Grafik Statistik Informasi Manajemen Gedung dan Ruang</h1>
         <hr class="w-15 font-bold mx-auto border-gray-500 border">
-        <p class="text-gray-500">Berikut adalah Grafik Statistik Informasi Manajemen Gedung dan Ruang Universitas Negeri
+        <p class="text-gray-500">Berikut adalah Grafik Statistik Informasi Manajemen Gedung dan Ruang Universitas
+            Negeri
             Jakarta 2025</p>
         <div class="w-1/2 self-center" id="chart"></div>
     </div>

@@ -3,7 +3,6 @@
 namespace App\Livewire;
 
 use App\Models\Building;
-use App\Models\Room;
 use Livewire\Component;
 
 class Gedung extends Component
@@ -17,8 +16,10 @@ class Gedung extends Component
 
     public function render()
     {
+        $rooms = $this->building->room;
         return view('livewire.gedung',[
             'building' => $this->building,
+            'rooms' => $rooms,
         ]);
     }
 }

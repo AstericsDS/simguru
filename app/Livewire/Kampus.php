@@ -21,7 +21,7 @@ class Kampus extends Component
 
     public function render()
     {
-        $buildings = Building::all();
+        $buildings = $this->campus->building;
         return view('livewire.kampus', [
             'buildings' => $buildings,
             'campus' => $this->campus,

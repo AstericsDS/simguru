@@ -11,6 +11,16 @@ use Illuminate\Support\Facades\Http;
 
 class Homepage extends Component {
 
+    public $selectedCampus, $selectedBuilding, $selectedRoom, $campusbuildings, $buildingrooms;
+
+    public function updatedSelectedCampus($value){
+        $this->campusbuildings = Building::where('campus_id', $value)->get();
+    }
+
+    public function updatedSelectedBuilding($value){
+        $this->buildingrooms = Room::where('building_id', $value)->get();
+    }
+
     public function render(){
         $campuses = Campus::all();
         $buildings = Building::all();
@@ -18,6 +28,8 @@ class Homepage extends Component {
         // Campus::when($this->search !== '', fn(Builder $query) => $query->where('name', 'like', '%' . $this->search . '%'))->get();
         // dd($campuses);
         return view('livewire.homepage', [
+            'campusBuildings' => $this->campusbuildings,
+            'buildingRooms' => $this->buildingrooms,
             'campuses' => $campuses,
             'buildings' => $buildings,
             'rooms' => $rooms

@@ -39,7 +39,7 @@
                         <button class="btn btn-ghost" onClick="document.getElementById('statistik').scrollIntoView();">
                             Statistik
                         </button>
-                        <button class="btn btn-ghost" onClick="document.getElementById('statistik').scrollIntoView();">
+                        <button class="btn btn-ghost" onClick="document.getElementById('jadwal').scrollIntoView();">
                             Jadwal Ruangan
                         </button>
                     </div>

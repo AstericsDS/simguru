@@ -20,6 +20,7 @@ class DaftarKampus extends Component
     public $images_path = [];
     public $search = '';
     public $campusImages = [];
+    public $rejected_campuses = [];
     public Campus $selectedCampus;
 
     public function updatedName($value)
@@ -54,6 +55,11 @@ class DaftarKampus extends Component
             'images_path.required' => 'Foto harus diupload',
             'images_path.image' => 'Foto harus berupa gambar',
         ];
+    }
+
+    public function mount()
+    {
+        $this->rejected_campuses = array_merge($this->rejected_campuses, Update::where('table', 'campuses')->where('status', 'rejected')->pluck('record_id')->toArray());
     }
 
     public function save()

@@ -142,7 +142,16 @@
                     @foreach ($campuses as $campus)
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {{ $campus->name }}
+                                @if (in_array($campus->id, $rejected_campuses))
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-red-500">{{ $campus->name }}</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#F44336" class="size-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+                                        </svg>
+                                    </div>
+                                @else
+                                    {{ $campus->name }}
+                                @endif
                             </th>
                             <td class="px-6 py-4">
                                 {{ $campus->building->count() }}
@@ -161,7 +170,7 @@
                                     <i class="fa-solid fa-images"></i>
                                 </button>
                                 @if ($campus->admin_id === Auth::id())
-                                    <a href="{{route('edit-kampus', $campus->id)}}" wire:navigate class="transition-all cursor-pointer hover:text-yellow-900 hover:bg-yellow-200 rounded-xl p-2 mx-auto">
+                                    <a href="{{ route('edit-kampus', $campus->id) }}" wire:navigate class="transition-all cursor-pointer rounded-xl p-2 mx-auto {{ in_array($campus->id, $rejected_campuses) ? 'text-red-500 hover:bg-red-200 tooltip tooltip-error' : 'hover:text-yellow-900 hover:bg-yellow-200' }}" data-tip="Perubahan ditolak">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a>
                                 @endif

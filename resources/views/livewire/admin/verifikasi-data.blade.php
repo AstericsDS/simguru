@@ -1,5 +1,4 @@
 <div class="text-black">
-    {{-- {{ dd($updates->toArray()) }} --}}
     <h1 class="text-2xl font-medium">Daftar Pengajuan</h1>
     <div class="rounded-md mt-4">
 
@@ -221,11 +220,12 @@
         </div>
 
         {{-- Confirm Modal --}}
-        <div x-data="{ state: false, confirmData: {id: null, action: null} }" @confirm.window="state = !state; confirmData = $event.detail" @keydown.window.escape="state = false">
+        <div x-data="{ state: false, confirmData: { id: null, action: null } }" @confirm.window="state = !state; confirmData = $event.detail" @keydown.window.escape="state = false">
             <div x-show="state" class="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 flex items-center justify-center" x-transition:enter="transition ease-in-out duration-250" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in-out duration-250" x-transition:leave-end="opacity-0">
                 <div x-show="state" @click.outside="state = false" class="relative bg-white max-h-screen overflow-y-auto rounded-lg shadow-sm w-2xl p-2 opacity-100 z-50" x-transition:enter="transition ease-in-out duration-250" x-transition:enter-start="scale-50" x-transition:enter-end="scale-100" x-transition:leave="transition ease-in-out duration-250" x-transition:leave-end="scale-50">
 
-                    <div class="flex flex-col items-center py-8">
+
+                    <div x-show="confirmData.action === 'accept'" class="flex flex-col items-center py-8">
                         <i class="fa-solid fa-circle-exclamation text-gray-500 text-8xl"></i>
                         <p class="pt-6 pb-12 text-2xl text-gray-600">Apakah anda yakin?</p>
                         <div class="flex gap-6">
@@ -233,6 +233,24 @@
                             <button @click="$dispatch('confirm')" class="px-8 py-2 rounded-md border-2 border-red-300  hover:bg-red-400 hover:border-red-400 transition-all cursor-pointer text-xl hover:text-white">Tidak</button>
                         </div>
                     </div>
+
+                    <div x-show="confirmData.action === 'reject'" class="flex flex-col items-center py-8">
+                        <i class="fa-solid fa-circle-exclamation text-gray-500 text-8xl"></i>
+                        <p class="pt-6 pb-12 text-2xl text-gray-600">Apakah anda yakin?</p>
+                        <div class="flex gap-6">
+                            <button @click="$wire.confirm(confirmData.id, confirmData.action)" class="px-8 py-2 rounded-md bg-green-400 hover:bg-green-500 transition-all cursor-pointer text-white text-xl">Iya</button>
+                            <button @click="$dispatch('confirm')" class="px-8 py-2 rounded-md border-2 border-red-300  hover:bg-red-400 hover:border-red-400 transition-all cursor-pointer text-xl hover:text-white">Tidak</button>
+                        </div>
+                        <div class="w-3/4">
+                            <form class="w-full text-center mt-8">
+                                <textarea wire:model.live='reject_reason' class="w-full rounded-md p-4 {{$errors->has('reject_reason') ? 'border-red-500' : ''}}" placeholder="Tulis alasan penolakan"></textarea>
+                            </form>
+                            @error('reject_reason')
+                                <span class="text-red-500">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

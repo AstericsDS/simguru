@@ -11,6 +11,7 @@ use App\Services\UpdateService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Validate;
 
 #[Layout('components.layouts.admin.dashboard')]
 class VerifikasiData extends Component
@@ -21,12 +22,19 @@ class VerifikasiData extends Component
     public $images_path_new = [];
     public $new_data = [];
     public $old_data = [];
+
+    #[Validate('required', message: 'Isi alasan penolakan')]
+    public $reject_reason;
+
     public function confirm($id, $action)
     {
         if ($action === 'reject') {
+            $this->validateOnly('reject_reason');
             $update = Update::findOrFail($id);
             $update->status = 'rejected';
+            $update->reject_reason = $this->reject_reason;
             $update->save();
+            $this->dispatch('confirm');
             return;
         }
 
@@ -241,12 +249,6 @@ class VerifikasiData extends Component
 
         $this->new_data = json_decode($this->selectedUpdate->new_data, true);
         $this->old_data = json_decode($this->selectedUpdate->old_data, true);
-
-        // $this->images_path_new = $newData['images_path'] ?? [];
-        // $this->images_path_old = $oldData['images_path'] ?? [];
-        // $this->parsed_new_data = $this->selectedUpdate->parsed_new_data;
-        // $this->parsed_old_data = $this->selectedUpdate->parsed_old_data;
-        // dd($this->selectedUpdate->toArray());
 
         $this->dispatch('view');
     }

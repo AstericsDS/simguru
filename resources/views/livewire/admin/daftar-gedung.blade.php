@@ -165,29 +165,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{-- Example --}}
-                    {{-- <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Apple MacBook Pro 17"
-                        </th>
-                        <td class="px-6 py-4">
-                            Silver
-                        </td>
-                        <td class="px-6 py-4">
-                            Laptop
-                        </td>
-                        <td class="px-6 py-4">
-                            $2999
-                        </td>
-                        <td class="px-6 py-4 text-right">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                        </td>
-                    </tr> --}}
-
                     @foreach ($buildings as $building)
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {{ $building->name }}
+                                @if (in_array($building->id, $rejected_buildings))
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-red-500">{{ $building->name }}</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#F44336" class="size-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+                                        </svg>
+                                    </div>
+                                @else
+                                    {{ $building->name }}
+                                @endif
                             </th>
                             <td class="px-6 py-4">
                                 {{ $building->campus->name }}
@@ -206,7 +196,7 @@
                                     <i class="fa-solid fa-images"></i>
                                 </button>
                                 @if ($building->admin_id === Auth::id())
-                                    <a href="{{ route('edit-gedung', $building->id) }}" wire:navigate class="transition-all cursor-pointer hover:text-yellow-900 hover:bg-yellow-200 rounded-xl p-2 mx-auto">
+                                    <a href="{{ route('edit-gedung', $building->id) }}" wire:navigate class="transition-all cursor-pointer rounded-xl p-2 mx-auto {{ in_array($building->id, $rejected_buildings) ? 'text-red-500 hover:bg-red-200 tooltip tooltip-error' : 'hover:text-yellow-900 hover:bg-yellow-200' }}" data-tip="Perubahan ditolak">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a>
                                 @endif

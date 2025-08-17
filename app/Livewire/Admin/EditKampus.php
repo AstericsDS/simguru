@@ -55,7 +55,6 @@ class EditKampus extends Component
     {
         return [
             'name' => 'required',
-            'slug' => 'required|unique:campuses,slug,',
             'address' => 'required',
             'contact' => 'required|min:8',
             'email' => 'required|email',
@@ -85,14 +84,9 @@ class EditKampus extends Component
         }
         $this->new_images = []; // reset upload field
     }
-
-    public function updatedName($value)
-    {
-        $this->slug = Str::slug($value);
-    }
-
     public function save()
     {
+        $this->slug = Str::slug($this->name);
         $finalPaths = [];
 
         foreach ($this->images_path as $image) {

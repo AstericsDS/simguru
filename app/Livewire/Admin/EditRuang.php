@@ -11,7 +11,6 @@ use Livewire\WithFileUploads;
 use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Auth;
 use illuminate\Support\Str;
-use function PHPUnit\Framework\returnArgument;
 
 #[Layout('components.layouts.admin.dashboard')]
 class EditRuang extends Component
@@ -73,7 +72,6 @@ class EditRuang extends Component
     {
         return [
             'name' => 'required',
-            'slug' => 'required|unique:rooms,slug,',
             'campus_id' => 'required',
             'building_id' => 'required',
             'floor' => 'required',
@@ -109,14 +107,9 @@ class EditRuang extends Component
         $this->new_images = []; // reset upload field
     }
 
-    public function updatedName($value)
-    {
-        $this->slug = Str::slug($value);
-    }
-
-
     public function save()
     {
+        $this->slug = Str::slug($this->name);
         $finalPaths = [];
 
         foreach ($this->images_path as $image) {

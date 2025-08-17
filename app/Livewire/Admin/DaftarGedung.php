@@ -106,7 +106,7 @@ class DaftarGedung extends Component
     public function mount()
     {
         $this->campuses = Campus::all();
-        $this->campus_id = $this->campuses->first()->id;
+        $this->campus_id = $this->campuses->first()->id ?? null;
     }
 
     public function view($id)

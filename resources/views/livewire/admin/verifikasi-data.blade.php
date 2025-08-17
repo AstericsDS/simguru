@@ -1,4 +1,5 @@
 <div class="text-black">
+    {{-- {{ dd($updates->toArray()) }} --}}
     <h1 class="text-2xl font-medium">Daftar Pengajuan</h1>
     <div class="rounded-md mt-4">
 
@@ -100,350 +101,138 @@
                                         <i class="fa-solid fa-eye"></i>
                                     </button>
                                     @if ($update->status === 'pending')
-                                        <button data-modal-target="popup-accept-{{ $update->id }}" data-modal-toggle="popup-accept-{{ $update->id }}" class="border border-green-500 size-8 rounded-xl cursor-pointer hover:bg-green-500 hover:text-white transition-all">
+                                        <button @click="$dispatch('confirm', {id: {{ $update->id }}, action: 'accept'})" class="border border-green-500 size-8 rounded-xl cursor-pointer hover:bg-green-500 hover:text-white transition-all">
                                             <i class="fa-solid fa-check"></i>
                                         </button>
-                                        <button data-modal-target="popup-reject-{{ $update->id }}" data-modal-toggle="popup-reject-{{ $update->id }}" class="border border-red-500 size-8 rounded-xl cursor-pointer hover:bg-red-500 hover:text-white transition-all">
+                                        <button @click="$dispatch('confirm', {id: {{ $update->id }}, action: 'reject'})" class="border border-red-500 size-8 rounded-xl cursor-pointer hover:bg-red-500 hover:text-white transition-all">
                                             <i class="fa-solid fa-xmark"></i>
                                         </button>
-
-                                        {{-- Accept popup --}}
-                                        <div id="popup-accept-{{ $update->id }}" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                                            <div class="relative p-4 w-full max-w-md max-h-full">
-                                                <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
-                                                    <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white transition-all cursor-pointer" data-modal-hide="popup-accept-{{ $update->id }}">
-                                                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                                                        </svg>
-                                                        <span class="sr-only">Close modal</span>
-                                                    </button>
-                                                    <div class="p-4 md:p-5 text-center">
-                                                        <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                                        </svg>
-                                                        <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Apakah anda yakin menerima entry ini?</h3>
-                                                        <button wire:click='accept({{ $update->id }})' data-modal-hide="popup-accept-{{ $update->id }}" type="button" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center cursor-pointer transition-all">
-                                                            Iya
-                                                        </button>
-                                                        <button data-modal-hide="popup-accept-{{ $update->id }}" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white transition-all cursor-pointer dark:hover:bg-gray-700">Batal</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        {{-- Reject popup --}}
-                                        <div id="popup-reject-{{ $update->id }}" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                                            <div class="relative p-4 w-full max-w-md max-h-full">
-                                                <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
-                                                    <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white transition-all cursor-pointer" data-modal-hide="popup-reject-{{ $update->id }}">
-                                                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                                                        </svg>
-                                                        <span class="sr-only">Close modal</span>
-                                                    </button>
-                                                    <div class="p-4 md:p-5 text-center">
-                                                        <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                                        </svg>
-                                                        <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Apakah anda yakin ingin menolak entry ini?</h3>
-                                                        <button wire:click='reject({{ $update->id }})' data-modal-hide="popup-reject-{{ $update->id }}" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center cursor-pointer transition-all">
-                                                            Iya
-                                                        </button>
-                                                        <button data-modal-hide="popup-reject-{{ $update->id }}" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 cursor-pointer transition-all">Batal</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                     @endif
                                 </div>
                             </td>
                         </tr>
-
-                        {{-- Main modal --}}
-                        <div id="default-modal-{{ $update->id }}" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                            <div class="relative p-4 w-full max-w-7xl max-h-full">
-                                <!-- Modal content -->
-                                <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
-                                    <!-- Modal header -->
-                                    <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
-                                        <h3 class="text-xl text-gray-900 dark:text-white">
-                                            Detail Data
-                                        </h3>
-                                        <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white transition-all cursor-pointer" data-modal-hide="default-modal-{{ $update->id }}">
-                                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                                            </svg>
-                                            <span class="sr-only">Close modal</span>
-                                        </button>
-                                    </div>
-                                    {{-- Modal body --}}
-                                    @switch($update->table)
-                                        @case('rooms')
-                                            @if (isset($update->old_data))
-                                                <div>
-
-                                                </div>
-                                            @endif
-                                            <div class="p-5">
-                                                <h1 class="text-gray-900 text-xl font-semibold">Data Baru</h1>
-
-                                                {{-- Grid --}}
-                                                <div class="grid grid-cols-2 mt-4">
-
-                                                    {{-- Left Side --}}
-                                                    <div class="flex flex-col gap-4">
-                                                        <div class="grid grid-cols-2">
-                                                            <span>Nama</span>
-                                                            <pre>:  {{ $update->parsed_new_data['Nama'] }}</pre>
-                                                        </div>
-                                                        <div class="grid grid-cols-2">
-                                                            <span>Gedung</span>
-                                                            <pre>:  {{ $update->parsed_new_data['Gedung'] }}</pre>
-                                                        </div>
-                                                        <div class="grid grid-cols-2">
-                                                            <span>Lantai</span>
-                                                            <pre>:  {{ $update->parsed_new_data['Lantai'] }}</pre>
-                                                        </div>
-                                                        <div class="grid grid-cols-2">
-                                                            <span>Kapasitas</span>
-                                                            <pre>:  {{ $update->parsed_new_data['Kapasitas'] }}</pre>
-                                                        </div>
-                                                        <div class="grid grid-cols-2">
-                                                            <span>Status</span>
-                                                            <pre>:  {{ $update->parsed_new_data['Kategori'] }}</pre>
-                                                        </div>
-                                                        <div class="">
-                                                            <span>Deskripsi</span>
-                                                            {{-- <pre class="whitespace-pre-wrap">:  {{ $update->parsed_new_data['Deskripsi'] }}</pre> --}}
-                                                        </div>
-                                                        <div class="rounded-md bg-gray-200 p-4 border border-dashed border-gray-900 mr-4 h-full">
-                                                            {{ $update->parsed_new_data['Deskripsi'] }}
-                                                        </div>
-                                                    </div>
-
-                                                    {{-- Carousel --}}
-                                                    <div id="indicators-carousel-{{ $update->id }}" class="relative w-full" data-carousel="static">
-                                                        <!-- Carousel wrapper -->
-                                                        <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
-                                                            @php
-                                                                $data = json_decode($update->new_data, true);
-                                                            @endphp
-
-                                                            @foreach ($data['images_path'] as $image)
-                                                                <div class="hidden duration-700 ease-in-out" data-carousel-item="{{ $loop->index === 0 ? 'active' : '' }}">
-                                                                    <img src="{{ asset('storage/' . $image) }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                                                                </div>
-                                                            @endforeach
-                                                        </div>
-                                                        <!-- Slider indicators -->
-                                                        <div class="absolute z-30 flex -translate-x-1/2 space-x-3 rtl:space-x-reverse bottom-5 left-1/2">
-                                                            @foreach ($data['images_path'] as $image)
-                                                                <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide {{ $loop->iteration }}" data-carousel-slide-to="{{ $loop->index }}"></button>
-                                                            @endforeach
-                                                        </div>
-                                                        <!-- Slider controls -->
-                                                        <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
-                                                            <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                                                                <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4" />
-                                                                </svg>
-                                                                <span class="sr-only">Previous</span>
-                                                            </span>
-                                                        </button>
-                                                        <button type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
-                                                            <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                                                                <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
-                                                                </svg>
-                                                                <span class="sr-only">Next</span>
-                                                            </span>
-                                                        </button>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        @break
-
-                                        @case('campuses')
-                                            @if (isset($update->old_data))
-                                                <div>
-
-                                                </div>
-                                            @endif
-                                            <div class="p-5">
-                                                <h1 class="text-gray-900 text-xl font-semibold">Data Baru</h1>
-
-                                                {{-- Grid --}}
-                                                <div class="grid grid-cols-2 mt-4">
-
-                                                    {{-- Left Side --}}
-                                                    <div class="flex flex-col gap-4">
-                                                        <div class="grid grid-cols-2">
-                                                            <span>Nama</span>
-                                                            <pre>:  {{ $update->parsed_new_data['Nama'] }}</pre>
-                                                        </div>
-                                                        <div class="grid grid-cols-2">
-                                                            <span>Alamat</span>
-                                                            <pre>:  {{ $update->parsed_new_data['Alamat'] }}</pre>
-                                                        </div>
-                                                        <div class="grid grid-cols-2">
-                                                            <span>Kontak</span>
-                                                            <pre>:  {{ $update->parsed_new_data['Kontak'] }}</pre>
-                                                        </div>
-                                                        <div class="grid grid-cols-2">
-                                                            <span>Email</span>
-                                                            <pre>:  {{ $update->parsed_new_data['Email'] }}</pre>
-                                                        </div>
-                                                        <div class="">
-                                                            <span>Deskripsi</span>
-                                                            {{-- <pre class="whitespace-pre-wrap">:  {{ $update->parsed_new_data['Deskripsi'] }}</pre> --}}
-                                                        </div>
-                                                        <div class="rounded-md bg-gray-200 p-4 border border-dashed border-gray-900 mr-4 h-full">
-                                                            {{ $update->parsed_new_data['Deskripsi'] }}
-                                                        </div>
-                                                    </div>
-
-                                                    {{-- Carousel --}}
-                                                    <div id="indicators-carousel-{{ $update->id }}" class="relative w-full" data-carousel="static">
-                                                        <!-- Carousel wrapper -->
-                                                        <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
-                                                            @php
-                                                                $data = json_decode($update->new_data, true);
-                                                            @endphp
-
-                                                            @foreach ($data['images_path'] as $image)
-                                                                <div class="hidden duration-700 ease-in-out" data-carousel-item="{{ $loop->index === 0 ? 'active' : '' }}">
-                                                                    <img src="{{ asset('storage/' . $image) }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                                                                </div>
-                                                            @endforeach
-                                                        </div>
-                                                        <!-- Slider indicators -->
-                                                        <div class="absolute z-30 flex -translate-x-1/2 space-x-3 rtl:space-x-reverse bottom-5 left-1/2">
-                                                            @foreach ($data['images_path'] as $image)
-                                                                <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide {{ $loop->iteration }}" data-carousel-slide-to="{{ $loop->index }}"></button>
-                                                            @endforeach
-                                                        </div>
-                                                        <!-- Slider controls -->
-                                                        <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
-                                                            <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                                                                <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4" />
-                                                                </svg>
-                                                                <span class="sr-only">Previous</span>
-                                                            </span>
-                                                        </button>
-                                                        <button type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
-                                                            <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                                                                <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
-                                                                </svg>
-                                                                <span class="sr-only">Next</span>
-                                                            </span>
-                                                        </button>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        @break
-
-                                        @case('buildings')
-                                            @if (isset($update->old_data))
-                                            @endif
-                                            <div class="p-5">
-                                                <h1 class="text-gray-900 text-xl font-semibold">Data Baru</h1>
-
-                                                {{-- Grid --}}
-                                                <div class="grid grid-cols-2 mt-4">
-
-                                                    {{-- Left Side --}}
-                                                    <div class="flex flex-col gap-4">
-                                                        <div class="grid grid-cols-2">
-                                                            <span>Nama</span>
-                                                            <pre>:  {{ $update->parsed_new_data['Nama'] }}</pre>
-                                                        </div>
-                                                        <div class="grid grid-cols-2">
-                                                            <span>Kampus</span>
-                                                            <pre>:  {{ $update->parsed_new_data['Kampus'] }}</pre>
-                                                        </div>
-                                                        <div class="grid grid-cols-2">
-                                                            <span>Alamat</span>
-                                                            <pre>:  {{ $update->parsed_new_data['Alamat'] }}</pre>
-                                                        </div>
-                                                        <div class="grid grid-cols-2">
-                                                            <span>Luas</span>
-                                                            <pre>:  {{ $update->parsed_new_data['Luas'] }}</pre>
-                                                        </div>
-                                                        <div class="grid grid-cols-2">
-                                                            <span>Lantai</span>
-                                                            <pre>:  {{ $update->parsed_new_data['Lantai'] }}</pre>
-                                                        </div>
-                                                        <div class="">
-                                                            <span>Deskripsi</span>
-                                                            {{-- <pre class="whitespace-pre-wrap">:  {{ $update->parsed_new_data['Deskripsi'] }}</pre> --}}
-                                                        </div>
-                                                        <div class="rounded-md bg-gray-200 p-4 border border-dashed border-gray-900 mr-4 h-full">
-                                                            {{ $update->parsed_new_data['Deskripsi'] }}
-                                                        </div>
-                                                    </div>
-
-                                                    {{-- Carousel --}}
-                                                    <div id="indicators-carousel-{{ $update->id }}" class="relative w-full" data-carousel="static">
-                                                        <!-- Carousel wrapper -->
-                                                        <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
-                                                            @php
-                                                                $data = json_decode($update->new_data, true);
-                                                            @endphp
-
-                                                            @foreach ($data['images_path'] as $image)
-                                                                <div class="hidden duration-700 ease-in-out" data-carousel-item="{{ $loop->index === 0 ? 'active' : '' }}">
-                                                                    <img src="{{ asset('storage/' . $image) }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                                                                </div>
-                                                            @endforeach
-                                                        </div>
-                                                        <!-- Slider indicators -->
-                                                        <div class="absolute z-30 flex -translate-x-1/2 space-x-3 rtl:space-x-reverse bottom-5 left-1/2">
-                                                            @foreach ($data['images_path'] as $image)
-                                                                <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide {{ $loop->iteration }}" data-carousel-slide-to="{{ $loop->index }}"></button>
-                                                            @endforeach
-                                                        </div>
-                                                        <!-- Slider controls -->
-                                                        <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
-                                                            <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                                                                <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4" />
-                                                                </svg>
-                                                                <span class="sr-only">Previous</span>
-                                                            </span>
-                                                        </button>
-                                                        <button type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
-                                                            <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                                                                <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
-                                                                </svg>
-                                                                <span class="sr-only">Next</span>
-                                                            </span>
-                                                        </button>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        @break
-                                    @endswitch
-                                </div>
-                            </div>
-                        </div>
                     @endforeach
                 </tbody>
             </table>
         </div>
 
-        <!-- View modal -->
-        <div x-data="{ state: false }" @view.window="state = !state" @keydown.window.escape="state = false">
+        <!-- View Modal -->
+        <div x-data="{ state: false, active: 'new' }" @view.window="state = !state" @keydown.window.escape="state = false">
             <div x-show="state" class="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 flex items-center justify-center" x-transition:enter="transition ease-in-out duration-250" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in-out duration-250" x-transition:leave-end="opacity-0">
                 <div x-show="state" @click.outside="state = false" class="relative bg-white max-h-screen overflow-y-auto rounded-lg shadow-sm w-5xl opacity-100 z-50" x-transition:enter="transition ease-in-out duration-250" x-transition:enter-start="scale-50" x-transition:enter-end="scale-100" x-transition:leave="transition ease-in-out duration-250" x-transition:leave-end="scale-50">
 
+                    {{-- Content --}}
+                    <div class="px-8 py-6">
 
+                        {{-- Header --}}
+                        <div class="flex items-center justify-between border-b rounded-t border-gray-200">
+                            <div class="flex gap-12">
+                                <button @click="active = 'new'" :class="active === 'new' ? 'text-gray-900' : 'text-gray-500'" class="text-lg font-semibold cursor-pointer transition-all">Data Baru</button>
+                                @if (isset($selectedUpdate->old_data))
+                                    <button @click="active = 'old'" :class="active === 'old' ? 'text-gray-900' : 'text-gray-500'" class="text-lg font-semibold cursor-pointer transition-all">Data Lama</button>
+                                @endif
+                            </div>
+                            <button @click="state = false" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center transition-all hover:cursor-pointer">
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                </svg>
+                                <span class="sr-only">Close modal</span>
+                            </button>
+                        </div>
 
+                        @if (isset($selectedUpdate))
+
+                            {{-- Data --}}
+                            <div class="grid grid-cols-2 mt-6 gap-x-6">
+                                <div x-show="active === 'new'" x-transition:enter.duration.250ms>
+                                    @foreach ($selectedUpdate->parsed_new_data ?? [] as $key => $value)
+                                        @if ($key !== 'Deskripsi')
+                                            <div class="grid grid-cols-2 mb-2">
+                                                <span>{{ $key }}</span>
+                                                <div class="flex gap-4">
+                                                    <span>:</span>
+                                                    <span>{{ $value }}</span>
+                                                </div>
+                                            </div>
+                                        @else
+                                            <div>{{ $key }}</div>
+                                            <div class="rounded-md bg-gray-200 p-4 border border-gray-900 mt-4">{{ $value }}</div>
+                                        @endif
+                                    @endforeach
+                                </div>
+
+                                @if (isset($selectedUpdate->old_data))
+                                    <div x-show="active === 'old'" x-transition:enter.duration.250ms>
+                                        @foreach ($selectedUpdate->parsed_old_data ?? [] as $key => $value)
+                                            @if ($key !== 'Deskripsi')
+                                                <div class="grid grid-cols-2 mb-2">
+                                                    <span>{{ $key }}</span>
+                                                    <div class="flex gap-4">
+                                                        <span>:</span>
+                                                        <span>{{ $value }}</span>
+                                                    </div>
+                                                </div>
+                                            @else
+                                                <div>{{ $key }}</div>
+                                                <div class="rounded-md bg-gray-200 p-4 border border-gray-900 mt-4">{{ $value }}</div>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                @endif
+
+                                {{-- Images --}}
+                                <div x-show="active === 'new'" x-transition:enter.duration.250ms>
+                                    <div class="carousel w-full rounded-md">
+                                        @foreach ($new_data['images_path'] as $image)
+                                            <div id="item{{ $loop->iteration }}" class="carousel-item w-full">
+                                                <img src="{{ asset('storage/' . $image) }}" class="w-full" />
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    <div class="flex w-full justify-center gap-2 py-2">
+                                        @foreach ($new_data['images_path'] as $image)
+                                            <a href="#item{{ $loop->iteration }}" class="btn btn-md">{{ $loop->iteration }}</a>
+                                        @endforeach
+                                    </div>
+                                </div>
+
+                                @if (isset($selectedUpdate->old_data))
+                                    <div x-show="active === 'old'" x-transition:enter.duration.250ms>
+                                        <div class="carousel w-full rounded-md">
+                                            @foreach ($old_data['images_path'] as $image)
+                                                <div id="item{{ $loop->iteration }}" class="carousel-item w-full">
+                                                    <img src="{{ asset('storage/' . $image) }}" class="w-full" />
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        <div class="flex w-full justify-center gap-2 py-2">
+                                            @foreach ($old_data['images_path'] as $image)
+                                                <a href="#item{{ $loop->iteration }}" class="btn btn-md">{{ $loop->iteration }}</a>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
+                        @endif
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- Confirm Modal --}}
+        <div x-data="{ state: false, confirmData: {id: null, action: null} }" @confirm.window="state = !state; confirmData = $event.detail" @keydown.window.escape="state = false">
+            <div x-show="state" class="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 flex items-center justify-center" x-transition:enter="transition ease-in-out duration-250" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in-out duration-250" x-transition:leave-end="opacity-0">
+                <div x-show="state" @click.outside="state = false" class="relative bg-white max-h-screen overflow-y-auto rounded-lg shadow-sm w-2xl p-2 opacity-100 z-50" x-transition:enter="transition ease-in-out duration-250" x-transition:enter-start="scale-50" x-transition:enter-end="scale-100" x-transition:leave="transition ease-in-out duration-250" x-transition:leave-end="scale-50">
+
+                    <div class="flex flex-col items-center py-8">
+                        <i class="fa-solid fa-circle-exclamation text-gray-500 text-8xl"></i>
+                        <p class="pt-6 pb-12 text-2xl text-gray-600">Apakah anda yakin?</p>
+                        <div class="flex gap-6">
+                            <button @click="$wire.confirm(confirmData.id, confirmData.action); state = false" class="px-8 py-2 rounded-md bg-green-400 hover:bg-green-500 transition-all cursor-pointer text-white text-xl">Iya</button>
+                            <button @click="$dispatch('confirm')" class="px-8 py-2 rounded-md border-2 border-red-300  hover:bg-red-400 hover:border-red-400 transition-all cursor-pointer text-xl hover:text-white">Tidak</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -455,24 +244,3 @@
     </div>
 
 </div>
-
-@script
-    <script>
-        Livewire.hook('commit', ({
-            component,
-            commit,
-            respond,
-            succeed,
-            fail
-        }) => {
-            succeed(({
-                snapshot,
-                effect
-            }) => {
-                setTimeout(() => {
-                    initFlowbite();
-                }, 100); // Adjust the delay as needed
-            })
-        })
-    </script>
-@endscript

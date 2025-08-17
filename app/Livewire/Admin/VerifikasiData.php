@@ -10,14 +10,26 @@ use App\Models\Building;
 use App\Services\UpdateService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Livewire\Attributes\Layout;
 
-
+#[Layout('components.layouts.admin.dashboard')]
 class VerifikasiData extends Component
 {
     public Update $selectedUpdate;
-    public $images_path = [];
-    public function accept($id)
+    public $parsed_new_data = [];
+    public $images_path_old = [];
+    public $images_path_new = [];
+    public $new_data = [];
+    public $old_data = [];
+    public function confirm($id, $action)
     {
+        if ($action === 'reject') {
+            $update = Update::findOrFail($id);
+            $update->status = 'rejected';
+            $update->save();
+            return;
+        }
+
         $update = Update::find($id);
         $data = json_decode($update->new_data, true);
 
@@ -71,7 +83,7 @@ class VerifikasiData extends Component
                         }
                     }
                     $data['images_path'] = $movedPaths;
-                    
+
                     $newCampus = Campus::create($data);
                     $update->record_id = $newCampus->id;
                     $update->new_data = $data;
@@ -211,12 +223,6 @@ class VerifikasiData extends Component
         $update->approved_by = Auth::id();
         $update->save();
     }
-    public function reject($id)
-    {
-        $update = Update::findOrFail($id);
-        $update->status = 'rejected';
-        $update->save();
-    }
 
     public $filter = 'all';
     public $sort = 'asc';
@@ -230,8 +236,21 @@ class VerifikasiData extends Component
     }
     public function view($id)
     {
+        $this->selectedUpdate = Update::with('admin', 'approver')->find($id);
+        $this->selectedUpdate = UpdateService::transform($this->selectedUpdate);
 
+        $this->new_data = json_decode($this->selectedUpdate->new_data, true);
+        $this->old_data = json_decode($this->selectedUpdate->old_data, true);
+
+        // $this->images_path_new = $newData['images_path'] ?? [];
+        // $this->images_path_old = $oldData['images_path'] ?? [];
+        // $this->parsed_new_data = $this->selectedUpdate->parsed_new_data;
+        // $this->parsed_old_data = $this->selectedUpdate->parsed_old_data;
+        // dd($this->selectedUpdate->toArray());
+
+        $this->dispatch('view');
     }
+
     public function render()
     {
         $updates = Update::query();
@@ -245,6 +264,6 @@ class VerifikasiData extends Component
 
         return view('livewire.admin.verifikasi-data', [
             'updates' => $updates,
-        ])->layout('components.layouts.admin.dashboard');
+        ]);
     }
 }

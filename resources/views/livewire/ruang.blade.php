@@ -5,9 +5,9 @@
                 alt="">ke beranda</a>
         <div class="breadcrumbs text-sm text-[#006569]">
             <ul>
-                <li><a class="/kampus/{{ $room->campus->slug }}">{{ $room->campus->name }}</a></li>
-                <li><a class="/gedung/{{ $room->building->slug }}">{{ $room->building->name }}</a></li>
-                <li><a class="/ruang/{{ $room->slug }}">{{ $room->name }}</a></li>
+                <li><a href="/kampus/{{ $room->campus->slug }}">{{ $room->campus->name }}</a></li>
+                <li><a href="/gedung/{{ $room->building->slug }}">{{ $room->building->name }}</a></li>
+                <li><a href="/ruang/{{ $room->slug }}">{{ $room->name }}</a></li>
             </ul>
         </div>
     </div>
@@ -16,9 +16,15 @@
         <div class="flex items-center justify-center lg:mr-10">
             <div class="swiper">
                 <div class="swiper-wrapper">
-                    @foreach ($room->images_path as $image)
-                        <div class="swiper-slide"><img src="{{ asset('storage/' . $image) }}" alt=""></div>
-                    @endforeach
+                    @if (isset($room->images_path))
+                        @foreach ($room->images_path as $image)
+                            <img class="swiper-slide object-contain" src="{{ asset('storage/' . $image) }}"
+                                alt="{{ $room->name }}">
+                        @endforeach
+                    @else
+                        <img class="swiper-slide object-contain" src="{{ asset('backgrounds/DUMMY.png') }}"
+                            alt="{{ $room->name }}">
+                    @endif
                 </div>
                 <div class="swiper-pagination"></div>
                 <div class="swiper-button-prev"></div>
@@ -76,4 +82,5 @@
         <hr class="w-15 font-bold mx-auto border-gray-500 border">
         {{-- <p class="text-gray-500">Kampus-Kampus UNJ</p> --}}
     </div>
+    <div class="text-black mx-50" id='calendar'></div>
 </div>

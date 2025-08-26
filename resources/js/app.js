@@ -4,4 +4,5 @@ import './chart';
 import './dashboard';
 import './swiper';
 import './apexchart';
-import './fullcalendar';
+import './jadwalpilih';
+import './jadwalruang';

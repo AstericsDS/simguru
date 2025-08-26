@@ -3,7 +3,7 @@
   height: 150px;
   --swiper-navigation-size: 20px;
   @media (width >= 64rem) {
-    width: 800px;
+    width: 600px;
     height: 400px;
   --swiper-navigation-size: 40px;
 

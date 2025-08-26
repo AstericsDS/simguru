@@ -1,18 +1,17 @@
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import listPlugin from '@fullcalendar/list';
 
 let calendarEl = document.getElementById('calendar');
 let calendar = new Calendar(calendarEl, {
-  plugins: [ dayGridPlugin, timeGridPlugin, listPlugin ],
+  plugins: [ dayGridPlugin, timeGridPlugin],
   initialView: 'dayGridMonth',
   headerToolbar: {
-    left: 'prev,next today',
+    left: 'prev, next, today',
     center: 'title',
-    right: 'dayGridMonth,timeGridWeek,listWeek'
+    right: 'dayGridMonth,timeGridWeek,timeGridDay'
   },
   themeSystem: 'bootstrap',
-  
+  nowIndicator: true,
 });
 calendar.render();

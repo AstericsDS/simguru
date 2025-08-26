@@ -2,9 +2,9 @@ import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
 
 const swiper = new Swiper('.swiper', {
-    autoplay: {
-        delay: 5000,
-    },
+    // autoplay: {
+    //     delay: 5000,
+    // },
     effect: "coverflow",
     centeredSlides: true,
     slidesPerView: "auto",

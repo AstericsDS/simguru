@@ -5,8 +5,8 @@
                 alt="">ke beranda</a>
         <div class="breadcrumbs text-sm text-[#006569]">
             <ul>
-                <li><a class="">{{ $building->campus->name }}</a></li>
-                <li><a class="">Gedung Dewi Sartika</a></li>
+                <li><a class="" href="/kampus/{{ $building->campus->slug }}">{{ $building->campus->name }}</a></li>
+                <li><a class="" href="/gedung/{{ $building->slug }}">Gedung Dewi Sartika</a></li>
             </ul>
         </div>
     </div>
@@ -15,9 +15,13 @@
         <div class="flex lg:mr-15">
             <div class="swiper">
                 <div class="swiper-wrapper">
-                    @foreach ($building->images_path as $image)
-                        <div class="swiper-slide"><img src="{{ asset('storage/' . $image) }}" alt=""></div>
-                    @endforeach
+                    @if (isset($building->images_path))
+                        @foreach ($building->images_path as $image)
+                            <img class="swiper-slide object-contain" src="{{ asset('storage/' . $image) }}" alt="{{ $building->name }}">
+                        @endforeach
+                    @else
+                        <img class="swiper-slide object-contain" src="{{ asset('backgrounds/DUMMY.png') }}" alt="{{ $campus->name }}">
+                    @endif
                 </div>
                 <div class="swiper-pagination"></div>
                 <div class="swiper-button-prev"></div>

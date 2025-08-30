@@ -91,7 +91,7 @@ class DaftarRuang extends Component
             'reject_reason' => null,
         ]);
         if ($created) {
-            $this->reset(['name', 'floor', 'capacity', 'area', 'description', 'images_path']);
+            $this->reset(['name', 'capacity', 'area', 'description', 'images_path']);
             $this->dispatch('close-modal');
             $this->dispatch('toast', status: 'success', message: 'Entri anda telah masuk dan akan segera diverifikasi.');
         } else {

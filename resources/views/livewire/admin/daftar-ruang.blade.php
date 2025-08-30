@@ -215,14 +215,16 @@
                                 @endif
                             </td>
                             <td class="px-6 py-4">
-                                <button wire:click='view({{ $room->id }})' type="button" class="transition-all cursor-pointer hover:text-blue-500 hover:bg-gray-300 rounded-xl p-2 mx-auto" data-tip="Gambar">
-                                    <i class="fa-solid fa-images"></i>
-                                </button>
-                                @if ($room->admin_id === Auth::id())
-                                    <a href="{{ route('edit-ruang', $room->id) }}" wire:navigate class="transition-all cursor-pointer rounded-xl p-2 mx-auto {{ in_array($room->id, $rejected_rooms) ? 'text-red-500 hover:bg-red-200 tooltip tooltip-error' : 'hover:text-yellow-900 hover:bg-yellow-200' }}" data-tip="Perubahan ditolak">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </a>
-                                @endif
+                                <div class="flex gap-2">
+                                    <button wire:click='view({{ $room->id }})' type="button" class="transition-all cursor-pointer hover:text-blue-500 hover:bg-gray-300 rounded-xl p-2 mx-auto" data-tip="Gambar">
+                                        <i class="fa-solid fa-images"></i>
+                                    </button>
+                                    @if ($room->admin_id === Auth::id())
+                                        <a href="{{ route('edit-ruang', $room->id) }}" wire:navigate class="transition-all cursor-pointer rounded-xl p-2 mx-auto {{ in_array($room->id, $rejected_rooms) ? 'text-red-500 hover:bg-red-200 tooltip tooltip-error' : 'hover:text-yellow-900 hover:bg-yellow-200' }}" data-tip="Perubahan ditolak">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                    @endif
+                                </div>
                             </td>
                         </tr>
                     @endforeach

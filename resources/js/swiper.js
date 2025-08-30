@@ -25,3 +25,31 @@ const swiper = new Swiper('.swiper', {
         prevEl: '.swiper-button-prev',
     },
 });
+
+function initCampusSwiper() {
+    const swiperEl = document.querySelector('.viewCampusSwiper');
+    if (swiperEl && !swiperEl.classList.contains('swiper-initialized')) {
+        new Swiper('.viewCampusSwiper', {
+            autoplay: {
+                delay: 5000,
+            },
+            loop: true,
+            pagination: {
+              el: '.swiper-pagination',
+              clickable: true,
+              type: "progressbar",
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+                hideOnClick: true,
+            },
+            effect: "fade",
+        });
+    }
+}
+
+// Run again after Livewire navigation
+document.addEventListener("livewire:navigated", () => {
+    initCampusSwiper();
+});

@@ -26,6 +26,7 @@ use App\Livewire\Admin\DaftarGedung;
 use App\Livewire\Admin\DaftarKampus;
 use App\Livewire\Admin\Rekapitulasi;
 use App\Livewire\Admin\PerubahanData;
+use App\Livewire\Admin\ViewKampus;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Admin\VerifikasiData;
 
@@ -50,6 +51,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function(){
     Route::get('/rekapitulasi', Rekapitulasi::class)->name('rekapitulasi');
     Route::get('/campus', Campus::class)->name('campus');
     // Route::get('/verifikasi/new', VerifikasiNew::class)->name('verifikasi-new');
+    Route::get('/kampus/{campus}', ViewKampus::class)->name('view-kampus');
 });
 
 // Auth

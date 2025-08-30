@@ -24,6 +24,10 @@ class Campus extends Model
     protected $casts = [
         'images_path' => 'array',
     ];
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
     public function user(): BelongsTo {
         return $this->belongsTo(User::class, 'admin_id');
     }

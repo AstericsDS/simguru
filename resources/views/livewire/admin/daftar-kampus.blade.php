@@ -166,14 +166,21 @@
                                 {{ $campus->contact }}
                             </td>
                             <td class="px-6 py-4">
-                                <button wire:click='view({{ $campus->id }})' type="button" class="transition-all cursor-pointer hover:text-blue-500 hover:bg-gray-300 rounded-xl p-2 mx-auto" data-tip="Gambar">
-                                    <i class="fa-solid fa-images"></i>
-                                </button>
-                                @if ($campus->admin_id === Auth::id())
-                                    <a href="{{ route('edit-kampus', $campus->id) }}" wire:navigate class="transition-all cursor-pointer rounded-xl p-2 mx-auto {{ in_array($campus->id, $rejected_campuses) ? 'text-red-500 hover:bg-red-200 tooltip tooltip-error' : 'hover:text-yellow-900 hover:bg-yellow-200' }}" data-tip="Perubahan ditolak">
-                                        <i class="fa-solid fa-pen-to-square"></i>
+                                <div class="flex gap-2 items-center">
+                                    <button wire:click='view({{ $campus->id }})' type="button" class="transition-all cursor-pointer hover:text-blue-500 hover:bg-gray-300 rounded-xl p-2 mx-auto" data-tip="Gambar">
+                                        <i class="fa-solid fa-images"></i>
+                                    </button>
+                                    <a href="{{ route('view-kampus', $campus->slug) }}" wire:navigate>
+                                        <button class="transition-all cursor-pointer hover:text-blue-500 hover:bg-gray-300 rounded-xl p-2 mx-auto">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
                                     </a>
-                                @endif
+                                    @if ($campus->admin_id === Auth::id())
+                                        <a href="{{ route('edit-kampus', $campus->slug) }}" wire:navigate class="transition-all cursor-pointer rounded-xl p-2 mx-auto {{ in_array($campus->id, $rejected_campuses) ? 'text-red-500 hover:bg-red-200 tooltip tooltip-error' : 'hover:text-yellow-900 hover:bg-yellow-200' }}" data-tip="Perubahan ditolak">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                    @endif
+                                </div>
                             </td>
                         </tr>
                     @endforeach
@@ -202,7 +209,7 @@
                 </div>
 
                 <!-- Modal body -->
-                <div class="p-8 pt-0 tooltip tooltip-accent" data-tip="Scroll untuk melihat gambar">
+                <div class="p-8 pt-0 tooltip tooltip-accent w-full" data-tip="Scroll untuk melihat gambar">
                     <div class="carousel carousel-vertical rounded-box h-[500px] w-full">
                         @foreach ($campusImages as $image)
                             <div class="carousel-item h-full">

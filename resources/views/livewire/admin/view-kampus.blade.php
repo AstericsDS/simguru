@@ -9,7 +9,7 @@
         <div class="viewUnit w-lg relative rounded-md overflow-hidden">
             <div class="swiper-wrapper">
                 @foreach ($campus->images_path as $image)
-                    <div class="swiper-slide"><img src="{{ asset('storage/' . $image) }}"></div>
+                    <div class="swiper-slide"><img src="{{ asset('storage/' . $image) }}" class="h-full"></div>
                 @endforeach
 
             </div>

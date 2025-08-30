@@ -134,6 +134,9 @@
                             Nomor Telepon
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            Files
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             Aksi
                         </th>
                     </tr>
@@ -166,10 +169,12 @@
                                 {{ $campus->contact }}
                             </td>
                             <td class="px-6 py-4">
+                                <button wire:click='view({{ $campus->id }})' type="button" class="transition-all cursor-pointer hover:text-unj hover:bg-unj-light rounded-xl p-2 mx-auto" data-tip="Gambar">
+                                    <i class="fa-solid fa-images"></i>
+                                </button>
+                            </td>
+                            <td class="px-6 py-4">
                                 <div class="flex gap-2 items-center">
-                                    <button wire:click='view({{ $campus->id }})' type="button" class="transition-all cursor-pointer hover:text-blue-500 hover:bg-gray-300 rounded-xl p-2 mx-auto" data-tip="Gambar">
-                                        <i class="fa-solid fa-images"></i>
-                                    </button>
                                     <a href="{{ route('view-kampus', $campus->slug) }}" wire:navigate>
                                         <button class="transition-all cursor-pointer hover:text-blue-500 hover:bg-gray-300 rounded-xl p-2 mx-auto">
                                             <i class="fa-solid fa-eye"></i>

@@ -176,6 +176,9 @@
                             Jenis Ruang
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            Files
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             Aksi
                         </th>
                     </tr>
@@ -215,10 +218,17 @@
                                 @endif
                             </td>
                             <td class="px-6 py-4">
+                                <button wire:click='view({{ $room->id }})' type="button" class="transition-all cursor-pointer hover:text-unj hover:bg-unj-light rounded-xl p-2 mx-auto" data-tip="Gambar">
+                                    <i class="fa-solid fa-images"></i>
+                                </button>
+                            </td>
+                            <td class="px-6 py-4">
                                 <div class="flex gap-2">
-                                    <button wire:click='view({{ $room->id }})' type="button" class="transition-all cursor-pointer hover:text-blue-500 hover:bg-gray-300 rounded-xl p-2 mx-auto" data-tip="Gambar">
-                                        <i class="fa-solid fa-images"></i>
-                                    </button>
+                                    <a href="{{ route('view-ruang', $room->slug) }}" wire:navigate>
+                                        <button class="transition-all cursor-pointer hover:text-blue-500 hover:bg-gray-300 rounded-xl p-2 mx-auto">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                    </a>
                                     @if ($room->admin_id === Auth::id())
                                         <a href="{{ route('edit-ruang', $room->id) }}" wire:navigate class="transition-all cursor-pointer rounded-xl p-2 mx-auto {{ in_array($room->id, $rejected_rooms) ? 'text-red-500 hover:bg-red-200 tooltip tooltip-error' : 'hover:text-yellow-900 hover:bg-yellow-200' }}" data-tip="Perubahan ditolak">
                                             <i class="fa-solid fa-pen-to-square"></i>
@@ -241,7 +251,7 @@
                 <!-- Modal header -->
                 <div class="flex items-center justify-between border-b rounded-t border-gray-200 p-8 pb-6">
                     <h3 class="text-lg font-semibold text-gray-900">
-                        Gambar Kampus
+                        Gambar Ruang
                     </h3>
                     <button @click="state = false" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center transition-all hover:cursor-pointer">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">

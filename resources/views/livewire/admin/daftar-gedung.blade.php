@@ -145,6 +145,9 @@
                             Luas
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            Files
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             Aksi
                         </th>
                     </tr>
@@ -177,10 +180,17 @@
                                 {{ $building->area }}m<sup>2</sup>
                             </td>
                             <td class="px-6 py-4">
+                                <button wire:click='view({{ $building->id }})' type="button" class="transition-all cursor-pointer hover:text-unj hover:bg-unj-light rounded-xl p-2 mx-auto">
+                                    <i class="fa-solid fa-images"></i>
+                                </button>
+                            </td>
+                            <td class="px-6 py-4">
                                 <div class="flex gap-2">
-                                    <button wire:click='view({{ $building->id }})' type="button" class="transition-all cursor-pointer hover:text-blue-500 hover:bg-gray-300 rounded-xl p-2 mx-auto" data-tip="Gambar">
-                                        <i class="fa-solid fa-images"></i>
-                                    </button>
+                                    <a href="{{ route('view-gedung', $building->slug) }}" wire:navigate>
+                                        <button class="transition-all cursor-pointer hover:text-blue-500 hover:bg-gray-300 rounded-xl p-2 mx-auto">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                    </a>
                                     @if ($building->admin_id === Auth::id())
                                         <a href="{{ route('edit-gedung', $building->id) }}" wire:navigate class="transition-all cursor-pointer rounded-xl p-2 mx-auto {{ in_array($building->id, $rejected_buildings) ? 'text-red-500 hover:bg-red-200 tooltip tooltip-error' : 'hover:text-yellow-900 hover:bg-yellow-200' }}" data-tip="Perubahan ditolak">
                                             <i class="fa-solid fa-pen-to-square"></i>

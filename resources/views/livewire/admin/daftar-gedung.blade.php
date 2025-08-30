@@ -174,7 +174,7 @@
                                 {{ $building->floor }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $building->area }}
+                                {{ $building->area }}m<sup>2</sup>
                             </td>
                             <td class="px-6 py-4">
                                 <div class="flex gap-2">

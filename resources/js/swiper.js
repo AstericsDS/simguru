@@ -27,9 +27,9 @@ const swiper = new Swiper('.swiper', {
 });
 
 function initCampusSwiper() {
-    const swiperEl = document.querySelector('.viewCampusSwiper');
+    const swiperEl = document.querySelector('.viewUnit');
     if (swiperEl && !swiperEl.classList.contains('swiper-initialized')) {
-        new Swiper('.viewCampusSwiper', {
+        new Swiper('.viewUnit', {
             autoplay: {
                 delay: 5000,
             },

@@ -30,11 +30,11 @@
         {{-- Main content --}}
         <main class="flex-grow p-6 overflow-auto">
             {{ $slot }}
+            @stack('scripts')
         </main>
     </div>
 
     @livewireScripts
-    @stack('scripts')
 
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 </body>

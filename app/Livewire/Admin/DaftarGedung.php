@@ -25,17 +25,18 @@ class DaftarGedung extends Component
     public $campuses = [];
     public $images_path = [];
     public $buildingImages = [];
+    public $rejected_buildings = [];
 
     public function rules()
     {
         return [
             'name' => 'required',
             'slug' => 'required|unique:buildings,slug',
+            'campus_id' => 'required',
             'address' => 'required',
             'floor' => 'required|integer',
             'area' => 'required|integer',
             'description' => 'required',
-            'campus_id' => 'required',
             'images_path.*' => 'required|file|image',
             'images_path' => 'required|array',
         ];
@@ -106,7 +107,9 @@ class DaftarGedung extends Component
     public function mount()
     {
         $this->campuses = Campus::all();
-        $this->campus_id = $this->campuses->first()->id;
+        $this->campus_id = $this->campuses->first()->id ?? null;
+        $this->rejected_buildings = array_merge($this->rejected_buildings, Update::where('table', 'buildings')->where('status', 'rejected')->pluck('record_id')->toArray());
+
     }
 
     public function view($id)

@@ -24,6 +24,7 @@ class DaftarRuang extends Component
     public $search = '';
     public $images_path = [];
     public $room_images = [];
+    public $rejected_rooms = [];
 
     public function rules()
     {
@@ -90,7 +91,7 @@ class DaftarRuang extends Component
             'reject_reason' => null,
         ]);
         if ($created) {
-            $this->reset(['name', 'floor', 'capacity', 'area', 'description', 'images_path']);
+            $this->reset(['name', 'capacity', 'area', 'description', 'images_path']);
             $this->dispatch('close-modal');
             $this->dispatch('toast', status: 'success', message: 'Entri anda telah masuk dan akan segera diverifikasi.');
         } else {
@@ -131,6 +132,8 @@ class DaftarRuang extends Component
                 $this->floor = $this->buildings->first()->floor;
             }
         }
+
+        $this->rejected_rooms = array_merge($this->rejected_rooms, Update::where('table', 'rooms')->where('status', 'rejected')->pluck('record_id')->toArray());
     }
 
     public function view($id)

@@ -2,6 +2,18 @@
     {{-- Title --}}
     <h1 class="text-2xl font-medium">Edit Ruang</h1>
 
+    {{-- Reject Reason --}}
+    @if ($update->status === 'rejected')
+        <div class="p-4 bg-red-200 rounded-sm mt-4">
+            <div class="flex gap-4">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+                </svg>
+                <h1>Alasan Penolakan: {{ $update->reject_reason }}</h1>
+            </div>
+        </div>
+    @endif
+
     {{-- Content --}}
     <div class="mt-8">
         <form wire:submit.prevent='showModal'>
@@ -16,7 +28,7 @@
                     </div>
 
                     <div class="{{ $is_pending ? 'tooltip tooltip-accent' : '' }}" data-tip="Mohon tunggu verifikasi super admin">
-                        <label for="campus" >Lokasi Kampus</label>
+                        <label for="campus">Lokasi Kampus</label>
                         <select wire:model.change='campus_id' id="campus" class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 {{ $errors->has('campus_id') ? 'border-red-500' : 'border-gray-300' }} my-2">
                             <option disabled>Pilih Kampus</option>
                             @foreach ($campuses as $campus)
@@ -27,9 +39,9 @@
                             <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
                         @enderror
                     </div>
-                    
+
                     <div class="{{ $is_pending ? 'tooltip tooltip-accent' : '' }}" data-tip="Mohon tunggu verifikasi super admin">
-                        <label for="building" >Lokasi Gedung</label>
+                        <label for="building">Lokasi Gedung</label>
                         <select wire:model.change='building_id' id="building" class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 {{ $errors->has('building_id') ? 'border-red-500' : 'border-gray-300' }} my-2">
                             <option disabled>Pilih Gedung</option>
                             @foreach ($buildings as $building)
@@ -42,7 +54,7 @@
                     </div>
 
                     <div class="{{ $is_pending ? 'tooltip tooltip-accent' : '' }}" data-tip="Mohon tunggu verifikasi super admin">
-                        <label for="floor" >Lokasi Lantai</label>
+                        <label for="floor">Lokasi Lantai</label>
                         <select wire:model='floor' id="category" class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 {{ $errors->has('floor') ? 'border-red-500' : 'border-gray-300' }} my-2">
                             <option disabled>Pilih Lantai</option>
                             @for ($i = 1; $i <= $floor; $i++)
@@ -71,7 +83,7 @@
                     </div>
 
                     <div class="{{ $is_pending ? 'tooltip tooltip-accent' : '' }}" data-tip="Mohon tunggu verifikasi super admin">
-                        <label for="category" >Kategori</label>
+                        <label for="category">Kategori</label>
                         <select wire:model='category' id="category" class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 {{ $errors->has('category') ? 'border-red-500' : 'border-gray-300' }} my-2">
                             <option disabled>Pilih Kategori</option>
                             <option value="class">Kelas</option>

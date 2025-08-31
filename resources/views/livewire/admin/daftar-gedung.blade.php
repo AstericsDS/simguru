@@ -129,21 +129,6 @@
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
-                        {{-- Classic --}}
-                        {{-- <th scope="col" class="px-6 py-3">
-                            Product name
-                        </th> --}}
-
-                        {{-- Sortable --}}
-                        {{-- <th scope="col" class="px-6 py-3"> --}}
-                        {{-- <div class="flex items-center"> --}}
-                        {{-- Color --}}
-                        {{-- <a href="#"><svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z" />
-                                    </svg></a>
-                            </div>
-                        </th> --}}
-
                         <th scope="col" class="px-6 py-3">
                             Nama
                         </th>
@@ -160,34 +145,27 @@
                             Luas
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            Files
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             Aksi
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    {{-- Example --}}
-                    {{-- <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Apple MacBook Pro 17"
-                        </th>
-                        <td class="px-6 py-4">
-                            Silver
-                        </td>
-                        <td class="px-6 py-4">
-                            Laptop
-                        </td>
-                        <td class="px-6 py-4">
-                            $2999
-                        </td>
-                        <td class="px-6 py-4 text-right">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                        </td>
-                    </tr> --}}
-
                     @foreach ($buildings as $building)
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {{ $building->name }}
+                                @if (in_array($building->id, $rejected_buildings))
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-red-500">{{ $building->name }}</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#F44336" class="size-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+                                        </svg>
+                                    </div>
+                                @else
+                                    {{ $building->name }}
+                                @endif
                             </th>
                             <td class="px-6 py-4">
                                 {{ $building->campus->name }}
@@ -199,17 +177,26 @@
                                 {{ $building->floor }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $building->area }}
+                                {{ $building->area }}m<sup>2</sup>
                             </td>
                             <td class="px-6 py-4">
-                                <button wire:click='view({{ $building->id }})' type="button" class="transition-all cursor-pointer hover:text-blue-500 hover:bg-gray-300 rounded-xl p-2 mx-auto" data-tip="Gambar">
+                                <button wire:click='view({{ $building->id }})' type="button" class="transition-all cursor-pointer hover:text-unj hover:bg-unj-light rounded-xl p-2 mx-auto">
                                     <i class="fa-solid fa-images"></i>
                                 </button>
-                                @if ($building->admin_id === Auth::id())
-                                    <a href="{{ route('edit-gedung', $building->id) }}" wire:navigate class="transition-all cursor-pointer hover:text-yellow-900 hover:bg-yellow-200 rounded-xl p-2 mx-auto">
-                                        <i class="fa-solid fa-pen-to-square"></i>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex gap-2">
+                                    <a href="{{ route('view-gedung', $building->slug) }}" wire:navigate>
+                                        <button class="transition-all cursor-pointer hover:text-blue-500 hover:bg-gray-300 rounded-xl p-2 mx-auto">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
                                     </a>
-                                @endif
+                                    @if ($building->admin_id === Auth::id())
+                                        <a href="{{ route('edit-gedung', $building->id) }}" wire:navigate class="transition-all cursor-pointer rounded-xl p-2 mx-auto {{ in_array($building->id, $rejected_buildings) ? 'text-red-500 hover:bg-red-200 tooltip tooltip-error' : 'hover:text-yellow-900 hover:bg-yellow-200' }}" data-tip="Perubahan ditolak">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                    @endif
+                                </div>
                             </td>
                         </tr>
                     @endforeach

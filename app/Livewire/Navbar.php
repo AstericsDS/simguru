@@ -16,6 +16,11 @@ class Navbar extends Component
         return redirect(route('login'));
     }
 
+    public function back()
+    {
+        return redirect()->back();
+    }
+
     public function render()
     {
         return view('livewire.navbar');

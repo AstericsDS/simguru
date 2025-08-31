@@ -134,6 +134,9 @@
                             Nomor Telepon
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            Files
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             Aksi
                         </th>
                     </tr>
@@ -142,7 +145,16 @@
                     @foreach ($campuses as $campus)
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {{ $campus->name }}
+                                @if (in_array($campus->id, $rejected_campuses))
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-red-500">{{ $campus->name }}</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#F44336" class="size-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+                                        </svg>
+                                    </div>
+                                @else
+                                    {{ $campus->name }}
+                                @endif
                             </th>
                             <td class="px-6 py-4">
                                 {{ $campus->building->count() }}
@@ -157,14 +169,23 @@
                                 {{ $campus->contact }}
                             </td>
                             <td class="px-6 py-4">
-                                <button wire:click='view({{ $campus->id }})' type="button" class="transition-all cursor-pointer hover:text-blue-500 hover:bg-gray-300 rounded-xl p-2 mx-auto" data-tip="Gambar">
+                                <button wire:click='view({{ $campus->id }})' type="button" class="transition-all cursor-pointer hover:text-unj hover:bg-unj-light rounded-xl p-2 mx-auto" data-tip="Gambar">
                                     <i class="fa-solid fa-images"></i>
                                 </button>
-                                @if ($campus->admin_id === Auth::id())
-                                    <a href="{{route('edit-kampus', $campus->id)}}" wire:navigate class="transition-all cursor-pointer hover:text-yellow-900 hover:bg-yellow-200 rounded-xl p-2 mx-auto">
-                                        <i class="fa-solid fa-pen-to-square"></i>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex gap-2 items-center">
+                                    <a href="{{ route('view-kampus', $campus->slug) }}" wire:navigate>
+                                        <button class="transition-all cursor-pointer hover:text-blue-500 hover:bg-gray-300 rounded-xl p-2 mx-auto">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
                                     </a>
-                                @endif
+                                    @if ($campus->admin_id === Auth::id())
+                                        <a href="{{ route('edit-kampus', $campus->slug) }}" wire:navigate class="transition-all cursor-pointer rounded-xl p-2 mx-auto {{ in_array($campus->id, $rejected_campuses) ? 'text-red-500 hover:bg-red-200 tooltip tooltip-error' : 'hover:text-yellow-900 hover:bg-yellow-200' }}" data-tip="Perubahan ditolak">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                    @endif
+                                </div>
                             </td>
                         </tr>
                     @endforeach
@@ -193,7 +214,7 @@
                 </div>
 
                 <!-- Modal body -->
-                <div class="p-8 pt-0 tooltip tooltip-accent" data-tip="Scroll untuk melihat gambar">
+                <div class="p-8 pt-0 tooltip tooltip-accent w-full" data-tip="Scroll untuk melihat gambar">
                     <div class="carousel carousel-vertical rounded-box h-[500px] w-full">
                         @foreach ($campusImages as $image)
                             <div class="carousel-item h-full">

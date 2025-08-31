@@ -9,7 +9,10 @@ class UpdateService
 {
     public static function transform($update)
     {
-        $parsed = collect(json_decode($update->new_data, true));
+
+        $parsed_new = collect(json_decode($update->new_data, true));
+        $parsed_old = collect(json_decode($update->old_data, true)) ?? [];
+
         $labelMaps = [
             'campuses' => [
                 'name' => 'Nama',
@@ -38,19 +41,30 @@ class UpdateService
             ],
         ];
 
-        $map = $labelMaps[$update->table] ?? [];
-        $update->parsed_new_data = $parsed
-            ->mapWithKeys(function ($value, $key) use ($map) {
-                if (!isset($map[$key]))
+        $map_new = $labelMaps[$update->table] ?? [];
+        $update->parsed_new_data = $parsed_new
+            ->mapWithKeys(function ($value, $key) use ($map_new) {
+                if (!isset($map_new[$key]))
                     return [];
 
-                $label = $map[$key];
+                $label = $map_new[$key];
                 return is_callable($label)
                     ? $label($value)
                     : [$label => $value];
             })
             ->toArray();
-        // dd($update->parsed_new_data);
+        
+        $map_old = $labelMaps[$update->table] ?? [];
+        $update->parsed_old_data = $parsed_old->mapWithKeys(function($value, $key) use ($map_old) {
+            if (!isset($map_old[$key]))
+                return [];
+
+            $label = $map_old[$key];
+            return is_callable($label)
+                ? $label($value)
+                : [$label => $value];
+        })->toArray();
+
         return $update;
     }
 }

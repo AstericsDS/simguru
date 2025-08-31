@@ -56,7 +56,6 @@ class EditGedung extends Component
     {
         return [
             'name' => 'required',
-            'slug' => 'required|unique:buildings,slug,',
             'campus_id' => 'required',
             'area' => 'required|integer',
             'floor' => 'required|integer',
@@ -90,14 +89,9 @@ class EditGedung extends Component
         $this->new_images = []; // reset upload field
     }
 
-    public function updatedName($value)
-    {
-        $this->slug = Str::slug($value);
-    }
-
-
     public function save()
     {
+        $this->slug = Str::slug($this->name);
         $finalPaths = [];
 
         foreach ($this->images_path as $image) {

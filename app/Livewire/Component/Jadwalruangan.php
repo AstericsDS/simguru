@@ -18,6 +18,7 @@ class Jadwalruangan extends Component
         $this->selectedBuilding = null;
         $this->selectedRoom = null;
         $this->campusbuildings = Building::where('campus_id', $value)->get();
+        $this->buildingrooms = [];
     }
 
     public function updatedSelectedBuilding($value)

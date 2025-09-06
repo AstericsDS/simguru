@@ -22,24 +22,24 @@
                         </label>
                         <img src="{{ asset('logos/unj2.png') }}" alt="Logo UNJ" class="w-3 sm:w-6 lg:w-10">
                         <a href="/" class="font-semibold ml-3 not-lg:text-xs">
-                            SISTEM INFORMASI GEDUNG DAN RUANG
+                            Sistem Informasi Gedung dan Ruang
                         </a>
                 </div>
                 <div class="navbar-end">
                     <div class="not-lg:hidden">
-                        <button class="btn btn-ghost" onClick="document.getElementById('jadwal').scrollIntoView();">
+                        <button id="jadwall" class="btn btn-ghost hover:bg-[#fddc00] hover:text-unj border-none" onClick="document.getElementById('jadwal').scrollIntoView();">
                             Jadwal Ruangan
                         </button>
-                        <button class="btn btn-ghost" onClick="document.getElementById('kampus').scrollIntoView();">
+                        <button id="kampuss" class="btn btn-ghost hover:bg-[#fddc00] hover:text-unj border-none" onClick="document.getElementById('kampus').scrollIntoView();">
                             Kampus
                         </button>
-                        <button class="btn btn-ghost" onClick="document.getElementById('gedung').scrollIntoView();">
+                        <button id="gedungg" class="btn btn-ghost hover:bg-[#fddc00] hover:text-unj border-none" onClick="document.getElementById('gedung').scrollIntoView();">
                             Gedung
                         </button>
-                        <button class="btn btn-ghost" onClick="document.getElementById('ruang').scrollIntoView();">
+                        <button id="ruangg" class="btn btn-ghost hover:bg-[#fddc00] hover:text-unj border-none" onClick="document.getElementById('ruang').scrollIntoView();">
                             Ruang
                         </button>
-                        <button class="btn btn-ghost" onClick="document.getElementById('statistik').scrollIntoView();">
+                        <button id="statistikk" class="btn btn-ghost hover:bg-[#fddc00] hover:text-unj border-none" onClick="document.getElementById('statistik').scrollIntoView();">
                             Statistik
                         </button>
                     </div>

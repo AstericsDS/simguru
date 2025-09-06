@@ -5,8 +5,8 @@
                 alt="">ke beranda</a>
         <div class="breadcrumbs text-sm text-[#006569]">
             <ul>
-                <li><a class="" href="/kampus/{{ $building->campus->slug }}">{{ $building->campus->name }}</a></li>
-                <li><a class="" href="/gedung/{{ $building->slug }}">Gedung Dewi Sartika</a></li>
+                <li><a href="/kampus/{{ $building->campus->slug }}">{{ $building->campus->name }}</a></li>
+                <li><a href="/gedung/{{ $building->slug }}">Gedung Dewi Sartika</a></li>
             </ul>
         </div>
     </div>
@@ -20,7 +20,7 @@
                             <img class="swiper-slide object-contain" src="{{ asset('storage/' . $image) }}" alt="{{ $building->name }}">
                         @endforeach
                     @else
-                        <img class="swiper-slide object-contain" src="{{ asset('backgrounds/DUMMY.png') }}" alt="{{ $campus->name }}">
+                        <img class="swiper-slide object-contain" src="{{ asset('backgrounds/DUMMY.png') }}" alt="{{ $building->name }}">
                     @endif
                 </div>
                 <div class="swiper-pagination"></div>

@@ -92,7 +92,7 @@
     {{-- Gedung Box --}}
 
     <div class="text-black text-center flex flex-col gap-3 pt-30" id="gedung">
-        <h1 class="text-4xl font-semibold">Gedung - Gedung yang berada di {{ $campus->name }}</h1>
+        <h1 class="text-4xl font-semibold">Gedung - Gedung Yang Berada di Kampus {{ $campus->name }}</h1>
         <hr class="w-15 font-bold mx-auto border-gray-500 border">
     </div>
 

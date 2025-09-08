@@ -1,13 +1,13 @@
 <div id="body-ko" class="flex flex-col min-w-full">
     {{-- Hero --}}
     <div
-        class="flex flex-col bg-[url(/public/backgrounds/unj_bersih.jpeg)] bg-unj bg-blend-multiply bg-cover bg-fixed min-h-screen bg-center justify-center items-center gap-5">
+        class="flex flex-col bg-[url(/public/backgrounds/unj_bersih.jpeg)] bg-primary bg-blend-overlay bg-cover bg-fixed min-h-screen bg-center justify-center items-center gap-5">
         <img src="{{ asset('logos/UNJ22.png') }}" alt="logo unj" class="w-50">
-        <h1 class=" text-xl lg:text-5xl text-white text-wrap w-3/7 text-center font-semibold">
+        <h1 class=" text-xl lg:text-5xl text-base-content text-wrap w-3/7 text-center font-semibold">
             Sistem Informasi Gedung dan Ruang
         </h1>
         {{-- login button --}}
-        <a href="/login" class="btn btn-xl w-34 bg-[#FDDC00] text-unj border-none shadow-none">
+        <a href="/login" class="btn btn-xl w-34 bg-[#FDDC00] text-primary border-none shadow-none">
             {{-- <img src="{{ asset('logos/login.svg') }}" alt="" class="w-10 "> --}}
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="#006569" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -31,10 +31,10 @@
         </div>
     </div> --}}
 
-    <div class="hero bg-white text-black min-h-screen">
+    <div class="hero bg-base-300 text-base-content min-h-screen">
         <div class="hero-content flex-col lg:flex-row">
             <img src="{{ asset('backgrounds/unj_bersih.jpeg') }}" class="max-w-xs lg:max-w-2xl rounded-lg shadow-2xl" />
-            <div class="max-w-xl">
+            <div class="max-w-xl ml-10">
                 <h1 class="text-2xl lg:text-5xl font-bold">Sistem Informasi Gedung dan Ruang</h1>
                 <p class="py-6 text-justify">
                     Sistem Informasi Gedung dan Ruang adalah platform yang menyediakan informasi lengkap mengenai gedung
@@ -95,7 +95,7 @@
         </div>
     </div>
 
-    <div class="text-black text-center flex flex-col gap-3 pt-20 lg:px-50" id="jadwal">
+    <div class="text-base-content text-center flex flex-col gap-3 pt-20 lg:px-50" id="jadwal">
         <h1 class="text-3xl lg:text-4xl font-semibold">Jadwal Ruangan</h1>
         <hr class="w-15 font-bold mx-auto border-gray-500 border">
         {{-- <p class="text-gray-500">Kampus-Kampus UNJ</p> --}}
@@ -105,16 +105,16 @@
     <h5 id="alert" class="hidden alert font-bold text-center">Gunakan Landscape Untuk Melihat Jadwal Kelas!</h5>
 
     {{-- judul container --}}
-    <div class="text-black text-center flex flex-col gap-3 pt-20" id="kampus">
+    <div class="text-base-content text-center flex flex-col gap-3 pt-20" id="kampus">
         <h1 class="text-2xl lg:text-4xl font-semibold">Universitas Negeri Jakarta Multi Kampus</h1>
         <hr class="w-15 font-bold mx-auto border-gray-500 border">
         <p class="text-gray-500">Kampus-Kampus UNJ</p>
     </div>
     {{-- card container for campus --}}
-    <div class="flex flex-wrap justify-center mt-3 gap-3 lg:px-50">
+    <div class="flex flex-wrap justify-center mt-3 gap-3 px-5 lg:px-50">
         @foreach ($campuses as $campus)
             <div
-                class="card text-black bg-white border border-gray-300 shadow-sm card-md p-3 max-w-sm hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                class="card text-base-content bg-base-200 border border-base-100 shadow-sm card-md p-3 max-w-sm hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
                 <figure class="max-h-60 self-center">
                     <img src="{{ isset($campus->images_path) ? asset('storage/' . $campus->images_path[0]) : asset('backgrounds/DUMMY.png') }}"
                         alt="Kampus_A_UNJ" />
@@ -124,24 +124,24 @@
                     <p class="text-xs not-lg:hidden">{{ $campus->address }}</p>
                     <div class="card-actions">
                         <a href="/kampus/{{ $campus->slug }}"
-                            class="btn bg-white text-black w-full hover:bg-gray-200 rounded-lg outline-none">Details</a>
+                            class="btn bg-base-100 text-base-content w-full hover:bg-gray-200 rounded-lg border">Details</a>
                     </div>
                 </div>
             </div>
         @endforeach
     </div>
-    <button class="btn border-none shadow-none mt-5 self-center rounded-full bg-unj"><a href="/kampus">LIHAT
+    <button class="btn border-none shadow-none mt-5 self-center rounded-full bg-base-100"><a href="/kampus">LIHAT
             KAMPUS</a></button>
     {{-- list beberapa gedung di UNJ --}}
-    <div class="text-black text-center flex flex-col gap-3 pt-20" id="gedung">
+    <div class="text-base-content text-center flex flex-col gap-3 pt-20" id="gedung">
         <h1 class="text-2xl lg:text-4xl font-semibold">Gedung - Gedung Universitas Negeri Jakarta</h1>
         <hr class="w-15 font-bold mx-auto border-gray-500 border">
     </div>
     {{-- card container for buildings --}}
-    <div class="flex flex-wrap justify-center mt-3 gap-3 lg:px-50">
+    <div class="flex flex-wrap justify-center mt-3 gap-3 px-5 lg:px-50">
         @foreach ($buildings as $building)
             <div
-                class="card text-black bg-white border border-gray-300 shadow-sm card-md p-3 max-w-sm hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                class="card text-base-content bg-base-200 border border-base-100 shadow-sm card-md p-3 max-w-sm hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
                 <figure class="max-h-60 self-center">
                     <img src="{{ isset($building->images_path) ? asset('storage/' . $building->images_path[0]) : asset('backgrounds/DUMMY.png') }}"
                         alt="{{ $building->name }}" />
@@ -151,23 +151,23 @@
                     <p class="text-xs not-lg:hidden">{{ $building->address }}</p>
                     <div class="card-actions">
                         <a href="/gedung/{{ $building->slug }}"
-                            class="btn bg-white text-black w-full hover:bg-gray-200 rounded-lg outline-none">Details</a>
+                            class="btn bg-base-300 text-base-content w-full hover:bg-gray-200 rounded-lg">Details</a>
                     </div>
                 </div>
             </div>
         @endforeach
     </div>
-    <button class="btn border-none shadow-none mt-5 self-center rounded-full bg-unj"><a href="/gedung">LIHAT
+    <button class="btn border-none shadow-none mt-5 self-center rounded-full bg-base-100"><a href="/gedung">LIHAT
             GEDUNG</a></button>
-    {{-- Ruangan container --}}
-    <div class="text-black text-center flex flex-col gap-3 pt-20" id="ruang">
+    <div class="text-base-content text-center flex flex-col gap-3 pt-20" id="ruang">
         <h1 class="text-2xl lg:text-4xl font-semibold" id="ruang">Ruangan Universitas Negeri Jakarta</h1>
         <hr class="w-15 font-bold mx-auto border-gray-500 border">
     </div>
-    <div class="flex flex-wrap justify-center mt-3 gap-3 lg:mx-50">
+    {{-- Ruangan container --}}
+    <div class="flex flex-wrap justify-center mt-3 gap-3 px-5 lg:mx-50">
         @foreach ($rooms as $room)
             <div
-                class="card text-black bg-white border border-gray-300 shadow-sm card-md p-3 max-w-sm hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                class="card text-base-content bg-base-200 border border-base-100 shadow-sm card-md p-3 max-w-sm hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
                 <figure class="max-h-60 self-center">
                     <img src="{{ isset($room->images_path) ? asset('storage/' . $room->images_path[0]) : asset('backgrounds/DUMMY.png') }}"
                         alt="Kampus_A_UNJ" />
@@ -203,29 +203,29 @@
                     </ul>
                     <div class="card-actions">
                         <a href="/ruang/{{ $room->slug }}"
-                            class="btn bg-white text-black w-full hover:bg-gray-200 rounded-lg outline-none">Details</a>
+                            class="btn bg-base-300 text-base-content w-full hover:bg-gray-200 rounded-lg border">Details</a>
                     </div>
                 </div>
             </div>
         @endforeach
     </div>
-    <div class="text-black text-center flex flex-col gap-3 pt-20" id="statistik">
+    <div class="text-base-content text-center flex flex-col gap-3 pt-20" id="statistik">
         <h1 class="text-4xl font-semibold">Grafik Statistik Informasi Manajemen Gedung dan Ruang</h1>
         <hr class="w-15 font-bold mx-auto border-gray-500 border">
         <p class="text-gray-500">Berikut adalah Grafik Statistik Informasi Manajemen Gedung dan Ruang Universitas
             Negeri
             Jakarta 2025</p>
-        <div class="w-1/2 self-center" id="chart"></div>
+        <div class="w-1/2 self-center" id="homepagechart"></div>
     </div>
 </div>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const navbar = document.getElementById('navbar');
-        const scrolledClass = 'bg-unj';
+        const scrolledClass = 'bg-base-200';
         const scrolledShadow = 'shadow-lg';
         const positionNav = 'fixed';
         const textScrolledClass = 'text-white';
-        const active = 'text-[#fddc00]';
+        const active = 'text-primary';
 
         const sections = document.querySelectorAll('#body-ko > div[id]');
         const navButtons = document.querySelectorAll('.navbar-end button');
@@ -234,9 +234,13 @@
             let scrollY = window.scrollY;
             if (scrollY > 20) {
                 navbar.classList.add(scrolledClass, scrolledShadow);
+                // button.classList.remove('text-white');
             } else {
                 navbar.classList.add(positionNav);
                 navbar.classList.remove(scrolledClass, scrolledShadow, 'sticky');
+                // navButtons.forEach(button => {
+                //     button.classList.add('text-white');
+                // });
             }
 
             sections.forEach(current => {

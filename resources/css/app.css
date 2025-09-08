@@ -5,16 +5,15 @@
 
 @import "tailwindcss";
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
-@import './swiper';
+@import "./swiper";
 @plugin "daisyui" {
-  themes: light --default, dark --prefersdark;
+    themes: light --default, dark;
 }
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
-
 
 @theme {
     --font-sans: "Poppins", "Instrument Sans", ui-sans-serif, system-ui,
@@ -27,33 +26,33 @@
     --color-active-side: #dffeff;
 
     /** Base colors */
-    --color-dark-a0: #000000;
-    --color-light-a0: #ffffff;
+    /* --color-dark-a0: #000000;
+    --color-light-a0: #ffffff; */
 
     /** Theme primary colors */
-    --color-primary-a0: #ffffff;
+    /* --color-primary-a0: #ffffff;
     --color-primary-a10: #ffffff;
     --color-primary-a20: #ffffff;
     --color-primary-a30: #ffffff;
     --color-primary-a40: #ffffff;
-    --color-primary-a50: #ffffff;
+    --color-primary-a50: #ffffff; */
 
     /** Theme surface colors */
-    --color-surface-a0: #006369;
+    /* --color-surface-a0: #006369;
     --color-surface-100: #006369;
     --color-surface-a10: #2f7378;
     --color-surface-a20: #4c8488;
     --color-surface-a30: #669598;
     --color-surface-a40: #7fa6a9;
-    --color-surface-a50: #98b7b9;
+    --color-surface-a50: #98b7b9; */
 
     /** Theme tonal surface colors */
-    --color-surface-tonal-a0: #2c7277;
+    /* --color-surface-tonal-a0: #2c7277;
     --color-surface-tonal-a10: #468185;
     --color-surface-tonal-a20: #5e9094;
     --color-surface-tonal-a30: #759fa2;
     --color-surface-tonal-a40: #8cafb1;
-    --color-surface-tonal-a50: #a2bec0;
+    --color-surface-tonal-a50: #a2bec0; */
 
     /* UNJ */
     --color-unj: #006369;
@@ -61,7 +60,53 @@
     --color-unj-light: #aefaff;
 }
 
+@plugin "daisyui/theme" {
+    name: "light";
+    default: true;
+    color-scheme: light;
+
+    --color-primary: oklch(0.4604 0.078277 199.5523);
+    --color-secondary: #ffdd00;
+    /* --color-base-content: oklch(1 0 0); */
+}
+
+@plugin "daisyui/theme" {
+    name: "dark";
+    default: false;
+    prefersdark: false;
+    color-scheme: dark;
+
+    /** Base colors */
+    --color-dark-a0: #000000;
+    --color-light-a0: #ffffff;
+
+    /** Theme primary colors */
+    --color-primary: oklch(0.5251 0.0744 191.51);
+    --color-secondary: #ffdd00;
+    /* --color-primary-500: oklch(0.5768 0.0661 191.5);
+    --color-primary-400: oklch(0.6308 0.0584 191.38);
+    --color-primary-300: oklch(0.6843 0.0506 191.07);
+    --color-primary-200: oklch(0.7352 0.0411 192.3);
+    --color-primary-100: oklch(0.7881 0.0325 191.56); */
+
+    /** Theme surface colors */
+    --color-base-300: oklch(0.2058 0.0183 195.82);
+    --color-base-200: oklch(0.2942 0.0163 196.3);
+    --color-base-100: oklch(0.3814 0.0131 196.62);
+    /* --color-base-300: oklch(0.4705 0.0113 196.78);
+    --color-base-200: oklch(0.5591 0.0097 196.88);
+    --color-base-100: oklch(0.6476 0.0082 196.95); */
+
+    /** Theme tonal surface colors */
+    /* --color-surface-tonal-a0: oklch(0.2371 0.0228 195.72);
+    --color-surface-tonal-a10: oklch(0.3228 0.0209 196.16);
+    --color-surface-tonal-a20: oklch(0.4077 0.0179 191.16);
+    --color-surface-tonal-a30: oklch(0.4919 0.016 191);
+    --color-surface-tonal-a40: oklch(0.5768 0.0132 190.2);
+    --color-surface-tonal-a50: oklch(0.66 0.0093 196.93); */
+}
+
 html {
     scroll-behavior: smooth;
-    outline: 1px solid red;
+    /* outline: 1px solid red; //for debugging */
 }

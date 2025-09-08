@@ -3,6 +3,6 @@ import './toast';
 import './chart';
 import './dashboard';
 import './swiper';
-import './apexchart';
+import './homepage';
 import './jadwalpilih';
 import './jadwalruang';

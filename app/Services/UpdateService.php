@@ -10,8 +10,8 @@ class UpdateService
     public static function transform($update)
     {
 
-        $parsed_new = collect(json_decode($update->new_data, true));
-        $parsed_old = collect(json_decode($update->old_data, true)) ?? [];
+        $parsed_new = collect($update->new_data);
+        $parsed_old = collect($update->old_data) ?? [];
 
         $labelMaps = [
             'campuses' => [

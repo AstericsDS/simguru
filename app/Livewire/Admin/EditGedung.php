@@ -40,7 +40,7 @@ class EditGedung extends Component
         if (!$this->update) {
             return $this->redirectRoute('daftar-gedung', navigate: true);
         }
-        $this->new_data = json_decode($this->update->new_data, true);
+        $this->new_data = $this->update->new_data;
         $this->name = $this->new_data['name'] ?? $building->name;
         $this->campus_id = $this->new_data['campus_id'] ?? $building->campus_id;
         $this->area = $this->new_data['area'] ?? $building->area;
@@ -111,8 +111,9 @@ class EditGedung extends Component
 
         $updated = $this->update->update([
             'old_data' => $this->update->new_data,
-            'new_data' => json_encode($validated),
-            'status' => 'pending'
+            'new_data' => $validated,
+            'status' => 'pending',
+            'updated_at' => now(),
         ]);
 
         if ($updated) {

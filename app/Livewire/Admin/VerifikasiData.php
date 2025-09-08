@@ -39,7 +39,7 @@ class VerifikasiData extends Component
         }
 
         $update = Update::find($id);
-        $data = json_decode($update->new_data, true);
+        $data = $update->new_data;
 
         switch ($update->table) {
             case 'campuses':
@@ -247,8 +247,8 @@ class VerifikasiData extends Component
         $this->selectedUpdate = Update::with('admin', 'approver')->find($id);
         $this->selectedUpdate = UpdateService::transform($this->selectedUpdate);
 
-        $this->new_data = json_decode($this->selectedUpdate->new_data, true);
-        $this->old_data = json_decode($this->selectedUpdate->old_data, true);
+        $this->new_data = $this->selectedUpdate->new_data;
+        $this->old_data = $this->selectedUpdate->old_data;
 
         $this->dispatch('view');
     }
@@ -259,7 +259,7 @@ class VerifikasiData extends Component
         if ($this->filter !== 'all') {
             $updates->where('status', $this->filter);
         }
-        $updates = $updates->with('admin')->orderBy('created_at', $this->sort)->paginate(10);
+        $updates = $updates->with('admin')->orderBy('updated_at', $this->sort)->paginate(10);
         $updates->getCollection()->transform(function ($update) {
             return UpdateService::transform($update);
         });

@@ -230,7 +230,7 @@
                                         </button>
                                     </a>
                                     @if ($room->admin_id === Auth::id())
-                                        <a href="{{ route('edit-ruang', $room->id) }}" wire:navigate class="transition-all cursor-pointer rounded-xl p-2 mx-auto {{ in_array($room->id, $rejected_rooms) ? 'text-red-500 hover:bg-red-200 tooltip tooltip-error' : 'hover:text-yellow-900 hover:bg-yellow-200' }}" data-tip="Perubahan ditolak">
+                                        <a href="{{ route('edit-ruang', $room->slug) }}" wire:navigate class="transition-all cursor-pointer rounded-xl p-2 mx-auto {{ in_array($room->id, $rejected_rooms) ? 'text-red-500 hover:bg-red-200 tooltip tooltip-error' : 'hover:text-yellow-900 hover:bg-yellow-200' }}" data-tip="Perubahan ditolak">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
                                     @endif

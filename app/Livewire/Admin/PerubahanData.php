@@ -38,8 +38,8 @@ class PerubahanData extends Component
         $this->selectedUpdate = Update::with('admin', 'approver')->find($id);
         $this->selectedUpdate = UpdateService::transform($this->selectedUpdate);
 
-        $this->new_data = json_decode($this->selectedUpdate->new_data, true);
-        $this->old_data = json_decode($this->selectedUpdate->old_data, true);
+        $this->new_data = $this->selectedUpdate->new_data;
+        $this->old_data = $this->selectedUpdate->old_data;
 
         $this->dispatch('view');
     }

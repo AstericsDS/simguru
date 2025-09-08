@@ -42,7 +42,7 @@ class EditRuang extends Component
         if (!$this->update) {
             return $this->redirectRoute('daftar-ruang', navigate: true);
         }
-        $this->new_data = json_decode($this->update->new_data, true);
+        $this->new_data = $this->update->new_data;
         $this->name = $this->new_data['name'] ?? $room->name;
         $this->campus_id = $this->new_data['campus_id'] ?? $room->campus_id;
         $this->building_id = $this->new_data['building_id'] ?? $room->building_id;
@@ -129,8 +129,9 @@ class EditRuang extends Component
 
         $updated = $this->update->update([
             'old_data' => $this->update->new_data,
-            'new_data' => json_encode($validated),
-            'status' => 'pending'
+            'new_data' => $validated,
+            'status' => 'pending',
+            'updated_at' => now(),
         ]);
 
         if ($updated) {

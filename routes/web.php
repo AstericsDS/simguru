@@ -40,7 +40,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function(){
     Route::get('/gedung', Gedung::class)->name('gedung');
     // Route::get('/tambah-kampus', TambahKampus::class)->name('tambah-kampus');
     Route::get('/daftar-kampus', DaftarKampus::class)->name('daftar-kampus');
-    Route::get('/edit-kampus/{campus}', EditKampus::class)->name('edit-kampus');
+    Route::get('/edit-kampus/{id}', EditKampus::class)->name('edit-kampus');
     // Route::get('/tambah-gedung', TambahGedung::class)->name('tambah-gedung');
     Route::get('/daftar-gedung', DaftarGedung::class)->name('daftar-gedung');
     Route::get('/edit-gedung/{building}', EditGedung::class)->name('edit-gedung');
@@ -53,7 +53,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function(){
     Route::get('/rekapitulasi', Rekapitulasi::class)->name('rekapitulasi');
     Route::get('/campus', Campus::class)->name('campus');
     // Route::get('/verifikasi/new', VerifikasiNew::class)->name('verifikasi-new');
-    Route::get('/kampus/{campus}', ViewKampus::class)->name('view-kampus');
+    Route::get('/kampus/{id}', ViewKampus::class)->name('view-kampus');
     Route::get('/gedung/{building}', ViewGedung::class)->name('view-gedung');
     Route::get('/ruang/{room}', ViewRuang::class)->name('view-ruang');
 });

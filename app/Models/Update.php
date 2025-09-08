@@ -23,6 +23,8 @@ class Update extends Model
     ];
     protected $casts = [
         'images_path' => 'array',
+        'new_data' => 'array',
+        'old_data' => 'array'
     ];
 
     public function admin(): BelongsTo {

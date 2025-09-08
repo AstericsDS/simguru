@@ -65,7 +65,7 @@ class TambahKampus extends Component
             'table' => 'campuses',
             'record_id' => null,
             'old_data' => null,
-            'new_data' => json_encode($validated),
+            'new_data' => $validated,
             'status' => 'pending',
             'approved_by' => null,
             'reject_reason' => null,

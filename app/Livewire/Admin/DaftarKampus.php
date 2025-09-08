@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\Layout;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Collection;
 
 #[Layout('components.layouts.admin.dashboard')]
 class DaftarKampus extends Component
@@ -34,7 +35,7 @@ class DaftarKampus extends Component
             'name' => 'required',
             'slug' => 'required|unique:campuses,slug',
             'address' => 'required',
-            'contact' => 'required|min:8',
+            'contact' => 'required|digits_between:8,13',
             'email' => 'required|email',
             'description' => 'required',
             'images_path.*' => 'required|file|image',
@@ -48,7 +49,7 @@ class DaftarKampus extends Component
             'name.required' => 'Nama harus diisi',
             'address.required' => 'Alamat harus diisi',
             'contact.required' => 'Nomor telepon harus diisi',
-            'contact.min' => 'Nomor telepon minimal 8 digit',
+            'contact.digits_between' => 'Nomor telepon harus berupa angka dan minimal 8 digit',
             'email.required' => 'Email harus diisi',
             'email.email' => 'Masukkan alamat email yang valid',
             'description.required' => 'Deskripsi harus diisi',
@@ -81,7 +82,7 @@ class DaftarKampus extends Component
             'table' => 'campuses',
             'record_id' => null,
             'old_data' => null,
-            'new_data' => json_encode($validated),
+            'new_data' => $validated,
             'status' => 'pending',
             'approved_by' => null,
             'reject_reason' => null,
@@ -103,11 +104,23 @@ class DaftarKampus extends Component
         $this->dispatch('view');
     }
 
+    public function viewPending($id)
+    {
+        $pending = Update::find($id);
+        $this->campusImages = $pending->new_data['images_path'];
+        $this->dispatch('view');
+    }
+
     public function render()
     {
         $campuses = Campus::when($this->search !== '', fn(Builder $query) => $query->where('name', 'like', '%' . $this->search . '%'))->get();
+        $updates = Update::when(
+            $this->search !== '',
+            fn(Builder $query) => $query->where('new_data->name', 'like', '%' . $this->search . '%')
+        )->where('table', 'campuses')->whereIn('status', ['pending', 'rejected'])->get();
         return view('livewire.admin.daftar-kampus', [
-            'campuses' => $campuses
+            'campuses' => $campuses,
+            'updates' => $updates
         ]);
     }
 }

@@ -35,36 +35,15 @@ class EditKampus extends Component
 
     public function mount($id)
     {
-        // $this->campus = Campus::where('slug',  $id)->first();
-        // if ($this->campus) {
-        //     $this->update = Update::where('table', 'campuses')->where('record_id', $this->campus->id)->first();
-        //     if (!$this->update) {
-        //         return $this->redirectRoute('daftar-kampus', navigate: true);
-        //     }
-
-        // } else {
-        //     $this->update->find($id);
-        // }
-        // $this->new_data = $this->update->new_data;
-        // $this->name = $this->new_data['name'] ?? $this->campus->name;
-        // $this->slug = $this->new_data['slug'] ?? $this->campus->slug;
-        // $this->address = $this->new_data['address'] ?? $this->campus->address;
-        // $this->contact = $this->new_data['contact'] ?? $this->campus->contact;
-        // $this->email = $this->new_data['email'] ?? $this->campus->email;
-        // $this->description = $this->new_data['description'] ?? $this->campus->description;
-        // $this->images_path = $this->new_data['images_path'] ?? $this->campus->images_path;
-        // $this->is_pending = $this->update->status === 'pending';
-
-        // Case 1: The identifier is a number, so it's likely an Update ID.
+        // Cek jika passing argument berupa id (untuk entri baru)
         if (is_numeric($id)) {
             $this->update = Update::find($id);
         }
-        // Case 2: The identifier is a string, so it's likely a Campus slug.
+        // Jika bukan id, berarti slug (untuk entri yang sudah pernah di approve)
         else {
             $this->campus = Campus::where('slug', $id)->first();
 
             if ($this->campus) {
-                // Find the associated pending update for this campus.
                 $this->update = Update::where('table', 'campuses')->where('record_id', $this->campus->id)->first();
             }
         }
@@ -84,7 +63,7 @@ class EditKampus extends Component
         return [
             'name' => 'required',
             'address' => 'required',
-            'contact' => 'required|min:8',
+            'contact' => 'required|digits_between:8,13',
             'email' => 'required|email',
             'description' => 'required',
             'new_images.*' => 'file|image'
@@ -97,7 +76,7 @@ class EditKampus extends Component
             'name.required' => 'Nama harus diisi',
             'address.required' => 'Alamat harus diisi',
             'contact.required' => 'Nomor telepon harus diisi',
-            'contact.min' => 'Nomor telepon minimal 8 digit',
+            'contact.digits_between' => 'Nomor telepon harus berupa angka dan minimal 8 digit',
             'email.required' => 'Email harus diisi',
             'email.email' => 'Masukkan alamat email yang valid',
             'description.required' => 'Deskripsi harus diisi',

@@ -119,14 +119,30 @@ class DaftarGedung extends Component
         $this->dispatch('view');
     }
 
+    public function viewPending($id)
+    {
+        $pending = Update::find($id);
+        $this->buildingImages = $pending->new_data['images_path'];
+        $this->dispatch('view');
+    }
+
     public function render()
     {
         $buildings = Building::with('campus')
             ->when($this->search !== '', fn(Builder $query)
                 => $query->where('name', 'like', '%' . $this->search . '%'))
             ->paginate(10);
+        $updates = Update::when(
+            $this->search !== '',
+            fn(Builder $query) => $query->where('new_data->name', 'like', '%' . $this->search . '%')
+        )->where('table', 'buildings')->whereIn('status', ['pending', 'rejected'])->get();
+        $mapped = $updates->transform(function ($item) {
+            $item->campus = Campus::find($item->new_data['campus_id'])?->name;
+            return $item;
+        });
         return view('livewire.admin.daftar-gedung', [
-            'buildings' => $buildings
+            'buildings' => $buildings,
+            'updates' => $mapped,
         ]);
     }
 

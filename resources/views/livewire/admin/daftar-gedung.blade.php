@@ -7,23 +7,30 @@
 
         <div class="flex justify-between items-center">
 
-            {{-- Search --}}
-            <div x-data @keyup.window="if ($event.ctrlKey && $event.key === '/') {$refs.searchInput.focus()}" class="relative w-96">
-                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 cursor-pointer">
-                    <svg class="w-5 h-5 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" />
-                    </svg>
-                </span>
+            <div class="flex gap-3 items-center">
+                {{-- Search --}}
+                <div x-data @keyup.window="if ($event.ctrlKey && $event.key === '/') {$refs.searchInput.focus()}" class="relative w-96">
+                    <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 cursor-pointer">
+                        <svg class="w-5 h-5 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" />
+                        </svg>
+                    </span>
 
-                <input wire:model.live="search" x-ref="searchInput" @keydown.escape="$refs.searchInput.blur()" type="text" class="border border-gray-300 rounded-lg px-3 py-2 w-full pl-12 pr-[88px] focus:outline-none focus:ring-unj text-black transition-all" placeholder="Cari gedung">
+                    <input wire:model.live="search" x-ref="searchInput" @keydown.escape="$refs.searchInput.blur()" type="text" class="border border-gray-300 rounded-lg px-3 py-2 w-full pl-12 pr-[88px] focus:outline-none focus:ring-unj text-black transition-all" placeholder="Cari gedung">
 
-                <div class="absolute right-4 text-gray-500 top-1/2 -translate-y-1/2 flex gap-1">
-                    <div class="border px-2 py-1 border-gray-500 rounded-md flex items-center justify-center">
-                        <span class="text-xs">CTRL</span>
+                    <div class="absolute right-4 text-gray-500 top-1/2 -translate-y-1/2 flex gap-1">
+                        <div class="border px-2 py-1 border-gray-500 rounded-md flex items-center justify-center">
+                            <span class="text-xs">CTRL</span>
+                        </div>
+                        <div class="border p-2 py-1 border-gray-500 rounded-md flex items-center justify-center">
+                            <span class="text-xs">/</span>
+                        </div>
                     </div>
-                    <div class="border p-2 py-1 border-gray-500 rounded-md flex items-center justify-center">
-                        <span class="text-xs">/</span>
-                    </div>
+                </div>
+
+                {{-- Pending Toggle --}}
+                <div x-data="{ state: false }" @click="state = !state; $dispatch('pending-toggle', state)" :class="state == true ? 'bg-yellow-300 border-yellow-300 text-white' : 'border-gray-300 text-gray-500'" class="border py-2 px-3 rounded-md hover:bg-yellow-300 active:bg-yellow-400 hover:border-yellow-300 transition-all hover:text-white cursor-pointer">
+                    <i class="fa-regular fa-clock"></i>
                 </div>
             </div>
 
@@ -152,7 +159,7 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody x-data="{ state: true }" x-show="state" @pending-toggle.window="state = !$event.detail">
                     @foreach ($buildings as $building)
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -193,6 +200,61 @@
                                     </a>
                                     @if ($building->admin_id === Auth::id())
                                         <a href="{{ route('edit-gedung', $building->slug) }}" wire:navigate class="transition-all cursor-pointer rounded-xl p-2 mx-auto {{ in_array($building->id, $rejected_buildings) ? 'text-red-500 hover:bg-red-200 tooltip tooltip-error' : 'hover:text-yellow-900 hover:bg-yellow-200' }}" data-tip="Perubahan ditolak">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                    @endif
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+                <tbody x-data="{ state: false }" x-show="state" @pending-toggle.window="state = $event.detail">
+                    {{-- Pending Entry --}}
+                    @foreach ($updates as $update)
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                @if ($update->status === 'rejected')
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-red-500">{{ $update->new_data['name'] }}</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#F44336" class="size-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+                                        </svg>
+                                    </div>
+                                @else
+                                    <div class="flex gap-2 items-center">
+                                        <span class="text-yellow-500">{{ $update->new_data['name'] }}</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="#EAB308" class="size-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                        </svg>
+                                    </div>
+                                @endif
+                            </th>
+                            <td class="px-6 py-4">
+                                {{ $update->campus }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $update->new_data['address'] }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $update->new_data['floor'] }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $update->new_data['area'] }}m<sup>2</sup>
+                            </td>
+                            <td class="px-6 py-4">
+                                <button wire:click='viewPending({{ $update->id }})' type="button" class="transition-all cursor-pointer hover:text-unj hover:bg-unj-light rounded-xl p-2 mx-auto" data-tip="Gambar">
+                                    <i class="fa-solid fa-images"></i>
+                                </button>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex gap-2 items-center">
+                                    <a href="{{ route('view-gedung', $update->id) }}" wire:navigate>
+                                        <button class="transition-all cursor-pointer hover:text-blue-500 hover:bg-gray-300 rounded-xl p-2 mx-auto">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                    </a>
+                                    @if ($update->admin_id === Auth::id())
+                                        <a href="{{ route('edit-gedung', $update->id) }}" wire:navigate class="transition-all cursor-pointer rounded-xl p-2 mx-auto {{ $update->status == 'rejected' ? 'text-red-500 hover:bg-red-200 tooltip tooltip-error' : 'hover:text-yellow-900 hover:bg-yellow-200' }}" data-tip="Perubahan ditolak">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
                                     @endif

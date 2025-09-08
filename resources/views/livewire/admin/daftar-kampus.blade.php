@@ -30,7 +30,7 @@
                 </div>
 
                 {{-- Pending Toggle --}}
-                <div x-data="{ state: false }" @click="state = !state; $dispatch('pending-toggle', state)" :class="state == true ? 'bg-yellow-300 border-yellow-300 text-white' : 'border-gray-300 text-gray-500'" class="border py-2 px-3 rounded-md hover:bg-yellow-300 hover:border-yellow-300 transition-all hover:text-white cursor-pointer">
+                <div x-data="{ state: false }" @click="state = !state; $dispatch('pending-toggle', state)" :class="state == true ? 'bg-yellow-300 border-yellow-300 text-white' : 'border-gray-300 text-gray-500'" class="border py-2 px-3 rounded-md hover:bg-yellow-300 active:bg-yellow-400 hover:border-yellow-300 transition-all hover:text-white cursor-pointer">
                     <i class="fa-regular fa-clock"></i>
                 </div>
             </div>

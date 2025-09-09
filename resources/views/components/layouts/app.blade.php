@@ -15,28 +15,31 @@
         <input id="profile-drawer" type="checkbox" class="drawer-toggle">
         <div class="drawer-content">
             {{-- NAVBAR --}}
-            <div class="navbar bg-unj w-full h-20 sticky transition-all top-0 z-50 px-5 lg:px-60" id="navbar">
+            <div class="navbar bg-unj w-full h-10 sticky transition-all top-0 z-50 px-5 lg:px-50" id="navbar">
                 <div class="navbar-start">
                         <label for="profile-drawer" class="btn btn-ghost btn-circle lg:hidden">
                             <img src="{{ asset('logos/peminjaman.png') }}" alt="sidebar" class="w-5 mr-5 lg:hidden">
                         </label>
-                        <img src="{{ asset('logos/unj2.png') }}" alt="Logo UNJ" class="w-7 sm:w-10 lg:w-14">
-                        <a href="/" class="text-semibold ml-3 not-lg:text-xs">
-                            SISTEM INFORMASI GEDUNG DAN RUANG
+                        <img src="{{ asset('logos/unj2.png') }}" alt="Logo UNJ" class="w-3 sm:w-6 lg:w-10">
+                        <a href="/" class="font-semibold ml-3 not-lg:text-xs">
+                            Sistem Informasi Gedung dan Ruang
                         </a>
                 </div>
                 <div class="navbar-end">
                     <div class="not-lg:hidden">
-                        <button class="btn btn-ghost" onClick="document.getElementById('kampus').scrollIntoView();">
+                        <button id="jadwall" class="btn btn-ghost hover:bg-[#fddc00] hover:text-unj border-none" onClick="document.getElementById('jadwal').scrollIntoView();">
+                            Jadwal Ruangan
+                        </button>
+                        <button id="kampuss" class="btn btn-ghost hover:bg-[#fddc00] hover:text-unj border-none" onClick="document.getElementById('kampus').scrollIntoView();">
                             Kampus
                         </button>
-                        <button class="btn btn-ghost" onClick="document.getElementById('gedung').scrollIntoView();">
+                        <button id="gedungg" class="btn btn-ghost hover:bg-[#fddc00] hover:text-unj border-none" onClick="document.getElementById('gedung').scrollIntoView();">
                             Gedung
                         </button>
-                        <button class="btn btn-ghost" onClick="document.getElementById('ruang').scrollIntoView();">
+                        <button id="ruangg" class="btn btn-ghost hover:bg-[#fddc00] hover:text-unj border-none" onClick="document.getElementById('ruang').scrollIntoView();">
                             Ruang
                         </button>
-                        <button class="btn btn-ghost" onClick="document.getElementById('statistik').scrollIntoView();">
+                        <button id="statistikk" class="btn btn-ghost hover:bg-[#fddc00] hover:text-unj border-none" onClick="document.getElementById('statistik').scrollIntoView();">
                             Statistik
                         </button>
                     </div>
@@ -88,6 +91,7 @@
                 <li><button onClick="document.getElementById('kampus').scrollIntoView();">Gedung</button></li>
                 <li><button onClick="document.getElementById('kampus').scrollIntoView();">Ruang</button></li>
                 <li><button onClick="document.getElementById('kampus').scrollIntoView();">Statistik</button></li>
+                <li><button onClick="document.getElementById('kampus').scrollIntoView();">Jadwal Ruangan</button></li>
             </ul>
         </div>
     </div>
@@ -95,26 +99,30 @@
         <aside>
             <img src="{{ asset('logos/UNJ22.png') }}" alt="logo unj" class="w-20 lg:w-50">
         </aside>
-        {{-- <nav>
-            <h6 class="footer-title">Services</h6>
-            <a class="link link-hover">Branding</a>
-            <a class="link link-hover">Design</a>
-            <a class="link link-hover">Marketing</a>
-            <a class="link link-hover">Advertisement</a>
+        <nav>
+            <h6 class="footer-title">Tautan Cepat</h6>
+            <a class="link link-hover">Beranda</a>
+            <a class="link link-hover">Panduan</a>
+            <a class="link link-hover">Fasilitas</a>
+            <a class="link link-hover">Pemesanan</a>
+            <a class="link link-hover">Kalender</a>
+            <a class="link link-hover">Kontak</a>
         </nav>
         <nav>
-            <h6 class="footer-title">Company</h6>
-            <a class="link link-hover">About us</a>
-            <a class="link link-hover">Contact</a>
-            <a class="link link-hover">Jobs</a>
-            <a class="link link-hover">Press kit</a>
+            <h6 class="footer-title">Gedung & Ruangan</h6>
+            <a class="link link-hover">Gedung Rektorat</a>
+            <a class="link link-hover">Fakultas Ilmu Pendidikan</a>
+            <a class="link link-hover">Fakultas Teknik</a>
+            <a class="link link-hover">Fakultas Ekonomi</a>
+            <a class="link link-hover">Gedung Serba Guna</a>
+            <a class="link link-hover">Laboratorium</a>
         </nav>
         <nav>
             <h6 class="footer-title">Legal</h6>
             <a class="link link-hover">Terms of use</a>
             <a class="link link-hover">Privacy policy</a>
             <a class="link link-hover">Cookie policy</a>
-        </nav> --}}
+        </nav>
     </footer>
     <div class="text-center bg-unj">Copyright 2025 Pustikom</div>
 </body>

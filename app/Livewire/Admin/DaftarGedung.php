@@ -76,6 +76,7 @@ class DaftarGedung extends Component
 
         $validated['admin_id'] = Auth::id();
         $validated['slug'] = $this->slug;
+        $validated['campus'] = Campus::find($this->campus_id)->name;
         $created = Update::create([
             'admin_id' => Auth::id(),
             'type' => 'new',
@@ -136,13 +137,9 @@ class DaftarGedung extends Component
             $this->search !== '',
             fn(Builder $query) => $query->where('new_data->name', 'like', '%' . $this->search . '%')
         )->where('table', 'buildings')->whereIn('status', ['pending', 'rejected'])->get();
-        $mapped = $updates->transform(function ($item) {
-            $item->campus = Campus::find($item->new_data['campus_id'])?->name;
-            return $item;
-        });
         return view('livewire.admin.daftar-gedung', [
             'buildings' => $buildings,
-            'updates' => $mapped,
+            'updates' => $updates,
         ]);
     }
 

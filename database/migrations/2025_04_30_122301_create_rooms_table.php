@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->integer('floor');
+            $table->integer('area');
             $table->integer('capacity');
             $table->text('description');
             $table->json('images_path');

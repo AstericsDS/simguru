@@ -118,6 +118,7 @@ class EditGedung extends Component
         $validated['images_path'] = $finalPaths;
         $validated['admin_id'] = Auth::id();
         $validated['slug'] = $this->slug;
+        $validated['campus'] = Campus::find($this->campus_id)->name;
 
         $updated = $this->update->update([
             'old_data' => $this->update->new_data,
@@ -150,12 +151,12 @@ class EditGedung extends Component
             return;
         }
         if (
-            $this->name === $this->building->name &&
-            $this->campus_id === $this->building->campus_id &&
-            $this->area === $this->building->area &&
-            $this->floor == $this->building->floor &&
-            $this->address === $this->building->address &&
-            $this->description === $this->building->description &&
+            $this->name === ($this->building->name ?? $this->update->new_data['name']) &&
+            $this->campus_id === ($this->building->campus_id ?? $this->update->new_data['campus_id']) &&
+            $this->area === ($this->building->area ?? $this->update->new_data['area']) &&
+            $this->floor == ($this->building->floor ?? $this->update->new_data['floor']) &&
+            $this->address === ($this->building->address ?? $this->update->new_data['address']) &&
+            $this->description === ($this->building->description ?? $this->update->new_data['description']) &&
             $this->sameImages()
         ) {
             $this->dispatch('toast', status: 'nochanges', message: 'Tidak ada value yang diubah.');

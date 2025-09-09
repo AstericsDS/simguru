@@ -55,7 +55,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function(){
     // Route::get('/verifikasi/new', VerifikasiNew::class)->name('verifikasi-new');
     Route::get('/kampus/{id}', ViewKampus::class)->name('view-kampus');
     Route::get('/gedung/{id}', ViewGedung::class)->name('view-gedung');
-    Route::get('/ruang/{room}', ViewRuang::class)->name('view-ruang');
+    Route::get('/ruang/{id}', ViewRuang::class)->name('view-ruang');
 });
 
 // Auth

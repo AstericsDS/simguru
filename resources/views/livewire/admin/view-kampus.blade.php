@@ -1,8 +1,4 @@
 <div>
-    {{-- {{dd($campus->toArray())}} --}}
-    {{-- {{ dd($buildings->toArray()) }} --}}
-    {{-- {{ dd($pending->toArray()) }} --}}
-
     {{-- Detail Kampus --}}
     <div class="flex gap-8">
 

@@ -230,7 +230,7 @@
                                 @endif
                             </th>
                             <td class="px-6 py-4">
-                                {{ $update->campus }}
+                                {{ $update->new_data['campus'] }}
                             </td>
                             <td class="px-6 py-4">
                                 {{ $update->new_data['address'] }}

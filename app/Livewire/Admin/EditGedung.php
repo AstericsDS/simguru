@@ -41,9 +41,9 @@ class EditGedung extends Component
         }
         // Jika bukan id, berarti slug (untuk entri yang sudah pernah di approve)
         else {
-            $this->campus = Campus::where('slug', $id)->first();
+            $this->building = Building::where('slug', $id)->first();
 
-            if ($this->campus) {
+            if ($this->building) {
                 $this->update = Update::where('table', 'buildings')->where('record_id', $this->building->id)->first();
             }
         }

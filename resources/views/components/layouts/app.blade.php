@@ -53,23 +53,23 @@
                             </svg>
 
                         </label>
-                        <button id="jadwall" class="btn btn-ghost hover:bg-secondary hover:text-primary border-none"
+                        <button id="jadwall" class="btn btn-ghost hover:bg-base-100 hover:text-primary border-none"
                             onClick="document.getElementById('jadwal').scrollIntoView();">
                             Jadwal Ruangan
                         </button>
-                        <button id="kampuss" class="btn btn-ghost hover:bg-secondary hover:text-primary border-none"
+                        <button id="kampuss" class="btn btn-ghost hover:bg-base-100 hover:text-primary border-none"
                             onClick="document.getElementById('kampus').scrollIntoView();">
                             Kampus
                         </button>
-                        <button id="gedungg" class="btn btn-ghost hover:bg-secondary hover:text-primary border-none"
+                        <button id="gedungg" class="btn btn-ghost hover:bg-base-100 hover:text-primary border-none"
                             onClick="document.getElementById('gedung').scrollIntoView();">
                             Gedung
                         </button>
-                        <button id="ruangg" class="btn btn-ghost hover:bg-secondary hover:text-primary border-none"
+                        <button id="ruangg" class="btn btn-ghost hover:bg-base-100 hover:text-primary border-none"
                             onClick="document.getElementById('ruang').scrollIntoView();">
                             Ruang
                         </button>
-                        <button id="statistikk" class="btn btn-ghost hover:bg-secondary hover:text-primary border-none"
+                        <button id="statistikk" class="btn btn-ghost hover:bg-base-100 hover:text-primary border-none"
                             onClick="document.getElementById('statistik').scrollIntoView();">
                             Statistik
                         </button>

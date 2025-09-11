@@ -3,7 +3,7 @@
     <div
         class="flex flex-col bg-[url(/public/backgrounds/unj_bersih.jpeg)] bg-primary bg-blend-overlay bg-cover bg-fixed min-h-screen bg-center justify-center items-center gap-5">
         <img src="{{ asset('logos/UNJ22.png') }}" alt="logo unj" class="w-50">
-        <h1 class=" text-xl lg:text-5xl text-base-content text-wrap w-3/7 text-center font-semibold">
+        <h1 class=" text-xl lg:text-5xl text-white text-wrap w-3/7 text-center font-semibold">
             Sistem Informasi Gedung dan Ruang
         </h1>
         {{-- login button --}}
@@ -16,7 +16,7 @@
                     d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z" />
                 <circle cx="16.5" cy="7.5" r=".5" fill="currentColor" />
             </svg>
-            login
+            Login
         </a>
     </div>
 
@@ -42,7 +42,7 @@
                     ruang di Universitas Negeri Jakarta.
                 </p>
                 <div class="grid grid-cols-1 lg:grid-cols-2 text-sm text-center gap-3">
-                    <p class="flex gap-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    <p class="flex gap-4"><svg xmlns="http://www.w3.org/2000/svg" class="stroke-primary" width="24" height="24"
                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round"
                             class="lucide lucide-building2-icon lucide-building-2">
@@ -54,7 +54,7 @@
                             <path d="M10 14h4" />
                             <path d="M10 18h4" />
                         </svg>Manajemen Gedung dan Ruang</p>
-                    <p class="flex gap-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    <p class="flex gap-4"><svg xmlns="http://www.w3.org/2000/svg" class="stroke-primary" width="24" height="24"
                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round"
                             class="lucide lucide-building2-icon lucide-building-2">
@@ -66,7 +66,7 @@
                             <path d="M10 14h4" />
                             <path d="M10 18h4" />
                         </svg>Manajemen Gedung dan Ruang</p>
-                    <p class="flex gap-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    <p class="flex gap-4"><svg xmlns="http://www.w3.org/2000/svg" class="stroke-primary" width="24" height="24"
                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round"
                             class="lucide lucide-building2-icon lucide-building-2">
@@ -78,7 +78,7 @@
                             <path d="M10 14h4" />
                             <path d="M10 18h4" />
                         </svg>Manajemen Gedung dan Ruang</p>
-                    <p class="flex gap-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    <p class="flex gap-4"><svg xmlns="http://www.w3.org/2000/svg" class="stroke-primary" width="24" height="24"
                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round"
                             class="lucide lucide-building2-icon lucide-building-2">
@@ -102,11 +102,11 @@
     </div>
 
     @livewire('component.jadwalruangan')
-    <h5 id="alert" class="hidden alert font-bold text-center">Gunakan Landscape Untuk Melihat Jadwal Kelas!</h5>
+    <h5 id="alert" class="hidden alert text-base-content bg-base-200 font-bold text-center">Gunakan Landscape Untuk Melihat Jadwal Kelas!</h5>
 
     {{-- judul container --}}
     <div class="text-base-content text-center flex flex-col gap-3 pt-20" id="kampus">
-        <h1 class="text-2xl lg:text-4xl font-semibold">Universitas Negeri Jakarta Multi Kampus</h1>
+        <h1 class="text-base-content text-2xl lg:text-4xl font-semibold">Universitas Negeri Jakarta Multi Kampus</h1>
         <hr class="w-15 font-bold mx-auto border-gray-500 border">
         <p class="text-gray-500">Kampus-Kampus UNJ</p>
     </div>
@@ -134,7 +134,7 @@
             KAMPUS</a></button>
     {{-- list beberapa gedung di UNJ --}}
     <div class="text-base-content text-center flex flex-col gap-3 pt-20" id="gedung">
-        <h1 class="text-2xl lg:text-4xl font-semibold">Gedung - Gedung Universitas Negeri Jakarta</h1>
+        <h1 class="text-base-content text-2xl lg:text-4xl font-semibold">Gedung - Gedung Universitas Negeri Jakarta</h1>
         <hr class="w-15 font-bold mx-auto border-gray-500 border">
     </div>
     {{-- card container for buildings --}}
@@ -160,7 +160,7 @@
     <button class="btn border-none shadow-none mt-5 self-center rounded-full bg-base-100"><a href="/gedung">LIHAT
             GEDUNG</a></button>
     <div class="text-base-content text-center flex flex-col gap-3 pt-20" id="ruang">
-        <h1 class="text-2xl lg:text-4xl font-semibold" id="ruang">Ruangan Universitas Negeri Jakarta</h1>
+        <h1 class="text-base-content text-2xl lg:text-4xl font-semibold" id="ruang">Ruangan Universitas Negeri Jakarta</h1>
         <hr class="w-15 font-bold mx-auto border-gray-500 border">
     </div>
     {{-- Ruangan container --}}
@@ -177,7 +177,7 @@
                     <h1>{{ $room->building->name }}</h1>
                     <h1>{{ $room->description }}</h1>
                     <ul>
-                        <li class="flex gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                        <li class="flex gap-2"><svg class="stroke-primary" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round"
                                 class="lucide lucide-building2-icon lucide-building-2">
@@ -190,7 +190,7 @@
                                 <path d="M10 18h4" />
                             </svg> Lantai :
                             {{ $room->floor }}</li>
-                        <li class="flex gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                        <li class="flex gap-2"><svg class="stroke-primary" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round"
                                 class="lucide lucide-users-icon lucide-users">
@@ -218,59 +218,3 @@
         <div class="w-1/2 self-center" id="homepagechart"></div>
     </div>
 </div>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const navbar = document.getElementById('navbar');
-        const scrolledClass = 'bg-base-200';
-        const scrolledShadow = 'shadow-lg';
-        const positionNav = 'fixed';
-        const textScrolledClass = 'text-white';
-        const active = 'text-primary';
-
-        const sections = document.querySelectorAll('#body-ko > div[id]');
-        const navButtons = document.querySelectorAll('.navbar-end button');
-
-        const scrollHandler = () => {
-            let scrollY = window.scrollY;
-            if (scrollY > 20) {
-                navbar.classList.add(scrolledClass, scrolledShadow);
-                // button.classList.remove('text-white');
-            } else {
-                navbar.classList.add(positionNav);
-                navbar.classList.remove(scrolledClass, scrolledShadow, 'sticky');
-                // navButtons.forEach(button => {
-                //     button.classList.add('text-white');
-                // });
-            }
-
-            sections.forEach(current => {
-                const sectionHeight = current.offsetHeight;
-                // Ambil posisi atas section, kurangi tinggi navbar agar lebih akurat
-                const sectionTop = current.offsetTop - navbar.offsetHeight;
-                const sectionId = current.getAttribute('id');
-
-                // Cek apakah posisi scroll berada di dalam section ini
-                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-                    // Hapus class 'active-nav' dari SEMUA tombol dulu
-                    navButtons.forEach(button => {
-                        button.classList.remove(active);
-                    });
-
-                    // Temukan tombol yang ID-nya SESUAI dengan ID section
-                    // Contoh: section id="jadwal" akan cocok dengan button id="jadwall"
-                    // Kita menggunakan [id^='...'] yang artinya "id yang diawali dengan..."
-                    const correspondingButton = document.querySelector(
-                        `.navbar-end button[id^='${sectionId}']`);
-
-                    if (correspondingButton) {
-                        // Tambahkan class active ke tombol yang cocok
-                        correspondingButton.classList.add(active);
-                    }
-                }
-            });
-        };
-
-        window.addEventListener('scroll', scrollHandler);
-        scrollHandler();
-    });
-</script>

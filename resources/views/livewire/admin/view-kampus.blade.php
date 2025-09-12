@@ -1,4 +1,5 @@
 <div>
+    <a wire:navigate href="{{ route("daftar-kampus") }}"> < Kembali ke daftar kampus</a>
     {{-- Detail Kampus --}}
     <div class="flex gap-8">
 

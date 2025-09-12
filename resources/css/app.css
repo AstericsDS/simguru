@@ -21,40 +21,6 @@
         sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
         "Noto Color Emoji";
 
-    /* --color-red-50: oklch(0.971 0.013 17.38);
-    --color-red-100: oklch(0.936 0.032 17.717);
-    --color-red-200: oklch(0.885 0.062 18.334); */
-    --color-active-side: #dffeff;
-
-    /** Base colors */
-    --color-dark-a0: #000000;
-    --color-light-a0: #ffffff;
-
-    /** Theme primary colors */
-    --color-primary-a0: #ffffff;
-    --color-primary-a10: #ffffff;
-    --color-primary-a20: #ffffff;
-    --color-primary-a30: #ffffff;
-    --color-primary-a40: #ffffff;
-    --color-primary-a50: #ffffff;
-
-    /** Theme surface colors */
-    --color-surface-a0: #006369;
-    --color-surface-100: #006369;
-    --color-surface-a10: #2f7378;
-    --color-surface-a20: #4c8488;
-    --color-surface-a30: #669598;
-    --color-surface-a40: #7fa6a9;
-    --color-surface-a50: #98b7b9;
-
-    /** Theme tonal surface colors */
-    --color-surface-tonal-a0: #2c7277;
-    --color-surface-tonal-a10: #468185;
-    --color-surface-tonal-a20: #5e9094;
-    --color-surface-tonal-a30: #759fa2;
-    --color-surface-tonal-a40: #8cafb1;
-    --color-surface-tonal-a50: #a2bec0;
-
     /* UNJ */
     --color-unj: #006369;
     --color-unj-dark: #004f54;

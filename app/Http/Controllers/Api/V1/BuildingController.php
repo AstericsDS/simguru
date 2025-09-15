@@ -21,7 +21,11 @@ class BuildingController extends Controller
         $buildings = QueryBuilder::for(Building::class)
             ->allowedFilters([
                 AllowedFilter::partial('name'),
-                AllowedFilter::belongsTo('campus'),
+                AllowedFilter::callback('campus_name', function($query, $value){
+                    $query->whereHas('campus', function($q) use ($value){
+                        $q->where('name', 'like', "%{$value}%");
+                    });
+                }),
             ])
             ->get();
         return BuildingResource::collection($buildings);

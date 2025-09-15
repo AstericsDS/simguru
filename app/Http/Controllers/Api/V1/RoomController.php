@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
 use App\Http\Resources\V1\RoomResource;
+use Spatie\QueryBuilder\Enums\FilterOperator;
 
 class RoomController extends Controller
 {
@@ -18,7 +19,18 @@ class RoomController extends Controller
     {
         $rooms = QueryBuilder::for(Room::class)
                  ->allowedFilters([
-                    AllowedFilter::partial('name')
+                    AllowedFilter::partial('name'),
+                    AllowedFilter::callback('building_name', function($query, $value){
+                        $query->whereHas('building', function($q) use ($value){
+                            $q->where('name', 'like', "%{$value}%");
+                        });
+                    }),
+                    AllowedFilter::callback('campus_name', function($query, $value){
+                        $query->whereHas('campus', function($q) use ($value){
+                            $q->where('name', 'like', "%{$value}%");
+                        });
+                    }),
+                    AllowedFilter::operator('capacity', FilterOperator::DYNAMIC)
                  ])->get();
         return RoomResource::collection($rooms);
     }

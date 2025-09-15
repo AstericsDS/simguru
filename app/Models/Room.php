@@ -12,13 +12,25 @@ class Room extends Model
     /** @use HasFactory<\Database\Factories\RoomFactory> */
     use HasFactory;
     protected $fillable = [
+        'admin_id',
         'name',
+        'slug',
         'building_id',
+        'campus_id',
         'floor',
+        'area',
         'capacity',
         'description',
-        'status',
+        'category',
+        'images_path',
     ];
+    protected $casts = [
+        'images_path' => 'array',
+    ];
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
     public function user(): BelongsTo {
         return $this->belongsTo(User::class, 'admin_id');
     }

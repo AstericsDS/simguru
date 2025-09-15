@@ -11,7 +11,25 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Building extends Model
 {
     use HasFactory;
-    protected $fillable = ['campus_id', 'name', 'floor', 'description', 'images_path', 'status', 'area', 'address'];
+    protected $fillable = [
+        'admin_id',
+        'campus_id',
+        'name',
+        'slug',
+        'area',
+        'floor',
+        'description',
+        'address',
+        'images_path',
+        'status',
+    ];
+    protected $casts = [
+        'images_path' => 'array',
+    ];
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
     public function user(): BelongsTo {
         return $this->belongsTo(User::class, 'admin_id');
     }

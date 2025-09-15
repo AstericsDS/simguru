@@ -11,7 +11,23 @@ class Campus extends Model
 {
     /** @use HasFactory<\Database\Factories\CampusFactory> */
     use HasFactory;
-    protected $fillable = ['name', 'address', 'description', 'contact', 'email', 'images_path'];
+    protected $fillable = [
+        'admin_id',
+        'name',
+        'slug',
+        'address',
+        'contact',
+        'email',
+        'description',
+        'images_path',
+    ];
+    protected $casts = [
+        'images_path' => 'array',
+    ];
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
     public function user(): BelongsTo {
         return $this->belongsTo(User::class, 'admin_id');
     }

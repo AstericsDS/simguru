@@ -13,14 +13,17 @@ return new class extends Migration
     {
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('admin_id')->nullable()->constrained('users');
+            $table->foreignId('admin_id')->constrained('users');
+            $table->foreignId('campus_id')->constrained('campuses');
             $table->foreignId('building_id')->constrained('buildings');
             $table->string('name');
+            $table->string('slug')->unique();
             $table->integer('floor');
+            $table->integer('area');
             $table->integer('capacity');
             $table->text('description');
-            $table->json('images_path')->nullable();
-            $table->enum('status', ['class', 'not_class']);
+            $table->json('images_path');
+            $table->enum('category', ['class', 'not_class']);
             $table->timestamps();
         });
     }

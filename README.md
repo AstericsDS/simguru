@@ -1,4 +1,4 @@
-# 🏢 Manajemen Gedung dan Ruang
+# 🏢 Sistem Informasi Manajemen Gedung dan Ruang
 
 Aplikasi ini digunakan untuk mendata semua ruangan yang tersedia di **Universitas Negeri Jakarta**. Aplikasi ini berfungsi sebagai sistem inventaris untuk mencatat informasi mengenai ruangan yang ada, seperti kapasitas, fasilitas, dan lokasi.
 
@@ -25,8 +25,8 @@ Sebelum melakukan instalasi, pastikan anda memenuhi persyaratan berikut:
 
 1. **Kloning repositori**  
    ```sh
-   git clone https://github.com/your-username/your-laravel-app.git
-   cd your-laravel-app
+   git clone git@github.com:AstericsDS/simguru.git
+   cd simguru
 2. **Install dependensi**
    ```
    composer install

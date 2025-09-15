@@ -6,7 +6,7 @@ namespace App\Models;
 use App\Models\Room;
 use App\Models\Campus;
 use App\Models\Building;
-use App\Models\PendingUpdate;
+use App\Models\Update;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -63,8 +63,8 @@ class User extends Authenticatable
     public function room(): HasMany {
         return $this->hasMany(Room::class, 'admin_id');
     }
-    public function pendingupdate(): HasMany {
-        return $this->hasMany(PendingUpdate::class, 'admin_id');
+    public function updates(): HasMany {
+        return $this->hasMany(Update::class, 'admin_id');
     }
     public function role(): BelongsTo {
         return $this->belongsTo(Role::class, 'role');

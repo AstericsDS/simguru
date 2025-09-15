@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api\V1;
 use App\Models\Room;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\QueryBuilder\AllowedFilter;
 use App\Http\Resources\V1\RoomResource;
 
 class RoomController extends Controller
@@ -14,7 +16,11 @@ class RoomController extends Controller
      */
     public function index()
     {
-        return RoomResource::collection(Room::paginate(10));
+        $rooms = QueryBuilder::for(Room::class)
+                 ->allowedFilters([
+                    AllowedFilter::partial('name')
+                 ])->get();
+        return RoomResource::collection($rooms);
     }
 
     /**

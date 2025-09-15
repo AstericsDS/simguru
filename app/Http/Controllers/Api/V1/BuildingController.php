@@ -21,10 +21,9 @@ class BuildingController extends Controller
         $buildings = QueryBuilder::for(Building::class)
             ->allowedFilters([
                 AllowedFilter::partial('name'),
-                AllowedFilter::operator('area', FilterOperator::DYNAMIC),
+                AllowedFilter::belongsTo('campus'),
             ])
-            ->paginate(10);
-
+            ->get();
         return BuildingResource::collection($buildings);
     }
 

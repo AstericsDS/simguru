@@ -23,7 +23,7 @@ class PendingUpdateResource extends JsonResource
             'table' => $this->table,
             'record_id' => $this->record_id,
             'old_data' => $this->old_data,
-            'new_data' => json_decode($this->new_data),
+            'new_data' => $this->new_data,
             'status' => $this->status,
             'approvedBy' => new UserResource(User::find($this->approved_by)),
             'rejectReason' => $this->reject_reason,

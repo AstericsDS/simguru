@@ -23,7 +23,7 @@ class CampusResource extends JsonResource
             'contact' => $this->contact,
             'email' => $this->email,
             'description' => $this->description,
-            'images_path' => json_decode($this->images_path),
+            'images_path' => $this->images_path,
         ];
     }
 }

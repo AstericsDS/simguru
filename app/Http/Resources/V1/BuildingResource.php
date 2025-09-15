@@ -19,13 +19,13 @@ class BuildingResource extends JsonResource
         return [
             'id' => $this->id,
             'admin' => new UserResource(User::find($this->admin_id)),
-            'campus' => new CampusResource(Campus::find($this->campus_id)),
+            'campus' => Campus::find($this->campus_id)->name,
             'name' => $this->name,
             'area' => $this->area,
             'floor' => $this->floor,
             'description' => $this->description,
             'address' => $this->address,
-            'imagesPath' => json_decode($this->images_path),
+            'imagesPath' => $this->images_path,
             'status' => $this->status,
         ];
     }

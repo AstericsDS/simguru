@@ -42,8 +42,8 @@
                     ruang di Universitas Negeri Jakarta.
                 </p>
                 <div class="grid grid-cols-1 lg:grid-cols-2 text-sm text-center gap-3">
-                    <p class="flex gap-4"><svg xmlns="http://www.w3.org/2000/svg" class="stroke-primary" width="24" height="24"
-                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    <p class="flex gap-4"><svg xmlns="http://www.w3.org/2000/svg" class="stroke-primary" width="24"
+                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round"
                             class="lucide lucide-building2-icon lucide-building-2">
                             <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
@@ -54,8 +54,8 @@
                             <path d="M10 14h4" />
                             <path d="M10 18h4" />
                         </svg>Manajemen Gedung dan Ruang</p>
-                    <p class="flex gap-4"><svg xmlns="http://www.w3.org/2000/svg" class="stroke-primary" width="24" height="24"
-                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    <p class="flex gap-4"><svg xmlns="http://www.w3.org/2000/svg" class="stroke-primary" width="24"
+                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round"
                             class="lucide lucide-building2-icon lucide-building-2">
                             <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
@@ -66,8 +66,8 @@
                             <path d="M10 14h4" />
                             <path d="M10 18h4" />
                         </svg>Manajemen Gedung dan Ruang</p>
-                    <p class="flex gap-4"><svg xmlns="http://www.w3.org/2000/svg" class="stroke-primary" width="24" height="24"
-                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    <p class="flex gap-4"><svg xmlns="http://www.w3.org/2000/svg" class="stroke-primary" width="24"
+                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round"
                             class="lucide lucide-building2-icon lucide-building-2">
                             <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
@@ -78,8 +78,8 @@
                             <path d="M10 14h4" />
                             <path d="M10 18h4" />
                         </svg>Manajemen Gedung dan Ruang</p>
-                    <p class="flex gap-4"><svg xmlns="http://www.w3.org/2000/svg" class="stroke-primary" width="24" height="24"
-                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    <p class="flex gap-4"><svg xmlns="http://www.w3.org/2000/svg" class="stroke-primary" width="24"
+                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round"
                             class="lucide lucide-building2-icon lucide-building-2">
                             <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
@@ -95,14 +95,15 @@
         </div>
     </div>
 
-    <div class="text-base-content text-center flex flex-col gap-3 pt-20 lg:px-50" id="jadwal">
+    <div class="text-base-content text-center flex flex-col gap-3" id="jadwal">
         <h1 class="text-3xl lg:text-4xl font-semibold">Jadwal Ruangan</h1>
         <hr class="w-15 font-bold mx-auto border-gray-500 border">
         {{-- <p class="text-gray-500">Kampus-Kampus UNJ</p> --}}
-    </div>
 
-    @livewire('component.jadwalruangan')
-    <h5 id="alert" class="hidden alert text-base-content bg-base-200 font-bold text-center">Gunakan Landscape Untuk Melihat Jadwal Kelas!</h5>
+        @livewire('component.jadwalruangan')
+        <h5 id="alert" class="hidden alert text-base-content bg-base-200 font-bold text-center">Gunakan Landscape
+            Untuk Melihat Jadwal Kelas!</h5>
+    </div>
 
     {{-- judul container --}}
     <div class="text-base-content text-center flex flex-col gap-3 pt-20" id="kampus">
@@ -134,7 +135,8 @@
             KAMPUS</a></button>
     {{-- list beberapa gedung di UNJ --}}
     <div class="text-base-content text-center flex flex-col gap-3 pt-20" id="gedung">
-        <h1 class="text-base-content text-2xl lg:text-4xl font-semibold">Gedung - Gedung Universitas Negeri Jakarta</h1>
+        <h1 class="text-base-content text-2xl lg:text-4xl font-semibold">Gedung - Gedung Universitas Negeri Jakarta
+        </h1>
         <hr class="w-15 font-bold mx-auto border-gray-500 border">
     </div>
     {{-- card container for buildings --}}
@@ -160,7 +162,8 @@
     <button class="btn border-none shadow-none mt-5 self-center rounded-full bg-base-100"><a href="/gedung">LIHAT
             GEDUNG</a></button>
     <div class="text-base-content text-center flex flex-col gap-3 pt-20" id="ruang">
-        <h1 class="text-base-content text-2xl lg:text-4xl font-semibold" id="ruang">Ruangan Universitas Negeri Jakarta</h1>
+        <h1 class="text-base-content text-2xl lg:text-4xl font-semibold" id="ruang">Ruangan Universitas Negeri
+            Jakarta</h1>
         <hr class="w-15 font-bold mx-auto border-gray-500 border">
     </div>
     {{-- Ruangan container --}}
@@ -177,10 +180,10 @@
                     <h1>{{ $room->building->name }}</h1>
                     <h1>{{ $room->description }}</h1>
                     <ul>
-                        <li class="flex gap-2"><svg class="stroke-primary" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round"
-                                class="lucide lucide-building2-icon lucide-building-2">
+                        <li class="flex gap-2"><svg class="stroke-primary" xmlns="http://www.w3.org/2000/svg"
+                                width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-building2-icon lucide-building-2">
                                 <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
                                 <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
                                 <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
@@ -190,10 +193,10 @@
                                 <path d="M10 18h4" />
                             </svg> Lantai :
                             {{ $room->floor }}</li>
-                        <li class="flex gap-2"><svg class="stroke-primary" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round"
-                                class="lucide lucide-users-icon lucide-users">
+                        <li class="flex gap-2"><svg class="stroke-primary" xmlns="http://www.w3.org/2000/svg"
+                                width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-users-icon lucide-users">
                                 <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
                                 <path d="M16 3.128a4 4 0 0 1 0 7.744" />
                                 <path d="M22 21v-2a4 4 0 0 0-3-3.87" />

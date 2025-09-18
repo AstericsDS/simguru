@@ -6,7 +6,7 @@ import idLocale from '@fullcalendar/core/locales/id';
 
 function initCalendar(){
     let calendarEl2 = document.getElementById("selectable");
-    
+
     let calendar2 = new Calendar(calendarEl2, {
         plugins: [ interactionPlugin, dayGridPlugin, timeGridPlugin ],
         locale: idLocale,
@@ -21,7 +21,7 @@ function initCalendar(){
             if (info.view.type === 'timeGridDay') {
                 let startRaw = new Date(info.startStr);
                 let endRaw   = new Date(info.endStr);
-        
+
                 window.dispatchEvent(new CustomEvent("event-modal", {
                     detail: {
                         startRaw: info.startStr,
@@ -61,7 +61,7 @@ function initCalendar(){
         },
         allDaySlot: false,
       });
-    
+
       calendar2.render();
 
     let calendarEl = document.getElementById("jadwalhome");
@@ -76,15 +76,15 @@ function initCalendar(){
         themeSystem: "bootstrap",
         nowIndicator: true,
     });
-    
+
     calendar.render();
-    
-    
+
+
     window.matchMedia("(orientation: portrait)").addEventListener("change", (e) => {
         const potrait = e.matches;
         const jadwal = document.getElementById("jadwaleu");
         const alerta = document.getElementById("alert");
-    
+
         if (potrait) {
             jadwal.classList.add("hidden");
             alerta.classList.remove("hidden");

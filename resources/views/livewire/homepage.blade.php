@@ -95,7 +95,7 @@
         </div>
     </div>
 
-    <div class="text-base-content text-center flex flex-col gap-3 pt-20" id="jadwal">
+    <div class="text-black text-center flex flex-col gap-3 pt-20" id="jadwal">
         <h1 class="text-3xl lg:text-4xl font-semibold">Jadwal Ruangan</h1>
         <hr class="w-15 font-bold mx-auto border-gray-500 border">
         {{-- <p class="text-gray-500">Kampus-Kampus UNJ</p> --}}

@@ -1,5 +1,5 @@
 <div class="container w-4xl mx-auto bg-white rounded-sm flex flex-col items-center pb-8 text-black relative">
-    <img src="logos/unj.png" alt="Logo UNJ" class="absolute w-30 -top-20">
+    <img src="{{ asset('logos/unj.png') }}" alt="Logo UNJ" class="absolute w-30 -top-20">
     <div class="pt-20 pb-10 px-28 w-full">
         @error('login')
             <div class="p-3 rounded-md bg-red-200 text-red-500 my-4 w-1/3 mx-auto text-center">

@@ -50,39 +50,39 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('0000')
         ]);
 
-        // Campus::create([
-        //     'admin_id' => 2,
-        //     'name' => 'Rawamangun',
-        //     'slug' => 'rawamangun',
-        //     'address' => 'Jl. R.Mangun Muka Raya No.11, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220',
-        //     'contact' => '0214898486',
-        //     'email' => 'unj@gmail.com',
-        //     'description' => Faker::create()->sentence()
-        // ]);
+        Campus::create([
+            'admin_id' => 2,
+            'name' => 'Rawamangun',
+            'slug' => 'rawamangun',
+            'address' => 'Jl. R.Mangun Muka Raya No.11, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220',
+            'contact' => '0214898486',
+            'email' => 'unj@gmail.com',
+            'description' => Faker::create()->sentence()
+        ]);
 
-        // Building::create([
-        //     'admin_id' => 2,
-        //     'campus_id' => 1,
-        //     'name' => 'Gedung Dewi Sartika',
-        //     'slug' => 'gedung-dewi-sartika',
-        //     'area' => '500',
-        //     'floor' => '10',
-        //     'address' => 'Jl. Daksinapati Tim. Blok Daksenapati Timur No.1, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220',
-        //     // 'status' => 0,
-        //     'description' => Faker::create()->sentence(),
-        // ]);
+        Building::create([
+            'admin_id' => 2,
+            'campus_id' => 1,
+            'name' => 'Gedung Dewi Sartika',
+            'slug' => 'gedung-dewi-sartika',
+            'area' => '500',
+            'floor' => '10',
+            'address' => 'Jl. Daksinapati Tim. Blok Daksenapati Timur No.1, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220',
+            // 'status' => 0,
+            'description' => Faker::create()->sentence(),
+        ]);
 
-        // Building::create([
-        //     'admin_id' => 2,
-        //     'campus_id' => 1,
-        //     'name' => 'Gedung Raden Ajeng Kartini',
-        //     'slug' => 'gedung-raden-ajeng-kartini',
-        //     'area' => '500',
-        //     'floor' => '8',
-        //     'address' => 'Kampus A UNJ, Jl. R.Mangun Muka Raya No.11, RT.11/RW.14, Rawamangun, Pulo Gadung, East Jakarta City, Jakarta 13220',
-        //     // 'status' => 0,
-        //     'description' => Faker::create()->sentence(),
-        // ]);
+        Building::create([
+            'admin_id' => 2,
+            'campus_id' => 1,
+            'name' => 'Gedung Raden Ajeng Kartini',
+            'slug' => 'gedung-raden-ajeng-kartini',
+            'area' => '500',
+            'floor' => '8',
+            'address' => 'Kampus A UNJ, Jl. R.Mangun Muka Raya No.11, RT.11/RW.14, Rawamangun, Pulo Gadung, East Jakarta City, Jakarta 13220',
+            // 'status' => 0,
+            'description' => Faker::create()->sentence(),
+        ]);
 
         Room::create([
             'admin_id' => 2,
@@ -94,6 +94,7 @@ class DatabaseSeeder extends Seeder
             'capacity' => '100',
             'description' => Faker::create()->sentence(),
             'category' => 'class',
+            'area' => '500'
         ]);
 
         Room::create([
@@ -106,6 +107,7 @@ class DatabaseSeeder extends Seeder
             'capacity' => '100',
             'description' => Faker::create()->sentence(),
             'category' => 'class',
+            'area' => '300'
         ]);
 
         Event::create([
@@ -135,36 +137,37 @@ class DatabaseSeeder extends Seeder
             'start' => '2025-09-20T10:00:00',
             'end' => '2025-09-20T13:30:00'
         ]);
-        // Campus::factory()->count(1)->has(Building::factory()->count(2)->has(Room::factory()->count(3)))->create();
-        // Campus::factory()->count(1)->has(Building::factory()->count(2))->create();
-        // Campus::factory()
-        //     ->count(1)
-        //     ->has(
-        //         Building::factory()
-        //             ->count(2)
-        //             ->has(
-        //                 Room::factory()->count(3)
-        //             )
-        //     )
-        //     ->create();
 
-        // Campus::factory()->count(1)->has(Building::factory()->count(2))->create();
+        Campus::factory()->count(1)->has(Building::factory()->count(2)->has(Room::factory()->count(3)))->create();
+        Campus::factory()->count(1)->has(Building::factory()->count(2))->create();
+        Campus::factory()
+            ->count(1)
+            ->has(
+                Building::factory()
+                    ->count(2)
+                    ->has(
+                        Room::factory()->count(3)
+                    )
+            )
+            ->create();
 
-        // Campus::factory()
-        //     ->count(1)
-        //     ->has(Building::factory()->count(7))
-        //     ->create();
-        // Campus::factory()
-        //     ->count(1)
-        //     ->has(Building::factory()->count(4))
-        //     ->create();
-        // Campus::factory()
-        //     ->count(1)
-        //     ->has(Building::factory()->count(11))
-        //     ->create();
-        // Campus::factory()
-        //     ->count(1)
-        //     ->has(Building::factory()->count(9))
-        //     ->create();
+        Campus::factory()->count(1)->has(Building::factory()->count(2))->create();
+
+        Campus::factory()
+            ->count(1)
+            ->has(Building::factory()->count(7))
+            ->create();
+        Campus::factory()
+            ->count(1)
+            ->has(Building::factory()->count(4))
+            ->create();
+        Campus::factory()
+            ->count(1)
+            ->has(Building::factory()->count(11))
+            ->create();
+        Campus::factory()
+            ->count(1)
+            ->has(Building::factory()->count(9))
+            ->create();
     }
 }

@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Api\V1;
 use App\Models\Room;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\QueryBuilder\AllowedFilter;
 use App\Http\Resources\V1\RoomResource;
+use Spatie\QueryBuilder\Enums\FilterOperator;
 
 class RoomController extends Controller
 {
@@ -14,7 +17,22 @@ class RoomController extends Controller
      */
     public function index()
     {
-        return RoomResource::collection(Room::paginate(10));
+        $rooms = QueryBuilder::for(Room::class)
+                 ->allowedFilters([
+                    AllowedFilter::partial('name'),
+                    AllowedFilter::callback('building_name', function($query, $value){
+                        $query->whereHas('building', function($q) use ($value){
+                            $q->where('name', 'like', "%{$value}%");
+                        });
+                    }),
+                    AllowedFilter::callback('campus_name', function($query, $value){
+                        $query->whereHas('campus', function($q) use ($value){
+                            $q->where('name', 'like', "%{$value}%");
+                        });
+                    }),
+                    AllowedFilter::operator('capacity', FilterOperator::DYNAMIC)
+                 ])->get();
+        return RoomResource::collection($rooms);
     }
 
     /**
@@ -30,7 +48,7 @@ class RoomController extends Controller
      */
     public function show(Room $room)
     {
-        //
+        return new RoomResource($room);
     }
 
     /**

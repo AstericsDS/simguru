@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Controllers\Controller;
 use App\Models\Campus;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\QueryBuilder\AllowedFilter;
 use App\Http\Resources\V1\CampusResource;
 
 class CampusController extends Controller
@@ -14,7 +16,11 @@ class CampusController extends Controller
      */
     public function index()
     {
-        return CampusResource::collection(Campus::paginate(10));
+        $campuses = QueryBuilder::for(Campus::class)
+                    ->allowedFilters([
+                        AllowedFilter::partial('name')
+                    ])->get();
+        return CampusResource::collection($campuses);
     }
 
     /**
@@ -30,7 +36,7 @@ class CampusController extends Controller
      */
     public function show(Campus $campus)
     {
-        //
+        return new CampusResource($campus);
     }
 
     /**

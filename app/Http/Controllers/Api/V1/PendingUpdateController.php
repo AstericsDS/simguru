@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Controllers\Controller;
-use App\Http\Resources\V1\UserResource;
-use App\Models\User;
+use App\Http\Resources\V1\PendingUpdateResource;
+use App\Models\PendingUpdate;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class UserController extends Controller
+class PendingUpdateController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return UserResource::collection(User::all());
+        return PendingUpdateResource::collection(PendingUpdate::paginate(10));
     }
 
     /**
@@ -28,15 +28,15 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show(PendingUpdate $update)
     {
-        return new UserResource($user);
+        return new PendingUpdateResource($update);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, PendingUpdate $pendingUpdate)
     {
         //
     }
@@ -44,7 +44,7 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy(PendingUpdate $pendingUpdate)
     {
         //
     }

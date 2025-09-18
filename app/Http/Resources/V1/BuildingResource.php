@@ -17,8 +17,9 @@ class BuildingResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'admin' => new UserResource(User::find($this->admin_id)),
-            'campus' => new CampusResource(Campus::find($this->campus_id)),
+            'campus' => Campus::find($this->campus_id)->name,
             'name' => $this->name,
             'area' => $this->area,
             'floor' => $this->floor,

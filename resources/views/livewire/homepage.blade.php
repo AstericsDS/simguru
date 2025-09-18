@@ -95,7 +95,7 @@
         </div>
     </div>
 
-    <div class="text-black text-center flex flex-col gap-3 pt-20 lg:px-50" id="jadwal">
+    <div class="text-base-content text-center flex flex-col gap-3" id="jadwal">
         <h1 class="text-3xl lg:text-4xl font-semibold">Jadwal Ruangan</h1>
         <hr class="w-15 font-bold mx-auto border-gray-500 border">
         {{-- <p class="text-gray-500">Kampus-Kampus UNJ</p> --}}
@@ -215,7 +215,7 @@
         <p class="text-gray-500">Berikut adalah Grafik Statistik Informasi Manajemen Gedung dan Ruang Universitas
             Negeri
             Jakarta 2025</p>
-        <div class="w-1/2 self-center" id="chart"></div>
+        <div class="w-1/2 self-center" id="homepagechart"></div>
     </div>
 </div>
 <script>

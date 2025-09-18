@@ -24,44 +24,15 @@
         @endif
     </fieldset>
 
-    <div wire:ignore class="text-black" id='calendar'></div>
+    <div
+        {{-- x-data
+        @events-loaded.window="console.log('Events data received!', event.detail.Events);
+                        event.detail.Events.forEach(function(event, index){});" --}}
+        wire:ignore id='jadwalhome'
+        ></div>
 
 </div>
 
 <script>
-    window.matchMedia("(orientation: portrait)").addEventListener("change", e => {
-        const potrait = e.matches;
-        const jadwal = document.getElementById('jadwaleu');
-        const alerta = document.getElementById('alert');
 
-        if (potrait) {
-            jadwal.classList.add('hidden');
-            alerta.classList.remove('hidden');
-        } else {
-            jadwal.classList.remove('hidden');
-            alerta.classList.add('hidden');
-
-        }
-    });
-    // if (window.innerHeight > window.innerWidth) {
-    //     alert("Gunakan Landscape Untuk Melihat Jadwal Ruangan");
-    //     jadwal.classList.add('hidden');
-    //     alerta.classList.remove('hidden');
-    // } else {
-    //     jadwal.classList.remove('hidden');
-    //     alerta.classList.remove('hidden');
-    // }
-    var calendar = Calendar(calendarEl, {
-        events: [{
-                title: 'Event 1',
-                start: '2025-08-17',
-                end: '2025-08-18'
-            },
-            {
-                title: 'Event 2',
-                start: '2025-08-18',
-                end: '2025-08-19'
-            }
-        ]
-    })
 </script>

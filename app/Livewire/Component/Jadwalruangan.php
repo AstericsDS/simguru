@@ -5,11 +5,12 @@ namespace App\Livewire\Component;
 use Livewire\Component;
 use App\Models\Campus;
 use App\Models\Building;
+use App\Models\Event;
 use App\Models\Room;
 
 class Jadwalruangan extends Component
 {
-    public $selectedCampus, $selectedBuilding, $selectedRoom;
+    public $selectedCampus, $selectedBuilding, $selectedRoom, $roomEvents;
     public $campusbuildings = [];
     public $buildingrooms = [];
 
@@ -27,6 +28,13 @@ class Jadwalruangan extends Component
         $this->buildingrooms = Room::where('building_id', $value)->get();
     }
 
+    public function updatedSelectedRoom($value)
+    {
+        $this->roomEvents = Event::where('room_id', $value)->get();
+
+        $this->dispatch('events-loaded', Events: $this->roomEvents);
+    }
+
     public function render()
     {
         // if (!empty($this->selectedCampus)) {
@@ -38,7 +46,8 @@ class Jadwalruangan extends Component
         return view('livewire.component.jadwalruangan', [
             'campuses' => Campus::all(),
             'campusbuildings' => $this->campusbuildings,
-            'buildingrooms' => $this->buildingrooms
+            'buildingrooms' => $this->buildingrooms,
+            // 'events' => $this->roomEvents
         ]);
     }
 }

@@ -15,7 +15,7 @@
         <input id="profile-drawer" type="checkbox" class="drawer-toggle">
         <div class="drawer-content">
             {{-- NAVBAR --}}
-            <div class="navbar bg-unj w-full h-10 sticky transition-all top-0 z-50 px-5 lg:px-50" id="navbar">
+            <div class="navbar w-full bg-base-200 h-10 sticky transition-all top-0 z-50 px-5 lg:px-50" id="navbar">
                 <div class="navbar-start">
                         <label for="profile-drawer" class="btn btn-ghost btn-circle lg:hidden">
                             <img src="{{ asset('logos/peminjaman.png') }}" alt="sidebar" class="w-5 mr-5 lg:hidden">

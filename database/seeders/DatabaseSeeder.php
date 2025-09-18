@@ -138,36 +138,36 @@ class DatabaseSeeder extends Seeder
             'end' => '2025-09-20T13:30:00'
         ]);
 
-        Campus::factory()->count(1)->has(Building::factory()->count(2)->has(Room::factory()->count(3)))->create();
-        Campus::factory()->count(1)->has(Building::factory()->count(2))->create();
-        Campus::factory()
-            ->count(1)
-            ->has(
-                Building::factory()
-                    ->count(2)
-                    ->has(
-                        Room::factory()->count(3)
-                    )
-            )
-            ->create();
+        // Campus::factory()->count(1)->has(Building::factory()->count(2)->has(Room::factory()->count(3)))->create();
+        // Campus::factory()->count(1)->has(Building::factory()->count(2))->create();
+        // Campus::factory()
+        //     ->count(1)
+        //     ->has(
+        //         Building::factory()
+        //             ->count(2)
+        //             ->has(
+        //                 Room::factory()->count(3)
+        //             )
+        //     )
+        //     ->create();
 
-        Campus::factory()->count(1)->has(Building::factory()->count(2))->create();
+        // Campus::factory()->count(1)->has(Building::factory()->count(2))->create();
 
-        Campus::factory()
-            ->count(1)
-            ->has(Building::factory()->count(7))
-            ->create();
-        Campus::factory()
-            ->count(1)
-            ->has(Building::factory()->count(4))
-            ->create();
-        Campus::factory()
-            ->count(1)
-            ->has(Building::factory()->count(11))
-            ->create();
-        Campus::factory()
-            ->count(1)
-            ->has(Building::factory()->count(9))
-            ->create();
+        // Campus::factory()
+        //     ->count(1)
+        //     ->has(Building::factory()->count(7))
+        //     ->create();
+        // Campus::factory()
+        //     ->count(1)
+        //     ->has(Building::factory()->count(4))
+        //     ->create();
+        // Campus::factory()
+        //     ->count(1)
+        //     ->has(Building::factory()->count(11))
+        //     ->create();
+        // Campus::factory()
+        //     ->count(1)
+        //     ->has(Building::factory()->count(9))
+        //     ->create();
     }
 }

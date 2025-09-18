@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('admin_id')->constrained('users');
             $table->foreignId('campus_id')->constrained('campuses');
-            $table->string('name');
-            $table->string('slug')->unique();
+            $table->string('name')->unique();
+            $table->string('slug');
             $table->string('area');
             $table->integer('floor');
             $table->text('description');

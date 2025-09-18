@@ -30,8 +30,8 @@ class DaftarGedung extends Component
     public function rules()
     {
         return [
-            'name' => 'required',
-            'slug' => 'required|unique:buildings,slug',
+            'name' => 'required|unique:buildings,name',
+            'slug' => 'required',
             'campus_id' => 'required',
             'address' => 'required',
             'floor' => 'required|integer',

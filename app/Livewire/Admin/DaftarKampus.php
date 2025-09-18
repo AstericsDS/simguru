@@ -32,8 +32,8 @@ class DaftarKampus extends Component
     public function rules()
     {
         return [
-            'name' => 'required',
-            'slug' => 'required|unique:campuses,slug',
+            'name' => 'required|unique:campuses,name',
+            'slug' => 'required',
             'address' => 'required',
             'contact' => 'required|digits_between:8,13',
             'email' => 'required|email',

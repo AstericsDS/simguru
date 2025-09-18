@@ -1,7 +1,7 @@
 <div class="w-full p-5 lg:px-60">
     {{-- Breadcrumbs --}}
     <div class="flex flex-col my-5">
-        <a href="/" class="text-unj flex gap-2"><img class="size-5" src="{{ asset('logos/back-svgrepo-com.svg') }}"
+        <a href="/" class="text-primary flex gap-2"><img class="size-5" src="{{ asset('logos/back-svgrepo-com.svg') }}"
                 alt="">ke beranda</a>
         <div class="breadcrumbs text-sm text-[#006569]">
             <ul>
@@ -83,15 +83,15 @@
 
     <div class="grid grid-cols-1 gap-3 mt-12 text-white">
         @for ($i = 1; $i <= $building->floor; $i++)
-            <div class="bg-unj  collapse collapse-arrow border border-gray-300">
+            <div class="bg-primary  collapse collapse-arrow border border-gray-300">
                 <input type="checkbox" class="peer" />
-                <div class="collapse-title bg-unj text-xl font-bold">
+                <div class="collapse-title bg-primary text-xl font-bold">
                     Lantai {{ $i }}
                 </div>
                 <div class="collapse-content grid gap-2 bg-white peer-checked:pt-5">
                     @foreach ($rooms as $room)
                         @if ($room->floor == $i)
-                            <div class="card card-sm bg-unj shadow-xl h-max">
+                            <div class="card card-sm bg-primary shadow-xl h-max">
                                 <div class="flex items-center justify-between p-3">
                                     <div class="flex flex-wrap gap-2">
                                         <div>{{ $room->name }}</div>

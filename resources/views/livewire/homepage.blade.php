@@ -1,13 +1,13 @@
 <div id="body-ko" class="flex flex-col min-w-full">
     {{-- Hero --}}
     <div
-        class="flex flex-col bg-[url(/public/backgrounds/unj_bersih.jpeg)] bg-unj bg-blend-multiply bg-cover bg-fixed min-h-screen bg-center justify-center items-center gap-5">
+        class="flex flex-col bg-[url(/public/backgrounds/unj_bersih.jpeg)] bg-primary bg-blend-multiply bg-cover bg-fixed min-h-screen bg-center justify-center items-center gap-5">
         <img src="{{ asset('logos/UNJ22.png') }}" alt="logo unj" class="w-50">
         <h1 class=" text-xl lg:text-5xl text-white text-wrap w-3/7 text-center font-semibold">
             Sistem Informasi Gedung dan Ruang
         </h1>
         {{-- login button --}}
-        <a href="/login" class="btn btn-xl w-34 bg-[#FDDC00] text-unj border-none shadow-none">
+        <a href="/login" class="btn btn-xl w-34 bg-[#FDDC00] text-primary border-none shadow-none">
             {{-- <img src="{{ asset('logos/login.svg') }}" alt="" class="w-10 "> --}}
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="#006569" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -20,7 +20,7 @@
         </a>
     </div>
 
-    {{-- <div class="card card-side bg-unj w-2/3 self-center shadow-sm mt-30 p-5">
+    {{-- <div class="card card-side bg-primary w-2/3 self-center shadow-sm mt-30 p-5">
         <figure class="w-150">
             <img src="{{ asset('backgrounds/unj_bersih.jpeg') }}" alt="kampus" />
         </figure>
@@ -45,7 +45,7 @@
                     <p class="flex gap-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-building2-icon lucide-building-2 stroke-unj">
+                            class="lucide lucide-building2-icon lucide-building-2 stroke-primary">
                             <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
                             <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
                             <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
@@ -57,7 +57,7 @@
                     <p class="flex gap-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-building2-icon lucide-building-2 stroke-unj">
+                            class="lucide lucide-building2-icon lucide-building-2 stroke-primary">
                             <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
                             <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
                             <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
@@ -69,7 +69,7 @@
                     <p class="flex gap-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-building2-icon lucide-building-2 stroke-unj">
+                            class="lucide lucide-building2-icon lucide-building-2 stroke-primary">
                             <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
                             <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
                             <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
@@ -81,7 +81,7 @@
                     <p class="flex gap-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-building2-icon lucide-building-2 stroke-unj">
+                            class="lucide lucide-building2-icon lucide-building-2 stroke-primary">
                             <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
                             <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
                             <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
@@ -130,7 +130,7 @@
             </div>
         @endforeach
     </div>
-    <button class="btn border-none shadow-none mt-5 self-center rounded-full bg-unj"><a href="/kampus">LIHAT
+    <button class="btn border-none shadow-none mt-5 self-center rounded-full bg-primary"><a href="/kampus">LIHAT
             KAMPUS</a></button>
     {{-- list beberapa gedung di UNJ --}}
     <div class="text-black text-center flex flex-col gap-3 pt-20" id="gedung">
@@ -157,7 +157,7 @@
             </div>
         @endforeach
     </div>
-    <button class="btn border-none shadow-none mt-5 self-center rounded-full bg-unj"><a href="/gedung">LIHAT
+    <button class="btn border-none shadow-none mt-5 self-center rounded-full bg-primary"><a href="/gedung">LIHAT
             GEDUNG</a></button>
     {{-- Ruangan container --}}
     <div class="text-black text-center flex flex-col gap-3 pt-20" id="ruang">
@@ -180,7 +180,7 @@
                         <li class="flex gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round"
-                                class="lucide lucide-building2-icon lucide-building-2 stroke-unj">
+                                class="lucide lucide-building2-icon lucide-building-2 stroke-primary">
                                 <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
                                 <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
                                 <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
@@ -193,7 +193,7 @@
                         <li class="flex gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round"
-                                class="lucide lucide-users-icon lucide-users stroke-unj">
+                                class="lucide lucide-users-icon lucide-users stroke-primary">
                                 <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
                                 <path d="M16 3.128a4 4 0 0 1 0 7.744" />
                                 <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
@@ -221,7 +221,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const navbar = document.getElementById('navbar');
-        const scrolledClass = 'bg-unj';
+        const scrolledClass = 'bg-primary';
         const scrolledShadow = 'shadow-lg';
         const positionNav = 'fixed';
         const textScrolledClass = 'text-white';

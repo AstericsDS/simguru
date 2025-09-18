@@ -15,7 +15,7 @@
         <input id="profile-drawer" type="checkbox" class="drawer-toggle">
         <div class="drawer-content">
             {{-- NAVBAR --}}
-            <div class="navbar w-full bg-unj h-10 fixed transition-all top-0 z-50 px-5 lg:px-50" id="navbar">
+            <div class="navbar w-full bg-primary h-10 fixed transition-all top-0 z-50 px-5 lg:px-50" id="navbar">
                 <div class="navbar-start">
                         <label for="profile-drawer" class="btn btn-ghost btn-circle lg:hidden">
                             <img src="{{ asset('logos/peminjaman.png') }}" alt="sidebar" class="w-5 mr-5 lg:hidden">
@@ -27,19 +27,19 @@
                 </div>
                 <div class="navbar-end">
                     <div class="not-lg:hidden">
-                        <button id="jadwall" class="btn btn-ghost hover:bg-[#fddc00] hover:text-unj border-none" onClick="document.getElementById('jadwal').scrollIntoView();">
+                        <button id="jadwall" class="btn btn-ghost hover:bg-[#fddc00] hover:text-primary border-none" onClick="document.getElementById('jadwal').scrollIntoView();">
                             Jadwal Ruangan
                         </button>
-                        <button id="kampuss" class="btn btn-ghost hover:bg-[#fddc00] hover:text-unj border-none" onClick="document.getElementById('kampus').scrollIntoView();">
+                        <button id="kampuss" class="btn btn-ghost hover:bg-[#fddc00] hover:text-primary border-none" onClick="document.getElementById('kampus').scrollIntoView();">
                             Kampus
                         </button>
-                        <button id="gedungg" class="btn btn-ghost hover:bg-[#fddc00] hover:text-unj border-none" onClick="document.getElementById('gedung').scrollIntoView();">
+                        <button id="gedungg" class="btn btn-ghost hover:bg-[#fddc00] hover:text-primary border-none" onClick="document.getElementById('gedung').scrollIntoView();">
                             Gedung
                         </button>
-                        <button id="ruangg" class="btn btn-ghost hover:bg-[#fddc00] hover:text-unj border-none" onClick="document.getElementById('ruang').scrollIntoView();">
+                        <button id="ruangg" class="btn btn-ghost hover:bg-[#fddc00] hover:text-primary border-none" onClick="document.getElementById('ruang').scrollIntoView();">
                             Ruang
                         </button>
-                        <button id="statistikk" class="btn btn-ghost hover:bg-[#fddc00] hover:text-unj border-none" onClick="document.getElementById('statistik').scrollIntoView();">
+                        <button id="statistikk" class="btn btn-ghost hover:bg-[#fddc00] hover:text-primary border-none" onClick="document.getElementById('statistik').scrollIntoView();">
                             Statistik
                         </button>
                     </div>
@@ -83,7 +83,7 @@
         {{-- Drawer for mobile view --}}
         <div class="drawer-side z-60">
             <label for="profile-drawer" aria-label="close-sidebar" class="drawer-overlay"></label>
-            <ul class="menu bg-unj text-white min-h-full min-w-60 p-4 pt-20">
+            <ul class="menu bg-primary text-white min-h-full min-w-60 p-4 pt-20">
                 <div class="btn btn-ghost btn-circle btn-xl mb-3">
                     <img class="invert" src="{{ asset('logos/user.svg') }}" alt="">
                 </div>
@@ -95,7 +95,7 @@
             </ul>
         </div>
     </div>
-    <footer class="footer sm:footer-horizontal bg-unj text-white mt-5 p-10 lg:px-70">
+    <footer class="footer sm:footer-horizontal bg-primary text-white mt-5 p-10 lg:px-70">
         <aside>
             <img src="{{ asset('logos/UNJ22.png') }}" alt="logo unj" class="w-20 lg:w-50">
         </aside>
@@ -124,7 +124,7 @@
             <a class="link link-hover">Cookie policy</a>
         </nav>
     </footer>
-    <div class="text-center bg-unj">Copyright 2025 Pustikom</div>
+    <div class="text-center bg-primary">Copyright 2025 Pustikom</div>
 </body>
 
 </html>

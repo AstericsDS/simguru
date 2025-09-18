@@ -2,7 +2,7 @@
 <div class="w-full px-5 lg:px-60">
     {{-- Breadcrumbs --}}
     <div class="flex flex-col mt-5">
-        <a href="/" class="text-unj flex gap-2"><img src="{{ asset('logos/back-svgrepo-com.svg') }}" class="size-5"
+        <a href="/" class="text-primary flex gap-2"><img src="{{ asset('logos/back-svgrepo-com.svg') }}" class="size-5"
                 alt="">ke beranda</a>
         <div class="breadcrumbs text-sm text-[#006569] py-5">
             <ul>
@@ -11,7 +11,7 @@
         </div>
     </div>
     {{-- Building Details --}}
-    <div class="flex gap-4 text-unj justify-items-center">
+    <div class="flex gap-4 text-primary justify-items-center">
         <div class="flex items-center justify-center lg:mr-10">
             {{-- Swiper Slider --}}
             <div class="swiper">
@@ -99,7 +99,7 @@
     <div class="grid lg:grid-cols-4 gap-3 mt-12">
         @if (!is_null($buildings))
             @foreach ($buildings as $building)
-                <div class="card bg-unj shadow-sm">
+                <div class="card bg-primary shadow-sm">
                     <figure>
                         @if (is_null($building->images_path))
                             <img src="{{ asset('backgrounds/DUMMY.png') }}" alt="Kampus_A_UNJ" />

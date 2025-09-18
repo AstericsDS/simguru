@@ -22,10 +22,11 @@
         "Noto Color Emoji";
 
     /* UNJ */
-    --color-unj: #006369;
+    --color-primary: #006369;
+    --color-secondary: #ffdd00;
     --color-unj-dark: #004f54;
     --color-unj-light: #aefaff;
-    --color-unj-yellow: #ffdd00;
+
 }
 
 html {

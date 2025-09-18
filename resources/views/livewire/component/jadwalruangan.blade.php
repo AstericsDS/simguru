@@ -1,13 +1,13 @@
 <div id="jadwaleu" class="text-black mx-auto w-19 lg:w-1/2" onfocus="">
     <fieldset class="fieldset">
-        <select name="selectedCampus" wire:model.live="selectedCampus" class="select bg-white border border-unj">
+        <select name="selectedCampus" wire:model.live="selectedCampus" class="select bg-white border border-primary">
             <option value="" selected>Pilih Kampus</option>
             @foreach ($campuses as $campus)
                 <option value="{{ $campus->id }}">{{ $campus->name }}</option>
             @endforeach
         </select>
         @if (count($campusbuildings) > 0)
-            <select class="select bg-white border border-unj" wire:model.live="selectedBuilding" name="selectedBuilding">
+            <select class="select bg-white border border-primary" wire:model.live="selectedBuilding" name="selectedBuilding">
                 <option value="" selected>Pilih Gedung</option>
                 @foreach ($campusbuildings as $building)
                     <option value="{{ $building->id }}">{{ $building->name }}</option>
@@ -15,7 +15,7 @@
             </select>
         @endif
         @if (count($buildingrooms) > 0)
-            <select class="select bg-white border border-unj" wire:model.live="selectedRoom" name="selectedRoom">
+            <select class="select bg-white border border-primary" wire:model.live="selectedRoom" name="selectedRoom">
                 <option value="" selected>Pilih Ruang</option>
                 @foreach ($buildingrooms as $room)
                     <option value="{{ $room->id }}">{{ $room->name }}</option>

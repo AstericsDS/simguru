@@ -29,8 +29,8 @@ class DaftarRuang extends Component
     public function rules()
     {
         return [
-            'name' => 'required',
-            'slug' => 'required|unique:rooms,slug',
+            'name' => 'required|unique:rooms,name',
+            'slug' => 'required',
             'campus_id' => 'required',
             'building_id' => 'required',
             'floor' => 'required',

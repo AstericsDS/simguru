@@ -11,7 +11,7 @@ function initCalendar(){
         plugins: [ interactionPlugin, dayGridPlugin, timeGridPlugin ],
         locale: idLocale,
         contentHeight: 'auto',
-        initialView: "timeGridDay",
+        initialView: "dayGridMonth",
         selectable: true,
         navLinks: true,
         dateClick: function(info) {
@@ -53,7 +53,7 @@ function initCalendar(){
         },
         slotMinTime: "07:30:00",
         slotMaxTime: "19:30:00",
-        slotDuration: "00:30:00",
+        slotDuration: "00:15:00",
         slotLabelFormat: {
             hour: 'numeric',
             minute: '2-digit',
@@ -63,7 +63,7 @@ function initCalendar(){
       });
     
       calendar2.render();
-    
+
     let calendarEl = document.getElementById("jadwalhome");
     let calendar = new Calendar(calendarEl, {
         plugins: [dayGridPlugin, timeGridPlugin],

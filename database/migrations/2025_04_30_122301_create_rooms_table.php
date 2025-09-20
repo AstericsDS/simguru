@@ -16,9 +16,10 @@ return new class extends Migration
             $table->foreignId('admin_id')->constrained('users');
             $table->foreignId('campus_id')->constrained('campuses');
             $table->foreignId('building_id')->constrained('buildings');
-            $table->string('name');
-            $table->string('slug')->unique();
+            $table->string('name')->unique();
+            $table->string('slug');
             $table->integer('floor');
+            $table->integer('area');
             $table->integer('capacity');
             $table->text('description');
             $table->json('images_path')->nullable();

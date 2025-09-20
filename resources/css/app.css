@@ -58,6 +58,8 @@
     --color-unj: #006369;
     --color-unj-dark: #004f54;
     --color-unj-light: #aefaff;
+    --color-unj-yellow: #ffdd00;
+    --color-sapphire: #0f52ba;
 }
 
 @plugin "daisyui/theme" {

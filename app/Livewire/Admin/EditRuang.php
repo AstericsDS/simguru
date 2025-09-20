@@ -35,23 +35,34 @@ class EditRuang extends Component
         return $existing == $current;
     }
 
-    public function mount(Room $room)
+    public function mount($id)
     {
-        $this->room = $room;
-        $this->update = Update::where('table', 'rooms')->where('record_id', $this->room->id)->first();
-        if (!$this->update) {
-            return $this->redirectRoute('daftar-ruang', navigate: true);
+        // Cek jika passing argument berupa id (untuk entri baru)
+        if (is_numeric($id)) {
+            $this->update = Update::find($id);
         }
-        $this->new_data = json_decode($this->update->new_data, true);
-        $this->name = $this->new_data['name'] ?? $room->name;
-        $this->campus_id = $this->new_data['campus_id'] ?? $room->campus_id;
-        $this->building_id = $this->new_data['building_id'] ?? $room->building_id;
-        $this->floor = $this->new_data['floor'] ?? $room->floor;
-        $this->area = $this->new_data['area'] ?? $room->area;
-        $this->capacity = $this->new_data['capacity'] ?? $room->capacity;
-        $this->category = $this->new_data['category'] ?? $room->category;
-        $this->description = $this->new_data['description'] ?? $room->description;
-        $this->images_path = $this->new_data['images_path'] ?? $room->images_path;
+        // Jika bukan id, berarti slug (untuk entri yang sudah pernah di approve)
+        else {
+            $this->room = Room::where('slug', $id)->first();
+
+            if ($this->room) {
+                $this->update = Update::where('table', 'rooms')->where('record_id', $this->room->id)->first();
+            }
+        }
+        if (!$this->update) {
+            return $this->redirectRoute('daftar-gedung', navigate: true);
+        }
+
+        $this->new_data = $this->update->new_data;
+        $this->name = $this->new_data['name'] ?? $this->room->name;
+        $this->campus_id = $this->new_data['campus_id'] ?? $this->room->campus_id;
+        $this->building_id = $this->new_data['building_id'] ?? $this->room->building_id;
+        $this->floor = $this->new_data['floor'] ?? $this->room->floor;
+        $this->area = $this->new_data['area'] ?? $this->room->area;
+        $this->capacity = $this->new_data['capacity'] ?? $this->room->capacity;
+        $this->category = $this->new_data['category'] ?? $this->room->category;
+        $this->description = $this->new_data['description'] ?? $this->room->description;
+        $this->images_path = $this->new_data['images_path'] ?? $this->room->images_path;
         $this->is_pending = $this->update->status === 'pending';
         $this->campuses = Campus::all();
         $this->loadBuildings();
@@ -126,11 +137,14 @@ class EditRuang extends Component
         $validated['images_path'] = $finalPaths;
         $validated['admin_id'] = Auth::id();
         $validated['slug'] = $this->slug;
+        $validated['campus'] = Campus::find($this->campus_id)->name;
+        $validated['building'] = Building::find($this->building_id)->name;
 
         $updated = $this->update->update([
             'old_data' => $this->update->new_data,
-            'new_data' => json_encode($validated),
-            'status' => 'pending'
+            'new_data' => $validated,
+            'status' => 'pending',
+            'updated_at' => now(),
         ]);
 
         if ($updated) {
@@ -158,13 +172,13 @@ class EditRuang extends Component
         }
 
         if (
-            $this->name === $this->room->name &&
-            $this->campus_id === $this->room->campus_id &&
-            $this->building_id === $this->room->building_id &&
-            $this->floor == $this->room->floor &&
-            $this->capacity == $this->room->capacity &&
-            $this->category === $this->room->category &&
-            $this->description === $this->room->description &&
+            $this->name === ($this->room->name ?? $this->new_data['name']) &&
+            $this->campus_id === ($this->room->campus_id ?? $this->new_data['campus_id']) &&
+            $this->building_id === ($this->room->building_id ?? $this->new_data['building_id']) &&
+            $this->floor == ($this->room->floor ?? $this->new_data['floor']) &&
+            $this->capacity == ($this->room->capacity ?? $this->new_data['capacity']) &&
+            $this->category === ($this->room->category ?? $this->new_data['category']) &&
+            $this->description === ($this->room->description ?? $this->new_data['description']) &&
             $this->sameImages()
         ) {
             $this->dispatch('toast', status: 'nochanges', message: 'Tidak ada value yang diubah.');

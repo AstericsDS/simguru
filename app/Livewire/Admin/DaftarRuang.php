@@ -29,8 +29,8 @@ class DaftarRuang extends Component
     public function rules()
     {
         return [
-            'name' => 'required',
-            'slug' => 'required|unique:rooms,slug',
+            'name' => 'required|unique:rooms,name',
+            'slug' => 'required',
             'campus_id' => 'required',
             'building_id' => 'required',
             'floor' => 'required',
@@ -69,7 +69,6 @@ class DaftarRuang extends Component
     public function save()
     {
         $validated = collect($this->validate());
-
         $paths = [];
         if ($this->images_path && is_array($this->images_path)) {
             foreach ($this->images_path as $image) {
@@ -79,13 +78,15 @@ class DaftarRuang extends Component
         }
         $validated['admin_id'] = Auth::id();
         $validated['slug'] = $this->slug;
+        $validated['campus'] = Campus::find($this->campus_id)->name;
+        $validated['building'] = Building::find($this->building_id)->name;
         $created = Update::create([
             'admin_id' => Auth::id(),
             'type' => 'new',
             'table' => 'rooms',
             'record_id' => null,
             'old_data' => null,
-            'new_data' => json_encode($validated),
+            'new_data' => $validated,
             'status' => 'pending',
             'approved_by' => null,
             'reject_reason' => null,
@@ -143,11 +144,23 @@ class DaftarRuang extends Component
         $this->dispatch('view');
     }
 
+    public function viewPending($id)
+    {
+        $pending = Update::find($id);
+        $this->room_images = $pending->new_data['images_path'];
+        $this->dispatch('view');
+    }
+
     public function render()
     {
         $rooms = Room::when($this->search !== '', fn(Builder $query) => $query->where('name', 'like', '%' . $this->search . '%'))->with('campus', 'building')->paginate(10);
+        $updates = Update::when(
+            $this->search !== '',
+            fn(Builder $query) => $query->where('new_data->name', 'like', '%' . $this->search . '%')
+        )->where('table', 'rooms')->whereIn('status', ['pending', 'rejected'])->get();
         return view('livewire.admin.daftar-ruang', [
-            'rooms' => $rooms
+            'rooms' => $rooms,
+            'updates' => $updates,
         ]);
     }
 }

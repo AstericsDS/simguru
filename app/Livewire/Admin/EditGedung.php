@@ -33,21 +33,31 @@ class EditGedung extends Component
         return $existing == $current;
     }
 
-    public function mount(Building $building)
+    public function mount($id)
     {
-        $this->building = $building;
-        $this->update = Update::where('table', 'buildings')->where('record_id', $this->building->id)->first();
+        // Cek jika passing argument berupa id (untuk entri baru)
+        if (is_numeric($id)) {
+            $this->update = Update::find($id);
+        }
+        // Jika bukan id, berarti slug (untuk entri yang sudah pernah di approve)
+        else {
+            $this->building = Building::where('slug', $id)->first();
+
+            if ($this->building) {
+                $this->update = Update::where('table', 'buildings')->where('record_id', $this->building->id)->first();
+            }
+        }
         if (!$this->update) {
             return $this->redirectRoute('daftar-gedung', navigate: true);
         }
-        $this->new_data = json_decode($this->update->new_data, true);
-        $this->name = $this->new_data['name'] ?? $building->name;
-        $this->campus_id = $this->new_data['campus_id'] ?? $building->campus_id;
-        $this->area = $this->new_data['area'] ?? $building->area;
-        $this->floor = $this->new_data['floor'] ?? $building->floor;
-        $this->address = $this->new_data['address'] ?? $building->address;
-        $this->description = $this->new_data['description'] ?? $building->description;
-        $this->images_path = $this->new_data['images_path'] ?? $building->images_path;
+        $this->new_data = $this->update->new_data;
+        $this->name = $this->new_data['name'] ?? $this->building->name;
+        $this->campus_id = $this->new_data['campus_id'] ?? $this->building->campus_id;
+        $this->area = $this->new_data['area'] ?? $this->building->area;
+        $this->floor = $this->new_data['floor'] ?? $this->building->floor;
+        $this->address = $this->new_data['address'] ?? $this->building->address;
+        $this->description = $this->new_data['description'] ?? $this->building->description;
+        $this->images_path = $this->new_data['images_path'] ?? $this->building->images_path;
         $this->campuses = Campus::all();
         $this->is_pending = $this->update->status === 'pending';
     }
@@ -108,11 +118,13 @@ class EditGedung extends Component
         $validated['images_path'] = $finalPaths;
         $validated['admin_id'] = Auth::id();
         $validated['slug'] = $this->slug;
+        $validated['campus'] = Campus::find($this->campus_id)->name;
 
         $updated = $this->update->update([
             'old_data' => $this->update->new_data,
-            'new_data' => json_encode($validated),
-            'status' => 'pending'
+            'new_data' => $validated,
+            'status' => 'pending',
+            'updated_at' => now(),
         ]);
 
         if ($updated) {
@@ -139,12 +151,12 @@ class EditGedung extends Component
             return;
         }
         if (
-            $this->name === $this->building->name &&
-            $this->campus_id === $this->building->campus_id &&
-            $this->area === $this->building->area &&
-            $this->floor == $this->building->floor &&
-            $this->address === $this->building->address &&
-            $this->description === $this->building->description &&
+            $this->name === ($this->building->name ?? $this->update->new_data['name']) &&
+            $this->campus_id === ($this->building->campus_id ?? $this->update->new_data['campus_id']) &&
+            $this->area === ($this->building->area ?? $this->update->new_data['area']) &&
+            $this->floor == ($this->building->floor ?? $this->update->new_data['floor']) &&
+            $this->address === ($this->building->address ?? $this->update->new_data['address']) &&
+            $this->description === ($this->building->description ?? $this->update->new_data['description']) &&
             $this->sameImages()
         ) {
             $this->dispatch('toast', status: 'nochanges', message: 'Tidak ada value yang diubah.');

@@ -15,8 +15,8 @@ use Illuminate\Support\Str;
 class EditKampus extends Component
 {
     use WithFileUploads;
-    public Campus $campus;
-    public Update $update;
+    public ?Campus $campus = null;
+    public ?Update $update = null;
     public $name, $address, $contact, $email, $description, $slug;
     public $images_path = [];
     public $new_images = [];
@@ -33,21 +33,28 @@ class EditKampus extends Component
         return $existing == $current;
     }
 
-    public function mount(Campus $campus)
+    public function mount($id)
     {
-        $this->campus = $campus;
-        $this->update = Update::where('table', 'campuses')->where('record_id', $this->campus->id)->first();
-        if (!$this->update) {
-            return $this->redirectRoute('daftar-kampus', navigate: true);
+        // Cek jika passing argument berupa id (untuk entri baru)
+        if (is_numeric($id)) {
+            $this->update = Update::find($id);
         }
-        $this->new_data = json_decode($this->update->new_data, true);
-        $this->name = $this->new_data['name'] ?? $campus->name;
-        $this->slug = $this->new_data['slug'] ?? $campus->slug;
-        $this->address = $this->new_data['address'] ?? $campus->address;
-        $this->contact = $this->new_data['contact'] ?? $campus->contact;
-        $this->email = $this->new_data['email'] ?? $campus->email;
-        $this->description = $this->new_data['description'] ?? $campus->description;
-        $this->images_path = $this->new_data['images_path'] ?? $campus->images_path;
+        // Jika bukan id, berarti slug (untuk entri yang sudah pernah di approve)
+        else {
+            $this->campus = Campus::where('slug', $id)->first();
+
+            if ($this->campus) {
+                $this->update = Update::where('table', 'campuses')->where('record_id', $this->campus->id)->first();
+            }
+        }
+        $this->new_data = $this->update->new_data;
+        $this->name = $this->new_data['name'] ?? $this->campus->name;
+        $this->slug = $this->new_data['slug'] ?? $this->campus->slug;
+        $this->address = $this->new_data['address'] ?? $this->campus->address;
+        $this->contact = $this->new_data['contact'] ?? $this->campus->contact;
+        $this->email = $this->new_data['email'] ?? $this->campus->email;
+        $this->description = $this->new_data['description'] ?? $this->campus->description;
+        $this->images_path = $this->new_data['images_path'] ?? $this->campus->images_path;
         $this->is_pending = $this->update->status === 'pending';
     }
 
@@ -56,7 +63,7 @@ class EditKampus extends Component
         return [
             'name' => 'required',
             'address' => 'required',
-            'contact' => 'required|min:8',
+            'contact' => 'required|digits_between:8,13',
             'email' => 'required|email',
             'description' => 'required',
             'new_images.*' => 'file|image'
@@ -69,7 +76,7 @@ class EditKampus extends Component
             'name.required' => 'Nama harus diisi',
             'address.required' => 'Alamat harus diisi',
             'contact.required' => 'Nomor telepon harus diisi',
-            'contact.min' => 'Nomor telepon minimal 8 digit',
+            'contact.digits_between' => 'Nomor telepon harus berupa angka dan minimal 8 digit',
             'email.required' => 'Email harus diisi',
             'email.email' => 'Masukkan alamat email yang valid',
             'description.required' => 'Deskripsi harus diisi',
@@ -106,8 +113,9 @@ class EditKampus extends Component
 
         $updated = $this->update->update([
             'old_data' => $this->update->new_data,
-            'new_data' => json_encode($validated),
-            'status' => 'pending'
+            'new_data' => $validated,
+            'status' => 'pending',
+            'updated_at' => now(),
         ]);
 
         if ($updated) {
@@ -134,11 +142,11 @@ class EditKampus extends Component
             return;
         }
         if (
-            $this->name === $this->campus->name &&
-            $this->address === $this->campus->address &&
-            $this->contact === $this->campus->contact &&
-            $this->email === $this->campus->email &&
-            $this->description === $this->campus->description &&
+            $this->name === ($this->campus?->name ?? $this->new_data['name']) &&
+            $this->address === ($this->campus?->address ?? $this->new_data['address']) &&
+            $this->contact === ($this->campus?->contact ?? $this->new_data['contact']) &&
+            $this->email === ($this->campus?->email ?? $this->new_data['email']) &&
+            $this->description === ($this->campus->description ?? $this->new_data['description']) &&
             $this->sameImages()
         ) {
             $this->dispatch('toast', status: 'nochanges', message: 'Tidak ada value yang diubah.');

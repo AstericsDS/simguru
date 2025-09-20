@@ -84,57 +84,60 @@ class DatabaseSeeder extends Seeder
             'description' => Faker::create()->sentence(),
         ]);
 
-        Room::create([
-            'admin_id' => 2,
-            'campus_id' => 1,
-            'building_id' => 1,
-            'name' => 'R514',
-            'slug' => 'R514',
-            'floor' => '5',
-            'capacity' => '100',
-            'description' => Faker::create()->sentence(),
-            'category' => 'class',
-        ]);
+        // Room::create([
+        //     'admin_id' => 2,
+        //     'campus_id' => 1,
+        //     'building_id' => 1,
+        //     'name' => 'R514',
+        //     'slug' => 'R514',
+        //     'floor' => '5',
+        //     'capacity' => '100',
+        //     'description' => Faker::create()->sentence(),
+        //     'category' => 'class',
+        //     'area' => '500'
+        // ]);
 
-        Room::create([
-            'admin_id' => 2,
-            'campus_id' => 1,
-            'building_id' => 1,
-            'name' => 'R515',
-            'slug' => 'R515',
-            'floor' => '5',
-            'capacity' => '100',
-            'description' => Faker::create()->sentence(),
-            'category' => 'class',
-        ]);
+        // Room::create([
+        //     'admin_id' => 2,
+        //     'campus_id' => 1,
+        //     'building_id' => 1,
+        //     'name' => 'R515',
+        //     'slug' => 'R515',
+        //     'floor' => '5',
+        //     'capacity' => '100',
+        //     'description' => Faker::create()->sentence(),
+        //     'category' => 'class',
+        //     'area' => '300'
+        // ]);
 
-        Event::create([
-            'room_id' => 1,
-            'event_name' => 'Mata Kuliah Terbuang Dalam Waktu',
-            'start' => '2025-09-18T13:00:00',
-            'end' => '2025-09-18T14:30:00'
-        ]);
+        // Event::create([
+        //     'room_id' => 1,
+        //     'event_name' => 'Mata Kuliah Terbuang Dalam Waktu',
+        //     'start' => '2025-09-18T13:00:00',
+        //     'end' => '2025-09-18T14:30:00'
+        // ]);
 
-        Event::create([
-            'room_id' => 1,
-            'event_name' => 'Mata Kuliah Terbuang Dalam Waktu',
-            'start' => '2025-09-20T13:00:00',
-            'end' => '2025-09-20T14:30:00'
-        ]);
+        // Event::create([
+        //     'room_id' => 1,
+        //     'event_name' => 'Mata Kuliah Terbuang Dalam Waktu',
+        //     'start' => '2025-09-20T13:00:00',
+        //     'end' => '2025-09-20T14:30:00'
+        // ]);
 
-        Event::create([
-            'room_id' => 2,
-            'event_name' => 'Mata Kuliah Terbuang Dalam Waktu',
-            'start' => '2025-09-18T10:00:00',
-            'end' => '2025-09-18T12:30:00'
-        ]);
+        // Event::create([
+        //     'room_id' => 2,
+        //     'event_name' => 'Mata Kuliah Terbuang Dalam Waktu',
+        //     'start' => '2025-09-18T10:00:00',
+        //     'end' => '2025-09-18T12:30:00'
+        // ]);
 
-        Event::create([
-            'room_id' => 2,
-            'event_name' => 'Mata Kuliah Terbuang Dalam Waktu',
-            'start' => '2025-09-20T10:00:00',
-            'end' => '2025-09-20T13:30:00'
-        ]);
+        // Event::create([
+        //     'room_id' => 2,
+        //     'event_name' => 'Mata Kuliah Terbuang Dalam Waktu',
+        //     'start' => '2025-09-20T10:00:00',
+        //     'end' => '2025-09-20T13:30:00'
+        // ]);
+
         // Campus::factory()->count(1)->has(Building::factory()->count(2)->has(Room::factory()->count(3)))->create();
         // Campus::factory()->count(1)->has(Building::factory()->count(2))->create();
         // Campus::factory()

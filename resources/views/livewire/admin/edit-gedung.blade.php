@@ -1,6 +1,7 @@
 <div class="text-black">
 
     {{-- Title --}}
+    <a wire:navigate href="{{ route('daftar-gedung') }}"> < Kembali ke daftar gedung</a>
     <h1 class="text-2xl font-medium">Edit Gedung</h1>
 
     {{-- Reject Reason --}}
@@ -67,17 +68,17 @@
 
                 </div>
                 <div class="w-full flex flex-col gap-2 my-auto">
-                    <div class="carousel w-full rounded-md">
+                    <div class="carousel w-full max-h-150 rounded-md">
                         @foreach ($images_path as $image)
                             <div id="item{{ $loop->iteration }}" class="carousel-item w-full hover:brightness-75 transition-all duration-300 group relative {{ count($images_path) <= 1 ? 'cursor-not-allowed' : 'cursor-pointer' }}" {{ count($images_path) > 1 ? "wire:click=removeImage($loop->index)" : '' }}>
                                 {{-- <img src="{{ asset('storage/' . $image) }}" class="w-full" /> --}}
                                 @if ($image instanceof \Illuminate\Http\UploadedFile)
-                                    <img src="{{ $image->temporaryUrl() }}" class="w-full" />
+                                    <img src="{{ $image->temporaryUrl() }}" class="w-full object-contain" />
                                     <div class="hidden group-hover:inline absolute left-1/2 top-1/2 text-white text-6xl -translate-x-1/2 -translate-y-1/2 transition-none">
                                         <i class="fa-solid fa-trash-can"></i>
                                     </div>
                                 @else
-                                    <img src="{{ asset('storage/' . $image) }}" class="w-full" />
+                                    <img src="{{ asset('storage/' . $image) }}" class="w-full object-contain" />
                                     <div class="hidden group-hover:inline absolute left-1/2 top-1/2 text-white text-6xl -translate-x-1/2 -translate-y-1/2 transition-none">
                                         <i class="fa-solid fa-trash-can"></i>
                                     </div>

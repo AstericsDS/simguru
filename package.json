@@ -16,6 +16,8 @@
     },
     "dependencies": {
         "@fullcalendar/core": "^6.1.19",
+        "@fullcalendar/daygrid": "^6.1.19",
+        "@fullcalendar/timegrid": "^6.1.19",
         "alpinejs": "^3.14.9",
         "apexcharts": "^5.3.3",
         "flowbite": "^3.1.2",

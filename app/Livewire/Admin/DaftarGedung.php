@@ -30,8 +30,8 @@ class DaftarGedung extends Component
     public function rules()
     {
         return [
-            'name' => 'required',
-            'slug' => 'required|unique:buildings,slug',
+            'name' => 'required|unique:buildings,name',
+            'slug' => 'required',
             'campus_id' => 'required',
             'address' => 'required',
             'floor' => 'required|integer',
@@ -76,13 +76,14 @@ class DaftarGedung extends Component
 
         $validated['admin_id'] = Auth::id();
         $validated['slug'] = $this->slug;
+        $validated['campus'] = Campus::find($this->campus_id)->name;
         $created = Update::create([
             'admin_id' => Auth::id(),
             'type' => 'new',
             'table' => 'buildings',
             'record_id' => null,
             'old_data' => null,
-            'new_data' => json_encode($validated),
+            'new_data' => $validated,
             'status' => 'pending',
             'approved_by' => null,
             'reject_reason' => null,
@@ -119,14 +120,26 @@ class DaftarGedung extends Component
         $this->dispatch('view');
     }
 
+    public function viewPending($id)
+    {
+        $pending = Update::find($id);
+        $this->buildingImages = $pending->new_data['images_path'];
+        $this->dispatch('view');
+    }
+
     public function render()
     {
         $buildings = Building::with('campus')
             ->when($this->search !== '', fn(Builder $query)
                 => $query->where('name', 'like', '%' . $this->search . '%'))
             ->paginate(10);
+        $updates = Update::when(
+            $this->search !== '',
+            fn(Builder $query) => $query->where('new_data->name', 'like', '%' . $this->search . '%')
+        )->where('table', 'buildings')->whereIn('status', ['pending', 'rejected'])->get();
         return view('livewire.admin.daftar-gedung', [
-            'buildings' => $buildings
+            'buildings' => $buildings,
+            'updates' => $updates,
         ]);
     }
 

@@ -18,6 +18,7 @@ class Room extends Model
         'building_id',
         'campus_id',
         'floor',
+        'area',
         'capacity',
         'description',
         'category',

@@ -90,8 +90,12 @@ function initCalendar() {
     // });
 }
 
+document.addEventListener("livewire:navigated", () => {
+    initCalendar();
+});
+
 let calendarEl = document.getElementById("jadwalhome");
-const tooltip = document.getElementById('tooltip');
+const tooltip = document.getElementById("tooltip");
 let calendar = new Calendar(calendarEl, {
     locale: idLocale,
     contentHeight: "auto",
@@ -162,7 +166,3 @@ window.matchMedia("(orientation: portrait)").addEventListener("change", (e) => {
 });
 
 calendar.render();
-
-document.addEventListener("livewire:navigated", () => {
-    initCalendar();
-});

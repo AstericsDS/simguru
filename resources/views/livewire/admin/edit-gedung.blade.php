@@ -23,7 +23,7 @@
                 <div class="w-full flex flex-col gap-5">
                     <div class="{{ $is_pending ? 'tooltip tooltip-accent' : '' }}" data-tip="Mohon tunggu verifikasi super admin">
                         <label for="name">Nama</label>
-                        <input wire:model.live='name' type="text" id="name" class="bg-gray-50 border focus:outline-none focus:ring-unj transition-all {{ $is_pending ? 'text-gray-500' : 'text-gray-900' }} text-sm rounded-lg block w-full p-2.5 {{ $errors->has('name') ? 'border-red-500' : 'border-gray-300' }} my-2" {{ $is_pending ? 'disabled' : '' }}>
+                        <input wire:model.live='name' type="text" id="name" class="bg-gray-50 border focus:outline-none focus:ring-primary transition-all {{ $is_pending ? 'text-gray-500' : 'text-gray-900' }} text-sm rounded-lg block w-full p-2.5 {{ $errors->has('name') ? 'border-red-500' : 'border-gray-300' }} my-2" {{ $is_pending ? 'disabled' : '' }}>
                         @error('name')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                         @enderror
@@ -44,7 +44,7 @@
 
                     <div class="{{ $is_pending ? 'tooltip tooltip-accent' : '' }}" data-tip="Mohon tunggu verifikasi super admin">
                         <label for="address">Alamat</label>
-                        <input wire:model.live='address' type="text" id="address" class="bg-gray-50 border focus:outline-none focus:ring-unj transition-all {{ $is_pending ? 'text-gray-500' : 'text-gray-900' }} text-sm rounded-lg block w-full p-2.5 {{ $errors->has('address') ? 'border-red-500' : 'border-gray-300' }} my-2" {{ $is_pending ? 'disabled' : '' }}>
+                        <input wire:model.live='address' type="text" id="address" class="bg-gray-50 border focus:outline-none focus:ring-primary transition-all {{ $is_pending ? 'text-gray-500' : 'text-gray-900' }} text-sm rounded-lg block w-full p-2.5 {{ $errors->has('address') ? 'border-red-500' : 'border-gray-300' }} my-2" {{ $is_pending ? 'disabled' : '' }}>
                         @error('address')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                         @enderror
@@ -52,7 +52,7 @@
 
                     <div class="{{ $is_pending ? 'tooltip tooltip-accent' : '' }}" data-tip="Mohon tunggu verifikasi super admin">
                         <label for="floor">Jumlah Lantai</label>
-                        <input wire:model.live='floor' type="text" id="floor" class="bg-gray-50 border focus:outline-none focus:ring-unj transition-all {{ $is_pending ? 'text-gray-500' : 'text-gray-900' }} text-sm rounded-lg block w-full p-2.5 {{ $errors->has('floor') ? 'border-red-500' : 'border-gray-300' }} my-2" {{ $is_pending ? 'disabled' : '' }}>
+                        <input wire:model.live='floor' type="text" id="floor" class="bg-gray-50 border focus:outline-none focus:ring-primary transition-all {{ $is_pending ? 'text-gray-500' : 'text-gray-900' }} text-sm rounded-lg block w-full p-2.5 {{ $errors->has('floor') ? 'border-red-500' : 'border-gray-300' }} my-2" {{ $is_pending ? 'disabled' : '' }}>
                         @error('floor')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                         @enderror
@@ -60,7 +60,7 @@
 
                     <div class="{{ $is_pending ? 'tooltip tooltip-accent' : '' }}" data-tip="Mohon tunggu verifikasi super admin">
                         <label for="description">Deskripsi</label>
-                        <textarea wire:model.live='description' id="description" class="bg-gray-50 border focus:outline-none focus:ring-unj transition-all {{ $is_pending ? 'text-gray-500' : 'text-gray-900' }} text-sm rounded-lg block w-full p-2.5 {{ $errors->has('description') ? 'border-red-500' : 'border-gray-300' }} my-2 h-36" {{ $is_pending ? 'disabled' : '' }}></textarea>
+                        <textarea wire:model.live='description' id="description" class="bg-gray-50 border focus:outline-none focus:ring-primary transition-all {{ $is_pending ? 'text-gray-500' : 'text-gray-900' }} text-sm rounded-lg block w-full p-2.5 {{ $errors->has('description') ? 'border-red-500' : 'border-gray-300' }} my-2 h-36" {{ $is_pending ? 'disabled' : '' }}></textarea>
                         @error('description')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                         @enderror
@@ -101,7 +101,7 @@
                 </div>
             </div>
             <div class="flex justify-end mt-8">
-                <button type="submit" class="p-2 border-[2px] border-unj rounded-md px-8 transition-all font-semibold {{ $is_pending ? 'cursor-not-allowed' : 'hover:bg-unj hover:text-white cursor-pointer' }}">Edit</button>
+                <button type="submit" class="p-2 border-[2px] border-primary rounded-md px-8 transition-all font-semibold {{ $is_pending ? 'cursor-not-allowed' : 'hover:bg-primary hover:text-white cursor-pointer' }}">Edit</button>
             </div>
         </form>
     </div>

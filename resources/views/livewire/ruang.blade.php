@@ -1,7 +1,7 @@
 <div class="w-full p-5 lg:px-40">
     {{-- Breadcrumbs --}}
     <div class="flex flex-col my-5">
-        <a href="/" class="text-unj flex gap-2"><img class="size-5" src="{{ asset('logos/back-svgrepo-com.svg') }}"
+        <a href="/" class="text-primary flex gap-2"><img class="size-5" src="{{ asset('logos/back-svgrepo-com.svg') }}"
                 alt="">ke beranda</a>
         <div class="breadcrumbs text-sm text-[#006569]">
             <ul>
@@ -12,7 +12,7 @@
         </div>
     </div>
     {{-- Building Details --}}
-    <div class="flex gap-4 text-unj justify-items-center">
+    <div class="flex gap-4 text-primary justify-items-center">
         <div class="flex items-center justify-center lg:mr-10">
             <div class="swiper">
                 <div class="swiper-wrapper">

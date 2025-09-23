@@ -15,7 +15,7 @@
                     </svg>
                 </span>
 
-                <input wire:model.live="search" x-ref="searchInput" @keydown.escape="$refs.searchInput.blur()" type="text" class="border border-gray-300 rounded-lg px-3 py-2 w-full pl-12 focus:outline-none focus:ring-unj text-black transition-all" placeholder="Cari kampus">
+                <input wire:model.live="search" x-ref="searchInput" @keydown.escape="$refs.searchInput.blur()" type="text" class="border border-gray-300 rounded-lg px-3 py-2 w-full pl-12 focus:outline-none focus:ring-primary text-black transition-all" placeholder="Cari kampus">
 
                 <div class="absolute right-4 text-gray-500 top-1/2 -translate-y-1/2 flex gap-1">
                     <div class="border px-2 py-1 border-gray-500 rounded-md flex items-center justify-center">
@@ -28,7 +28,7 @@
             </div>
 
             {{-- Add --}}
-            <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="rounded-xl border border-gray-300  size-9 flex items-center justify-center group hover:px-2 hover:w-[100px] transition-all cursor-pointer hover:bg-unj hover:border-unj hover:text-white hover:rounded-lg overflow-hidden duration-200">
+            <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="rounded-xl border border-gray-300  size-9 flex items-center justify-center group hover:px-2 hover:w-[100px] transition-all cursor-pointer hover:bg-primary hover:border-primary hover:text-white hover:rounded-lg overflow-hidden duration-200">
                 <i class="fa-solid fa-plus"></i>
                 <span class="hidden group-hover:inline transition-all font-normal ml-2">Tambah</span>
             </button>

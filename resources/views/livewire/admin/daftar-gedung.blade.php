@@ -16,7 +16,7 @@
                         </svg>
                     </span>
 
-                    <input wire:model.live="search" x-ref="searchInput" @keydown.escape="$refs.searchInput.blur()" type="text" class="border border-gray-300 rounded-lg px-3 py-2 w-full pl-12 pr-[88px] focus:outline-none focus:ring-unj text-black transition-all" placeholder="Cari gedung">
+                    <input wire:model.live="search" x-ref="searchInput" @keydown.escape="$refs.searchInput.blur()" type="text" class="border border-gray-300 rounded-lg px-3 py-2 w-full pl-12 pr-[88px] focus:outline-none focus:ring-primary text-black transition-all" placeholder="Cari gedung">
 
                     <div class="absolute right-4 text-gray-500 top-1/2 -translate-y-1/2 flex gap-1">
                         <div class="border px-2 py-1 border-gray-500 rounded-md flex items-center justify-center">
@@ -35,7 +35,7 @@
             </div>
 
             {{-- Add --}}
-            <button @click="$dispatch('modal')" class="rounded-xl border border-gray-300 size-10 flex items-center justify-center group hover:px-2 hover:w-[100px] transition-all cursor-pointer hover:bg-unj hover:border-unj hover:text-white hover:rounded-lg overflow-hidden duration-200">
+            <button @click="$dispatch('modal')" class="rounded-xl border border-gray-300 size-10 flex items-center justify-center group hover:px-2 hover:w-[100px] transition-all cursor-pointer hover:bg-primary hover:border-primary hover:text-white hover:rounded-lg overflow-hidden duration-200">
                 <i class="fa-solid fa-plus"></i>
                 <span class="hidden group-hover:inline transition-all font-semibold ml-2">Tambah</span>
             </button>
@@ -67,7 +67,7 @@
                         <div class="grid gap-4 mb-4 grid-cols-2">
                             <div class="col-span-2">
                                 <label for="name" class="block mb-2 text-sm font-medium">Nama Gedung</label>
-                                <input wire:model.live="name" type="text" id="name" class="bg-gray-50 border focus:outline-none focus:ring-unj transition-all text-gray-900 text-sm rounded-lg block w-full p-2.5 {{ $errors->has('name') ? 'border-red-500' : 'border-gray-300' }}">
+                                <input wire:model.live="name" type="text" id="name" class="bg-gray-50 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg block w-full p-2.5 {{ $errors->has('name') ? 'border-red-500' : 'border-gray-300' }}">
                                 @error('name')
                                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                                 @enderror
@@ -86,35 +86,35 @@
                             </div>
                             <div class="col-span-2">
                                 <label for="address" class="block mb-2 text-sm font-medium">Alamat</label>
-                                <input wire:model="address" type="text" id="address" class="bg-gray-50 border focus:outline-none focus:ring-unj transition-all text-gray-900 text-sm rounded-lg block w-full p-2.5 {{ $errors->has('address') ? 'border-red-500' : 'border-gray-300' }}">
+                                <input wire:model="address" type="text" id="address" class="bg-gray-50 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg block w-full p-2.5 {{ $errors->has('address') ? 'border-red-500' : 'border-gray-300' }}">
                                 @error('address')
                                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="col-span-2">
                                 <label for="floor" class="block mb-2 text-sm font-medium">Jumlah Lantai</label>
-                                <input wire:model="floor" type="text" id="floor" class="bg-gray-50 border focus:outline-none focus:ring-unj transition-all text-gray-900 text-sm rounded-lg block w-full p-2.5 {{ $errors->has('floor') ? 'border-red-500' : 'border-gray-300' }} }}">
+                                <input wire:model="floor" type="text" id="floor" class="bg-gray-50 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg block w-full p-2.5 {{ $errors->has('floor') ? 'border-red-500' : 'border-gray-300' }} }}">
                                 @error('floor')
                                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="col-span-2">
                                 <label for="area" class="block mb-2 text-sm font-medium">Luas</label>
-                                <input wire:model="area" type="text" id="area" class="bg-gray-50 border focus:outline-none focus:ring-unj transition-all text-gray-900 text-sm rounded-lg block w-full p-2.5 {{ $errors->has('area') ? 'border-red-500' : 'border-gray-300' }} }}">
+                                <input wire:model="area" type="text" id="area" class="bg-gray-50 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg block w-full p-2.5 {{ $errors->has('area') ? 'border-red-500' : 'border-gray-300' }} }}">
                                 @error('area')
                                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="col-span-2">
                                 <label class="block mb-2 text-sm font-medium text-gray-900" for="images">Upload Foto</label>
-                                <input wire:model='images_path' id="images" multiple class="block w-full text-sm text-gray-900 border rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:ring-unj transition-all {{ $errors->has('images_path') ? 'border-red-500' : 'border-gray-300' }}" aria-describedby="user_avatar_help" id="user_avatar" type="file">
+                                <input wire:model='images_path' id="images" multiple class="block w-full text-sm text-gray-900 border rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:ring-primary transition-all {{ $errors->has('images_path') ? 'border-red-500' : 'border-gray-300' }}" aria-describedby="user_avatar_help" id="user_avatar" type="file">
                                 @error('images_path')
                                     <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="col-span-2">
                                 <label for="description" class="block mb-2 text-sm font-medium">Deskripsi</label>
-                                <textarea wire:model="description" id="description" rows="4" class="bg-gray-50 border focus:outline-none focus:ring-unj transition-all text-gray-900 text-sm rounded-lg block w-full p-2.5 {{ $errors->has('description') ? 'border-red-500' : 'border-gray-300' }}"></textarea>
+                                <textarea wire:model="description" id="description" rows="4" class="bg-gray-50 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg block w-full p-2.5 {{ $errors->has('description') ? 'border-red-500' : 'border-gray-300' }}"></textarea>
                                 @error('description')
                                     <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
                                 @enderror
@@ -123,7 +123,7 @@
 
                         {{-- Submit --}}
                         <div @close-modal.window="state = false" class="flex justify-end mt-8">
-                            <button type="submit" class="px-4 py-2 text-gray-900 font-semibold border-3 border-unj rounded-lg cursor-pointer hover:bg-unj hover:text-white transition-all focus:outline-none focus:bg-unj focus:text-white">
+                            <button type="submit" class="px-4 py-2 text-gray-900 font-semibold border-3 border-primary rounded-lg cursor-pointer hover:bg-primary hover:text-white transition-all focus:outline-none focus:bg-primary focus:text-white">
                                 Tambah
                             </button>
                         </div>
@@ -187,7 +187,7 @@
                                 {{ $building->area }}m<sup>2</sup>
                             </td>
                             <td class="px-6 py-4">
-                                <button wire:click='view({{ $building->id }})' type="button" class="transition-all cursor-pointer hover:text-unj hover:bg-unj-light rounded-xl p-2 mx-auto">
+                                <button wire:click='view({{ $building->id }})' type="button" class="transition-all cursor-pointer hover:text-primary hover:bg-primary-light rounded-xl p-2 mx-auto">
                                     <i class="fa-solid fa-images"></i>
                                 </button>
                             </td>
@@ -242,7 +242,7 @@
                                 {{ $update->new_data['area'] }}m<sup>2</sup>
                             </td>
                             <td class="px-6 py-4">
-                                <button wire:click='viewPending({{ $update->id }})' type="button" class="transition-all cursor-pointer hover:text-unj hover:bg-unj-light rounded-xl p-2 mx-auto" data-tip="Gambar">
+                                <button wire:click='viewPending({{ $update->id }})' type="button" class="transition-all cursor-pointer hover:text-primary hover:bg-primary-light rounded-xl p-2 mx-auto" data-tip="Gambar">
                                     <i class="fa-solid fa-images"></i>
                                 </button>
                             </td>

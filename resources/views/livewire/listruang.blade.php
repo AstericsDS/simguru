@@ -5,7 +5,7 @@
     {{-- card box --}}
     <div class="grid lg:grid-cols-4 gap-3 mt-12">
         @foreach ($rooms as $room)
-            <div class="card bg-unj shadow-lg">
+            <div class="card bg-primary shadow-lg">
                 <figure>
                     <img src="backgrounds/unj_bersih.jpeg" alt="Kampus_A_UNJ" />
                 </figure>

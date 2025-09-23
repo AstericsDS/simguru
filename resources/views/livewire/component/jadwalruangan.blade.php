@@ -24,15 +24,14 @@
         @endif
     </fieldset>
 
-    <div
-        {{-- x-data
+    <div {{-- x-data
         @events-loaded.window="console.log('Events data received!', event.detail.Events);
-                        event.detail.Events.forEach(function(event, index){});" --}}
-        wire:ignore id='jadwalhome'
-        ></div>
+                        event.detail.Events.forEach(function(event, index){});" --}} wire:ignore id='jadwalhome'></div>
+
+    <div id="tooltip"
+        class="absolute tooltip-hidden border border-gray-300 bg-white shadow p-5 text-primary z-10 transition-normal rounded-box">
+    </div>
 
 </div>
 
-<script>
-
-</script>
+<script></script>

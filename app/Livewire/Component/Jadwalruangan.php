@@ -35,6 +35,12 @@ class Jadwalruangan extends Component
         $this->dispatch('events-loaded', Events: $this->roomEvents);
     }
 
+    public function mount(){
+        $this->roomEvents = Event::all();
+
+        $this->dispatch('events-loaded', Events: $this->roomEvents);
+    }
+
     public function render()
     {
         // if (!empty($this->selectedCampus)) {

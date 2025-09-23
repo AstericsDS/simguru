@@ -18,7 +18,7 @@
 
         <div class="flex gap-2 text-">
             @foreach ($statuses as $value => $label)
-                <button wire:click="setFilter('{{ $value }}')" class="btn-filter p-2 cursor-pointer transition-all {{ $filter === $value ? 'text-unj border-b-[2px] border-unj font-medium' : 'text-gray-500 hover:text-gray-800' }}">
+                <button wire:click="setFilter('{{ $value }}')" class="btn-filter p-2 cursor-pointer transition-all {{ $filter === $value ? 'text-primary border-b-[2px] border-primary font-medium' : 'text-gray-500 hover:text-gray-800' }}">
                     {{ $label }}
                 </button>
             @endforeach

@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // const scrolledShadow = "shadow-lg";
     // const positionNav = "fixed";
     // const textScrolledClass = "text-white";
-    const active = "text-primary";
+    const active = "text-secondary";
 
     const sections = document.querySelectorAll("#body-ko > div[id]");
     const navButtons = document.querySelectorAll(".navbar-end button");

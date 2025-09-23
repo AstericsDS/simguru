@@ -20,7 +20,7 @@
         </a>
     </div>
 
-    {{-- <div class="card card-side bg-unj w-2/3 self-center shadow-sm mt-30 p-5">
+    {{-- <div class="card card-side bg-primary w-2/3 self-center shadow-sm mt-30 p-5">
         <figure class="w-150">
             <img src="{{ asset('backgrounds/unj_bersih.jpeg') }}" alt="kampus" />
         </figure>
@@ -45,7 +45,7 @@
                     <p class="flex gap-4"><svg xmlns="http://www.w3.org/2000/svg" class="stroke-primary" width="24"
                             height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-building2-icon lucide-building-2 stroke-unj">
+                            class="lucide lucide-building2-icon lucide-building-2 stroke-primary">
                             <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
                             <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
                             <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
@@ -57,7 +57,7 @@
                     <p class="flex gap-4"><svg xmlns="http://www.w3.org/2000/svg" class="stroke-primary" width="24"
                             height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-building2-icon lucide-building-2 stroke-unj">
+                            class="lucide lucide-building2-icon lucide-building-2 stroke-primary">
                             <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
                             <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
                             <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
@@ -69,7 +69,7 @@
                     <p class="flex gap-4"><svg xmlns="http://www.w3.org/2000/svg" class="stroke-primary" width="24"
                             height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-building2-icon lucide-building-2 stroke-unj">
+                            class="lucide lucide-building2-icon lucide-building-2 stroke-primary">
                             <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
                             <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
                             <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
@@ -81,7 +81,7 @@
                     <p class="flex gap-4"><svg xmlns="http://www.w3.org/2000/svg" class="stroke-primary" width="24"
                             height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-building2-icon lucide-building-2 stroke-unj">
+                            class="lucide lucide-building2-icon lucide-building-2 stroke-primary">
                             <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
                             <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
                             <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />

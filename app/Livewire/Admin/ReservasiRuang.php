@@ -4,10 +4,11 @@ namespace App\Livewire\Admin;
 
 use App\Models\Room;
 use App\Models\Event;
-use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Validate;
+use Illuminate\Support\Facades\Auth;
 
 #[Layout('components.layouts.admin.dashboard')]
 class ReservasiRuang extends Component
@@ -34,14 +35,20 @@ class ReservasiRuang extends Component
     {
         $createEvent = Event::create([
             'room_id' => $this->room->id,
+            'admin' => Auth::id(),
             'event_name' => $this->event,
             'start' => $this->startRaw,
             'end' => $this->endRaw,
+            'verified' => 'pending',
         ]);
 
+        $this->reset(['event', 'startRaw', 'endRaw', 'startDate', 'startTime', 'endTime']);
+
         if($createEvent) {
+            $this->dispatch('confirm-modal');
             $this->dispatch('toast', status: 'success', message: 'Jadwal berhasil dibuat, menunggu verifikasi admin.');
         } else {
+            $this->dispatch('confirm-modal');
             $this->dispatch('toast', status: 'fail', message: 'Maaf, jadwal gagal dibuat. Mohon coba lagi.');
         }
     }

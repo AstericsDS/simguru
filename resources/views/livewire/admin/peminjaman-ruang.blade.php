@@ -27,13 +27,13 @@
             </div>
 
             {{-- Filter --}}
-            <select wire:model.change="campus_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-[200px] p-2.5 {{ $errors->has('campus_id') ? 'border-red-500' : 'border-gray-300' }}">
+            <select wire:model.change="campus_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-[200px] p-2.5 truncate">
                 <option selected hidden>Pilih Kampus</option>
                 @foreach ($campuses as $campus)
                     <option value="{{ $campus->id }}">{{ $campus->name }}</option>
                 @endforeach
             </select>
-            <select {{ $campus_id ? '' : 'disabled' }} wire:model.change="building_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-[250px] p-2.5 {{ $errors->has('campus_id') ? 'border-red-500' : 'border-gray-300' }}">
+            <select {{ $campus_id ? '' : 'disabled' }} wire:model.change="building_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-[200px] p-2.5 truncate">
                 <option selected hidden>Pilih Gedung</option>
                 @foreach ($buildings ?? [] as $building)
                     @if (is_object($building))

@@ -29,10 +29,11 @@ use App\Livewire\Admin\PerubahanData;
 use App\Livewire\Admin\ViewKampus;
 use App\Livewire\Admin\ViewGedung;
 use App\Livewire\Admin\ViewRuang;
+use App\Livewire\Admin\VerifikasiData;
 use App\Livewire\Admin\PeminjamanRuang;
 use App\Livewire\Admin\ReservasiRuang;
+use App\Livewire\Admin\VerifikasiJadwal;
 use Illuminate\Support\Facades\Route;
-use App\Livewire\Admin\VerifikasiData;
 
 // Admin
 Route::middleware(['auth'])->prefix('admin')->group(function(){
@@ -60,6 +61,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function(){
     Route::get('/ruang/{room}', ViewRuang::class)->name('view-ruang');
     Route::get('/peminjaman-ruang', PeminjamanRuang::class)->name('peminjaman-ruang');
     Route::get('/reservasi-ruang/{room}', ReservasiRuang::class)->name('reservasi-ruang');
+    Route::get('/verifikasi-jadwal', VerifikasiJadwal::class)->name('verifikasi-jadwal');
 });
 
 // Auth

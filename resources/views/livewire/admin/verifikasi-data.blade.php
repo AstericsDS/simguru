@@ -1,5 +1,9 @@
 <div class="text-black">
+
+    {{-- Title --}}
     <h1 class="text-2xl font-medium">Daftar Pengajuan</h1>
+
+    {{-- Content --}}
     <div class="rounded-md mt-4">
 
         {{-- Filter --}}

@@ -85,13 +85,13 @@
 
                 {{-- Button --}}
                 <div class="flex gap-4 mt-4">
-                    <button @click="$dispatch('toggle-calendar')" class="flex flex-1 justify-center items-center gap-3 rounded-md border-3 border-unj px-2 py-2 mx-auto cursor-pointer hover:bg-unj hover:text-white transition-all">
+                    <button @click="$dispatch('toggle-calendar')" class="flex flex-1 justify-center items-center gap-3 rounded-md border-2 border-unj px-2 py-2 mx-auto cursor-pointer hover:bg-unj hover:text-white transition-all">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
                         </svg>
                         <span>Tambah Jadwal</span>
                     </button>
-                    <button wire:click='save' class="flex flex-1 justify-center items-center p-2 border-2 border-sapphire rounded-md transition-all hover:text-white hover:bg-sapphire cursor-pointer gap-3">
+                    <button @click="$wire.event !== null && $wire.startRaw !== null && $wire.endRaw !== null ? $dispatch('confirm-modal') : null" class="flex flex-1 justify-center items-center p-2 border-2 border-sapphire rounded-md transition-all hover:text-white hover:bg-sapphire cursor-pointer gap-3">
                         <i class="fa-regular fa-floppy-disk text-lg"></i>
                         <span>Simpan</span>
                     </button>
@@ -115,10 +115,7 @@
         </div>
 
         {{-- Kalender --}}
-        <div x-data="{ show: false }" x-show="show" @toggle-calendar.window="show = !show" x-transition:enter="transition ease-out duration-300 transform"
-        x-transition:enter-start="opacity-0 scale-95"
-        x-transition:enter-end="opacity-100 scale-100"
-        x-init="$watch('show', value => { if (value) { calendar2.render(); } })">
+        <div x-data="{ show: false }" x-show="show" @toggle-calendar.window="show = !show" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-init="$watch('show', value => { if (value) { calendar2.render(); } })">
             <div id="selectable" wire:ignore></div>
             <div class="mt-4 flex gap-4 justify-end">
                 <button @click="$dispatch('toggle-calendar')" class="p-2 text-red-600 cursor-pointer hover:text-red-800 rounded-md px-4 transition-all">Kembali</button>
@@ -212,5 +209,22 @@
             </svg>
         </button>
 
+    </div>
+
+    {{-- Confirm Modal --}}
+    <div x-data="{ state: false }" @confirm-modal.window="state = !state" @keydown.window.escape="state = false">
+        <div x-show="state" class="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 flex items-center justify-center" x-transition:enter="transition ease-in-out duration-250" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in-out duration-250" x-transition:leave-end="opacity-0">
+            <div x-show="state" @click.outside="state = false" class="relative bg-white max-h-screen overflow-y-auto rounded-lg shadow-sm w-2xl p-2 opacity-100 z-50" x-transition:enter="transition ease-in-out duration-250" x-transition:enter-start="scale-50" x-transition:enter-end="scale-100" x-transition:leave="transition ease-in-out duration-250" x-transition:leave-end="scale-50">
+
+                <div class="flex flex-col items-center py-8">
+                    <i class="fa-solid fa-circle-exclamation text-gray-500 text-8xl"></i>
+                    <p class="pt-6 pb-12 text-2xl text-gray-600">Apakah anda yakin?</p>
+                    <div class="flex gap-6">
+                        <button wire:click='save' class="px-8 py-2 rounded-md bg-unj hover:bg-unj-dark transition-all cursor-pointer text-white text-xl">Iya</button>
+                        <button @click="$dispatch('confirm-modal')" class="px-8 py-2 rounded-md border-2 border-red-300  hover:bg-red-400 hover:border-red-400 transition-all cursor-pointer text-xl hover:text-white">Tidak</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

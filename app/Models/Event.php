@@ -10,10 +10,12 @@ class Event extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'admin',
         'room_id',
         'event_name',
         'start',
         'end',
+        'verified',
     ];
 
     public function room(): BelongsTo

@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->foreignId('room_id')->constrained('rooms');
+            $table->foreignId('admin')->constrained('users');
             $table->string('event_name');
             $table->string('start');
             $table->string('end');
+            $table->enum('verified', ['pending', 'approved', 'rejected']);
             $table->timestamps();
         });
     }

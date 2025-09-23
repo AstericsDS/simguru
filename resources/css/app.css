@@ -6,6 +6,7 @@
 @import "tailwindcss";
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 @import "./swiper";
+@import "./fullcalendar";
 @plugin "daisyui" {
     themes: light --default, dark;
 }
@@ -112,3 +113,5 @@ html {
     scroll-behavior: smooth;
     /* outline: 1px solid red; //for debugging */
 }
+
+

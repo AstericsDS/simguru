@@ -58,7 +58,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function(){
     Route::get('/kampus/{campus}', ViewKampus::class)->name('view-kampus');
     Route::get('/gedung/{building}', ViewGedung::class)->name('view-gedung');
     Route::get('/ruang/{room}', ViewRuang::class)->name('view-ruang');
-    // Route::get('/peminjaman-ruang', PeminjamanRuang::class)->name('peminjaman-ruang');
+    Route::get('/peminjaman-ruang', PeminjamanRuang::class)->name('peminjaman-ruang');
     Route::get('/reservasi-ruang/{room}', ReservasiRuang::class)->name('reservasi-ruang');
 });
 

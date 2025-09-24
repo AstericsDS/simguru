@@ -102,6 +102,10 @@
                                     <option disabled>Pilih Status</option>
                                     <option value="class">Kelas</option>
                                     <option value="not_class">Bukan Kelas</option>
+                                    <option value="office">Kantor</option>
+                                    <option value="laboratory">Laboratorium</option>
+                                    <option value="rentable">Umum (Dapat disewakan)</option>
+                                    <option value="non-rentable">Umum (Tidak dapat disewakan)</option>
                                 </select>
                                 @error('status')
                                     <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>

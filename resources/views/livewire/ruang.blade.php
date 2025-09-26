@@ -82,5 +82,5 @@
         <hr class="w-15 font-bold mx-auto border-gray-500 border">
         {{-- <p class="text-gray-500">Kampus-Kampus UNJ</p> --}}
     </div>
-    <div class="text-black mx-50" id='calendar'></div>
+    <div class="text-black mx-50" id='jadwalhome'></div>
 </div>

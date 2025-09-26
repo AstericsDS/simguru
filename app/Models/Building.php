@@ -22,9 +22,11 @@ class Building extends Model
         'address',
         'images_path',
         'status',
+        'documents_path'
     ];
     protected $casts = [
         'images_path' => 'array',
+        'documents_path' => 'array'
     ];
     public function getRouteKeyName()
     {

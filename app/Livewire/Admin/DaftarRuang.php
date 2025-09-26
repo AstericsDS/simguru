@@ -23,6 +23,7 @@ class DaftarRuang extends Component
     public $campuses = [];
     public $search = '';
     public $images_path = [];
+    public $documents_path = [];
     public $room_images = [];
     public $rejected_rooms = [];
 
@@ -38,8 +39,10 @@ class DaftarRuang extends Component
             'category' => 'required',
             'area' => 'required|integer',
             'description' => 'required',
-            'images_path.*' => 'required|file|image',
             'images_path' => 'required|array',
+            'images_path.*' => 'file|image',
+            'documents_path' => 'required|array',
+            'documents_path.*' => 'file|mimes:pdf,doc,docx,xls,xlsx'
         ];
     }
 
@@ -57,7 +60,9 @@ class DaftarRuang extends Component
             'area.integer' => 'Area harus berupa angka',
             'description' => 'Deskripsi harus diisi',
             'images_path.required' => 'Foto harus diupload',
-            'images_path.image' => 'Foto harus berupa gambar',
+            'images_path.*.image' => 'Foto harus berupa gambar',
+            'documents_path.required' => 'Dokumen harus diupload',
+            'documents_path.*.mimes' => 'File harus berupa pdf, doc, docs, xls, atau xlsx'
         ];
     }
 
@@ -69,13 +74,23 @@ class DaftarRuang extends Component
     public function save()
     {
         $validated = collect($this->validate());
-        $paths = [];
+
+        $img_paths = [];
+        $doc_paths = [];
         if ($this->images_path && is_array($this->images_path)) {
             foreach ($this->images_path as $image) {
-                $paths[] = $image->store('temp', 'public');
+                $img_paths[] = $image->store('temp', 'public');
             }
-            $validated['images_path'] = $paths;
+            $validated['images_path'] = $img_paths;
         }
+        if ($this->documents_path && is_array($this->documents_path)) {
+            foreach ($this->documents_path as $document) {
+                $originalName = $document->getClientOriginalName();
+                $doc_paths[] = $document->storeAs('temp', $originalName, 'public');
+            }
+            $validated['documents_path'] = $doc_paths;
+        }
+
         $validated['admin_id'] = Auth::id();
         $validated['slug'] = $this->slug;
         $validated['campus'] = Campus::find($this->campus_id)->name;
@@ -92,7 +107,7 @@ class DaftarRuang extends Component
             'reject_reason' => null,
         ]);
         if ($created) {
-            $this->reset(['name', 'capacity', 'area', 'description', 'images_path']);
+            $this->reset(['name', 'capacity', 'area', 'description', 'images_path', 'documents_path']);
             $this->dispatch('close-modal');
             $this->dispatch('toast', status: 'success', message: 'Entri anda telah masuk dan akan segera diverifikasi.');
         } else {

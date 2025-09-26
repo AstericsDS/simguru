@@ -49,6 +49,9 @@ class VerifikasiData extends Component
                     $oldImages = $campus->images_path ?? [];
                     $newImages = $data['images_path'] ?? [];
 
+                    $oldDocuments = $campus->documents_path ?? [];
+                    $newDocuments = $data['documents_path'];
+
                     // Delete removed images from storage
                     foreach ($oldImages as $oldImage) {
                         if (!in_array($oldImage, $newImages)) {
@@ -56,41 +59,78 @@ class VerifikasiData extends Component
                         }
                     }
 
-                    // Move temp images to final folder
-                    $movedPaths = [];
-                    foreach ($newImages as $path) {
-                        if (str_starts_with($path, 'temp/')) {
-                            $filename = basename($path);
-                            $newPath = 'campuses/' . $filename;
-                            if (Storage::disk('public')->exists($path)) {
-                                Storage::disk('public')->move($path, $newPath);
-                            }
-                            $movedPaths[] = $newPath;
-                        } else {
-                            $movedPaths[] = $path; // already stored
+                    // Delete removed documents from storage
+                    foreach ($oldDocuments as $oldDocument) {
+                        if (!in_array($oldDocument, $newDocuments)) {
+                            Storage::disk('public')->delete($oldDocument);
                         }
                     }
 
-                    $data['images_path'] = $movedPaths;
+                    // Move temp images to final folder
+                    $movedImgPaths = [];
+                    foreach ($newImages as $path) {
+                        if (str_starts_with($path, 'temp/')) {
+                            $filename = basename($path);
+                            $newPath = 'images/campuses/' . $filename;
+                            if (Storage::disk('public')->exists($path)) {
+                                Storage::disk('public')->move($path, $newPath);
+                            }
+                            $movedImgPaths[] = $newPath;
+                        } else {
+                            $movedImgPaths[] = $path; // already stored
+                        }
+                    }
+
+                    // Move temp documents to final order
+                    $movedDocPaths = [];
+                    foreach ($newDocuments as $path) {
+                        if (str_starts_with($path, 'temp/')) {
+                            $filename = basename($path);
+                            $newPath = 'documents/campuses/' . $filename;
+                            if (Storage::disk('public')->exists($path)) {
+                                Storage::disk('public')->move($path, $newPath);
+                            }
+                            $movedDocPaths[] = $newPath;
+                        } else {
+                            $movedDocPaths[] = $path; // already stored
+                        }
+                    }
+
+                    $data['images_path'] = $movedImgPaths;
+                    $data['documents_path'] = $movedDocPaths;
                     $update->new_data = $data;
 
                     // Update campus
                     $campus->update($data);
 
                 } else {
+
                     // New campus creation if record_id was null
-                    $movedPaths = [];
+                    $movedImgPaths = [];
                     foreach ($data['images_path'] as $path) {
                         if (str_starts_with($path, 'temp/')) {
                             $filename = basename($path);
-                            $newPath = 'campuses/' . $filename;
+                            $newPath = 'images/campuses/' . $filename;
                             if (Storage::disk('public')->exists($path)) {
                                 Storage::disk('public')->move($path, $newPath);
                             }
-                            $movedPaths[] = $newPath;
+                            $movedImgPaths[] = $newPath;
                         }
                     }
-                    $data['images_path'] = $movedPaths;
+
+                    $movedDocPaths = [];
+                    foreach ($data['documents_path'] as $path) {
+                        if (str_starts_with($path, 'temp/')) {
+                            $filename = basename($path);
+                            $newPath = 'documents/campuses/' . $filename;
+                            if (Storage::disk('public')->exists($path)) {
+                                Storage::disk('public')->move($path, $newPath);
+                            }
+                            $movedDocPaths[] = $newPath;
+                        }
+                    }
+                    $data['images_path'] = $movedImgPaths;
+                    $data['documents_path'] = $movedDocPaths;
 
                     $newCampus = Campus::create($data);
                     $update->record_id = $newCampus->id;
@@ -106,8 +146,11 @@ class VerifikasiData extends Component
                 $building = Building::find($update->record_id);
 
                 if ($building) {
-                    $oldImages = $building->images_path ?? [];
+                    $oldImages = $campus->images_path ?? [];
                     $newImages = $data['images_path'] ?? [];
+
+                    $oldDocuments = $campus->documents_path ?? [];
+                    $newDocuments = $data['documents_path'];
 
                     // Delete removed images from storage
                     foreach ($oldImages as $oldImage) {
@@ -116,22 +159,45 @@ class VerifikasiData extends Component
                         }
                     }
 
-                    // Move temp images to final folder
-                    $movedPaths = [];
-                    foreach ($newImages as $path) {
-                        if (str_starts_with($path, 'temp/')) {
-                            $filename = basename($path);
-                            $newPath = 'buildings/' . $filename;
-                            if (Storage::disk('public')->exists($path)) {
-                                Storage::disk('public')->move($path, $newPath);
-                            }
-                            $movedPaths[] = $newPath;
-                        } else {
-                            $movedPaths[] = $path; // already stored
+                    // Delete removed documents from storage
+                    foreach ($oldDocuments as $oldDocument) {
+                        if (!in_array($oldDocument, $newDocuments)) {
+                            Storage::disk('public')->delete($oldDocument);
                         }
                     }
 
-                    $data['images_path'] = $movedPaths;
+                    // Move temp images to final folder
+                    $movedImgPaths = [];
+                    foreach ($newImages as $path) {
+                        if (str_starts_with($path, 'temp/')) {
+                            $filename = basename($path);
+                            $newPath = 'images/buildings/' . $filename;
+                            if (Storage::disk('public')->exists($path)) {
+                                Storage::disk('public')->move($path, $newPath);
+                            }
+                            $movedImgPaths[] = $newPath;
+                        } else {
+                            $movedImgPaths[] = $path; // already stored
+                        }
+                    }
+
+                    // Move temp documents to final order
+                    $movedDocPaths = [];
+                    foreach ($newDocuments as $path) {
+                        if (str_starts_with($path, 'temp/')) {
+                            $filename = basename($path);
+                            $newPath = 'documents/buildings/' . $filename;
+                            if (Storage::disk('public')->exists($path)) {
+                                Storage::disk('public')->move($path, $newPath);
+                            }
+                            $movedDocPaths[] = $newPath;
+                        } else {
+                            $movedDocPaths[] = $path; // already stored
+                        }
+                    }
+
+                    $data['images_path'] = $movedImgPaths;
+                    $data['documents_path'] = $movedDocPaths;
                     $update->new_data = $data;
 
                     // Update building
@@ -139,19 +205,32 @@ class VerifikasiData extends Component
 
                 } else {
 
-                    // New campus creation if record_id was null
-                    $movedPaths = [];
+                    // New building creation if record_id was null
+                    $movedImgPaths = [];
                     foreach ($data['images_path'] as $path) {
                         if (str_starts_with($path, 'temp/')) {
                             $filename = basename($path);
-                            $newPath = 'buildings/' . $filename;
+                            $newPath = 'images/buildings/' . $filename;
                             if (Storage::disk('public')->exists($path)) {
                                 Storage::disk('public')->move($path, $newPath);
                             }
-                            $movedPaths[] = $newPath;
+                            $movedImgPaths[] = $newPath;
                         }
                     }
-                    $data['images_path'] = $movedPaths;
+
+                    $movedDocPaths = [];
+                    foreach ($data['documents_path'] as $path) {
+                        if (str_starts_with($path, 'temp/')) {
+                            $filename = basename($path);
+                            $newPath = 'documents/buildings/' . $filename;
+                            if (Storage::disk('public')->exists($path)) {
+                                Storage::disk('public')->move($path, $newPath);
+                            }
+                            $movedDocPaths[] = $newPath;
+                        }
+                    }
+                    $data['images_path'] = $movedImgPaths;
+                    $data['documents_path'] = $movedDocPaths;
 
                     $newBuilding = Building::create($data);
                     $update->record_id = $newBuilding->id;
@@ -167,8 +246,11 @@ class VerifikasiData extends Component
                 $room = Room::find($update->record_id);
 
                 if ($room) {
-                    $oldImages = $room->images_path ?? [];
+                    $oldImages = $campus->images_path ?? [];
                     $newImages = $data['images_path'] ?? [];
+
+                    $oldDocuments = $campus->documents_path ?? [];
+                    $newDocuments = $data['documents_path'];
 
                     // Delete removed images from storage
                     foreach ($oldImages as $oldImage) {
@@ -177,41 +259,77 @@ class VerifikasiData extends Component
                         }
                     }
 
-                    // Move temp images to final folder
-                    $movedPaths = [];
-                    foreach ($newImages as $path) {
-                        if (str_starts_with($path, 'temp/')) {
-                            $filename = basename($path);
-                            $newPath = 'rooms/' . $filename;
-                            if (Storage::disk('public')->exists($path)) {
-                                Storage::disk('public')->move($path, $newPath);
-                            }
-                            $movedPaths[] = $newPath;
-                        } else {
-                            $movedPaths[] = $path; // already stored
+                    // Delete removed documents from storage
+                    foreach ($oldDocuments as $oldDocument) {
+                        if (!in_array($oldDocument, $newDocuments)) {
+                            Storage::disk('public')->delete($oldDocument);
                         }
                     }
 
-                    $data['images_path'] = $movedPaths;
+                    // Move temp images to final folder
+                    $movedImgPaths = [];
+                    foreach ($newImages as $path) {
+                        if (str_starts_with($path, 'temp/')) {
+                            $filename = basename($path);
+                            $newPath = 'images/rooms/' . $filename;
+                            if (Storage::disk('public')->exists($path)) {
+                                Storage::disk('public')->move($path, $newPath);
+                            }
+                            $movedImgPaths[] = $newPath;
+                        } else {
+                            $movedImgPaths[] = $path; // already stored
+                        }
+                    }
+
+                    // Move temp documents to final order
+                    $movedDocPaths = [];
+                    foreach ($newDocuments as $path) {
+                        if (str_starts_with($path, 'temp/')) {
+                            $filename = basename($path);
+                            $newPath = 'documents/rooms/' . $filename;
+                            if (Storage::disk('public')->exists($path)) {
+                                Storage::disk('public')->move($path, $newPath);
+                            }
+                            $movedDocPaths[] = $newPath;
+                        } else {
+                            $movedDocPaths[] = $path; // already stored
+                        }
+                    }
+
+                    $data['images_path'] = $movedImgPaths;
+                    $data['documents_path'] = $movedDocPaths;
                     $update->new_data = $data;
 
                     // Update campus
                     $room->update($data);
 
                 } else {
-                    // New campus creation if record_id was null
-                    $movedPaths = [];
+                    // New building creation if record_id was null
+                    $movedImgPaths = [];
                     foreach ($data['images_path'] as $path) {
                         if (str_starts_with($path, 'temp/')) {
                             $filename = basename($path);
-                            $newPath = 'rooms/' . $filename;
+                            $newPath = 'images/buildings/' . $filename;
                             if (Storage::disk('public')->exists($path)) {
                                 Storage::disk('public')->move($path, $newPath);
                             }
-                            $movedPaths[] = $newPath;
+                            $movedImgPaths[] = $newPath;
                         }
                     }
-                    $data['images_path'] = $movedPaths;
+
+                    $movedDocPaths = [];
+                    foreach ($data['documents_path'] as $path) {
+                        if (str_starts_with($path, 'temp/')) {
+                            $filename = basename($path);
+                            $newPath = 'documents/buildings/' . $filename;
+                            if (Storage::disk('public')->exists($path)) {
+                                Storage::disk('public')->move($path, $newPath);
+                            }
+                            $movedDocPaths[] = $newPath;
+                        }
+                    }
+                    $data['images_path'] = $movedImgPaths;
+                    $data['documents_path'] = $movedDocPaths;
 
                     $newRoom = Room::create($data);
                     $update->record_id = $newRoom->id;

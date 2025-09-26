@@ -23,7 +23,8 @@ return new class extends Migration
             $table->integer('capacity');
             $table->text('description');
             $table->json('images_path')->nullable();
-            $table->enum('category', ['class', 'not_class']);
+            $table->json('documents_path')->nullable();
+            $table->enum('category', ['class', 'not_class', 'office', 'laboratory', 'rentable', 'non_rentable']);
             $table->timestamps();
         });
     }

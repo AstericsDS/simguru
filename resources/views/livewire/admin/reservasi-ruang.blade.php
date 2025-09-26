@@ -10,8 +10,8 @@
             <div class="flex-1 flex flex-col gap-3">
                 {{-- Informasi Gedung --}}
                 <div>
-                    <span class="text-3xl text-unj italic">Informasi Ruang</span>
-                    <hr class="mt-2 text-unj">
+                    <span class="text-3xl text-primary italic">Informasi Ruang</span>
+                    <hr class="mt-2 text-primary">
                 </div>
                 <div class="grid grid-cols-2 mt-2">
                     <span>Nama Ruang</span>
@@ -58,8 +58,8 @@
 
                 {{-- Informasi Jadwal --}}
                 <div class="mt-4">
-                    <span class="text-3xl italic text-unj">Jadwal</span>
-                    <hr class="mt-2 text-unj">
+                    <span class="text-3xl italic text-primary">Jadwal</span>
+                    <hr class="mt-2 text-primary">
                 </div>
                 <div class="grid grid-cols-2 mt-2">
                     <span>Hari dan Tanggal</span>
@@ -85,7 +85,7 @@
 
                 {{-- Button --}}
                 <div class="flex gap-4 mt-4">
-                    <button @click="$dispatch('toggle-calendar')" class="flex flex-1 justify-center items-center gap-3 rounded-md border-2 border-unj px-2 py-2 mx-auto cursor-pointer hover:bg-unj hover:text-white transition-all">
+                    <button @click="$dispatch('toggle-calendar')" class="flex flex-1 justify-center items-center gap-3 rounded-md border-2 border-primary px-2 py-2 mx-auto cursor-pointer hover:bg-primary hover:text-white transition-all">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
                         </svg>
@@ -163,7 +163,7 @@
                         <div class="flex gap-4">
                             <span>:</span>
                             <div class="flex flex-col">
-                                <input wire:model="event" type="text" id="address" class="bg-gray-50 flex-1 border focus:outline-none focus:ring-unj transition-all text-gray-900 text-sm rounded-lg w-full {{ $errors->has('event') ? 'border-red-500' : 'border-gray-300' }}">
+                                <input wire:model="event" type="text" id="address" class="bg-gray-50 flex-1 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg w-full {{ $errors->has('event') ? 'border-red-500' : 'border-gray-300' }}">
                                 @error('event')
                                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                                 @enderror
@@ -172,7 +172,7 @@
                         </div>
                     </div>
                     <div class="self-end mt-4">
-                        <button @click="$dispatch('saveDate', { payload: [startRaw, endRaw, startDate, startTime, endTime] })" class="px-4 py-2 rounded-md  hover:bg-unj transition-all cursor-pointer text-unj text-lg border-2 border-unj hover:text-white">Simpan</button>
+                        <button @click="$dispatch('saveDate', { payload: [startRaw, endRaw, startDate, startTime, endTime] })" class="px-4 py-2 rounded-md  hover:bg-primary transition-all cursor-pointer text-primary text-lg border-2 border-primary hover:text-white">Simpan</button>
                     </div>
                 </div>
             </div>
@@ -220,7 +220,7 @@
                     <i class="fa-solid fa-circle-exclamation text-gray-500 text-8xl"></i>
                     <p class="pt-6 pb-12 text-2xl text-gray-600">Apakah anda yakin?</p>
                     <div class="flex gap-6">
-                        <button wire:click='save' class="px-8 py-2 rounded-md bg-unj hover:bg-unj-dark transition-all cursor-pointer text-white text-xl">Iya</button>
+                        <button wire:click='save' class="px-8 py-2 rounded-md bg-primary hover:bg-primary-dark transition-all cursor-pointer text-white text-xl">Iya</button>
                         <button @click="$dispatch('confirm-modal')" class="px-8 py-2 rounded-md border-2 border-red-300  hover:bg-red-400 hover:border-red-400 transition-all cursor-pointer text-xl hover:text-white">Tidak</button>
                     </div>
                 </div>

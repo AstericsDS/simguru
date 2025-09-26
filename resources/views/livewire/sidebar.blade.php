@@ -87,7 +87,7 @@
                 <span :class="sidebarOpen ? 'inline' : 'hidden'" class="whitespace-nowrap">Peminjaman Ruang</span>
             </a>
         </li>
-        <li>
+        <li class="hidden">
             <a wire:navigate href="{{ route('detail-all') }}" class="transition-all flex items-center p-2 text-gray-700 {{ $currentRouteName == 'detail-all' ? 'bg-active-side text-teal-800 font-medium border-r-[3px]' : 'hover:text-gray-950' }}">
                 <span class="text-xl ml-2 mr-2">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -97,7 +97,7 @@
                 <span :class="sidebarOpen ? 'inline' : 'hidden'" class="whitespace-nowrap">Detail Universitas</span>
             </a>
         </li>
-        <li>
+        <li class="hidden">
             <a wire:navigate href="{{ route('rekapitulasi') }}" class="transition-all flex items-center p-2 text-gray-700 {{ $currentRouteName == 'rekapitulasi' ? 'bg-active-side text-teal-800 font-medium border-r-[3px]' : 'hover:text-gray-950' }}">
                 <span class="text-xl ml-2 mr-2">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">

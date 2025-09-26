@@ -20,9 +20,11 @@ class Campus extends Model
         'email',
         'description',
         'images_path',
+        'documents_path'
     ];
     protected $casts = [
         'images_path' => 'array',
+        'documents_path' => 'array'
     ];
     public function getRouteKeyName()
     {

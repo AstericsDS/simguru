@@ -14,7 +14,7 @@
                     </svg>
                 </span>
 
-                <input wire:model.live="search" x-ref="searchInput" @keydown.escape="$refs.searchInput.blur()" type="text" class="border border-gray-300 rounded-lg px-3 py-2 w-full pl-12 pr-[88px] focus:outline-none focus:ring-unj text-black transition-all" placeholder="Cari gedung">
+                <input wire:model.live="search" x-ref="searchInput" @keydown.escape="$refs.searchInput.blur()" type="text" class="border border-gray-300 rounded-lg px-3 py-2 w-full pl-12 pr-[88px] focus:outline-none focus:ring-primary text-black transition-all" placeholder="Cari gedung">
 
                 <div class="absolute right-4 text-gray-500 top-1/2 -translate-y-1/2 flex gap-1">
                     <div class="border px-2 py-1 border-gray-500 rounded-md flex items-center justify-center">
@@ -66,7 +66,7 @@
                             </svg>
                             <p class="font-normal text-gray-700 dark:text-gray-400">{{ $room->building->name }}</p>
                         </div>
-                        <a href="{{ route('reservasi-ruang', $room->slug) }}" wire:navigate class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-unj rounded-lg hover:bg-unj-dark transition-all focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <a href="{{ route('reservasi-ruang', $room->slug) }}" wire:navigate class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-primary rounded-lg hover:bg-primary-dark transition-all focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             Reservasi
                             <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />

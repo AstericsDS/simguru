@@ -20,7 +20,9 @@ class EditRuang extends Component
     public Update $update;
     public $name, $campus_id, $building_id, $floor, $capacity, $category, $description, $area, $slug;
     public $images_path = [];
+    public $documents_path = [];
     public $new_images = [];
+    public $new_documents = [];
     public $new_data = [];
     public bool $is_pending;
     public $campuses = [];
@@ -31,6 +33,16 @@ class EditRuang extends Component
         $current = array_map(function ($img) {
             return $img instanceof \Illuminate\Http\UploadedFile ? $img->getClientOriginalName() : $img;
         }, $this->images_path);
+
+        return $existing == $current;
+    }
+
+    private function sameDocuments()
+    {
+        $existing = array_map('strval', $this->room->documents_path ?? []);
+        $current = array_map(function ($doc) {
+            return $doc instanceof \Illuminate\Http\UploadedFile ? $doc->getClientOriginalName() : $doc;
+        }, $this->documents_path);
 
         return $existing == $current;
     }
@@ -63,6 +75,7 @@ class EditRuang extends Component
         $this->category = $this->new_data['category'] ?? $this->room->category;
         $this->description = $this->new_data['description'] ?? $this->room->description;
         $this->images_path = $this->new_data['images_path'] ?? $this->room->images_path;
+        $this->documents_path = $this->new_data['documents_path'] ?? $this->room->documents_path;
         $this->is_pending = $this->update->status === 'pending';
         $this->campuses = Campus::all();
         $this->loadBuildings();
@@ -91,6 +104,7 @@ class EditRuang extends Component
             'area' => 'required|integer',
             'description' => 'required',
             'new_images.*' => 'file|image',
+            'new_documents.*' => 'file|mimes:pdf,doc,docx,xls,xlsx',
         ];
     }
 
@@ -107,34 +121,67 @@ class EditRuang extends Component
             'area.required' => 'Luas harus diisi',
             'area.integer' => 'Area harus berupa angka',
             'description' => 'Deskripsi harus diisi',
+            'new_images.*.file' => 'Harus berupa file',
+            'new_images.*.image' => 'File harus berupa gambar',
+            'new_documents.*.file' => 'Harus berupa file',
+            'new_documents.*.mimes' => 'File harus berupa pdf, doc, docs, xls, atau xlsx',
         ];
     }
 
     public function updatedNewImages()
     {
+        if ($this->is_pending === true)
+            return;
+        $this->validateOnly('new_images.*');
         foreach ($this->new_images as $image) {
-            $this->images_path[] = $image; // append, don't overwrite
+            $this->images_path[] = $image;
         }
-        $this->new_images = []; // reset upload field
+        $this->new_images = [];
+    }
+    public function updatedNewDocuments()
+    {
+        if ($this->is_pending === true)
+            return;
+        $this->validateOnly('new_documents.*');
+        foreach ($this->new_documents as $document) {
+            $this->documents_path[] = $document;
+        }
+        $this->new_documents = [];
     }
 
     public function save()
     {
+        if ($this->is_pending === true)
+            return;
+
         $this->slug = Str::slug($this->name);
-        $finalPaths = [];
+        $finalImgPaths = [];
+        $finalDocPaths = [];
 
         foreach ($this->images_path as $image) {
             if ($image instanceof \Illuminate\Http\UploadedFile) {
                 // Store and push path
-                $finalPaths[] = $image->store('temp', 'public');
+                $finalImgPaths[] = $image->store('temp', 'public');
             } else {
                 // Keep existing path
-                $finalPaths[] = $image;
+                $finalImgPaths[] = $image;
+            }
+        }
+
+        foreach ($this->documents_path as $document) {
+            if ($document instanceof \Illuminate\Http\UploadedFile) {
+                // Store and push path
+                $originalName = $document->getClientOriginalName();
+                $finalDocPaths[] = $document->storeAs('temp', $originalName, 'public');
+            } else {
+                // Keep existing path
+                $finalDocPaths[] = $document;
             }
         }
 
         $validated = $this->validate();
-        $validated['images_path'] = $finalPaths;
+        $validated['images_path'] = $finalImgPaths;
+        $validated['documents_path'] = $finalDocPaths;
         $validated['admin_id'] = Auth::id();
         $validated['slug'] = $this->slug;
         $validated['campus'] = Campus::find($this->campus_id)->name;
@@ -165,6 +212,15 @@ class EditRuang extends Component
         $this->images_path = array_values($this->images_path);
     }
 
+    public function removeDocument($index)
+    {
+        if ($this->is_pending) {
+            return;
+        }
+        unset($this->documents_path[$index]);
+        $this->documents_path = array_values($this->documents_path);
+    }
+
     public function showModal()
     {
         if ($this->is_pending) {
@@ -179,7 +235,8 @@ class EditRuang extends Component
             $this->capacity == ($this->room->capacity ?? $this->new_data['capacity']) &&
             $this->category === ($this->room->category ?? $this->new_data['category']) &&
             $this->description === ($this->room->description ?? $this->new_data['description']) &&
-            $this->sameImages()
+            $this->sameImages() &&
+            $this->sameDocuments()
         ) {
             $this->dispatch('toast', status: 'nochanges', message: 'Tidak ada value yang diubah.');
             return;

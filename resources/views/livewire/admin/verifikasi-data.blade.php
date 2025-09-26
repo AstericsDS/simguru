@@ -162,6 +162,23 @@
                                             <div class="rounded-md bg-gray-200 p-4 border border-gray-900 mt-4">{{ $value }}</div>
                                         @endif
                                     @endforeach
+
+                                    {{-- Documents --}}
+                                    <div class="bg-gray-300 p-5 rounded-md mt-4">
+
+                                        <div class="flex gap-2 items-center">
+                                            <i class="fa-regular fa-file"></i>
+                                            <h1>Dokumen</h1>
+                                        </div>
+
+                                        <ul class="mt-3 space-y-1 list-disc list-inside marker:text-primary">
+                                            @foreach ($new_data['documents_path'] as $document)
+                                                <li>
+                                                    <a target="_blank" href="{{ asset('storage/' . $document) }}" class="border-b-1 border-transparent hover:border-gray-500 transition-all duration-300"> {{ basename($document) }} </a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
                                 </div>
 
                                 @if (isset($selectedUpdate->old_data))
@@ -230,7 +247,7 @@
                         </div>
                         <div class="w-3/4">
                             <form class="w-full text-center mt-8">
-                                <textarea wire:model.live='reject_reason' class="w-full rounded-md p-4 {{$errors->has('reject_reason') ? 'border-red-500' : ''}}" placeholder="Tulis alasan penolakan"></textarea>
+                                <textarea wire:model.live='reject_reason' class="w-full rounded-md p-4 {{ $errors->has('reject_reason') ? 'border-red-500' : '' }}" placeholder="Tulis alasan penolakan"></textarea>
                             </form>
                             @error('reject_reason')
                                 <span class="text-red-500">{{ $message }}</span>

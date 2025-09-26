@@ -1,7 +1,7 @@
 <div class="text-black">
 
     {{-- Title --}}
-    <a wire:navigate href="{{ route('daftar-kampus') }}"> < Kembali ke daftar kampus</a>
+    <a wire:navigate href="{{ route('daftar-kampus') }}">Kembali ke daftar kampus</a>
     <h1 class="text-2xl font-medium">Edit Kampus</h1>
 
     {{-- Reject Reason --}}
@@ -64,6 +64,11 @@
                 </div>
 
                 <div class="w-full flex flex-col gap-2 my-auto">
+                    @error('new_images.*')
+                        <span class="text-red-500">
+                            {{ $message }}
+                        </span>
+                    @enderror
                     <div class="carousel w-full max-h-150 rounded-md">
                         @foreach ($images_path as $image)
                             <div id="item{{ $loop->iteration }}" class="carousel-item w-full hover:brightness-75 transition-all duration-300 group relative {{ count($images_path) <= 1 ? 'cursor-not-allowed' : 'cursor-pointer' }}" {{ count($images_path) > 1 ? "wire:click=removeImage($loop->index)" : '' }}>
@@ -93,10 +98,59 @@
                         </div>
 
                     </div>
+
+                    {{-- Documents --}}
+                    <div class="bg-gray-300 p-5 rounded-md max-h-[200px] overflow-y-auto">
+
+                        {{-- Header --}}
+                        <div class="flex items-center justify-between mb-8">
+                            <div class="flex gap-3 items-center">
+                                <i class="fa-regular fa-file text-xl"></i>
+                                <h1 class="text-xl">Dokumen</h1>
+                            </div>
+
+                            {{-- Add Document --}}
+                            <div class="flex gap-2">
+                                <span class="text-red-500">
+                                    @error('new_documents.*')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
+                                <label for="document" class="hover:text-primary transition-all {{ $is_pending ? 'cursor-not-allowed' : 'cursor-pointer' }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m6.75 12-3-3m0 0-3 3m3-3v6m-1.5-15H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                                    </svg>
+                                    <input id="document" wire:model='new_documents' type="file" multiple class="hidden" {{ $is_pending ? 'disabled' : '' }}>
+                                </label>
+                            </div>
+                        </div>
+
+                        {{-- Body --}}
+                        <ul class="mt-3 space-y-2 list-disc list-inside marker:text-primary">
+                            @foreach ($documents_path as $document)
+                                <div class="flex justify-between">
+                                    @if ($document instanceof \Illuminate\Http\UploadedFile)
+                                        <li>
+                                            <span class="border-b-1 border-transparent hover:border-gray-500 transition-all duration-300"> {{ basename($document->getClientOriginalName()) }} </span>
+                                        </li>
+                                    @else
+                                        <li>
+                                            <a target="_blank" href="{{ asset('storage/' . $document) }}" class="border-b-1 border-transparent hover:border-gray-500 transition-all duration-300"> {{ basename($document) }} </a>
+                                        </li>
+                                    @endif
+                                    <button type="button" {{ $is_pending ? 'disabled' : '' }} wire:click="removeDocument({{ $loop->index }})" class="hover:text-red-600 transition-all {{ $is_pending ? 'cursor-not-allowed' : 'cursor-pointer' }}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div class="flex justify-end mt-8">
-                <button type="submit" class="p-2 border-[2px] border-primary rounded-md px-8 transition-all font-semibold {{ $is_pending ? 'cursor-not-allowed' : 'hover:bg-primary hover:text-white cursor-pointer' }}">Edit</button>
+                <button type="submit" class="p-2 border-[2px] border-primary rounded-md px-8 transition-all font-semibold {{ $is_pending ? 'cursor-not-allowed' : 'hover:bg-primary hover:text-white cursor-pointer' }}">Simpan</button>
             </div>
         </form>
     </div>

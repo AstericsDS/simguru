@@ -1,6 +1,36 @@
 <div class="w-full px-5 lg:px-40">
-    <h1 class="mt-10 mb-2 text-black text-3xl text-center font-bold">List SEMUA Gedung di Universitas Negeri Jakarta</h1>
+    <h1 class="mt-10 mb-2 text-black text-3xl text-center font-bold">List SEMUA Gedung di Universitas Negeri Jakarta
+    </h1>
     <hr class="w-15 font-bold mx-auto border-gray-500 border">
+
+    <div class="flex gap-3 items-center">
+        {{-- Search --}}
+        <div x-data @keyup.window="if ($event.ctrlKey && $event.key === '/') {$refs.searchInput.focus()}"
+            class="relative w-96">
+            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 cursor-pointer">
+                <svg class="w-5 h-5 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                    height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
+                        d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" />
+                </svg>
+            </span>
+
+            <input wire:model.live="search" x-ref="searchInput" @keydown.escape="$refs.searchInput.blur()"
+                type="text"
+                class="border border-gray-300 rounded-lg px-3 py-2 w-full pl-12 pr-[88px] focus:outline-none focus:ring-primary text-black transition-all"
+                placeholder="Cari gedung">
+
+            <div class="absolute right-4 text-gray-500 top-1/2 -translate-y-1/2 flex gap-1">
+                <div class="border px-2 py-1 border-gray-500 rounded-md flex items-center justify-center">
+                    <span class="text-xs">CTRL</span>
+                </div>
+                <div class="border p-2 py-1 border-gray-500 rounded-md flex items-center justify-center">
+                    <span class="text-xs">/</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     {{-- card box --}}
     <div class="grid lg:grid-cols-4 gap-3 mt-12">

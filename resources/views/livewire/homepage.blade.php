@@ -212,6 +212,8 @@
             </div>
         @endforeach
     </div>
+    <button class="btn border-none shadow-none mt-5 self-center rounded-full bg-base-100"><a href="/ruang">LIHAT
+            RUANG</a></button>
     <div class="text-base-content text-center flex flex-col gap-3 pt-20" id="statistik">
         <h1 class="text-4xl font-semibold">Grafik Statistik Informasi Manajemen Gedung dan Ruang</h1>
         <hr class="w-15 font-bold mx-auto border-gray-500 border">
@@ -221,3 +223,7 @@
         <div class="homepagechart w-1/2 self-center" id="homepagechart"></div>
     </div>
 </div>
+
+@push('scroll')
+    <script src="{{ asset('js/scrollhandler.js') }}"></script>
+@endpush

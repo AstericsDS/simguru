@@ -14,7 +14,7 @@ class ListGedung extends Component
 
     public function render()
     {
-        $buildings = Building::when($this->search !== '', fn(Builder $query) => $query->where('name', 'like', '%' . $this->search . '%'))->with('campus', 'building')->paginate(10);
+        $buildings = Building::when($this->search !== '', fn(Builder $query) => $query->where('name', 'like', '%' . $this->search . '%'))->with('campus')->paginate(10);
         $updates = Update::when(
             $this->search !== '',
             fn(Builder $query) => $query->where('new_data->name', 'like', '%' . $this->search . '%')

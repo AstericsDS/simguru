@@ -13,7 +13,7 @@ class ListKampus extends Component
     public $search = '';
     public function render()
     {
-        $campuses = Campus::when($this->search !== '', fn(Builder $query) => $query->where('name', 'like', '%' . $this->search . '%'))->with('campus', 'building')->paginate(10);
+        $campuses = Campus::when($this->search !== '', fn(Builder $query) => $query->where('name', 'like', '%' . $this->search . '%'))->with('building')->paginate(10);
         $updates = Update::when(
             $this->search !== '',
             fn(Builder $query) => $query->where('new_data->name', 'like', '%' . $this->search . '%')

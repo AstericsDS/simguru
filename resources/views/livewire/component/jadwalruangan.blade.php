@@ -29,7 +29,7 @@
                         event.detail.Events.forEach(function(event, index){});" --}} wire:ignore id='jadwalhome'></div>
 
     <div id="tooltip"
-        class="absolute tooltip-hidden border border-gray-300 bg-white shadow p-5 text-primary z-10 transition-normal rounded-box">
+        class="absolute tooltip-hidden border border-base-100 bg-base-200 shadow p-5 text-base-content z-10 transition-normal rounded-box">
     </div>
 
 </div>

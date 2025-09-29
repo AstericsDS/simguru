@@ -54,7 +54,7 @@ class PeminjamanRuang extends Component
             $query->where('name', 'like', '%' . $this->search . '%');
         }
 
-        $query->where('category', 'not_class');
+        $query->where('category', '!=','not_class');
 
         return view('livewire.admin.peminjaman-ruang', [
             'campuses'  => Campus::all(),

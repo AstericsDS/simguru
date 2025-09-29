@@ -42,7 +42,7 @@
                 <!-- Modal content -->
                 <div class="relative bg-white rounded-lg shadow-sm w-2xl p-2">
                     <!-- Modal header -->
-                    <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t border-gray-200">
+                    <div class="flex items-center justify-between p-5 border-b rounded-t border-gray-200">
                         <h3 class="text-lg font-semibold text-gray-900">
                             Tambah Kampus
                         </h3>
@@ -54,7 +54,7 @@
                         </button>
                     </div>
                     <!-- Modal body -->
-                    <form wire:submit.prevent='save' class="p-4 md:p-5">
+                    <form wire:submit.prevent='save' class="p-5">
                         <div class="grid gap-4 mb-4 grid-cols-2">
                             <div class="col-span-2">
                                 <label for="name" class="block mb-2 text-sm font-medium {{ $errors->has('name') ? 'text-red-700' : 'text-gray-900' }}">Nama</label>

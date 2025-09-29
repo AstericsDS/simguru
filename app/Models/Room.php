@@ -25,11 +25,13 @@ class Room extends Model
         'description',
         'category',
         'images_path',
-        'documents_path'
+        'documents_path',
+        'inventory'
     ];
     protected $casts = [
         'images_path' => 'array',
-        'documents_path' => 'array'
+        'documents_path' => 'array',
+        'inventory' => 'array'
     ];
     public function getRouteKeyName()
     {

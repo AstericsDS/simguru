@@ -2,16 +2,17 @@
 
 namespace App\Livewire\Admin;
 
-use Livewire\Component;
 use App\Models\Room;
 use App\Models\Campus;
-use App\Models\Building;
 use App\Models\Update;
+use Livewire\Component;
+use App\Models\Building;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
+use Livewire\WithFileUploads;
 use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
-use Livewire\WithFileUploads;
-use Illuminate\Support\Str;
 
 #[Layout('components.layouts.admin.dashboard')]
 class DaftarRuang extends Component
@@ -26,6 +27,7 @@ class DaftarRuang extends Component
     public $documents_path = [];
     public $room_images = [];
     public $rejected_rooms = [];
+    public $inventory = [];
 
     public function rules()
     {
@@ -42,7 +44,9 @@ class DaftarRuang extends Component
             'images_path' => 'required|array',
             'images_path.*' => 'file|image',
             'documents_path' => 'required|array',
-            'documents_path.*' => 'file|mimes:pdf,doc,docx,xls,xlsx'
+            'documents_path.*' => 'file|mimes:pdf,doc,docx,xls,xlsx',
+            'inventory.*.name' => 'required|string',
+            'inventory.*.quantity' => 'required|integer|min:1',
         ];
     }
 
@@ -62,7 +66,12 @@ class DaftarRuang extends Component
             'images_path.required' => 'Foto harus diupload',
             'images_path.*.image' => 'Foto harus berupa gambar',
             'documents_path.required' => 'Dokumen harus diupload',
-            'documents_path.*.mimes' => 'File harus berupa pdf, doc, docs, xls, atau xlsx'
+            'documents_path.*.mimes' => 'File harus berupa pdf, doc, docs, xls, atau xlsx',
+            'inventory.*.name.required' => 'Nama barang harus diisi',
+            'inventory.*.name.string' => 'Nama barang harus berupa string',
+            'inventory.*.quantity.required' => 'Kuantitas barang harus diisi',
+            'inventory.*.quantity.integer' => 'Kuantitas barang harus berupa angka',
+            'inventory.*.quantity.min' => 'Kuantitas barang minimal 1',
         ];
     }
 
@@ -70,11 +79,15 @@ class DaftarRuang extends Component
     {
         $this->slug = Str::slug($value);
     }
-
     public function save()
     {
-        $validated = collect($this->validate());
-
+        if (empty($this->inventory)) {
+            $validated = collect($this->validate(Arr::except($this->rules(), ['inventory.*.name', 'inventory.*.quantity'])));
+            $validated['inventory'] = [];
+        } else {
+            $validated = collect($this->validate());
+        }
+        
         $img_paths = [];
         $doc_paths = [];
         if ($this->images_path && is_array($this->images_path)) {

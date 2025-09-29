@@ -1,7 +1,10 @@
 <div class="text-black">
 
     {{-- Title --}}
-    <a wire:navigate href="{{ route('daftar-kampus') }}">Kembali ke daftar kampus</a>
+    <a wire:navigate href="{{ route('daftar-kampus') }}" class="flex items-center gap-2 mb-4 hover:text-primary transition-all">
+        <i class="fa-solid fa-arrow-left"></i>
+        <span>Kembali ke daftar kampus</span>
+    </a>
     <h1 class="text-2xl font-medium">Edit Kampus</h1>
 
     {{-- Reject Reason --}}

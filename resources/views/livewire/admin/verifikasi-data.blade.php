@@ -122,7 +122,7 @@
         <!-- View Modal -->
         <div x-data="{ state: false, active: 'new' }" @view.window="state = !state" @keydown.window.escape="state = false">
             <div x-show="state" class="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 flex items-center justify-center" x-transition:enter="transition ease-in-out duration-250" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in-out duration-250" x-transition:leave-end="opacity-0">
-                <div x-show="state" @click.outside="state = false" class="relative bg-white max-h-screen overflow-y-auto rounded-lg shadow-sm w-5xl opacity-100 z-50" x-transition:enter="transition ease-in-out duration-250" x-transition:enter-start="scale-50" x-transition:enter-end="scale-100" x-transition:leave="transition ease-in-out duration-250" x-transition:leave-end="scale-50">
+                <div x-show="state" @click.outside="state = false" class="relative bg-white h-[90%] overflow-y-auto rounded-lg shadow-sm w-[95%] opacity-100 z-50" x-transition:enter="transition ease-in-out duration-250" x-transition:enter-start="scale-50" x-transition:enter-end="scale-100" x-transition:leave="transition ease-in-out duration-250" x-transition:leave-end="scale-50">
 
                     {{-- Content --}}
                     <div class="px-8 py-6">
@@ -158,13 +158,15 @@
                                                 </div>
                                             </div>
                                         @else
-                                            <div>{{ $key }}</div>
-                                            <div class="rounded-md bg-gray-200 p-4 border border-gray-900 mt-4">{{ $value }}</div>
+                                            <div class="flex flex-col gap-2 rounded-md p-4 border-2 border-gray-300 mt-4">
+                                                <h1>{{ $key }}</h1>
+                                                <span>{{ $value }}</span>
+                                            </div>
                                         @endif
                                     @endforeach
 
                                     {{-- Documents --}}
-                                    <div class="bg-gray-300 p-5 rounded-md mt-4">
+                                    <div class="border-2 border-gray-300 p-5 rounded-md mt-4">
 
                                         <div class="flex gap-2 items-center">
                                             <i class="fa-regular fa-file"></i>
@@ -179,6 +181,7 @@
                                             @endforeach
                                         </ul>
                                     </div>
+
                                 </div>
 
                                 @if (isset($selectedUpdate->old_data))
@@ -193,8 +196,10 @@
                                                     </div>
                                                 </div>
                                             @else
-                                                <div>{{ $key }}</div>
-                                                <div class="rounded-md bg-gray-200 p-4 border border-gray-900 mt-4">{{ $value }}</div>
+                                                <div class="flex flex-col space-y-2 rounded-md p-4 border-2 border-gray-300 mt-4">
+                                                    <h1>{{ $key }}</h1>
+                                                    {{ $value }}
+                                                </div>
                                             @endif
                                         @endforeach
                                     </div>
@@ -216,6 +221,51 @@
                                     </div>
                                 </div>
                             </div>
+
+                            {{-- Inventory --}}
+                            @if ($selectedUpdate->table === 'rooms')
+                                <div class="border-2 border-gray-300 p-5 rounded-md mt-4">
+
+                                    <div class="flex gap-2 items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m20.25 7.5-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />
+                                        </svg>
+                                        <h1>Inventaris</h1>
+                                    </div>
+
+                                    <table class="w-full border border-gray-400 mt-4">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-left font-normal border border-gray-400 p-2 px-4">Nama Barang</th>
+                                                <th class="text-left font-normal border border-gray-400 p-2 px-4">Kuantitas</th>
+                                            </tr>
+                                        </thead>
+
+                                        {{-- Inventory --}}
+                                        @if (isset($selectedUpdate->new_data['inventory']))
+                                            <tbody x-show="active === 'new'">
+                                                @foreach ($selectedUpdate->new_data['inventory'] ?? [] as $item)
+                                                    <tr>
+                                                        <td class="border border-gray-400 p-2 px-4">{{ $item['name'] }}</td>
+                                                        <td class="border border-gray-400 p-2 px-4">{{ $item['quantity'] }}</td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        @endif
+                                        @if (isset($selectedUpdate->old_data['inventory']))
+                                            <tbody x-show="active === 'old'">
+                                                @foreach ($selectedUpdate->old_data['inventory'] ?? [] as $item)
+                                                    <tr>
+                                                        <td class="border border-gray-400 p-2 px-4">{{ $item['name'] }}</td>
+                                                        <td class="border border-gray-400 p-2 px-4">{{ $item['quantity'] }}</td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        @endif
+                                    </table>
+
+                                </div>
+                            @endif
                         @endif
 
                     </div>

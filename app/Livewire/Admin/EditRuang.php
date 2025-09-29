@@ -27,6 +27,7 @@ class EditRuang extends Component
     public bool $is_pending;
     public $campuses = [];
     public $buildings = [];
+    public ?array $inventory = null;
     private function sameImages()
     {
         $existing = array_map('strval', $this->room->images_path ?? []);
@@ -78,6 +79,7 @@ class EditRuang extends Component
         $this->documents_path = $this->new_data['documents_path'] ?? $this->room->documents_path;
         $this->is_pending = $this->update->status === 'pending';
         $this->campuses = Campus::all();
+        $this->inventory = $this->new_data['inventory'] ?? $this->room->inventory;
         $this->loadBuildings();
     }
 
@@ -105,6 +107,8 @@ class EditRuang extends Component
             'description' => 'required',
             'new_images.*' => 'file|image',
             'new_documents.*' => 'file|mimes:pdf,doc,docx,xls,xlsx',
+            'inventory.*.name' => 'required|string',
+            'inventory.*.quantity' => 'required|integer|min:1',
         ];
     }
 
@@ -125,6 +129,11 @@ class EditRuang extends Component
             'new_images.*.image' => 'File harus berupa gambar',
             'new_documents.*.file' => 'Harus berupa file',
             'new_documents.*.mimes' => 'File harus berupa pdf, doc, docs, xls, atau xlsx',
+            'inventory.*.name.required' => 'Nama barang harus diisi',
+            'inventory.*.name.string' => 'Nama barang harus berupa string',
+            'inventory.*.quantity.required' => 'Kuantitas barang harus diisi',
+            'inventory.*.quantity.integer' => 'Kuantitas barang harus berupa angka',
+            'inventory.*.quantity.min' => 'Kuantitas barang minimal 1',
         ];
     }
 
@@ -179,27 +188,35 @@ class EditRuang extends Component
             }
         }
 
-        $validated = $this->validate();
-        $validated['images_path'] = $finalImgPaths;
-        $validated['documents_path'] = $finalDocPaths;
-        $validated['admin_id'] = Auth::id();
-        $validated['slug'] = $this->slug;
-        $validated['campus'] = Campus::find($this->campus_id)->name;
-        $validated['building'] = Building::find($this->building_id)->name;
 
-        $updated = $this->update->update([
-            'old_data' => $this->update->new_data,
-            'new_data' => $validated,
-            'status' => 'pending',
-            'updated_at' => now(),
-        ]);
+        try {
+            $validated = $this->validate();
+            $validated['images_path'] = $finalImgPaths;
+            $validated['documents_path'] = $finalDocPaths;
+            $validated['admin_id'] = Auth::id();
+            $validated['slug'] = $this->slug;
+            $validated['campus'] = Campus::find($this->campus_id)->name;
+            $validated['building'] = Building::find($this->building_id)->name;
 
-        if ($updated) {
-            $this->dispatch('toast', status: 'success', message: 'Perubahan telah disimpan.');
+            $updated = $this->update->update([
+                'old_data' => $this->update->new_data,
+                'new_data' => $validated,
+                'status' => 'pending',
+                'updated_at' => now(),
+            ]);
+
+            if ($updated) {
+                $this->dispatch('toast', status: 'success', message: 'Perubahan telah disimpan.');
+                $this->dispatch('modal');
+                $this->is_pending = true;
+            } else {
+                $this->dispatch('toast', status: 'fail', message: 'Perubahan gagal disimpan.');
+            }
+        } catch (\Illuminate\Validation\ValidationException $e) {
             $this->dispatch('modal');
-            $this->is_pending = true;
-        } else {
-            $this->dispatch('toast', status: 'fail', message: 'Perubahan gagal disimpan.');
+            $this->dispatch('toast', status: 'fail', message: 'Input data ada yang salah, silahkan cek lagi.');
+
+            throw $e;
         }
     }
 
@@ -236,7 +253,8 @@ class EditRuang extends Component
             $this->category === ($this->room->category ?? $this->new_data['category']) &&
             $this->description === ($this->room->description ?? $this->new_data['description']) &&
             $this->sameImages() &&
-            $this->sameDocuments()
+            $this->sameDocuments() &&
+            $this->inventory === ($this->room->inventory ?? $this->new_data['inventory'])
         ) {
             $this->dispatch('toast', status: 'nochanges', message: 'Tidak ada value yang diubah.');
             return;

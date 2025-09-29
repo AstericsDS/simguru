@@ -5,10 +5,13 @@ namespace App\Livewire\Admin;
 use App\Models\Room;
 use App\Models\Campus;
 use App\Models\Building;
+// use Illuminate\Container\Attributes\Auth;
 use Livewire\Component;
 use Livewire\Attributes\Layout;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
+
 use Livewire\WithPagination;
 
 #[Layout('components.layouts.admin.dashboard')]
@@ -43,6 +46,9 @@ class PeminjamanRuang extends Component
     public function render()
     {
         $query = Room::query();
+        $user = Auth::id();
+
+
 
         if ($this->building_id) {
             $query->where('building_id', $this->building_id);
@@ -54,7 +60,7 @@ class PeminjamanRuang extends Component
             $query->where('name', 'like', '%' . $this->search . '%');
         }
 
-        $query->where('category', 'not_class');
+        $query->where('category', '!=','not_class')->where('admin_id', $user);
 
         return view('livewire.admin.peminjaman-ruang', [
             'campuses'  => Campus::all(),

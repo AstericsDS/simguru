@@ -48,7 +48,7 @@
                 <div x-show="state" @click.outside="state = false" class="relative bg-white max-h-[90%] overflow-y-auto rounded-lg shadow-sm w-3xl p-2 opacity-100 z-50" x-transition:enter="transition ease-in-out duration-250" x-transition:enter-start="scale-50" x-transition:enter-end="scale-100" x-transition:leave="transition ease-in-out duration-250" x-transition:leave-end="scale-50">
 
                     <!-- Modal header -->
-                    <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t border-gray-200">
+                    <div class="flex items-center justify-between p-5 border-b rounded-t border-gray-200">
                         <h3 class="text-lg font-semibold text-gray-900">
                             Tambah Gedung
                         </h3>
@@ -61,7 +61,7 @@
                     </div>
 
                     <!-- Modal body -->
-                    <form wire:submit.prevent='save' class="p-4 md:p-5">
+                    <form wire:submit.prevent='save' class="p-5">
 
                         {{-- Input --}}
                         <div class="grid gap-4 mb-4 grid-cols-2">

@@ -56,12 +56,12 @@ Route::middleware(['auth'])->prefix('admin')->group(function(){
     Route::get('/rekapitulasi', Rekapitulasi::class)->name('rekapitulasi');
     Route::get('/campus', Campus::class)->name('campus');
     // Route::get('/verifikasi/new', VerifikasiNew::class)->name('verifikasi-new');
-    Route::get('/kampus/{id}', ViewKampus::class)->name('view-kampus');
-    Route::get('/gedung/{id}', ViewGedung::class)->name('view-gedung');
-    Route::get('/ruang/{id}', ViewRuang::class)->name('view-ruang');
     Route::get('/peminjaman-ruang', PeminjamanRuang::class)->name('peminjaman-ruang');
     Route::get('/reservasi-ruang/{room}', ReservasiRuang::class)->name('reservasi-ruang');
     Route::get('/verifikasi-jadwal', VerifikasiJadwal::class)->name('verifikasi-jadwal');
+    Route::get('/kampus/{id}', ViewKampus::class)->name('view-kampus');
+    Route::get('/gedung/{id}', ViewGedung::class)->name('view-gedung');
+    Route::get('/ruang/{id}', ViewRuang::class)->name('view-ruang');
 });
 
 // Auth

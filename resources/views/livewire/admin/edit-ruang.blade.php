@@ -91,7 +91,10 @@
                         <select wire:model='category' id="category" class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 {{ $errors->has('category') ? 'border-red-500' : 'border-gray-300' }} my-2">
                             <option disabled>Pilih Kategori</option>
                             <option value="class">Kelas</option>
-                            <option value="not_class">Bukan Kelas</option>
+                            <option value="office">Kantor</option>
+                            <option value="laboratory">Laboratorium</option>
+                            <option value="rentable">Umum (disewakan)</option>
+                            <option value="non_rentable">Umum (tidak disewakan)</option>
                         </select>
                         @error('category')
                             <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>

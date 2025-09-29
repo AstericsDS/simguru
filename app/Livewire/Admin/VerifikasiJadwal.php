@@ -18,13 +18,13 @@ class VerifikasiJadwal extends Component
         }
 
         if ($action === 'accept') {
-            $event->verified = "approved";
+            $event->status = "approved";
             $event->save();
             $this->dispatch('confirm-modal');
             $this->dispatch('toast', status: 'success', message: 'Jadwal berhasil diterima.');
             return;
         } elseif ($action === 'reject') {
-            $event->verified = "rejected";
+            $event->status = "rejected";
             $event->save();
             $this->dispatch('confirm-modal');
             $this->dispatch('toast', status: 'success', message: 'Jadwal berhasil ditolak.');

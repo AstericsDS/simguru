@@ -21,7 +21,12 @@ class PeminjamanRuang extends Component
 
     public ?int $campus_id = null;
     public ?int $building_id = null;
+    public $category = null;
     public string $search = '';
+    public function updatingCategory()
+    {
+        $this->resetPage();
+    }
 
     public function updatingCampusId()
     {
@@ -42,13 +47,12 @@ class PeminjamanRuang extends Component
     {
         $this->campus_id = null;
         $this->building_id = null;
+        $this->category = null;
     }
     public function render()
     {
         $query = Room::query();
         $user = Auth::id();
-
-
 
         if ($this->building_id) {
             $query->where('building_id', $this->building_id);
@@ -60,7 +64,11 @@ class PeminjamanRuang extends Component
             $query->where('name', 'like', '%' . $this->search . '%');
         }
 
-        $query->where('category', '!=','not_class')->where('admin_id', $user);
+        if (empty($this->category)){
+            $query->where('admin_id', $user);
+        } else {
+            $query->where('category', $this->category)->where('admin_id', $user);
+        }
 
         return view('livewire.admin.peminjaman-ruang', [
             'campuses'  => Campus::all(),

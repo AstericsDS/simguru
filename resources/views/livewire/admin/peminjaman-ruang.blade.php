@@ -27,6 +27,12 @@
             </div>
 
             {{-- Filter --}}
+            <select wire:model.change="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-[150px] p-2.5 truncate">
+                <option selected hidden>Jenis Ruang</option>
+                @foreach (\App\Models\Room::CATEGORIES as $value => $label)
+                    <option value="{{ $value }}">{{ $label }}</option>
+                @endforeach
+            </select>
             <select wire:model.change="campus_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-[200px] p-2.5 truncate">
                 <option selected hidden>Pilih Kampus</option>
                 @foreach ($campuses as $campus)

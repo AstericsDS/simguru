@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('event_name');
             $table->string('start');
             $table->string('end');
-            $table->enum('verified', ['pending', 'approved', 'rejected']);
+            $table->enum('status', ['pending', 'approved', 'rejected']);
             $table->timestamps();
         });
     }

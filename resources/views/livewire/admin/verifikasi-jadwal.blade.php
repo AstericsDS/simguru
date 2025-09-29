@@ -71,9 +71,9 @@
                                 {{ $event->created_at->locale('id')->translatedFormat('l, d F Y') }}
                             </td>
                             <td class="px-6 py-4 flex">
-                                @if ($event->verified === 'pending')
+                                @if ($event->status === 'pending')
                                     <span class="px-2 py-1 border border-yellow-500 bg-yellow-200 rounded-md flex-1 flex justify-center">Pending</span>
-                                @elseif ($event->verified === 'approved')
+                                @elseif ($event->status === 'approved')
                                     <span class="px-2 py-1 border border-green-500 bg-green-200 rounded-md flex-1 flex justify-center">Disetujui</span>
                                 @else
                                     <span class="px-2 py-1 border border-red-500 bg-red-200 rounded-md flex-1 flex justify-center">Ditolak</span>
@@ -81,7 +81,7 @@
                             </td>
                             <td class="px-6 py-4">
                                 <div class="flex gap-2 items-center">
-                                    @if ($event->verified === 'pending')
+                                    @if ($event->status === 'pending')
                                         <button @click="$dispatch('confirm-modal', {id: {{ $event->id }}, action: 'accept'})" class="border border-green-500 size-8 rounded-xl cursor-pointer hover:bg-green-500 hover:text-white transition-all">
                                             <i class="fa-solid fa-check"></i>
                                         </button>

@@ -143,7 +143,6 @@
                                 <select wire:model='category' class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 {{ $errors->has('category') ? 'border-red-500' : 'border-gray-300' }}">
                                     <option disabled>Pilih Kategori</option>
                                     <option value="class">Kelas</option>
-                                    <option value="not_class">Bukan Kelas</option>
                                     <option value="office">Kantor</option>
                                     <option value="laboratory">Laboratorium</option>
                                     <option value="rentable">Umum (disewakan)</option>
@@ -303,8 +302,6 @@
                             <td class="px-6 py-4">
                                 @if ($room->category === 'class')
                                     <span class="px-2 py-1 rounded-lg bg-[#007BFF] text-white">Kelas</span>
-                                @elseif ($room->category === 'not_class')
-                                    <span class="px-2 py-1 rounded-lg bg-[#6C757D] text-white">Bukan Kelas</span>
                                 @elseif ($room->category === 'office')
                                     <span class="px-2 py-1 rounded-lg bg-[#17A2B8] text-white">Kantor</span>
                                 @elseif ($room->category === 'laboratory')

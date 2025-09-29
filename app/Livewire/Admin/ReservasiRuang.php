@@ -39,7 +39,7 @@ class ReservasiRuang extends Component
             'event_name' => $this->event,
             'start' => $this->startRaw,
             'end' => $this->endRaw,
-            'verified' => 'pending',
+            'status' => 'pending',
         ]);
 
         $this->reset(['event', 'startRaw', 'endRaw', 'startDate', 'startTime', 'endTime']);

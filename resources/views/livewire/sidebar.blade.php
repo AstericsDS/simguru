@@ -77,6 +77,9 @@
                 <span :class="sidebarOpen ? 'inline' : 'hidden'" class="whitespace-nowrap">Daftar Ruang</span>
             </a>
         </li>
+
+        <li class="mt-6 mb-2 px-2 text-xs font-semibold text-gray-500 uppercase tracking-wide whitespace-nowrap" :class="sidebarOpen ? 'block' : 'hidden'">Menu Peminjaman Ruang</li>
+        
         <li>
             <a wire:navigate href="{{ route('peminjaman-ruang') }}" class="transition-all flex items-center p-2 text-gray-700 {{ $currentRouteName == 'peminjaman-ruang' || $currentRouteName == 'reservasi-ruang' ? 'bg-active-side text-teal-800 font-medium border-r-[3px]' : 'hover:text-gray-950' }}">
                 <span class="text-xl ml-2 mr-2">
@@ -87,6 +90,7 @@
                 <span :class="sidebarOpen ? 'inline' : 'hidden'" class="whitespace-nowrap">Peminjaman Ruang</span>
             </a>
         </li>
+
         <li class="hidden">
             <a wire:navigate href="{{ route('detail-all') }}" class="transition-all flex items-center p-2 text-gray-700 {{ $currentRouteName == 'detail-all' ? 'bg-active-side text-teal-800 font-medium border-r-[3px]' : 'hover:text-gray-950' }}">
                 <span class="text-xl ml-2 mr-2">

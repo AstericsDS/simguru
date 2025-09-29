@@ -33,6 +33,13 @@ class Room extends Model
         'documents_path' => 'array',
         'inventory' => 'array'
     ];
+    public const CATEGORIES = [
+        'class'       => 'Kelas',
+        'office'      => 'Kantor',
+        'laboratory'  => 'Laboratorium',
+        'rentable'    => 'Sewa',
+        'non_rentable'=> 'Tidak Disewa',
+    ];
     public function getRouteKeyName()
     {
         return 'slug';

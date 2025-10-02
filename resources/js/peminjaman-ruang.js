@@ -65,8 +65,7 @@ import "@fullcalendar/web-component/global";
 // };
 
 window.calendar2;
-let hasRendered = false;
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("toggle-calendar", () => {
     let calendarEl2 = document.getElementById("selectable");
 
     window.calendar2 = new Calendar(calendarEl2, {

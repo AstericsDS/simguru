@@ -4,4 +4,5 @@ import './chart';
 import './dashboard';
 import './swiper';
 import './homepage';
-import './jadwalruangan'
+// import './jadwalruangan';
+// import './peminjaman-ruang';

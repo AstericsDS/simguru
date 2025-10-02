@@ -18,6 +18,10 @@ return new class extends Migration
             $table->string('event_name');
             $table->string('start');
             $table->string('end');
+            $table->string('lecturer');
+            $table->string('major');
+            $table->integer('class_of');
+            $table->string('description');
             $table->enum('verified', ['pending', 'approved', 'rejected']);
             $table->timestamps();
         });

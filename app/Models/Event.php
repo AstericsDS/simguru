@@ -15,6 +15,10 @@ class Event extends Model
         'event_name',
         'start',
         'end',
+        'lecturer',
+        'major',
+        'class_of',
+        'description',
         'verified',
     ];
 

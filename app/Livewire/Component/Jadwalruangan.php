@@ -30,13 +30,13 @@ class Jadwalruangan extends Component
 
     public function updatedSelectedRoom($value)
     {
-        $this->roomEvents = Event::where('room_id', $value)->get();
+        $this->roomEvents = Event::where('room_id', $value)->where('verified', 'approved')->get();
 
         $this->dispatch('events-loaded', Events: $this->roomEvents);
     }
 
     public function mount(){
-        $this->roomEvents = Event::all();
+        $this->roomEvents = Event::where('verified', '=', 'approved')->get();
 
         $this->dispatch('events-loaded', Events: $this->roomEvents);
     }

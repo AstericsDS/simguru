@@ -7,7 +7,8 @@
             @endforeach
         </select>
         @if (count($campusbuildings) > 0)
-            <select class="select bg-white border border-primary" wire:model.live="selectedBuilding" name="selectedBuilding">
+            <select class="select bg-white border border-primary" wire:model.live="selectedBuilding"
+                name="selectedBuilding">
                 <option value="" selected>Pilih Gedung</option>
                 @foreach ($campusbuildings as $building)
                     <option value="{{ $building->id }}">{{ $building->name }}</option>
@@ -26,7 +27,7 @@
 
     <div {{-- x-data
         @events-loaded.window="console.log('Events data received!', event.detail.Events);
-                        event.detail.Events.forEach(function(event, index){});" --}} wire:ignore id='jadwalhome'></div>
+                        event.detail.Events.forEach(function(event, index){});" --}} wire:ignore id="jadwalhome"></div>
 
     <div id="tooltip"
         class="absolute tooltip-hidden border border-base-100 bg-base-200 shadow p-5 text-base-content z-10 transition-normal rounded-box">
@@ -34,4 +35,6 @@
 
 </div>
 
-<script></script>
+@push('scripts')
+    @vite(['resources/js/jadwalruangan.js'])
+@endpush

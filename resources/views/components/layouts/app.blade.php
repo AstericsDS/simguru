@@ -7,7 +7,6 @@
     <link rel="icon" href="/logos/unj.png" type="image/x-icon">
     <title>{{ $title ?? config('app.name') }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @stack('scroll')
 </head>
 
 <body class="min-h-screen overflow-x-hidden text-balance bg-fixed bg-white bg-cover">
@@ -126,6 +125,7 @@
         </nav>
     </footer>
     <div class="text-center bg-primary">Copyright 2025 Pustikom</div>
+    @stack('scripts')
 </body>
 
 </html>

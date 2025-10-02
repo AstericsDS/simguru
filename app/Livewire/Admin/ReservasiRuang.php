@@ -16,7 +16,7 @@ class ReservasiRuang extends Component
     public Room $room;
     public int $room_id;
     #[Validate('required', message: 'Masukkan nama acara')]
-    public $event;
+    public $event_name, $lecturer, $major, $class_of, $description;
     public $startRaw, $endRaw, $startDate, $startTime, $endTime;
 
     #[On('saveDate')]
@@ -31,18 +31,23 @@ class ReservasiRuang extends Component
         $this->dispatch('event-modal');
         $this->dispatch('toggle-calendar');
     }
+
     public function save()
     {
         $createEvent = Event::create([
             'room_id' => $this->room->id,
             'admin' => Auth::id(),
-            'event_name' => $this->event,
+            'event_name' => $this->event_name,
             'start' => $this->startRaw,
             'end' => $this->endRaw,
+            'lecturer' => $this->lecturer,
+            'major' => $this->major,
+            'class_of' => $this->class_of,
+            'description' => $this->description,
             'verified' => 'pending',
         ]);
 
-        $this->reset(['event', 'startRaw', 'endRaw', 'startDate', 'startTime', 'endTime']);
+        $this->reset(['event_name', 'startRaw', 'endRaw', 'startDate', 'startTime', 'endTime', 'lecturer', 'major', 'class_of', 'description']);
 
         if($createEvent) {
             $this->dispatch('confirm-modal');

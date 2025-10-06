@@ -16,18 +16,35 @@ class ReservasiRuang extends Component
     public Room $room;
     public int $room_id;
     #[Validate('required', message: 'Masukkan nama acara')]
-    public $event_name, $lecturer, $major, $class_of, $description;
+    public $event_name, $lecturer, $major, $class_of, $description, $dtstart, $dtend, $day;
     public $startRaw, $endRaw, $startDate, $startTime, $endTime;
 
     #[On('saveDate')]
     public function saveDate($payload)
     {
-        $this->validate();
         $this->startRaw = $payload[0];
         $this->endRaw = $payload[1];
         $this->startDate = $payload[2];
         $this->startTime = $payload[3];
         $this->endTime = $payload[4];
+        $this->day = mb_strtolower(mb_substr(date('l', strtotime($this->startDate)), 0, 2));
+
+        if ($payload[5] === 'kuliah') {
+            $this->validate([
+                'event_name' => 'required',
+                'lecturer' => 'required',
+                'major' => 'required',
+                'class_of' => 'required',
+                'dtstart' => 'required|date',
+                'dtend' => 'required|date',
+            ]);
+        } else {
+            $this->validate([
+                'event_name' => 'required',
+                'description' => 'required',
+            ]);
+        }
+
         $this->dispatch('event-modal');
         $this->dispatch('toggle-calendar');
     }
@@ -44,12 +61,14 @@ class ReservasiRuang extends Component
             'major' => $this->major,
             'class_of' => $this->class_of,
             'description' => $this->description,
+            'dtend' => $this->dtend,
+            'day' => $this->day,
             'verified' => 'pending',
         ]);
 
-        $this->reset(['event_name', 'startRaw', 'endRaw', 'startDate', 'startTime', 'endTime', 'lecturer', 'major', 'class_of', 'description']);
+        $this->reset(['event_name', 'startRaw', 'endRaw', 'startDate', 'startTime', 'endTime', 'lecturer', 'major', 'class_of', 'description', 'dtend', 'day']);
 
-        if($createEvent) {
+        if ($createEvent) {
             $this->dispatch('confirm-modal');
             $this->dispatch('toast', status: 'success', message: 'Jadwal berhasil dibuat, menunggu verifikasi admin.');
         } else {
@@ -61,6 +80,7 @@ class ReservasiRuang extends Component
     {
         $this->room = $room;
         $this->room_id = $room->id;
+        $this->dispatch('event-load', Event: Event::where('room_id', $this->room->id)->where('verified', 'approved')->get());
     }
     public function render()
     {

@@ -37,8 +37,7 @@ class Jadwalruangan extends Component
 
     public function mount(){
         $this->roomEvents = Event::where('verified', '=', 'approved')->get();
-
-        $this->dispatch('events-loaded', Events: $this->roomEvents);
+        $this->dispatch('events-loaded', Events: $this->roomEvents->take(200));
     }
 
     public function render()

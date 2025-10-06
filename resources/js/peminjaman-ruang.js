@@ -3,7 +3,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import idLocale from "@fullcalendar/core/locales/id";
-import "@fullcalendar/web-component/global";
+import rrulePlugin from "@fullcalendar/rrule";
 
 // const penjadwalanEl = document.querySelector("full-calendar");
 
@@ -63,9 +63,23 @@ import "@fullcalendar/web-component/global";
 //     },
 //     allDaySlot: false,
 // };
+const formattedEvents = [];
+
+document.addEventListener("event-load", (event) => {
+    const events = event.detail.Events;
+
+    formattedEvents = events.map((item) => {
+        return {
+            title: item.event_name,
+            start: item.start,
+            end: item.end,
+        };
+    });
+    console.log(event);
+})
 
 window.calendar2;
-document.addEventListener("toggle-calendar", () => {
+document.addEventListener("toggle-calendar", (event) => {
     let calendarEl2 = document.getElementById("selectable");
 
     window.calendar2 = new Calendar(calendarEl2, {
@@ -76,7 +90,7 @@ document.addEventListener("toggle-calendar", () => {
         selectable: true,
         navLinks: true,
         dateClick: function (info) {
-            calendar2.changeView("timeGridDay", info);
+            window.calendar2.changeView("timeGridDay", info);
         },
         select: function (info) {
             if (info.view.type === "timeGridDay") {
@@ -123,9 +137,9 @@ document.addEventListener("toggle-calendar", () => {
             hour12: true,
         },
         allDaySlot: false,
+        events: formattedEvents,
     });
 });
-
 
 // calendar2.render();
 

@@ -19,6 +19,8 @@ class Event extends Model
         'major',
         'class_of',
         'description',
+        'dtend',
+        'day',
         'verified',
     ];
 

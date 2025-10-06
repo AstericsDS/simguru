@@ -1,8 +1,8 @@
 import { Calendar } from "@fullcalendar/core";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
-import interactionPlugin from "@fullcalendar/interaction";
 import idLocale from "@fullcalendar/core/locales/id";
+import rrulePlugin from "@fullcalendar/rrule";
 
 // let calendarEl2 = document.getElementById("selectable");
 
@@ -97,7 +97,7 @@ const tooltip = document.getElementById("tooltip");
 let calendar = new Calendar(calendarEl, {
     locale: idLocale,
     contentHeight: "auto",
-    plugins: [dayGridPlugin, timeGridPlugin],
+    plugins: [dayGridPlugin, timeGridPlugin, rrulePlugin],
     initialView: "dayGridMonth",
     headerToolbar: {
         left: "prev, next, today",
@@ -141,14 +141,18 @@ window.addEventListener("events-loaded", (event) => {
     const formattedEvents = events.map((item) => {
         return {
             title: item.event_name,
-            start: item.start,
-            end: item.end,
             description: item.description,
             extendedProps: {
                 lecturer: item.lecturer,
                 major: item.major,
                 class_of: item.class_of,
             },
+            rrule: {
+                freq: 'weekly',
+                dtstart: item.start,
+                until: item.dtend,
+                byweekday: [item.day]
+            }
         };
     });
     calendar.removeAllEvents();

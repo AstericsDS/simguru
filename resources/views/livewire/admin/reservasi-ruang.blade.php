@@ -137,9 +137,26 @@
 
 
     {{-- Modal --}}
-    <div x-data="{ state: false, startRaw: '', endRaw: '', startDate: '', startTime: '', endTime: '' }"
+    <div
+        x-data="{
+            state: false,
+            startRaw: '',
+            endRaw: '',
+            startDate: '',
+            startTime: '',
+            endTime: '',
+            tab: 'biasa',
+            prevTab: 'biasa',
+            direction: 'right',
+            changeTab(newTab) {
+                this.direction = (newTab === 'kuliah' && this.tab === 'biasa') ? 'right' : 'left';
+                this.prevTab = this.tab;
+                this.tab = newTab;
+            }
+        }"
         @event-modal.window="state = !state; startRaw = $event.detail.startRaw; endRaw = $event.detail.endRaw; startDate = $event.detail.startDate; startTime = $event.detail.startTime; endTime = $event.detail.endTime"
-        @keydown.window.escape="state = false">
+        @keydown.window.escape="state = false"
+    >
         <div x-show="state" class="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 flex items-center justify-center"
             x-transition:enter="transition ease-in-out duration-250" x-transition:enter-start="opacity-0"
             x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in-out duration-250"
@@ -166,98 +183,198 @@
                     </button>
                 </div>
 
+                {{-- Modal Switch Tab --}}
+                <div class="grid grid-cols-2 text-center">
+                    <button
+                        @click="changeTab('biasa')"
+                        :class="tab === 'biasa' ? 'border-b-2 border-primary text-primary font-medium' : 'border-b-2 border-gray-200 text-gray-400 font-medium'"
+                        class="p-4 transition-all"
+                    >
+                        Jadwal Biasa
+                    </button>
+                    <button
+                        @click="changeTab('kuliah')"
+                        :class="tab === 'kuliah' ? 'border-b-2 border-primary text-primary font-medium' : 'border-b-2 border-gray-200 text-gray-400 font-medium'"
+                        class="p-4 transition-all"
+                    >
+                        Jadwal Kuliah
+                    </button>
+                </div>
+
                 {{-- Modal content --}}
-                <div class="flex flex-col gap-2 p-8 pt-0 mt-8">
-                    <div class="grid grid-cols-[275px_1fr]">
-                        <span>Hari dan Tanggal</span>
-                        <div class="flex gap-4">
-                            <span>:</span>
-                            <span x-text="startDate"></span>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-[275px_1fr]">
-                        <span>Waktu</span>
-                        <div class="flex gap-4">
-                            <span>:</span>
-                            <span x-text="startTime + ' - ' + endTime"></span>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-[275px_1fr]">
-                        <span>Nama Acara</span>
-                        <div class="flex gap-4">
-                            <span>:</span>
-                            <div class="flex flex-col">
-                                <input wire:model="event_name" type="text" id="address"
-                                    class="bg-gray-50 flex-1 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg w-full {{ $errors->has('event') ? 'border-red-500' : 'border-gray-300' }}">
-                                @error('event')
-                                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-                                @enderror
-
+                <div class="relative flex flex-col gap-5 p-8 pt-0 mt-8 min-h-[400px] overflow-hidden">
+                    <template x-if="tab === 'biasa'">
+                        <div
+                            x-transition:enter="transition transform ease-in duration-300"
+                            :x-transition:enter-start="direction === 'right' ? 'translate-x-full opacity-0' : '-translate-x-full opacity-0'"
+                            x-transition:enter-end="translate-x-0 opacity-100"
+                            x-transition:leave="transition transform ease-out duration-200"
+                            x-transition:leave-start="translate-x-0 opacity-100"
+                            :x-transition:leave-end="direction === 'right' ? '-translate-x-full opacity-0' : 'translate-x-full opacity-0'"
+                            class="absolute w-full gap-5"
+                        >
+                            <div class="grid grid-cols-[275px_1fr]">
+                                <span>Hari dan Tanggal</span>
+                                <div class="flex gap-4">
+                                    <span>:</span>
+                                    <span x-text="startDate"></span>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    @if (($room->category == 'class') | ($room->category == 'laboratory'))
-                        <div class="grid grid-cols-[275px_1fr]">
-                            <span>Nama Dosen</span>
-                            <div class="flex gap-4">
-                                <span>:</span>
-                                <div class="flex flex-col">
-                                    <input wire:model="lecturer" type="text"
-                                        class="bg-gray-50 flex-1 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg w-full {{ $errors->has('event') ? 'border-red-500' : 'border-gray-300' }}">
-                                    @error('event')
-                                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-                                    @enderror
-
+                            <div class="grid grid-cols-[275px_1fr]">
+                                <span>Waktu</span>
+                                <div class="flex gap-4">
+                                    <span>:</span>
+                                    <span x-text="startTime + ' - ' + endTime"></span>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-[275px_1fr]">
+                                <span>Nama Acara</span>
+                                <div class="flex gap-4">
+                                    <span>:</span>
+                                    <div class="flex flex-col">
+                                        <input wire:model="event_name" type="text"
+                                            class="bg-gray-50 flex-1 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg w-full {{ $errors->has('event') ? 'border-red-500' : 'border-gray-300' }}">
+                                        @error('event')
+                                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-[275px_1fr]">
+                                <span>Deskripsi</span>
+                                <div class="flex gap-4">
+                                    <span>:</span>
+                                    <div class="flex flex-col">
+                                        <input wire:model="description" type="text"
+                                            class="bg-gray-50 flex-1 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg w-full {{ $errors->has('event') ? 'border-red-500' : 'border-gray-300' }}">
+                                        @error('event')
+                                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="grid grid-cols-[275px_1fr]">
-                            <span>Nama Prodi</span>
-                            <div class="flex gap-4">
-                                <span>:</span>
-                                <div class="flex flex-col">
-                                    <input wire:model="major" type="text"
-                                        class="bg-gray-50 flex-1 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg w-full {{ $errors->has('event') ? 'border-red-500' : 'border-gray-300' }}">
-                                    @error('event')
-                                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-                                    @enderror
-
+                    </template>
+                    <template x-if="tab === 'kuliah'">
+                        <div
+                            x-transition:enter="transition transform ease-in duration-300"
+                            :x-transition:enter-start="direction === 'right' ? 'translate-x-full opacity-0' : '-translate-x-full opacity-0'"
+                            x-transition:enter-end="translate-x-0 opacity-100"
+                            x-transition:leave="transition transform ease-out duration-200"
+                            x-transition:leave-start="translate-x-0 opacity-100"
+                            :x-transition:leave-end="direction === 'right' ? '-translate-x-full opacity-0' : 'translate-x-full opacity-0'"
+                            class="absolute w-full"
+                        >
+                            <div class="grid grid-cols-[275px_1fr]">
+                                <span>Hari dan Tanggal</span>
+                                <div class="flex gap-4">
+                                    <span>:</span>
+                                    <span x-text="startDate"></span>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-[275px_1fr]">
+                                <span>Waktu</span>
+                                <div class="flex gap-4">
+                                    <span>:</span>
+                                    <span x-text="startTime + ' - ' + endTime"></span>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-[275px_1fr]">
+                                <span>Nama Acara</span>
+                                <div class="flex gap-4">
+                                    <span>:</span>
+                                    <div class="flex flex-col">
+                                        <input wire:model="event_name" type="text"
+                                            class="bg-gray-50 flex-1 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg w-full {{ $errors->has('event') ? 'border-red-500' : 'border-gray-300' }}">
+                                        @error('event')
+                                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-[275px_1fr]">
+                                <span>Nama Dosen</span>
+                                <div class="flex gap-4">
+                                    <span>:</span>
+                                    <div class="flex flex-col">
+                                        <input wire:model="lecturer" type="text"
+                                            class="bg-gray-50 flex-1 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg w-full {{ $errors->has('event') ? 'border-red-500' : 'border-gray-300' }}">
+                                        @error('event')
+                                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-[275px_1fr]">
+                                <span>Nama Prodi</span>
+                                <div class="flex gap-4">
+                                    <span>:</span>
+                                    <div class="flex flex-col">
+                                        <input wire:model="major" type="text"
+                                            class="bg-gray-50 flex-1 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg w-full {{ $errors->has('event') ? 'border-red-500' : 'border-gray-300' }}">
+                                        @error('event')
+                                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-[275px_1fr]">
+                                <span>Angkatan</span>
+                                <div class="flex gap-4">
+                                    <span>:</span>
+                                    <div class="flex flex-col">
+                                        <input wire:model="class_of" type="number"
+                                            class="bg-gray-50 flex-1 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg w-full {{ $errors->has('event') ? 'border-red-500' : 'border-gray-300' }}">
+                                        @error('event')
+                                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-[275px_1fr]">
+                                <span>Tanggal Awal Perkuliahan</span>
+                                <div class="flex gap-4">
+                                    <span>:</span>
+                                    <div class="flex flex-col">
+                                        <input wire:model="dtstart" type="date"
+                                            class="bg-gray-50 flex-1 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg w-full {{ $errors->has('event') ? 'border-red-500' : 'border-gray-300' }}">
+                                        @error('event')
+                                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-[275px_1fr]">
+                                <span>Tanggal Akhir Perkuliahan</span>
+                                <div class="flex gap-4">
+                                    <span>:</span>
+                                    <div class="flex flex-col">
+                                        <input wire:model="dtend" type="date"
+                                            class="bg-gray-50 flex-1 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg w-full {{ $errors->has('event') ? 'border-red-500' : 'border-gray-300' }}">
+                                        @error('event')
+                                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-[275px_1fr]">
+                                <span>Deskripsi</span>
+                                <div class="flex gap-4">
+                                    <span>:</span>
+                                    <div class="flex flex-col">
+                                        <input wire:model="description" type="text"
+                                            class="bg-gray-50 flex-1 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg w-full {{ $errors->has('event') ? 'border-red-500' : 'border-gray-300' }}">
+                                        @error('event')
+                                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="grid grid-cols-[275px_1fr]">
-                            <span>Angkatan</span>
-                            <div class="flex gap-4">
-                                <span>:</span>
-                                <div class="flex flex-col">
-                                    <input wire:model="class_of" type="number"
-                                        class="bg-gray-50 flex-1 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg w-full {{ $errors->has('event') ? 'border-red-500' : 'border-gray-300' }}">
-                                    @error('event')
-                                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-                                    @enderror
-
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-
-                    <div class="grid grid-cols-[275px_1fr]">
-                        <span>Deskripsi</span>
-                        <div class="flex gap-4">
-                            <span>:</span>
-                            <div class="flex flex-col">
-                                <input wire:model="description" type="text"
-                                    class="bg-gray-50 flex-1 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg w-full {{ $errors->has('event') ? 'border-red-500' : 'border-gray-300' }}">
-                                @error('event')
-                                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-                                @enderror
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="self-end mt-4">
+                    </template>
+                    <div class="self-end mt-4 relative z-10">
                         <button
-                            @click="$dispatch('saveDate', { payload: [startRaw, endRaw, startDate, startTime, endTime] })"
+                            @click="$dispatch('saveDate', { payload: [startRaw, endRaw, startDate, startTime, endTime, tab] })"
                             class="px-4 py-2 rounded-md  hover:bg-primary transition-all cursor-pointer text-primary text-lg border-2 border-primary hover:text-white">Simpan</button>
                     </div>
                 </div>

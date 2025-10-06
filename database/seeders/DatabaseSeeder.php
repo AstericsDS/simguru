@@ -38,51 +38,51 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin'
         ]);
 
-        User::create([
-            'role' => 1,
-            'name' => 'Super Admin',
-            'password' => Hash::make('0001')
-        ]);
+        // User::create([
+        //     'role' => 1,
+        //     'name' => 'Super Admin',
+        //     'password' => Hash::make('0001')
+        // ]);
 
-        User::create([
-            'role' => 2,
-            'name' => 'Admin',
-            'password' => Hash::make('0000')
-        ]);
+        // User::create([
+        //     'role' => 2,
+        //     'name' => 'Admin',
+        //     'password' => Hash::make('0000')
+        // ]);
 
-        Campus::create([
-            'admin_id' => 2,
-            'name' => 'Rawamangun',
-            'slug' => 'rawamangun',
-            'address' => 'Jl. R.Mangun Muka Raya No.11, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220',
-            'contact' => '0214898486',
-            'email' => 'unj@gmail.com',
-            'description' => Faker::create()->sentence()
-        ]);
+        // Campus::create([
+        //     'admin_id' => 2,
+        //     'name' => 'Rawamangun',
+        //     'slug' => 'rawamangun',
+        //     'address' => 'Jl. R.Mangun Muka Raya No.11, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220',
+        //     'contact' => '0214898486',
+        //     'email' => 'unj@gmail.com',
+        //     'description' => Faker::create()->sentence()
+        // ]);
 
-        Building::create([
-            'admin_id' => 2,
-            'campus_id' => 1,
-            'name' => 'Gedung Dewi Sartika',
-            'slug' => 'gedung-dewi-sartika',
-            'area' => '500',
-            'floor' => '10',
-            'address' => 'Jl. Daksinapati Tim. Blok Daksenapati Timur No.1, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220',
-            // 'status' => 0,
-            'description' => Faker::create()->sentence(),
-        ]);
+        // Building::create([
+        //     'admin_id' => 2,
+        //     'campus_id' => 1,
+        //     'name' => 'Gedung Dewi Sartika',
+        //     'slug' => 'gedung-dewi-sartika',
+        //     'area' => '500',
+        //     'floor' => '10',
+        //     'address' => 'Jl. Daksinapati Tim. Blok Daksenapati Timur No.1, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220',
+        //     // 'status' => 0,
+        //     'description' => Faker::create()->sentence(),
+        // ]);
 
-        Building::create([
-            'admin_id' => 2,
-            'campus_id' => 1,
-            'name' => 'Gedung Raden Ajeng Kartini',
-            'slug' => 'gedung-raden-ajeng-kartini',
-            'area' => '500',
-            'floor' => '8',
-            'address' => 'Kampus A UNJ, Jl. R.Mangun Muka Raya No.11, RT.11/RW.14, Rawamangun, Pulo Gadung, East Jakarta City, Jakarta 13220',
-            // 'status' => 0,
-            'description' => Faker::create()->sentence(),
-        ]);
+        // Building::create([
+        //     'admin_id' => 2,
+        //     'campus_id' => 1,
+        //     'name' => 'Gedung Raden Ajeng Kartini',
+        //     'slug' => 'gedung-raden-ajeng-kartini',
+        //     'area' => '500',
+        //     'floor' => '8',
+        //     'address' => 'Kampus A UNJ, Jl. R.Mangun Muka Raya No.11, RT.11/RW.14, Rawamangun, Pulo Gadung, East Jakarta City, Jakarta 13220',
+        //     // 'status' => 0,
+        //     'description' => Faker::create()->sentence(),
+        // ]);
 
         // Room::create([
         //     'admin_id' => 2,

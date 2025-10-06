@@ -35,6 +35,8 @@ use App\Livewire\Admin\ReservasiRuang;
 use App\Livewire\Admin\VerifikasiJadwal;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\SsoController;
+
 // Admin
 Route::middleware(['auth'])->prefix('admin')->group(function(){
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
@@ -67,6 +69,10 @@ Route::middleware(['auth'])->prefix('admin')->group(function(){
 // Auth
 Route::get('/login', Login::class)->name('login');
 // Route::get('/login', Login::class)->name('login');
+
+// SSO
+Route::get('/sso/login', [SsoController::class, 'redirectToProvider'])->name('sso.login');
+Route::get('/sso/callback', [SsoController::class, 'handleProviderCallback'])->name('sso.callback');
 
 // Debug API
 Route::get('/form', Form::class)->name('form');

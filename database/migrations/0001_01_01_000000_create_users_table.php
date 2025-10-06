@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->foreignId('role')->nullable()->constrained('roles');
+            $table->string('email')->nullable();
             $table->string('name')->nullable();
             $table->string('password');
             $table->rememberToken();

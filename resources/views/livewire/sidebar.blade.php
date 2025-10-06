@@ -1,4 +1,5 @@
-<nav :class="sidebarOpen ? 'w-64' : 'w-16'" class="bg-white dark:bg-surface-a10 shadow-md flex flex-col fixed left-0 top-0 h-screen z-30 overflow-hidden transition-width duration-300 ease-in-out" style="min-width:64px;">
+<nav x-init="if (window.innerWidth <= 1024) sidebarOpen = false" :class="sidebarOpen ? 'w-64' : 'w-16'" class="bg-white dark:bg-surface-a10 shadow-md flex flex-col fixed left-0 top-0 h-screen z-30 overflow-hidden transition-width duration-300 ease-in-out" style="min-width:64px;">
+
     <div class="flex items-center p-4 space-x-2">
         <img src="/logos/unj.png" alt="logo" class="w-10 h-auto" />
         <span class="text-teal-800 dark:text-primary-a0 font-bold text-3xl truncate ml-3" :class="sidebarOpen ? 'inline' : 'hidden'">SIMGURU</span>

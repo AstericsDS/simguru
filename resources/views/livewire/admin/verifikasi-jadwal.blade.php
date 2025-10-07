@@ -107,8 +107,8 @@
                     <i class="fa-solid fa-circle-exclamation text-gray-500 text-8xl"></i>
                     <p class="pt-6 pb-12 text-2xl text-gray-600">Apakah anda yakin?</p>
                     <div class="flex gap-6">
-                        <button @click="$wire.save(confirmData.id, confirmData.action)" class="px-8 py-2 rounded-md bg-primary hover:bg-primary-dark transition-all cursor-pointer text-white text-xl">Iya</button>
-                        <button @click="$dispatch('confirm-modal')" class="px-8 py-2 rounded-md border-2 border-red-300  hover:bg-red-400 hover:border-red-400 transition-all cursor-pointer text-xl hover:text-white">Tidak</button>
+                        <button @click="$wire.save(confirmData.id, confirmData.action)" class="px-8 py-2 rounded-md bg-primary hover:bg-unj-dark transition-all cursor-pointer text-white text-xl">Iya</button>
+                        <button @click="$dispatch('confirm-modal')" class="px-8 py-2 rounded-md border-2 border-red-600  hover:bg-red-700 hover:border-red-700 transition-all cursor-pointer text-xl hover:text-white">Tidak</button>
                     </div>
                 </div>
             </div>

@@ -6,6 +6,11 @@
                 <span>{{ $message }}</span>
             </div>
         @enderror
+        @if (session('error'))
+        <div class="p-3 rounded-md bg-red-200 text-red-500 my-4 w-fit mx-auto text-center">
+            <span>{{ session('error') }}</span>
+        </div>
+        @endif
         <h1 class="text-center font-semibold text-xl">
             Sistem Informasi Manajemen Gedung dan Ruang
         </h1>

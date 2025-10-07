@@ -16,7 +16,8 @@ return new class extends Migration
             $table->foreignId('role')->nullable()->constrained('roles');
             $table->string('email')->nullable();
             $table->string('name')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });

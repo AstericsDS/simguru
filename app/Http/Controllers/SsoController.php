@@ -49,7 +49,7 @@ class SsoController extends Controller
 
         try {
             $decoded = JWT::decode($jwt, new Key($privateKey, 'HS256'));
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             return redirect(route('login'))->with('error', 'Invalid SSO token. Please try again.');
         }
 
@@ -59,20 +59,25 @@ class SsoController extends Controller
             $role = 1;
         }
 
-        $user = User::updateOrCreate(
-            ['email' => $decoded->email],
-            [
-                'name' => $decoded->name,
-                'password' => bcrypt(Str::random(16)),
-                'role' => $role,
-            ]
+        $user = User::where('email', $decoded->email)->first();
+        if($user) {
+            $userCreate = User::updateOrCreate(
+                ['email' => $decoded->email],
+                [
+                    'name' => $decoded->name,
+                    'password' => bcrypt(Str::random(16)),
+                    'role' => $role,
+                ]
             );
-        
-        Auth::login($user, true);
-
-        $request->session()->forget('sso_private_key');
-        $request->session()->regenerate();
-
-        return redirect()->intended(route('dashboard'));
+    
+            Auth::login($userCreate, true);
+    
+            $request->session()->forget('sso_private_key');
+            $request->session()->regenerate();
+    
+            return redirect()->intended(route('dashboard'));
+        } else {
+            return redirect()->intended(route('login'))->with('error', 'Kamu tidak memiliki akses');
+        }
     }
 }

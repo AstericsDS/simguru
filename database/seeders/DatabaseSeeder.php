@@ -38,11 +38,11 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin'
         ]);
 
-        // User::create([
-        //     'role' => 1,
-        //     'name' => 'Super Admin',
-        //     'password' => Hash::make('0001')
-        // ]);
+        User::create([
+            'role' => 1,
+            'name' => 'Super Admin',
+            'password' => Hash::make('0001')
+        ]);
 
         // User::create([
         //     'role' => 2,

@@ -139,21 +139,31 @@ window.addEventListener("events-loaded", (event) => {
     const events = event.detail.Events;
 
     const formattedEvents = events.map((item) => {
-        return {
-            title: item.event_name,
-            description: item.description,
-            extendedProps: {
-                lecturer: item.lecturer,
-                major: item.major,
-                class_of: item.class_of,
-            },
-            rrule: {
-                freq: 'weekly',
-                dtstart: item.start,
-                until: item.dtend,
-                byweekday: [item.day]
-            }
-        };
+        if (item.dtend) {
+            return {
+                title: item.event_name,
+                description: item.description,
+                end: !item.dtend && item.end,
+                extendedProps: {
+                    lecturer: item.lecturer,
+                    major: item.major,
+                    class_of: item.class_of,
+                },
+                rrule: {
+                    freq: "weekly",
+                    dtstart: item.start,
+                    until: item.dtend ? item.dtend : item.end.slice(0, 10),
+                    byweekday: [item.day],
+                },
+            };
+        } else {
+            return {
+                title: item.event_name,
+                start: item.start,
+                end: item.end,
+                description: item.description,
+            };
+        }
     });
     calendar.removeAllEvents();
     calendar.addEventSource(formattedEvents);

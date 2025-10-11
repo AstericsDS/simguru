@@ -22,7 +22,7 @@ class SsoController extends Controller
         ]);
 
         if ($response->failed()) {
-            return redirect(route('login'))->with('error', 'Failed to connect to SSO server');
+            return redirect(route('login'))->with('error', 'Gagal terhubung ke server SSO');
         }
 
         $data = $response->json();
@@ -30,7 +30,7 @@ class SsoController extends Controller
         $publicKey = $data['data']['public_key'] ?? null;
         $privateKey = $data['data']['private_key'] ?? null;
         if (!$publicKey || !$privateKey) {
-            return redirect(route('login'))->with('error', 'Invalid response from SSO server.');
+            return redirect(route('login'))->with('error', 'Respons tidak valid dari server SSO');
         }
         session(['sso_private_key' => $privateKey]);
 
@@ -44,19 +44,13 @@ class SsoController extends Controller
         $jwt = $request->query('token');
 
         if (!$privateKey || !$jwt) {
-            return redirect(route('login'))->with('error', 'SSO authentication failed. Invalid session');
+            return redirect(route('login'))->with('error', 'Autentikasi SSO gagal. Sesi tidak valid');
         }
 
         try {
             $decoded = JWT::decode($jwt, new Key($privateKey, 'HS256'));
         } catch (\Exception $e) {
-            return redirect(route('login'))->with('error', 'Invalid SSO token. Please try again.');
-        }
-
-        if ($decoded->status === 'mahasiswa') {
-            $role = 2;
-        } else {
-            $role = 1;
+            return redirect(route('login'))->with('error', 'Token SSO tidak valid. Silakan coba lagi');
         }
 
         $user = User::where('email', $decoded->email)->first();
@@ -66,7 +60,6 @@ class SsoController extends Controller
                 [
                     'name' => $decoded->name,
                     'password' => bcrypt(Str::random(16)),
-                    'role' => $role,
                 ]
             );
     

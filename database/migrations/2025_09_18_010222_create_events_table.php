@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('event_name');
             $table->string('start');
             $table->string('end');
-<<<<<<< HEAD
             $table->string('lecturer')->nullable();
             $table->string('major')->nullable();
             $table->integer('class_of')->nullable();
@@ -26,9 +25,6 @@ return new class extends Migration
             $table->string('dtend')->nullable();
             $table->string('day')->nullable();
             $table->enum('verified', ['pending', 'approved', 'rejected']);
-=======
-            $table->enum('status', ['pending', 'approved', 'rejected']);
->>>>>>> feature/admin-system
             $table->timestamps();
         });
     }

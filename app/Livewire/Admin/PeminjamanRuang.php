@@ -64,15 +64,7 @@ class PeminjamanRuang extends Component
             $query->where('name', 'like', '%' . $this->search . '%');
         }
 
-<<<<<<< HEAD
         $query->where('admin_id', $user);
-=======
-        if (empty($this->category)){
-            $query->where('admin_id', $user);
-        } else {
-            $query->where('category', $this->category)->where('admin_id', $user);
-        }
->>>>>>> feature/admin-system
 
         return view('livewire.admin.peminjaman-ruang', [
             'campuses'  => Campus::all(),

@@ -28,6 +28,7 @@ class DaftarRuang extends Component
     public $room_images = [];
     public $rejected_rooms = [];
     public $inventory = [];
+    public ?Update $selectedUpdate = null;
 
     public function rules()
     {
@@ -87,7 +88,7 @@ class DaftarRuang extends Component
         } else {
             $validated = collect($this->validate());
         }
-        
+
         $img_paths = [];
         $doc_paths = [];
         if ($this->images_path && is_array($this->images_path)) {
@@ -177,6 +178,27 @@ class DaftarRuang extends Component
         $pending = Update::find($id);
         $this->room_images = $pending->new_data['images_path'];
         $this->dispatch('view');
+    }
+
+    public function deleteRoom()
+    {
+        $update = $this->selectedUpdate->update(['type' => 'delete', 'status' => 'pending']);
+        if ($update) {
+            $this->dispatch('confirm-delete');
+            $this->dispatch('toast', status: 'success', message: 'Permintaan telah diterima dan akan segera diverifikasi.');
+            return;
+        } else {
+            $this->dispatch('confirm-delete');
+            $this->dispatch('toast', status: 'fail', message: 'Maaf, permintaan tidak dapat diterima. Silahkan coba lagi.');
+            return;
+        }
+
+    }
+
+    public function deleteModal($id)
+    {
+        $this->selectedUpdate = Update::where('table', 'rooms')->where('record_id', $id)->first();
+        $this->dispatch('confirm-delete');
     }
 
     public function render()

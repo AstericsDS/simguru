@@ -23,7 +23,7 @@ return new class extends Migration
             $table->text('address');
             $table->json('images_path')->nullable();
             $table->json('documents_path')->nullable();
-            // $table->boolean('status');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

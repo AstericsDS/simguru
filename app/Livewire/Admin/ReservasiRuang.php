@@ -57,6 +57,7 @@ class ReservasiRuang extends Component
             'event_name' => $this->event_name,
             'start' => $this->startRaw,
             'end' => $this->endRaw,
+<<<<<<< HEAD
             'lecturer' => $this->lecturer,
             'major' => $this->major,
             'class_of' => $this->class_of,
@@ -64,6 +65,9 @@ class ReservasiRuang extends Component
             'dtend' => $this->dtend,
             'day' => $this->day,
             'verified' => 'pending',
+=======
+            'status' => 'pending',
+>>>>>>> feature/admin-system
         ]);
 
         $this->reset(['event_name', 'startRaw', 'endRaw', 'startDate', 'startTime', 'endTime', 'lecturer', 'major', 'class_of', 'description', 'dtend', 'day']);

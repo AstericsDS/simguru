@@ -15,6 +15,7 @@ class Event extends Model
         'event_name',
         'start',
         'end',
+<<<<<<< HEAD
         'lecturer',
         'major',
         'class_of',
@@ -22,6 +23,9 @@ class Event extends Model
         'dtend',
         'day',
         'verified',
+=======
+        'status',
+>>>>>>> feature/admin-system
     ];
 
     public function room(): BelongsTo

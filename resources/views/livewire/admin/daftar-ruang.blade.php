@@ -143,7 +143,6 @@
                                 <select wire:model='category' class="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 {{ $errors->has('category') ? 'border-red-500' : 'border-gray-300' }}">
                                     <option disabled>Pilih Kategori</option>
                                     <option value="class">Kelas</option>
-                                    <option value="not_class">Bukan Kelas</option>
                                     <option value="office">Kantor</option>
                                     <option value="laboratory">Laboratorium</option>
                                     <option value="rentable">Umum (disewakan)</option>
@@ -209,9 +208,9 @@
                             <template x-for="(item, index) in items" :key="index">
                                 <div class="flex space-x-4 mb-3 items-center">
                                     <input type="text" x-model="item.name" placeholder="Nama Barang" class="flex-1 p-2 border border-primary rounded-md focus:outline-none focus:ring-primary transition-all">
-    
+
                                     <input type="number" min="1" x-model.number="item.quantity" placeholder="Kuantitas" class="w-24 p-2 border border-primary rounded-md text-center focus:outline-none focus:ring-primary transition-all">
-    
+
                                     <button @click="items.splice(index, 1)" class="p-2 text-red-600 hover:text-red-800 transition duration-150 cursor-pointer" title="Remove Item" x-show="items.length > 1">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -303,8 +302,6 @@
                             <td class="px-6 py-4">
                                 @if ($room->category === 'class')
                                     <span class="px-2 py-1 rounded-lg bg-[#007BFF] text-white">Kelas</span>
-                                @elseif ($room->category === 'not_class')
-                                    <span class="px-2 py-1 rounded-lg bg-[#6C757D] text-white">Bukan Kelas</span>
                                 @elseif ($room->category === 'office')
                                     <span class="px-2 py-1 rounded-lg bg-[#17A2B8] text-white">Kantor</span>
                                 @elseif ($room->category === 'laboratory')
@@ -331,6 +328,9 @@
                                         <a href="{{ route('edit-ruang', $room->slug) }}" wire:navigate class="transition-all cursor-pointer rounded-xl p-2 mx-auto {{ in_array($room->id, $rejected_rooms) ? 'text-red-500 hover:bg-red-200 tooltip tooltip-error' : 'hover:text-yellow-900 hover:bg-yellow-200' }}" data-tip="Perubahan ditolak">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
+                                        <button wire:click='deleteModal({{ $room->id }})' class="hover:text-red-500 hover:bg-red-200 p-2 rounded-xl transition-all cursor-pointer">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
                                     @endif
                                 </div>
                             </td>
@@ -468,5 +468,22 @@
             </svg>
         </button>
 
+    </div>
+
+    <!-- Confirm modal -->
+    <div x-data="{ state: false }" @confirm-delete.window="state = !state" @keydown.window.escape="state = false">
+        <div x-show="state" class="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 flex items-center justify-center" x-transition:enter="transition ease-in-out duration-250" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in-out duration-250" x-transition:leave-end="opacity-0">
+            <div x-show="state" @click.outside="state = false" class="relative bg-white max-h-screen overflow-y-auto rounded-lg shadow-sm w-2xl p-2 opacity-100 z-50" x-transition:enter="transition ease-in-out duration-250" x-transition:enter-start="scale-50" x-transition:enter-end="scale-100" x-transition:leave="transition ease-in-out duration-250" x-transition:leave-end="scale-50">
+
+                <div class="flex flex-col items-center py-8">
+                    <i class="fa-solid fa-circle-exclamation text-gray-500 text-8xl"></i>
+                    <p class="pt-6 pb-12 text-2xl text-gray-600">Apakah anda yakin?</p>
+                    <div class="flex gap-6">
+                        <button wire:click='deleteRoom' class="px-8 py-2 rounded-md bg-primary hover:bg-unj-dark transition-all cursor-pointer text-white text-xl">Iya</button>
+                        <button @click="$dispatch('confirm-delete')" class="px-8 py-2 rounded-md border-2 border-red-600  hover:bg-red-700 hover:border-red-700 transition-all cursor-pointer text-xl hover:text-white">Tidak</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

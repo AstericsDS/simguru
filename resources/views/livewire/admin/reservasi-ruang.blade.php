@@ -6,9 +6,13 @@
     <div class="mt-6">
 
         {{-- Informasi --}}
+<<<<<<< HEAD
         <div x-data="{ show: true }" x-show="show" @toggle-calendar.window="show = !show"
             x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90"
             x-transition:enter-end="opacity-100 scale-100" class="flex gap-4">
+=======
+        <div x-data="{ show: false }" x-show="show" @toggle-calendar.window="show = !show" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100" class="flex gap-4">
+>>>>>>> feature/admin-system
             <div class="flex-1 flex flex-col gap-3">
                 {{-- Informasi Gedung --}}
                 <div>
@@ -34,6 +38,23 @@
                     <div class="flex gap-4">
                         <span>:</span>
                         <span>{{ $room->building->name }}</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2">
+                    <span>Kategori Ruang</span>
+                    <div class="flex gap-4">
+                        <span>:</span>
+                        @if ($room->category == 'class')
+                            <span>Kelas</span>
+                        @elseif ($room->category == 'office')
+                            <span>Kantor</span>
+                        @elseif ($room->category == 'laboratory')
+                            <span>Laboratorium</span>
+                        @elseif ($room->category == 'rentable')
+                            <span>Umum Disewakan</span>
+                        @elseif ($room->category == 'non_rentable')
+                            <span>Umum Tidak Disewakan</span>
+                        @endif
                     </div>
                 </div>
                 <div class="grid grid-cols-2">
@@ -122,12 +143,28 @@
         </div>
 
         {{-- Kalender --}}
+<<<<<<< HEAD
         <div x-data="{ show: false }" x-show="show" @toggle-calendar.window="show = !show"
             x-transition:enter="transition ease-out duration-300 transform"
             x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
             x-init="$watch('show', value => { if (value) { $nextTick(() => { calendar2.render(); }); } })">
             <div id="selectable" wire:ignore></div>
             {{-- <full-calendar wire:ignore/> --}}
+=======
+        <div x-data="{ show: true }" x-show="show" @toggle-calendar.window="show = !show" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-init="$watch('show', value => { if (value) { calendar2.render(); } })">
+            @if ($room->category != 'class')
+                <div id="not_class_calendar" wire:ignore></div>
+            @else
+                <div class="flex items-center space-x-2 bg-green-200 border border-primary px-3 py-2 rounded-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+                    </svg>
+                    <span>Peminjaman ruang untuk perkuliahan dilakukan satu kali, silahkan tentukan jadwal kuliah per minggu.</span>
+
+                </div>
+                <div id="class_calendar" wire:ignore></div>
+            @endif
+>>>>>>> feature/admin-system
             <div class="mt-4 flex gap-4 justify-end">
                 <button @click="$dispatch('toggle-calendar')"
                     class="p-2 text-red-600 cursor-pointer hover:text-red-800 rounded-md px-4 transition-all">Kembali</button>
@@ -446,10 +483,15 @@
                     <i class="fa-solid fa-circle-exclamation text-gray-500 text-8xl"></i>
                     <p class="pt-6 pb-12 text-2xl text-gray-600">Apakah anda yakin?</p>
                     <div class="flex gap-6">
+<<<<<<< HEAD
                         <button wire:click='save'
                             class="px-8 py-2 rounded-md bg-primary hover:bg-primary-dark transition-all cursor-pointer text-white text-xl">Iya</button>
                         <button @click="$dispatch('confirm-modal')"
                             class="px-8 py-2 rounded-md border-2 border-red-300  hover:bg-red-400 hover:border-red-400 transition-all cursor-pointer text-xl hover:text-white">Tidak</button>
+=======
+                        <button wire:click='save' class="px-8 py-2 rounded-md bg-primary hover:bg-primary-dark transition-all cursor-pointer text-white text-xl">Iya</button>
+                        <button @click="$dispatch('confirm-modal')" class="px-8 py-2 rounded-md border-2 border-red-600  hover:bg-red-700 hover:border-red-700 transition-all cursor-pointer text-xl hover:text-white">Tidak</button>
+>>>>>>> feature/admin-system
                     </div>
                 </div>
             </div>

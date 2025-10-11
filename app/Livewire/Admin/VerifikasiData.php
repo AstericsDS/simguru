@@ -29,8 +29,12 @@ class VerifikasiData extends Component
     public function confirm($id, $action)
     {
         if ($action === 'reject') {
-            $this->validateOnly('reject_reason');
             $update = Update::findOrFail($id);
+            if ($update->type === 'delete') {
+                $update->update(['status' => 'approved', 'approved_by' => Auth::id()]);
+                return;
+            }
+            $this->validateOnly('reject_reason');
             $update->status = 'rejected';
             $update->reject_reason = $this->reject_reason;
             $update->save();
@@ -44,6 +48,19 @@ class VerifikasiData extends Component
         switch ($update->table) {
             case 'campuses':
                 $campus = Campus::find($update->record_id);
+
+                if ($update->type == 'delete') {
+                    $update->update(['status' => 'deleted', 'approved_by' => Auth::id()]);
+                    $deletedCampus = $campus->delete();
+                    $deletedUpdate = $update->delete();
+                    if ($deletedCampus && $deletedUpdate) {
+                        $this->dispatch('toast', status: 'success', message: 'Entri berhasil dihapus.');
+                        return;
+                    } else {
+                        $this->dispatch('toast', status: 'fail', message: 'Entri gagal dihapus.');
+                        return;
+                    }
+                }
 
                 if ($campus) {
                     $oldImages = $campus->images_path ?? [];
@@ -145,11 +162,24 @@ class VerifikasiData extends Component
             case 'buildings':
                 $building = Building::find($update->record_id);
 
+                if ($update->type == 'delete') {
+                    $update->update(['status' => 'deleted', 'approved_by' => Auth::id()]);
+                    $deletedBuilding = $building->delete();
+                    $deletedUpdate = $update->delete();
+                    if ($deletedBuilding && $deletedUpdate) {
+                        $this->dispatch('toast', status: 'success', message: 'Entri berhasil dihapus.');
+                        return;
+                    } else {
+                        $this->dispatch('toast', status: 'fail', message: 'Entri gagal dihapus.');
+                        return;
+                    }
+                }
+
                 if ($building) {
-                    $oldImages = $campus->images_path ?? [];
+                    $oldImages = $building->images_path ?? [];
                     $newImages = $data['images_path'] ?? [];
 
-                    $oldDocuments = $campus->documents_path ?? [];
+                    $oldDocuments = $building->documents_path ?? [];
                     $newDocuments = $data['documents_path'];
 
                     // Delete removed images from storage
@@ -244,6 +274,19 @@ class VerifikasiData extends Component
 
             case 'rooms':
                 $room = Room::find($update->record_id);
+
+                if ($update->type == 'delete') {
+                    $update->update(['status' => 'deleted', 'approved_by' => Auth::id()]);
+                    $deletedRoom = $room->delete();
+                    $deletedUpdate = $update->delete();
+                    if ($deletedRoom && $deletedUpdate) {
+                        $this->dispatch('toast', status: 'success', message: 'Entri berhasil dihapus.');
+                        return;
+                    } else {
+                        $this->dispatch('toast', status: 'fail', message: 'Entri gagal dihapus.');
+                        return;
+                    }
+                }
 
                 if ($room) {
                     $oldImages = $campus->images_path ?? [];
@@ -344,7 +387,6 @@ class VerifikasiData extends Component
             default:
                 throw new \Exception("Unsupported table type: {$update->table}");
         }
-
         $update->status = 'approved';
         $update->approved_by = Auth::id();
         $update->save();

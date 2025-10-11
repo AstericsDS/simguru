@@ -24,6 +24,7 @@ class DaftarKampus extends Component
     public $campusImages = [];
     public $rejected_campuses = [];
     public Campus $selectedCampus;
+    public ?Update $selectedUpdate = null;
 
     public function updatedName($value)
     {
@@ -108,6 +109,27 @@ class DaftarKampus extends Component
             $this->dispatch('close-modal');
             $this->dispatch('toast', status: 'fail', message: 'Maaf, entri anda tidak dapat diterima. Silakan coba lagi.');
         }
+    }
+
+    public function deleteCampus()
+    {
+        $update = $this->selectedUpdate->update(['type' => 'delete', 'status' => 'pending']);
+        if($update) {
+            $this->dispatch('confirm-delete');
+            $this->dispatch('toast', status: 'success', message: 'Permintaan telah diterima dan akan segera diverifikasi.');
+            return;
+        } else {
+            $this->dispatch('confirm-delete');
+            $this->dispatch('toast', status: 'fail', message: 'Maaf, permintaan tidak dapat diterima. Silahkan coba lagi.');
+            return;
+        }
+
+    }
+
+    public function deleteModal($id)
+    {
+        $this->selectedUpdate = Update::where('table', 'campuses')->where('record_id', $id)->first();
+        $this->dispatch('confirm-delete');
     }
 
     public function view($id)

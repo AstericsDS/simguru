@@ -8,11 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Room extends Model
 {
     /** @use HasFactory<\Database\Factories\RoomFactory> */
-    use HasFactory;
+    use HasFactory, SoftDeletes;
     protected $fillable = [
         'admin_id',
         'name',
@@ -32,6 +33,13 @@ class Room extends Model
         'images_path' => 'array',
         'documents_path' => 'array',
         'inventory' => 'array'
+    ];
+    public const CATEGORIES = [
+        'class'       => 'Kelas',
+        'office'      => 'Kantor',
+        'laboratory'  => 'Laboratorium',
+        'rentable'    => 'Sewa',
+        'non_rentable'=> 'Tidak Disewa',
     ];
     public function getRouteKeyName()
     {

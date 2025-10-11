@@ -27,6 +27,7 @@ class DaftarGedung extends Component
     public $documents_path = [];
     public $buildingImages = [];
     public $rejected_buildings = [];
+    public ?Update $selectedUpdate = null;
 
     public function rules()
     {
@@ -138,6 +139,26 @@ class DaftarGedung extends Component
         $pending = Update::find($id);
         $this->buildingImages = $pending->new_data['images_path'];
         $this->dispatch('view');
+    }
+    public function deleteBuilding()
+    {
+        $update = $this->selectedUpdate->update(['type' => 'delete', 'status' => 'pending']);
+        if ($update) {
+            $this->dispatch('confirm-delete');
+            $this->dispatch('toast', status: 'success', message: 'Permintaan telah diterima dan akan segera diverifikasi.');
+            return;
+        } else {
+            $this->dispatch('confirm-delete');
+            $this->dispatch('toast', status: 'fail', message: 'Maaf, permintaan tidak dapat diterima. Silahkan coba lagi.');
+            return;
+        }
+
+    }
+
+    public function deleteModal($id)
+    {
+        $this->selectedUpdate = Update::where('table', 'buildings')->where('record_id', $id)->first();
+        $this->dispatch('confirm-delete');
     }
 
     public function render()

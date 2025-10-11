@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('contact');
             $table->string('email');
             $table->text('description');
+            $table->softDeletes();
             $table->json('images_path')->nullable();
             $table->json('documents_path')->nullable();
             $table->timestamps();

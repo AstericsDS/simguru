@@ -1,12 +1,10 @@
 <div class="mt-4">
-    <!-- Statistik Card -->
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-6">
         <div class="bg-white rounded-lg shadow p-5">
-            <h6 class="text-gray-500 mb-2 font-normal">Total Kampus UNJ</h6>
+            <h6 class="text-gray-500 mb-2 font-normal">Total Kampus</h6>
             <h4 class="text-2xl font-semibold mb-3 flex items-center gap-2 text-slate-500">
-                {{ $campusCount }}
-                <span class="inline-flex items-center px-2 py-1 text-xs font-medium bg-blue-100 text-blue-700 rounded border border-blue-700">
-                    <i class="ti ti-trending-up"></i> Kampus UNJ
+                <span class="inline-flex items-center px-2 py-1 text-s font-medium bg-blue-100 text-blue-700 rounded border border-blue-700">
+                    <i class="ti ti-trending-up"></i> {{ $campusCount }}
                 </span>
             </h4>
             <p class="text-sm text-gray-500">
@@ -17,9 +15,8 @@
         <div class="bg-white rounded-lg shadow p-5">
             <h6 class="text-gray-500 mb-2 font-normal">Total Gedung</h6>
             <h4 class="text-2xl font-semibold mb-3 flex items-center gap-2 text-slate-500">
-                {{ $buildingCount }}
-                <span class="inline-flex items-center px-2 py-1 text-xs font-medium bg-green-100 text-green-700 rounded border border-green-700">
-                    <i class="ti ti-trending-up"></i> 70.5%
+                <span class="inline-flex items-center px-2 py-1 text-s font-medium bg-green-100 text-green-700 rounded border border-green-700">
+                    <i class="ti ti-trending-up"></i> {{ $buildingCount }}
                 </span>
             </h4>
             <p class="text-sm text-gray-500">
@@ -30,9 +27,8 @@
         <div class="bg-white rounded-lg shadow p-5">
             <h6 class="text-gray-500 mb-2 font-normal">Total Ruang</h6>
             <h4 class="text-2xl font-semibold mb-3 flex items-center gap-2 text-slate-500">
-                {{ $roomCount }}
-                <span class="inline-flex items-center px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-700 rounded border border-yellow-700">
-                    <i class="ti ti-trending-down"></i> 27.4%
+                <span class="inline-flex items-center px-2 py-1 text-s font-medium bg-yellow-100 text-yellow-700 rounded border border-yellow-700">
+                    <i class="ti ti-trending-down"></i> {{ $roomCount }}
                 </span>
             </h4>
             <p class="text-sm text-gray-500">
@@ -43,9 +39,8 @@
         <div class="bg-white rounded-lg shadow p-5">
             <h6 class="text-gray-500 mb-2 font-normal">Total Kelas</h6>
             <h4 class="text-2xl font-semibold mb-3 flex items-center gap-2 text-slate-500">
-                {{ $classCount }}
-                <span class="inline-flex items-center px-2 py-1 text-xs font-medium bg-red-100 text-red-700 rounded border border-red-700">
-                    <i class="ti ti-trending-down"></i> 27.4%
+                <span class="inline-flex items-center px-2 py-1 text-s font-medium bg-red-100 text-red-700 rounded border border-red-700">
+                    <i class="ti ti-trending-down"></i> {{ $classCount }}
                 </span>
             </h4>
             <p class="text-sm text-gray-500">
@@ -54,30 +49,27 @@
         </div>
     </div>
 
-    <!-- Jumlah Kampus dan Ruang -->
     <div class="bg-white rounded-lg shadow p-5 mb-6">
-        <h5 class="text-lg font-semibold mb-4">Jumlah Kampus dan Ruang</h5>
+        <h5 class="text-lg font-semibold mb-4">Statistik Total Gedung dan Ruang</h5>
         <div id="sales-report-chart"></div>
     </div>
 
-    <!-- Statistik Penggunaan Gedung dan Ruang -->
     <div class="bg-white rounded-lg shadow p-5 mb-6">
         <div class="flex justify-between items-center mb-4">
-            <h5 class="text-lg font-semibold">Statistik Penggunaan Gedung dan Ruang</h5>
+            <h5 class="text-lg font-semibold">Statistik Penggunaan Gedung dan Ruang (BLOM SINKRON)</h5>
             <div class="space-x-2">
-                <button id="btn-bulan" class="bg-gray-200 text-gray-700 px-3 py-1 rounded">Bulan</button>
-                <button id="btn-minggu" class="bg-blue-600 text-white px-3 py-1 rounded">Minggu</button>
+                <button id="btn-bulan" class="bg-blue-600 text-white px-3 py-1 rounded">Bulan</button>
+                <button id="btn-minggu" class="bg-gray-200 text-gray-700 px-3 py-1 rounded">Minggu</button>
+                <button id="btn-hari" class="bg-gray-200 text-gray-700 px-3 py-1 rounded">Hari</button>
             </div>
         </div>
         <div>
-            <div id="visitor-chart-1" style="display:none;"></div>
-            <div id="visitor-chart"></div>
+            <div id="usage-chart"></div>
         </div>
     </div>
 
-    <!-- Status Penggunaan Gedung dan Ruang -->
     <div class="bg-white rounded-lg shadow p-5">
-        <h5 class="text-lg font-semibold mb-4">Status Penggunaan Gedung dan Ruang</h5>
+        <h5 class="text-lg font-semibold mb-4">Status Penggunaan Gedung dan Ruang (BLOM SINKRON)</h5>
         <div class="overflow-x-auto">
             <table class="min-w-full divide-y divide-gray-200 text-sm">
                 <thead class="bg-gray-50">
@@ -126,83 +118,96 @@
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Chart Minggu (default tampil)
-            var optionsMinggu = {
-                chart: {
-                    type: 'bar',
-                    height: 350
-                },
-                series: [{
-                    name: 'Penggunaan',
-                    data: [50, 80, 65, 90, 70, 100, 85]
-                }], // data disesuaikan
-                xaxis: {
-                    categories: ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min']
-                }
-            };
-            var chartMinggu = new ApexCharts(document.querySelector("#visitor-chart"), optionsMinggu);
-            chartMinggu.render();
+        // Nyimpen instance chart di luar fungsi agar bisa diakses dan dihancurkan
+        let salesChartInstance = null;
+        let usageChartInstance = null;
 
-            // Chart Bulan (disembunyikan)
-            var optionsBulan = {
-                chart: {
-                    type: 'line',
-                    height: 350
-                },
-                series: [{
-                    name: 'Penggunaan',
-                    data: [300, 400, 350, 450, 420, 480, 460]
-                }], // data disesuaikan
-                xaxis: {
-                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul']
-                }
-            };
-            var chartBulan = new ApexCharts(document.querySelector("#visitor-chart-1"), optionsBulan);
-            chartBulan.render();
+        const initDashboardCharts = () => {
+            // Hancurkan chart yang sudah ada sebelum membuat yang baru
+            if (salesChartInstance) {
+                salesChartInstance.destroy();
+            }
+            if (usageChartInstance) {
+                usageChartInstance.destroy();
+            }
 
-            // Chart Sales Report (Jumlah Kampus dan Ruang)
+            const salesChartEl = document.querySelector("#sales-report-chart");
+            const usageChartEl = document.querySelector("#usage-chart");
+
+            // Pastikan elemennya ada di halaman sebelum mencoba membuat chart
+            if (!salesChartEl || !usageChartEl) {
+                return; 
+            }
+
+            // Chart Total 
             var optionsSales = {
-                chart: {
-                    type: 'area',
-                    height: 350
-                },
-                series: [{
-                    name: 'Jumlah',
-                    data: [4, 150, 1500, 400]
-                }], // data sesuai total kampus, gedung, ruang, kelas
-                xaxis: {
-                    categories: ['Kampus', 'Gedung', 'Ruang', 'Kelas']
-                }
+                chart: { type: 'area', height: 350 },
+                series: [{ name: 'Jumlah', data: [{{ $campusCount }}, {{ $buildingCount }}, {{ $roomCount }}, {{ $classCount }}] }],
+                xaxis: { categories: ['Kampus', 'Gedung', 'Ruang', 'Kelas'] }
             };
-            var chartSales = new ApexCharts(document.querySelector("#sales-report-chart"), optionsSales);
-            chartSales.render();
+            salesChartInstance = new ApexCharts(salesChartEl, optionsSales);
+            salesChartInstance.render();
+            
+            // Chart Penggunaan (Bulan, Minggu, Hari)
+            var optionsBulan = {
+                chart: { type: 'line', height: 350 },
+                series: [{ name: 'Penggunaan', data: [300, 400, 350, 450, 420, 480, 460, 500, 480, 510, 530, 520] }],
+                xaxis: { categories: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Ags', 'Sep', 'Okt', 'Nov', 'Des'] },
+            };
 
-            // Tombol switch chart bulan/minggu
+            var optionsMinggu = {
+                chart: { type: 'bar', height: 350 },
+                series: [{ name: 'Penggunaan', data: [50, 80, 65, 90, 70, 100, 85] }],
+                xaxis: { categories: ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'] },
+            };
+
+            var optionsHari = {
+                chart: { type: 'area', height: 350 },
+                series: [{ name: 'Penggunaan', data: [2, 3, 5, 8, 15, 25, 30, 32, 35, 33, 28, 20, 18, 15, 12, 10, 8, 5, 4, 3, 2, 1, 1, 0] }],
+                xaxis: { categories: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'] },
+            };
+
+            usageChartInstance = new ApexCharts(usageChartEl, optionsBulan);
+            usageChartInstance.render();
+
             const btnBulan = document.getElementById('btn-bulan');
             const btnMinggu = document.getElementById('btn-minggu');
-            const chartBulanDiv = document.getElementById('visitor-chart-1');
-            const chartMingguDiv = document.getElementById('visitor-chart');
+            const btnHari = document.getElementById('btn-hari');
 
-            btnBulan.addEventListener('click', function() {
-                btnBulan.classList.add('bg-blue-600', 'text-white');
+            btnBulan.addEventListener('click', () => {
                 btnBulan.classList.remove('bg-gray-200', 'text-gray-700');
+                btnBulan.classList.add('bg-blue-600', 'text-white');
                 btnMinggu.classList.remove('bg-blue-600', 'text-white');
+                btnHari.classList.remove('bg-blue-600', 'text-white');
                 btnMinggu.classList.add('bg-gray-200', 'text-gray-700');
-
-                chartBulanDiv.style.display = 'block';
-                chartMingguDiv.style.display = 'none';
+                btnHari.classList.add('bg-gray-200', 'text-gray-700');
+                usageChartInstance.updateOptions(optionsBulan);
             });
 
-            btnMinggu.addEventListener('click', function() {
-                btnMinggu.classList.add('bg-blue-600', 'text-white');
+            btnMinggu.addEventListener('click', () => {
                 btnMinggu.classList.remove('bg-gray-200', 'text-gray-700');
+                btnMinggu.classList.add('bg-blue-600', 'text-white');
                 btnBulan.classList.remove('bg-blue-600', 'text-white');
+                btnHari.classList.remove('bg-blue-600', 'text-white');
                 btnBulan.classList.add('bg-gray-200', 'text-gray-700');
-
-                chartMingguDiv.style.display = 'block';
-                chartBulanDiv.style.display = 'none';
+                btnHari.classList.add('bg-gray-200', 'text-gray-700');
+                usageChartInstance.updateOptions(optionsMinggu);
             });
-        });
+
+            btnHari.addEventListener('click', () => {
+                btnHari.classList.remove('bg-gray-200', 'text-gray-700');
+                btnHari.classList.add('bg-blue-600', 'text-white');
+                btnBulan.classList.remove('bg-blue-600', 'text-white');
+                btnMinggu.classList.remove('bg-blue-600', 'text-white');
+                btnBulan.classList.add('bg-gray-200', 'text-gray-700');
+                btnMinggu.classList.add('bg-gray-200', 'text-gray-700');
+                usageChartInstance.updateOptions(optionsHari);
+            });
+        };
+
+        // Event listener untuk Livewire dan juga Turbo sebagai fallback
+        document.addEventListener('DOMContentLoaded', initDashboardCharts);
+        document.addEventListener('livewire:navigated', initDashboardCharts);
+        document.addEventListener('turbo:load', initDashboardCharts);
     </script>
 @endpush

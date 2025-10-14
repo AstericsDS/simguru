@@ -125,8 +125,13 @@
 
                         {{-- Submit --}}
                         <div @close-modal.window="state = false" class="flex justify-end mt-8">
-                            <button type="submit" class="px-4 py-2 text-gray-900 font-semibold border-2 border-primary rounded-lg cursor-pointer hover:bg-primary hover:text-white transition-all focus:outline-none focus:bg-primary focus:text-white">
-                                Tambah
+                            <button type="submit" wire:loading.attr="disabled" wire:target="images_path,documents_path,save" class="px-4 py-2 text-gray-900 font-semibold border-2 border-primary rounded-lg cursor-pointer hover:bg-primary hover:text-white transition-all focus:outline-none focus:bg-primary focus:text-white">
+                                <span wire:loading.remove wire:target="images_path,documents_path,save">
+                                    Simpan
+                                </span>
+                                <span wire:loading wire:target="images_path,documents_path,save">
+                                    Mengupload...
+                                </span>
                             </button>
                         </div>
                     </form>
@@ -205,7 +210,7 @@
                                         <a href="{{ route('edit-kampus', $campus->slug) }}" wire:navigate class="transition-all cursor-pointer rounded-xl p-2 mx-auto {{ in_array($campus->id, $rejected_campuses) ? 'text-red-500 hover:bg-red-200 tooltip tooltip-error' : 'hover:text-yellow-900 hover:bg-yellow-200' }}" data-tip="Perubahan ditolak">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
-                                        <button wire:click='deleteModal({{$campus->id}})' class="hover:text-red-500 hover:bg-red-200 p-2 rounded-xl transition-all cursor-pointer">
+                                        <button wire:click='deleteModal({{ $campus->id }})' class="hover:text-red-500 hover:bg-red-200 p-2 rounded-xl transition-all cursor-pointer">
                                             <i class="fa-solid fa-trash"></i>
                                         </button>
                                     @endif

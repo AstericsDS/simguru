@@ -82,8 +82,12 @@
                                     <span class="px-2 py-1 rounded-lg bg-[#28A745] text-white">Umum (disewakan)</span>
 
                                 @break
+                                @case('non_rentable')
+                                    <span class="px-2 py-1 rounded-lg bg-yellow-500 text-white">Umum (tidak disewakan)</span>
+
+                                @break
                                 @default
-                                <span class="px-2 py-1 rounded-lg bg-[#28A745] text-white">nonis</span>
+                                <span class="px-2 py-1 rounded-lg bg-[#28A745] text-white">nonexist</span>
                             @endswitch
                         </div>
                         <div class="flex gap-2 items-center mb-3">

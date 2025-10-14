@@ -136,8 +136,13 @@
 
                         {{-- Submit --}}
                         <div @close-modal.window="state = false" class="flex justify-end mt-8">
-                            <button type="submit" class="px-4 py-2 text-gray-900 font-semibold border-2 border-primary rounded-lg cursor-pointer hover:bg-primary hover:text-white transition-all focus:outline-none focus:bg-primary focus:text-white">
-                                Tambah
+                            <button type="submit" wire:loading.attr="disabled" wire:target="images_path,documents_path,save" class="px-4 py-2 text-gray-900 font-semibold border-2 border-primary rounded-lg cursor-pointer hover:bg-primary hover:text-white transition-all focus:outline-none focus:bg-primary focus:text-white">
+                                <span wire:loading.remove wire:target="images_path,documents_path,save">
+                                    Simpan
+                                </span>
+                                <span wire:loading wire:target="images_path,documents_path,save">
+                                    Mengupload...
+                                </span>
                             </button>
                         </div>
                     </form>

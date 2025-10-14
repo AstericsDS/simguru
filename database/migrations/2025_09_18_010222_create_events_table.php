@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('description');
             $table->string('dtend')->nullable();
             $table->string('day')->nullable();
-            $table->enum('verified', ['pending', 'approved', 'rejected']);
+            $table->enum('status', ['pending', 'approved', 'rejected']);
             $table->timestamps();
         });
     }

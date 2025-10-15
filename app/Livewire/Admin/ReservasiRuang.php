@@ -63,7 +63,7 @@ class ReservasiRuang extends Component
             'description' => $this->description,
             'dtend' => $this->dtend,
             'day' => $this->day,
-            'verified' => 'pending',
+            'status' => 'pending',
         ]);
 
         $this->reset(['event_name', 'startRaw', 'endRaw', 'startDate', 'startTime', 'endTime', 'lecturer', 'major', 'class_of', 'description', 'dtend', 'day']);
@@ -80,7 +80,7 @@ class ReservasiRuang extends Component
     {
         $this->room = $room;
         $this->room_id = $room->id;
-        $this->dispatch('event-load', Event: Event::where('room_id', $this->room->id)->where('verified', 'approved')->get());
+        $this->dispatch('event-load', Event: Event::where('room_id', $this->room->id)->where('status', 'approved')->get());
     }
     public function render()
     {

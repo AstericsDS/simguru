@@ -21,7 +21,7 @@ class Event extends Model
         'description',
         'dtend',
         'day',
-        'verified',
+        'status',
     ];
 
     public function room(): BelongsTo

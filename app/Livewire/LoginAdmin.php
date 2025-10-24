@@ -2,24 +2,20 @@
 
 namespace App\Livewire;
 
-use Livewire\Component;
-use Illuminate\Http\Request;
-use Livewire\Attributes\Title;
-use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
+use Livewire\Attributes\Layout;
 
-#[Title('Login')]
 #[Layout('components.layouts.login')]
-
-class Login extends Component
+class LoginAdmin extends Component
 {
     public $name, $password;
     protected $rules = [
         'name' => 'required',
         'password' => 'required'
     ];
-
-    public function login() {
+    public function login()
+    {
         $credentials = $this->validate();
 
         if (Auth::attempt($credentials)) {
@@ -33,6 +29,6 @@ class Login extends Component
 
     public function render()
     {
-        return view('livewire.login');
+        return view('livewire.login-admin');
     }
 }

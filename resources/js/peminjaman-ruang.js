@@ -63,19 +63,21 @@ import rrulePlugin from "@fullcalendar/rrule";
 //     },
 //     allDaySlot: false,
 // };
-const formattedEvents = [];
+let formattedEvents;
 
-document.addEventListener("event-load", (event) => {
-    const events = event.detail.Events;
+document.addEventListener("events-loaded", (event) => {
+    console.log(event);
+    const events = event.detail.Event;
+    console.log(events);
 
-    formattedEvents = events.map((item) => {
+
+    formattedEvents = events.map(item => {
         return {
             title: item.event_name,
             start: item.start,
             end: item.end,
         };
     });
-    console.log(event);
 })
 
 window.calendar2;

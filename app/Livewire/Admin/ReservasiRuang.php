@@ -32,9 +32,9 @@ class ReservasiRuang extends Component
         if ($payload[5] === 'kuliah') {
             $this->validate([
                 'event_name' => 'required',
+                'reserved_by' => 'required',
                 'lecturer' => 'required',
                 'major' => 'required',
-                'class_of' => 'required',
                 'dtstart' => 'required|date',
                 'dtend' => 'required|date',
             ]);
@@ -55,18 +55,18 @@ class ReservasiRuang extends Component
             'room_id' => $this->room->id,
             'admin' => Auth::id(),
             'event_name' => $this->event_name,
+            'reserved_by' => $this->reserver_by ?? 'Umum',
             'start' => $this->startRaw,
             'end' => $this->endRaw,
             'lecturer' => $this->lecturer,
             'major' => $this->major,
-            'class_of' => $this->class_of,
             'description' => $this->description,
             'dtend' => $this->dtend,
             'day' => $this->day,
-            'verified' => 'pending',
+            'status' => 'pending',
         ]);
 
-        $this->reset(['event_name', 'startRaw', 'endRaw', 'startDate', 'startTime', 'endTime', 'lecturer', 'major', 'class_of', 'description', 'dtend', 'day']);
+        $this->reset(['event_name', 'reserved_by','startRaw', 'endRaw', 'startDate', 'startTime', 'endTime', 'lecturer', 'major', 'description', 'dtend', 'day']);
 
         if ($createEvent) {
             $this->dispatch('confirm-modal');
@@ -80,7 +80,8 @@ class ReservasiRuang extends Component
     {
         $this->room = $room;
         $this->room_id = $room->id;
-        $this->dispatch('event-load', Event: Event::where('room_id', $this->room->id)->where('verified', 'approved')->get());
+        $this->dispatch('events-loaded', Event: Event::where('room_id', $this->room->id)->where('status', 'approved')->get());
+        // dd(Event::where('room_id', $this->room->id)->where('status', 'approved')->get());
     }
     public function render()
     {

@@ -138,7 +138,7 @@ let calendar = new Calendar(calendarEl, {
 window.addEventListener("events-loaded", (event) => {
     const events = event.detail.Events;
 
-    const formattedEvents = events.map((item) => {
+    const formattedEvents = events.map(item => {
         if (item.dtend) {
             return {
                 title: item.event_name,

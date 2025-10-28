@@ -1,13 +1,27 @@
 import ApexCharts from "apexcharts";
 
-var options = {
-    chart: {
-        type: "donut",
-    },
-    series: [30, 40, 35, 50],
-    labels: ["gedung", "gedung2", "gedung3", "gedung4"],
-};
 
-var chart = new ApexCharts(document.querySelector("#homepagechart"), options);
+window.addEventListener("graph", (count) => {
+    let CampusCount;
+    let BuildingCount;
+    let RoomCount;
+    console.log(count);
+    CampusCount = count.detail.kampus;
+    BuildingCount = count.detail.gedung;
+    RoomCount = count.detail.ruang;
 
-chart.render();
+    var options = {
+        chart: {
+            type: "donut",
+        },
+        series: [CampusCount, BuildingCount, RoomCount],
+        labels: ["Kampus", "Gedung", "Ruang"],
+    };
+
+    var chart = new ApexCharts(
+        document.querySelector("#homepagechart"),
+        options
+    );
+
+    chart.render();
+});

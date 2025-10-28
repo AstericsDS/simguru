@@ -21,6 +21,10 @@ class Homepage extends Component {
         $this->buildingrooms = Room::where('building_id', $value)->get();
     }
 
+    public function mount(){
+        $this->dispatch("graph", gedung: Building::count(), ruang: Room::count(), kampus: Campus::count());
+    }
+
     public function render(){
         $campuses = Campus::all();
         $buildings = Building::all();

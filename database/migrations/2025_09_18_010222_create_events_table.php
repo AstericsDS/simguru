@@ -16,11 +16,12 @@ return new class extends Migration
             $table->foreignId('room_id')->constrained('rooms');
             $table->foreignId('admin')->constrained('users');
             $table->string('event_name');
+            $table->string('reserved_by');
             $table->string('start');
             $table->string('end');
             $table->string('lecturer')->nullable();
             $table->string('major')->nullable();
-            $table->integer('class_of')->nullable();
+            // $table->integer('class_of')->nullable();
             $table->string('description');
             $table->string('dtend')->nullable();
             $table->string('day')->nullable();

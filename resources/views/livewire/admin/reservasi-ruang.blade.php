@@ -154,26 +154,24 @@
 
 
     {{-- Modal --}}
-    <div
-        x-data="{
-            state: false,
-            startRaw: '',
-            endRaw: '',
-            startDate: '',
-            startTime: '',
-            endTime: '',
-            tab: 'biasa',
-            prevTab: 'biasa',
-            direction: 'right',
-            changeTab(newTab) {
-                this.direction = (newTab === 'kuliah' && this.tab === 'biasa') ? 'right' : 'left';
-                this.prevTab = this.tab;
-                this.tab = newTab;
-            }
-        }"
+    <div x-data="{
+        state: false,
+        startRaw: '',
+        endRaw: '',
+        startDate: '',
+        startTime: '',
+        endTime: '',
+        tab: 'biasa',
+        prevTab: 'biasa',
+        direction: 'right',
+        changeTab(newTab) {
+            this.direction = (newTab === 'kuliah' && this.tab === 'biasa') ? 'right' : 'left';
+            this.prevTab = this.tab;
+            this.tab = newTab;
+        }
+    }"
         @event-modal.window="state = !state; startRaw = $event.detail.startRaw; endRaw = $event.detail.endRaw; startDate = $event.detail.startDate; startTime = $event.detail.startTime; endTime = $event.detail.endTime"
-        @keydown.window.escape="state = false"
-    >
+        @keydown.window.escape="state = false">
         <div x-show="state" class="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 flex items-center justify-center"
             x-transition:enter="transition ease-in-out duration-250" x-transition:enter-start="opacity-0"
             x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in-out duration-250"
@@ -201,35 +199,33 @@
                 </div>
 
                 {{-- Modal Switch Tab --}}
-                <div class="grid grid-cols-2 text-center">
-                    <button
-                        @click="changeTab('biasa')"
-                        :class="tab === 'biasa' ? 'border-b-2 border-primary text-primary font-medium' : 'border-b-2 border-gray-200 text-gray-400 font-medium'"
-                        class="p-4 transition-all"
-                    >
-                        Jadwal Biasa
-                    </button>
-                    <button
-                        @click="changeTab('kuliah')"
-                        :class="tab === 'kuliah' ? 'border-b-2 border-primary text-primary font-medium' : 'border-b-2 border-gray-200 text-gray-400 font-medium'"
-                        class="p-4 transition-all"
-                    >
-                        Jadwal Kuliah
-                    </button>
-                </div>
+                @if ($room->category == 'class' || $room->category == 'laboratory')
+                    <div class="grid grid-cols-2 text-center">
+                        <button @click="changeTab('biasa')"
+                            :class="tab === 'biasa' ? 'border-2 border-primary text-primary font-medium cursor-pointer' :
+                                'border-2 border-gray-200 text-gray-400 font-medium cursor-pointer'"
+                            class="p-4 transition-all">
+                            Jadwal Biasa
+                        </button>
+                        <button @click="changeTab('kuliah')"
+                            :class="tab === 'kuliah' ? 'border-2 border-primary text-primary font-medium cursor-pointer' :
+                                'border-2 border-gray-200 text-gray-400 font-medium cursor-pointer'"
+                            class="p-4 transition-all">
+                            Jadwal Kuliah
+                        </button>
+                    </div>
+                @endif
 
                 {{-- Modal content --}}
                 <div class="relative flex flex-col gap-5 p-8 pt-0 mt-8 min-h-[400px] overflow-hidden">
                     <template x-if="tab === 'biasa'">
-                        <div
-                            x-transition:enter="transition transform ease-in duration-300"
+                        <div x-transition:enter="transition transform ease-in duration-300"
                             :x-transition:enter-start="direction === 'right' ? 'translate-x-full opacity-0' : '-translate-x-full opacity-0'"
                             x-transition:enter-end="translate-x-0 opacity-100"
                             x-transition:leave="transition transform ease-out duration-200"
                             x-transition:leave-start="translate-x-0 opacity-100"
                             :x-transition:leave-end="direction === 'right' ? '-translate-x-full opacity-0' : 'translate-x-full opacity-0'"
-                            class="absolute w-full gap-5"
-                        >
+                            class="absolute w-full gap-5">
                             <div class="grid grid-cols-[275px_1fr]">
                                 <span>Hari dan Tanggal</span>
                                 <div class="flex gap-4">
@@ -251,6 +247,19 @@
                                     <div class="flex flex-col">
                                         <input wire:model="event_name" type="text"
                                             class="bg-gray-50 flex-1 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg w-full {{ $errors->has('event') ? 'border-red-500' : 'border-gray-300' }}">
+                                        @error('event')
+                                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-[275px_1fr]">
+                                <span>Peminjam</span>
+                                <div class="flex gap-4">
+                                    <span>:</span>
+                                    <div class="flex flex-col">
+                                        <input wire:model="reserved_by" type="text"
+                                            class="bg-gray-50 flex-1 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg w-full {{ $errors->has('reserved_by') ? 'border-red-500' : 'border-gray-300' }}">
                                         @error('event')
                                             <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                                         @enderror
@@ -273,15 +282,13 @@
                         </div>
                     </template>
                     <template x-if="tab === 'kuliah'">
-                        <div
-                            x-transition:enter="transition transform ease-in duration-300"
+                        <div x-transition:enter="transition transform ease-in duration-300"
                             :x-transition:enter-start="direction === 'right' ? 'translate-x-full opacity-0' : '-translate-x-full opacity-0'"
                             x-transition:enter-end="translate-x-0 opacity-100"
                             x-transition:leave="transition transform ease-out duration-200"
                             x-transition:leave-start="translate-x-0 opacity-100"
                             :x-transition:leave-end="direction === 'right' ? '-translate-x-full opacity-0' : 'translate-x-full opacity-0'"
-                            class="absolute w-full"
-                        >
+                            class="absolute w-full">
                             <div class="grid grid-cols-[275px_1fr]">
                                 <span>Hari dan Tanggal</span>
                                 <div class="flex gap-4">
@@ -303,6 +310,19 @@
                                     <div class="flex flex-col">
                                         <input wire:model="event_name" type="text"
                                             class="bg-gray-50 flex-1 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg w-full {{ $errors->has('event') ? 'border-red-500' : 'border-gray-300' }}">
+                                        @error('event')
+                                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-[275px_1fr]">
+                                <span>Peminjam</span>
+                                <div class="flex gap-4">
+                                    <span>:</span>
+                                    <div class="flex flex-col">
+                                        <input wire:model="reserved_by" type="text"
+                                            class="bg-gray-50 flex-1 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg w-full {{ $errors->has('reserved_by') ? 'border-red-500' : 'border-gray-300' }}">
                                         @error('event')
                                             <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                                         @enderror
@@ -328,19 +348,6 @@
                                     <span>:</span>
                                     <div class="flex flex-col">
                                         <input wire:model="major" type="text"
-                                            class="bg-gray-50 flex-1 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg w-full {{ $errors->has('event') ? 'border-red-500' : 'border-gray-300' }}">
-                                        @error('event')
-                                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-[275px_1fr]">
-                                <span>Angkatan</span>
-                                <div class="flex gap-4">
-                                    <span>:</span>
-                                    <div class="flex flex-col">
-                                        <input wire:model="class_of" type="number"
                                             class="bg-gray-50 flex-1 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg w-full {{ $errors->has('event') ? 'border-red-500' : 'border-gray-300' }}">
                                         @error('event')
                                             <p class="mt-2 text-sm text-red-600">{{ $message }}</p>

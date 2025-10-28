@@ -44,6 +44,11 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('0001')
         ]);
 
+        User::create([
+            'role' => 1,
+            'email' => 'rickymandala@unj.ac.id',
+        ]);
+
         // User::create([
         //     'role' => 2,
         //     'name' => 'Admin',

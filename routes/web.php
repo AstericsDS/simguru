@@ -3,6 +3,7 @@
 use App\Livewire\Form;
 use App\Livewire\Debug;
 use App\Livewire\Login;
+use App\Livewire\LoginAdmin;
 use App\Livewire\Ruang;
 use App\Livewire\Campus;
 use App\Livewire\Gedung;
@@ -34,6 +35,7 @@ use App\Livewire\Admin\PeminjamanRuang;
 use App\Livewire\Admin\ReservasiRuang;
 use App\Livewire\Admin\VerifikasiJadwal;
 use App\Livewire\Admin\ManajemenUser;
+Use App\Livewire\Admin\ViewUser;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\SsoController;
@@ -66,10 +68,12 @@ Route::middleware(['auth'])->prefix('admin')->group(function(){
     Route::get('/gedung/{id}', ViewGedung::class)->name('view-gedung');
     Route::get('/ruang/{id}', ViewRuang::class)->name('view-ruang');
     Route::get('/manajemen-user', ManajemenUser::class)->name('manajemen-user');
+    Route::get('/user/{user}', ViewUser::class)->name('view-user');
 });
 
 // Auth
 Route::get('/login', Login::class)->name('login');
+Route::get('/login/admin', LoginAdmin::class)->name('login-admin');
 // Route::get('/login', Login::class)->name('login');
 
 // SSO

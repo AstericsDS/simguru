@@ -41,7 +41,7 @@
                     dan
                     ruang di Universitas Negeri Jakarta.
                 </p>
-                <div class="grid grid-cols-1 lg:grid-cols-2 text-sm text-center gap-3">
+                <div class="grid grid-cols-1 lg:grid-cols-2 text-sm gap-3">
                     <p class="flex gap-4"><svg xmlns="http://www.w3.org/2000/svg" class="stroke-primary" width="24"
                             height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round"
@@ -54,42 +54,37 @@
                             <path d="M10 14h4" />
                             <path d="M10 18h4" />
                         </svg>Manajemen Gedung dan Ruang</p>
-                    <p class="flex gap-4"><svg xmlns="http://www.w3.org/2000/svg" class="stroke-primary" width="24"
-                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    <p class="flex gap-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-building2-icon lucide-building-2 stroke-primary">
-                            <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
-                            <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
-                            <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
-                            <path d="M10 6h4" />
-                            <path d="M10 10h4" />
-                            <path d="M10 14h4" />
-                            <path d="M10 18h4" />
-                        </svg>Manajemen Gedung dan Ruang</p>
-                    <p class="flex gap-4"><svg xmlns="http://www.w3.org/2000/svg" class="stroke-primary" width="24"
-                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            class="lucide lucide-calendar-plus-icon lucide-calendar-plus stroke-primary">
+                            <path d="M16 19h6" />
+                            <path d="M16 2v4" />
+                            <path d="M19 16v6" />
+                            <path d="M21 12.598V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h8.5" />
+                            <path d="M3 10h18" />
+                            <path d="M8 2v4" />
+                        </svg>Peminjaman Ruangan</p>
+                    <p class="flex gap-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-building2-icon lucide-building-2 stroke-primary">
-                            <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
-                            <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
-                            <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
-                            <path d="M10 6h4" />
-                            <path d="M10 10h4" />
-                            <path d="M10 14h4" />
-                            <path d="M10 18h4" />
-                        </svg>Manajemen Gedung dan Ruang</p>
-                    <p class="flex gap-4"><svg xmlns="http://www.w3.org/2000/svg" class="stroke-primary" width="24"
-                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            class="lucide lucide-calendar-plus2-icon lucide-calendar-plus-2 stroke-primary">
+                            <path d="M8 2v4" />
+                            <path d="M16 2v4" />
+                            <rect width="18" height="18" x="3" y="4" rx="2" />
+                            <path d="M3 10h18" />
+                            <path d="M10 16h4" />
+                            <path d="M12 14v4" />
+                        </svg>Penyewaan Ruangan</p>
+                    <p class="flex gap-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-building2-icon lucide-building-2 stroke-primary">
-                            <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
-                            <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
-                            <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
-                            <path d="M10 6h4" />
-                            <path d="M10 10h4" />
-                            <path d="M10 14h4" />
-                            <path d="M10 18h4" />
-                        </svg>Manajemen Gedung dan Ruang</p>
+                            class="lucide lucide-layout-grid-icon lucide-layout-grid stroke-primary">
+                            <rect width="7" height="7" x="3" y="3" rx="1" />
+                            <rect width="7" height="7" x="14" y="3" rx="1" />
+                            <rect width="7" height="7" x="14" y="14" rx="1" />
+                            <rect width="7" height="7" x="3" y="14" rx="1" />
+                        </svg>Pengelolaan inventaris</p>
                 </div>
             </div>
         </div>

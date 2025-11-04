@@ -98,10 +98,18 @@
                                 @enderror
                             </div>
                             <div class="col-span-2">
-                                <label for="name" class="block mb-2 text-sm font-medium">Alamat</label>
+                                <label for="address" class="block mb-2 text-sm font-medium">Alamat</label>
                                 <input wire:model="address" type="text" id="address"
                                     class="bg-gray-50 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg block w-full p-2.5 {{ $errors->has('address') ? 'border-red-500' : 'border-gray-300' }}">
                                 @error('address')
+                                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="col-span-2">
+                                <label for="area_size" class="block mb-2 text-sm font-medium">Luas Kawasan</label>
+                                <input wire:model="area_size" type="text" id="area_size"
+                                    class="bg-gray-50 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg block w-full p-2.5 {{ $errors->has('area_size') ? 'border-red-500' : 'border-gray-300' }}">
+                                @error('area_size')
                                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
@@ -182,6 +190,9 @@
                             Alamat
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            Luas Kawasan
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             Nomor Telepon
                         </th>
                         <th scope="col" class="px-6 py-3">
@@ -215,6 +226,9 @@
                             </td>
                             <td class="px-6 py-4">
                                 {{ $campus->address }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $campus->area_size }}
                             </td>
                             <td class="px-6 py-4">
                                 {{ $campus->contact }}

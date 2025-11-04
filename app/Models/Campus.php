@@ -17,6 +17,7 @@ class Campus extends Model
         'name',
         'slug',
         'address',
+        'area_size',
         'contact',
         'description',
         'images_path',

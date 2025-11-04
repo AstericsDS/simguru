@@ -79,7 +79,7 @@
                                 @endswitch
                             </td>
                             <td class="px-6 py-4">{{ $update->admin->name }}</td>
-                            <td class="px-6 py-4">{{ $update->created_at->locale('id')->translatedFormat('l, d F Y') }}</td>
+                            <td class="px-6 py-4">{{ $update->created_at->locale('id')->translatedFormat('l, d F Y H:i:s') }}</td>
                             <td class="px-6 py-4">
                                 @switch($update->status)
                                     @case('pending')

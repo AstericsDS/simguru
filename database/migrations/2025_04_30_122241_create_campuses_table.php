@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('slug');
             $table->string('address');
+            $table->integer('area_size');
             $table->string('contact');
             $table->text('description');
             $table->softDeletes();

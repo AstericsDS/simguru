@@ -37,6 +37,7 @@ class DaftarKampus extends Component
             'name' => 'required|unique:campuses,name',
             'slug' => 'required',
             'address' => 'required',
+            'area_size' => 'required|integer',
             'contact' => 'required|digits_between:8,13',
             'description' => 'required',
             'images_path' => 'required|array',
@@ -51,6 +52,8 @@ class DaftarKampus extends Component
         return [
             'name.required' => 'Nama harus diisi',
             'address.required' => 'Alamat harus diisi',
+            'area_size.required' => 'Luas bangunan harus diisi',
+            'area_size.integer' => 'Luas bangunan harus berupa angka',
             'contact.required' => 'Nomor telepon harus diisi',
             'contact.digits_between' => 'Nomor telepon harus berupa angka dan minimal 8 digit',
             'description.required' => 'Deskripsi harus diisi',
@@ -101,7 +104,7 @@ class DaftarKampus extends Component
             'reject_reason' => null,
         ]);
         if ($created) {
-            $this->reset(['name', 'address', 'contact', 'description', 'images_path', 'documents_path']);
+            $this->reset(['name', 'address', 'area_size', 'contact', 'description', 'images_path', 'documents_path']);
             $this->dispatch('close-modal');
             $this->dispatch('toast', status: 'success', message: 'Entri anda telah masuk dan akan segera diverifikasi.');
         } else {

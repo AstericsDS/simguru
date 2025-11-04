@@ -40,7 +40,9 @@ class DaftarRuang extends Component
             'floor' => 'required',
             'capacity' => 'required|integer',
             'category' => 'required',
-            'area' => 'required|integer',
+            'length' => 'required|integer',
+            'width' => 'required|integer',
+            'height' => 'required|integer',
             'description' => 'required',
             'images_path' => 'required|array',
             'images_path.*' => 'file|image|max:2048',
@@ -61,8 +63,12 @@ class DaftarRuang extends Component
             'capacity.required' => 'Kapasitas harus dipilih',
             'capacity.integer' => 'Kapasitas harus berupa angka',
             'category.required' => 'Kategori harus dipilih',
-            'area.required' => 'Luas harus diisi',
-            'area.integer' => 'Area harus berupa angka',
+            'length.required' => 'Panjang Ruangan harus diisi',
+            'length.integer' => 'Panjang Ruangan harus berupa angka',
+            'width.required' => 'Lebar Ruangan harus diisi',
+            'width.integer' => 'Lebar harus berupa angka',
+            'height.required' => 'Tinggi Ruangan harus diisi',
+            'height.integer' => 'Tinggi Ruangan harus berupa angka',
             'description' => 'Deskripsi harus diisi',
             'images_path.required' => 'Foto harus diupload',
             'images_path.*.image' => 'Foto harus berupa gambar',
@@ -123,7 +129,7 @@ class DaftarRuang extends Component
             'reject_reason' => null,
         ]);
         if ($created) {
-            $this->reset(['name', 'capacity', 'area', 'description', 'images_path', 'documents_path']);
+            $this->reset(['name', 'capacity', 'length', 'width', 'height', 'description', 'images_path', 'documents_path']);
             $this->dispatch('close-modal');
             $this->dispatch('toast', status: 'success', message: 'Entri anda telah masuk dan akan segera diverifikasi.');
         } else {

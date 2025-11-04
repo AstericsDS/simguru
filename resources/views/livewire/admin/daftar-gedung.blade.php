@@ -99,9 +99,16 @@
                                 @enderror
                             </div>
                             <div class="col-span-2">
-                                <label for="area" class="block mb-2 text-sm font-medium">Luas</label>
-                                <input wire:model="area" type="text" id="area" class="bg-gray-50 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg block w-full p-2.5 {{ $errors->has('area') ? 'border-red-500' : 'border-gray-300' }} }}">
-                                @error('area')
+                                <label for="building_area" class="block mb-2 text-sm font-medium">Luas Bangunan</label>
+                                <input wire:model="building_area" type="text" id="building_area" class="bg-gray-50 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg block w-full p-2.5 {{ $errors->has('building_area') ? 'border-red-500' : 'border-gray-300' }} }}">
+                                @error('building_area')
+                                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="col-span-2">
+                                <label for="land_area" class="block mb-2 text-sm font-medium">Luas Tanah</label>
+                                <input wire:model="land_area" type="text" id="land_area" class="bg-gray-50 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg block w-full p-2.5 {{ $errors->has('land_area') ? 'border-red-500' : 'border-gray-300' }} }}">
+                                @error('land_area')
                                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
@@ -167,7 +174,10 @@
                             Jumlah Lantai
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Luas
+                            Luas Bangunan
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Luas Tanah
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Files
@@ -202,7 +212,10 @@
                                 {{ $building->floor }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $building->area }}m<sup>2</sup>
+                                {{ $building->building_area }}m<sup>2</sup>
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $building->land_area }}m<sup>2</sup>
                             </td>
                             <td class="px-6 py-4">
                                 <button wire:click='view({{ $building->id }})' type="button" class="transition-all cursor-pointer hover:text-primary hover:bg-primary-light rounded-xl p-2 mx-auto">

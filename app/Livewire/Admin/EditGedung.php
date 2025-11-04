@@ -83,8 +83,8 @@ class EditGedung extends Component
             'floor' => 'required|integer',
             'address' => 'required',
             'description' => 'required',
-            'new_images.*' => 'file|image',
-            'new_documents.*' => 'file|mimes:pdf,doc,docx,xls,xlsx',
+            'new_images.*' => 'file|image|max:2048',
+            'new_documents.*' => 'file|mimes:pdf,doc,docx,xls,xlsx|max:5120',
         ];
     }
 
@@ -101,8 +101,10 @@ class EditGedung extends Component
             'description.required' => 'Deskripsi harus diisi',
             'new_images.*.file' => 'Harus berupa file',
             'new_images.*.image' => 'File harus berupa gambar',
+            'new_images.*.max' => 'Size maksimal adalah 2MB',
             'new_documents.*.file' => 'Harus berupa file',
             'new_documents.*.mimes' => 'File harus berupa pdf, doc, docs, xls, atau xlsx',
+            'new_documents.*.max' => 'Size maksimal adalah 5MB',
         ];
     }
 

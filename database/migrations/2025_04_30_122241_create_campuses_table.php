@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('slug');
             $table->string('address');
             $table->string('contact');
-            $table->string('email');
             $table->text('description');
             $table->softDeletes();
             $table->json('images_path')->nullable();

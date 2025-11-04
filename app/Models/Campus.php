@@ -18,7 +18,6 @@ class Campus extends Model
         'slug',
         'address',
         'contact',
-        'email',
         'description',
         'images_path',
         'documents_path'

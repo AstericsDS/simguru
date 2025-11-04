@@ -89,13 +89,6 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-[200px_1fr]">
-                    <span>Email</span>
-                    <div class="flex gap-3">
-                        <span>:</span>
-                        <span>{{ $campus->email ?? $pending->new_data['email'] }}</span>
-                    </div>
-                </div>
-                <div class="grid grid-cols-[200px_1fr]">
                     <span>Deskripsi</span>
                     <div class="flex gap-3">
                         <span>:</span>

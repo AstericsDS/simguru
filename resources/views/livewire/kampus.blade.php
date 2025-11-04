@@ -47,11 +47,6 @@
                     <div>{{ $campus->building->count() }}</div>
                 </div>
                 <div class="grid grid-cols-[150px_10px_auto]">
-                    <div>Alamat Email</div>
-                    <div>:</div>
-                    <div>{{ $campus->email }}</div>
-                </div>
-                <div class="grid grid-cols-[150px_10px_auto]">
                     <div>Fakultas</div>
                     <div>:</div>
                     <div>FMIPA, FT, FBS, FE, FIP, FISH</div>
@@ -75,11 +70,6 @@
                     <div>Jumlah Gedung</div>
                     <div>:</div>
                     <div>{{ $campus->building->count() }}</div>
-                </div>
-                <div class="grid grid-cols-[150px_10px_auto]">
-                    <div>Alamat email</div>
-                    <div>:</div>
-                    <div>{{ $campus->email }}</div>
                 </div>
                 <div class="grid grid-cols-[150px_10px_auto]">
                     <div>Fakultas</div>

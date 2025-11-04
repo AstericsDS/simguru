@@ -40,9 +40,9 @@ class DaftarGedung extends Component
             'area' => 'required|integer',
             'description' => 'required',
             'images_path' => 'required|array',
-            'images_path.*' => 'file|image',
+            'images_path.*' => 'file|image|max:2048',
             'documents_path' => 'required|array',
-            'documents_path.*' => 'file|mimes:pdf,doc,docx,xls,xlsx'
+            'documents_path.*' => 'file|mimes:pdf,doc,docx,xls,xlsx|max:5120'
         ];
     }
 
@@ -59,8 +59,10 @@ class DaftarGedung extends Component
             'area.integer' => 'Luas area harus berupa angka',
             'images_path.required' => 'Foto harus diupload',
             'images_path.*.image' => 'Foto harus berupa gambar',
+            'images_path.*.max' => 'Size maksimal adalah 2MB',
             'documents_path.required' => 'Dokumen harus diupload',
-            'documents_path.*.mimes' => 'File harus berupa pdf, doc, docs, xls, atau xlsx'
+            'documents_path.*.mimes' => 'File harus berupa pdf, doc, docs, xls, atau xlsx',
+            'documents_path.*.max' => 'Size maksimal adalah 5MB',
         ];
     }
 

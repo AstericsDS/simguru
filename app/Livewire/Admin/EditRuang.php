@@ -18,7 +18,7 @@ class EditRuang extends Component
     use WithFileUploads;
     public Room $room;
     public Update $update;
-    public $name, $campus_id, $building_id, $floor, $capacity, $category, $description, $area, $slug;
+    public $name, $campus_id, $building_id, $floor, $capacity, $category, $description, $length, $width, $height, $slug;
     public $images_path = [];
     public $documents_path = [];
     public $new_images = [];
@@ -71,7 +71,9 @@ class EditRuang extends Component
         $this->campus_id = $this->new_data['campus_id'] ?? $this->room->campus_id;
         $this->building_id = $this->new_data['building_id'] ?? $this->room->building_id;
         $this->floor = $this->new_data['floor'] ?? $this->room->floor;
-        $this->area = $this->new_data['area'] ?? $this->room->area;
+        $this->length = $this->new_data['length'] ?? $this->room->length;
+        $this->width = $this->new_data['width'] ?? $this->room->width;
+        $this->height = $this->new_data['height'] ?? $this->room->height;
         $this->capacity = $this->new_data['capacity'] ?? $this->room->capacity;
         $this->category = $this->new_data['category'] ?? $this->room->category;
         $this->description = $this->new_data['description'] ?? $this->room->description;
@@ -103,7 +105,9 @@ class EditRuang extends Component
             'floor' => 'required',
             'capacity' => 'required|integer',
             'category' => 'required',
-            'area' => 'required|integer',
+            'length' => 'required|integer',
+            'width' => 'required|integer',
+            'height' => 'required|integer',
             'description' => 'required',
             'new_images.*' => 'file|image|max:2048',
             'new_documents.*' => 'file|mimes:pdf,doc,docx,xls,xlsx|max:5120',
@@ -122,8 +126,12 @@ class EditRuang extends Component
             'capacity.required' => 'Kapasitas harus dipilih',
             'capacity.integer' => 'Kapasitas harus berupa angka',
             'category.required' => 'Kategori harus dipilih',
-            'area.required' => 'Luas harus diisi',
-            'area.integer' => 'Area harus berupa angka',
+            'length.required' => 'Panjang ruangan harus diisi',
+            'length.integer' => 'Panjang ruangan harus berupa angka',
+            'width.required' => 'Lebar ruangan harus diisi',
+            'width.integer' => 'Lebar ruangan harus berupa angka',
+            'height.required' => 'Tinggi ruangan harus diisi',
+            'height.integer' => 'Tinggi ruangan harus berupa angka',
             'description' => 'Deskripsi harus diisi',
             'new_images.*.file' => 'Harus berupa file',
             'new_images.*.image' => 'File harus berupa gambar',
@@ -253,6 +261,9 @@ class EditRuang extends Component
             $this->floor == ($this->room->floor ?? $this->new_data['floor']) &&
             $this->capacity == ($this->room->capacity ?? $this->new_data['capacity']) &&
             $this->category === ($this->room->category ?? $this->new_data['category']) &&
+            $this->length === ($this->room->length ?? $this->new_data['length']) &&
+            $this->width === ($this->room->width ?? $this->new_data['width']) &&
+            $this->height === ($this->room->height ?? $this->new_data['height']) &&
             $this->description === ($this->room->description ?? $this->new_data['description']) &&
             $this->sameImages() &&
             $this->sameDocuments() &&

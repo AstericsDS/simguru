@@ -19,7 +19,7 @@ class DaftarRuang extends Component
 {
     use WithFileUploads;
     public Room $selectedRoom;
-    public $name, $campus_id, $building_id, $floor, $capacity, $category, $area, $description, $slug;
+    public $name, $campus_id, $building_id, $floor, $capacity, $category, $length, $width, $height, $description, $slug;
     public $buildings = [];
     public $campuses = [];
     public $search = '';

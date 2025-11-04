@@ -106,7 +106,7 @@
                                 @enderror
                             </div>
                             <div class="col-span-2">
-                                <label for="area_size" class="block mb-2 text-sm font-medium">Luas Kawasan</label>
+                                <label for="area_size" class="block mb-2 text-sm font-medium">Luas Kawasan (m<sup>2</sup>)</label>
                                 <input wire:model="area_size" type="text" id="area_size"
                                     class="bg-gray-50 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg block w-full p-2.5 {{ $errors->has('area_size') ? 'border-red-500' : 'border-gray-300' }}">
                                 @error('area_size')
@@ -228,7 +228,7 @@
                                 {{ $campus->address }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $campus->area_size }}
+                                {{ $campus->area_size }} m<sup class="text-xs">2</sup>
                             </td>
                             <td class="px-6 py-4">
                                 {{ $campus->contact }}

@@ -20,7 +20,7 @@ class DaftarGedung extends Component
     use WithFileUploads;
     public Building $selectedBuilding;
 
-    public $name, $address, $floor, $area, $description, $campus_id, $slug;
+    public $name, $address, $floor, $building_area, $land_area, $description, $campus_id, $slug;
     public $search = '';
     public $campuses = [];
     public $images_path = [];
@@ -36,7 +36,7 @@ class DaftarGedung extends Component
             'slug' => 'required',
             'campus_id' => 'required',
             'address' => 'required',
-            'floor' => 'required|integer',
+            'floor' => 'required|integer|max:10',
             'building_area' => 'required|integer',
             'land_area' => 'required|integer',
             'description' => 'required',
@@ -56,6 +56,7 @@ class DaftarGedung extends Component
             'description.required' => 'Deskripsi harus diisi',
             'campus_id.required' => 'Harus pilih salah satu kampus',
             'floor.integer' => 'Jumlah lantai harus berupa angka',
+            'floor.max' => 'Jumlah lantai maksimal 10 lantai',
             'building_area.required' => 'Luas Bangunan harus diisi',
             'building_area.integer' => 'Luas Bangunan harus berupa angka',
             'land_area.required' => 'Luas tanah harus diisi',

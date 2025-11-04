@@ -17,7 +17,7 @@ class EditKampus extends Component
     use WithFileUploads;
     public ?Campus $campus = null;
     public ?Update $update = null;
-    public $name, $address, $contact, $description, $slug;
+    public $name, $address, $area_size, $contact, $description, $slug;
     public $images_path = [];
     public $documents_path = [];
     public $new_images = [];
@@ -63,6 +63,7 @@ class EditKampus extends Component
         $this->name = $this->new_data['name'] ?? $this->campus->name;
         $this->slug = $this->new_data['slug'] ?? $this->campus->slug;
         $this->address = $this->new_data['address'] ?? $this->campus->address;
+        $this->area_size = $this->new_data['area_size'] ?? $this->campus->area_size;
         $this->contact = $this->new_data['contact'] ?? $this->campus->contact;
         $this->description = $this->new_data['description'] ?? $this->campus->description;
         $this->images_path = $this->new_data['images_path'] ?? $this->campus->images_path;
@@ -75,6 +76,7 @@ class EditKampus extends Component
         return [
             'name' => 'required',
             'address' => 'required',
+            'area_size' => 'required|integer',
             'contact' => 'required|digits_between:8,13',
             'description' => 'required',
             'new_images.*' => 'file|image|max:2048',
@@ -87,6 +89,8 @@ class EditKampus extends Component
         return [
             'name.required' => 'Nama harus diisi',
             'address.required' => 'Alamat harus diisi',
+            'area_size.required' => 'Luas Kawasan harus diisi',
+            'area_size.integer' => 'Luas Kawasan harus berupa angka',
             'contact.required' => 'Nomor telepon harus diisi',
             'contact.digits_between' => 'Nomor telepon harus berupa angka dan minimal 8 digit',
             'description.required' => 'Deskripsi harus diisi',
@@ -198,6 +202,7 @@ class EditKampus extends Component
         if (
             $this->name === ($this->campus?->name ?? $this->new_data['name']) &&
             $this->address === ($this->campus?->address ?? $this->new_data['address']) &&
+            $this->address === ($this->campus?->address ?? $this->new_data['area_size']) &&
             $this->contact === ($this->campus?->contact ?? $this->new_data['contact']) &&
             $this->description === ($this->campus->description ?? $this->new_data['description']) &&
             $this->sameImages() &&

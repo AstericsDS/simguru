@@ -17,7 +17,7 @@ class EditGedung extends Component
     use WithFileUploads;
     public Building $building;
     public Update $update;
-    public $name, $campus_id, $area, $floor, $address, $description, $slug;
+    public $name, $campus_id, $building_area, $land_area, $floor, $address, $description, $slug;
     public $images_path = [];
     public $documents_path = [];
     public $new_images = [];
@@ -64,7 +64,8 @@ class EditGedung extends Component
         $this->new_data = $this->update->new_data;
         $this->name = $this->new_data['name'] ?? $this->building->name;
         $this->campus_id = $this->new_data['campus_id'] ?? $this->building->campus_id;
-        $this->area = $this->new_data['area'] ?? $this->building->area;
+        $this->building_area = $this->new_data['building_area'] ?? $this->building->building_area;
+        $this->building_area = $this->new_data['land_area'] ?? $this->building->land_area;
         $this->floor = $this->new_data['floor'] ?? $this->building->floor;
         $this->address = $this->new_data['address'] ?? $this->building->address;
         $this->description = $this->new_data['description'] ?? $this->building->description;
@@ -79,8 +80,9 @@ class EditGedung extends Component
         return [
             'name' => 'required',
             'campus_id' => 'required',
-            'area' => 'required|integer',
-            'floor' => 'required|integer',
+            'building_area' => 'required|integer',
+            'land_area' => 'required|integer',
+            'floor' => 'required|integer|max:10',
             'address' => 'required',
             'description' => 'required',
             'new_images.*' => 'file|image|max:2048',
@@ -93,10 +95,13 @@ class EditGedung extends Component
         return [
             'name.required' => 'Nama gedung harus diisi',
             'campus_id.required' => 'Harus pilih salah satu kampus',
-            'area.required' => 'Luas gedung harus diisi',
-            'area.integer' => 'Luas area harus berupa angka',
+            'building_area.required' => 'Luas bangunan harus diisi',
+            'building_area.integer' => 'Luas bangunan harus berupa angka',
+            'land_area.required' => 'Luas tanah harus diisi',
+            'land_area.integer' => 'Luas tanah harus berupa angka',
             'floor.required' => 'Jumlah lantai harus diisi',
             'floor.integer' => 'Jumlah lantai harus berupa angka',
+            'floor.max' => 'Jumlah lantai maksimal adalah 10 lantai',
             'address.required' => 'Alamat harus diisi',
             'description.required' => 'Deskripsi harus diisi',
             'new_images.*.file' => 'Harus berupa file',
@@ -208,7 +213,8 @@ class EditGedung extends Component
         if (
             $this->name === ($this->building->name ?? $this->update->new_data['name']) &&
             $this->campus_id === ($this->building->campus_id ?? $this->update->new_data['campus_id']) &&
-            $this->area === ($this->building->area ?? $this->update->new_data['area']) &&
+            $this->area === ($this->building->area ?? $this->update->new_data['building_area']) &&
+            $this->area === ($this->building->area ?? $this->update->new_data['land_area']) &&
             $this->floor == ($this->building->floor ?? $this->update->new_data['floor']) &&
             $this->address === ($this->building->address ?? $this->update->new_data['address']) &&
             $this->description === ($this->building->description ?? $this->update->new_data['description']) &&

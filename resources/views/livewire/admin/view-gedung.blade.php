@@ -82,10 +82,17 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-[200px_1fr]">
-                    <span>Luas</span>
+                    <span>Luas Bangunan</span>
                     <div class="flex gap-3">
                         <span>:</span>
-                        <span>{{ $building->area ?? $pending->new_data['area'] }}m<sup>2</sup></span>
+                        <span>{{ $building->building_area ?? $pending->new_data['building_area'] }} m<sup>2</sup></span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-[200px_1fr]">
+                    <span>Luas tanah</span>
+                    <div class="flex gap-3">
+                        <span>:</span>
+                        <span>{{ $building->land_area ?? $pending->new_data['land_area'] }} m<sup>2</sup></span>
                     </div>
                 </div>
                 <div class="grid grid-cols-[200px_1fr]">

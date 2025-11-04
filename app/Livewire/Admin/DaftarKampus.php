@@ -17,7 +17,7 @@ class DaftarKampus extends Component
 {
     use WithFileUploads;
 
-    public $name, $address, $contact, $description, $slug;
+    public $name, $address,$area_size, $contact, $description, $slug;
     public $images_path = [];
     public $documents_path = [];
     public $search = '';

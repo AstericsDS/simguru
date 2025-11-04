@@ -82,6 +82,13 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-[200px_1fr]">
+                    <span>Luas Kawasan</span>
+                    <div class="flex gap-3">
+                        <span>:</span>
+                        <span>{{ $campus->area_size ?? $pending->new_data['area_size'] }} m<sup>2</sup></span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-[200px_1fr]">
                     <span>Nomor Telepon</span>
                     <div class="flex gap-3">
                         <span>:</span>

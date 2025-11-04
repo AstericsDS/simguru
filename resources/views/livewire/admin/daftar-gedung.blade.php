@@ -99,14 +99,14 @@
                                 @enderror
                             </div>
                             <div class="col-span-2">
-                                <label for="building_area" class="block mb-2 text-sm font-medium">Luas Bangunan</label>
+                                <label for="building_area" class="block mb-2 text-sm font-medium">Luas Bangunan (m<sup>2</sup>)</label>
                                 <input wire:model="building_area" type="text" id="building_area" class="bg-gray-50 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg block w-full p-2.5 {{ $errors->has('building_area') ? 'border-red-500' : 'border-gray-300' }} }}">
                                 @error('building_area')
                                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="col-span-2">
-                                <label for="land_area" class="block mb-2 text-sm font-medium">Luas Tanah</label>
+                                <label for="land_area" class="block mb-2 text-sm font-medium">Luas Tanah (m<sup>2</sup>)</label>
                                 <input wire:model="land_area" type="text" id="land_area" class="bg-gray-50 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg block w-full p-2.5 {{ $errors->has('land_area') ? 'border-red-500' : 'border-gray-300' }} }}">
                                 @error('land_area')
                                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
@@ -273,7 +273,10 @@
                                 {{ $update->new_data['floor'] }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $update->new_data['area'] }}m<sup>2</sup>
+                                {{ $update->new_data['building_area'] }}m<sup>2</sup>
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $update->new_data['land_area'] }}m<sup>2</sup>
                             </td>
                             <td class="px-6 py-4">
                                 <button wire:click='viewPending({{ $update->id }})' type="button" class="transition-all cursor-pointer hover:text-primary hover:bg-primary-light rounded-xl p-2 mx-auto" data-tip="Gambar">

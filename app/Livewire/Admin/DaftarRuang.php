@@ -19,7 +19,7 @@ class DaftarRuang extends Component
 {
     use WithFileUploads;
     public Room $selectedRoom;
-    public $name, $campus_id, $building_id, $floor, $capacity, $category, $area, $description, $slug;
+    public $name, $campus_id, $building_id, $floor, $capacity, $category, $length, $width, $height, $description, $slug;
     public $buildings = [];
     public $campuses = [];
     public $search = '';
@@ -40,12 +40,14 @@ class DaftarRuang extends Component
             'floor' => 'required',
             'capacity' => 'required|integer',
             'category' => 'required',
-            'area' => 'required|integer',
+            'length' => 'required|integer',
+            'width' => 'required|integer',
+            'height' => 'required|integer',
             'description' => 'required',
             'images_path' => 'required|array',
-            'images_path.*' => 'file|image',
+            'images_path.*' => 'file|image|max:2048',
             'documents_path' => 'required|array',
-            'documents_path.*' => 'file|mimes:pdf,doc,docx,xls,xlsx',
+            'documents_path.*' => 'file|mimes:pdf,doc,docx,xls,xlsx|max:5120',
             'inventory.*.name' => 'required|string',
             'inventory.*.quantity' => 'required|integer|min:1',
         ];
@@ -61,13 +63,19 @@ class DaftarRuang extends Component
             'capacity.required' => 'Kapasitas harus dipilih',
             'capacity.integer' => 'Kapasitas harus berupa angka',
             'category.required' => 'Kategori harus dipilih',
-            'area.required' => 'Luas harus diisi',
-            'area.integer' => 'Area harus berupa angka',
+            'length.required' => 'Panjang Ruangan harus diisi',
+            'length.integer' => 'Panjang Ruangan harus berupa angka',
+            'width.required' => 'Lebar Ruangan harus diisi',
+            'width.integer' => 'Lebar harus berupa angka',
+            'height.required' => 'Tinggi Ruangan harus diisi',
+            'height.integer' => 'Tinggi Ruangan harus berupa angka',
             'description' => 'Deskripsi harus diisi',
             'images_path.required' => 'Foto harus diupload',
             'images_path.*.image' => 'Foto harus berupa gambar',
+            'images_path.*.max' => 'Size maksimal adalah 2MB',
             'documents_path.required' => 'Dokumen harus diupload',
             'documents_path.*.mimes' => 'File harus berupa pdf, doc, docs, xls, atau xlsx',
+            'documents_path.*.max' => 'Size maksimal adalah 5MB',
             'inventory.*.name.required' => 'Nama barang harus diisi',
             'inventory.*.name.string' => 'Nama barang harus berupa string',
             'inventory.*.quantity.required' => 'Kuantitas barang harus diisi',
@@ -121,7 +129,7 @@ class DaftarRuang extends Component
             'reject_reason' => null,
         ]);
         if ($created) {
-            $this->reset(['name', 'capacity', 'area', 'description', 'images_path', 'documents_path']);
+            $this->reset(['name', 'capacity', 'length', 'width', 'height', 'description', 'images_path', 'documents_path']);
             $this->dispatch('close-modal');
             $this->dispatch('toast', status: 'success', message: 'Entri anda telah masuk dan akan segera diverifikasi.');
         } else {

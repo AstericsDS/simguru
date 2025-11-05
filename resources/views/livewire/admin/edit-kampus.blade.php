@@ -39,19 +39,19 @@
                             <p class="text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
+{{-- 
+                    <div class="{{ $is_pending ? 'tooltip tooltip-accent' : '' }}" data-tip="Mohon tunggu verifikasi super admin">
+                        <label for="address">Luas Kawasan</label>
+                        <input wire:model.live='area_size' type="text" id="area_size" class="bg-gray-50 border focus:outline-none focus:ring-primary transition-all {{ $is_pending ? 'text-gray-500' : 'text-gray-900' }} text-sm rounded-lg block w-full p-2.5 {{ $errors->has('area_size') ? 'border-red-500' : 'border-gray-300' }} my-2" {{ $is_pending ? 'disabled' : '' }}>
+                        @error('area_size')
+                            <p class="text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div> --}}
 
                     <div class="{{ $is_pending ? 'tooltip tooltip-accent' : '' }}" data-tip="Mohon tunggu verifikasi super admin">
                         <label for="contact">Nomor Telepon</label>
                         <input wire:model.live='contact' type="text" id="contact" class="bg-gray-50 border focus:outline-none focus:ring-primary transition-all {{ $is_pending ? 'text-gray-500' : 'text-gray-900' }} text-sm rounded-lg block w-full p-2.5 {{ $errors->has('contact') ? 'border-red-500' : 'border-gray-300' }} my-2" {{ $is_pending ? 'disabled' : '' }}>
                         @error('contact')
-                            <p class="text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div class="{{ $is_pending ? 'tooltip tooltip-accent' : '' }}" data-tip="Mohon tunggu verifikasi super admin">
-                        <label for="email">Email</label>
-                        <input wire:model.live='email' type="text" id="email" class="bg-gray-50 border focus:outline-none focus:ring-primary transition-all {{ $is_pending ? 'text-gray-500' : 'text-gray-900' }} text-sm rounded-lg block w-full p-2.5 {{ $errors->has('email') ? 'border-red-500' : 'border-gray-300' }} my-2" {{ $is_pending ? 'disabled' : '' }}>
-                        @error('email')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>

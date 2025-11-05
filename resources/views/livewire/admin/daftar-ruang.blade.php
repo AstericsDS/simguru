@@ -125,9 +125,23 @@
                                 @enderror
                             </div>
                             <div class="col-span-2">
-                                <label for="area" class="block mb-2 text-sm font-medium">Luas</label>
-                                <input wire:model="area" type="text" id="area" class="bg-gray-50 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg block w-full p-2.5 {{ $errors->has('area') ? 'border-red-500' : 'border-gray-300' }} }}">
-                                @error('area')
+                                <label for="length" class="block mb-2 text-sm font-medium">Panjang (m)</label>
+                                <input wire:model="length" type="text" id="length" class="bg-gray-50 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg block w-full p-2.5 {{ $errors->has('length') ? 'border-red-500' : 'border-gray-300' }} }}">
+                                @error('length')
+                                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="col-span-2">
+                                <label for="width" class="block mb-2 text-sm font-medium">Lebar (m)</label>
+                                <input wire:model="width" type="text" id="width" class="bg-gray-50 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg block w-full p-2.5 {{ $errors->has('width') ? 'border-red-500' : 'border-gray-300' }} }}">
+                                @error('width')
+                                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="col-span-2">
+                                <label for="height" class="block mb-2 text-sm font-medium">Tinggi (m)</label>
+                                <input wire:model="height" type="text" id="height" class="bg-gray-50 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg block w-full p-2.5 {{ $errors->has('height') ? 'border-red-500' : 'border-gray-300' }} }}">
+                                @error('height')
                                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
@@ -145,6 +159,8 @@
                                     <option value="class">Kelas</option>
                                     <option value="office">Kantor</option>
                                     <option value="laboratory">Laboratorium</option>
+                                    <option value="laboratory">Ruang Terbuka</option>
+                                    <option value="laboratory">Internal UNJ</option>
                                     <option value="rentable">Umum (disewakan)</option>
                                     <option value="non_rentable">Umum (tidak disewakan)</option>
                                 </select>
@@ -264,6 +280,9 @@
                             Luas
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            Tinggi
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             Jenis Ruang
                         </th>
                         <th scope="col" class="px-6 py-3">
@@ -302,7 +321,10 @@
                                 {{ $room->capacity }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $room->area }}m<sup>2</sup>
+                                {{ $room->length * $room->width }}m<sup>2</sup>
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $room->height }}m
                             </td>
                             <td class="px-6 py-4">
                                 @if ($room->category === 'class')
@@ -311,6 +333,10 @@
                                     <span class="px-2 py-1 rounded-lg bg-[#17A2B8] text-white">Kantor</span>
                                 @elseif ($room->category === 'laboratory')
                                     <span class="px-2 py-1 rounded-lg bg-[#6F42C1] text-white">Laboratorium</span>
+                                @elseif ($room->category === 'rentable')
+                                    <span class="px-2 py-1 rounded-lg bg-[#01a2ff] text-white">Ruang Terbuka</span>
+                                @elseif ($room->category === 'rentable')
+                                    <span class="px-2 py-1 rounded-lg bg-[#006569] text-white">Internal UNJ</span>
                                 @elseif ($room->category === 'rentable')
                                     <span class="px-2 py-1 rounded-lg bg-[#28A745] text-white">Umum (disewakan)</span>
                                 @elseif ($room->category === 'non_rentable')
@@ -376,7 +402,13 @@
                                 {{ $update->new_data['capacity'] }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $update->new_data['area'] }}m<sup>2</sup>
+                                {{ $update->new_data['length'] }} m<sup>2</sup>
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $update->new_data['width'] }} m<sup>2</sup>
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $update->new_data['height'] }} m<sup>2</sup>
                             </td>
                             <td class="px-6 py-4">
                                 @if ($update->new_data['category'] === 'class')

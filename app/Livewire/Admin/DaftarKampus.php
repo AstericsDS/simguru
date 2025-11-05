@@ -17,7 +17,7 @@ class DaftarKampus extends Component
 {
     use WithFileUploads;
 
-    public $name, $address, $contact, $email, $description, $slug;
+    public $name, $address,$area_size, $contact, $description, $slug;
     public $images_path = [];
     public $documents_path = [];
     public $search = '';
@@ -37,13 +37,13 @@ class DaftarKampus extends Component
             'name' => 'required|unique:campuses,name',
             'slug' => 'required',
             'address' => 'required',
+            'area_size' => 'required|integer',
             'contact' => 'required|digits_between:8,13',
-            'email' => 'required|email',
             'description' => 'required',
             'images_path' => 'required|array',
-            'images_path.*' => 'file|image',
+            'images_path.*' => 'file|image|max:2048',
             'documents_path' => 'required|array',
-            'documents_path.*' => 'file|mimes:pdf,doc,docx,xls,xlsx'
+            'documents_path.*' => 'file|mimes:pdf,doc,docx,xls,xlsx|max:5120'
         ];
     }
 
@@ -52,15 +52,17 @@ class DaftarKampus extends Component
         return [
             'name.required' => 'Nama harus diisi',
             'address.required' => 'Alamat harus diisi',
+            'area_size.required' => 'Luas bangunan harus diisi',
+            'area_size.integer' => 'Luas bangunan harus berupa angka',
             'contact.required' => 'Nomor telepon harus diisi',
             'contact.digits_between' => 'Nomor telepon harus berupa angka dan minimal 8 digit',
-            'email.required' => 'Email harus diisi',
-            'email.email' => 'Masukkan alamat email yang valid',
             'description.required' => 'Deskripsi harus diisi',
             'images_path.required' => 'Foto harus diupload',
+            'new_images.*.max' => 'Size maksimal adalah 2MB',
             'images_path.*.image' => 'Foto harus berupa gambar',
             'documents_path.required' => 'Dokumen harus diupload',
-            'documents_path.*.mimes' => 'File harus berupa pdf, doc, docs, xls, atau xlsx'
+            'documents_path.*.mimes' => 'File harus berupa pdf, doc, docs, xls, atau xlsx',
+            'new_documents.*.max' => 'Size maksimal adalah 5MB',
         ];
     }
 
@@ -102,7 +104,7 @@ class DaftarKampus extends Component
             'reject_reason' => null,
         ]);
         if ($created) {
-            $this->reset(['name', 'address', 'contact', 'email', 'description', 'images_path', 'documents_path']);
+            $this->reset(['name', 'address', 'area_size', 'contact', 'description', 'images_path', 'documents_path']);
             $this->dispatch('close-modal');
             $this->dispatch('toast', status: 'success', message: 'Entri anda telah masuk dan akan segera diverifikasi.');
         } else {

@@ -21,7 +21,6 @@ class CampusResource extends JsonResource
             'name' => $this->name,
             'address' => $this->address,
             'contact' => $this->contact,
-            'email' => $this->email,
             'description' => $this->description,
             'images_path' => $this->images_path,
         ];

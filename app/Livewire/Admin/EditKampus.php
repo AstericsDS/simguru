@@ -17,7 +17,7 @@ class EditKampus extends Component
     use WithFileUploads;
     public ?Campus $campus = null;
     public ?Update $update = null;
-    public $name, $address, $contact, $email, $description, $slug;
+    public $name, $address, $area_size, $contact, $description, $slug;
     public $images_path = [];
     public $documents_path = [];
     public $new_images = [];
@@ -63,8 +63,8 @@ class EditKampus extends Component
         $this->name = $this->new_data['name'] ?? $this->campus->name;
         $this->slug = $this->new_data['slug'] ?? $this->campus->slug;
         $this->address = $this->new_data['address'] ?? $this->campus->address;
+        $this->area_size = $this->new_data['area_size'] ?? $this->campus->area_size;
         $this->contact = $this->new_data['contact'] ?? $this->campus->contact;
-        $this->email = $this->new_data['email'] ?? $this->campus->email;
         $this->description = $this->new_data['description'] ?? $this->campus->description;
         $this->images_path = $this->new_data['images_path'] ?? $this->campus->images_path;
         $this->documents_path = $this->new_data['documents_path'] ?? $this->campus->documents_path;
@@ -76,11 +76,11 @@ class EditKampus extends Component
         return [
             'name' => 'required',
             'address' => 'required',
+            'area_size' => 'required|integer',
             'contact' => 'required|digits_between:8,13',
-            'email' => 'required|email',
             'description' => 'required',
-            'new_images.*' => 'file|image',
-            'new_documents.*' => 'file|mimes:pdf,doc,docx,xls,xlsx',
+            'new_images.*' => 'file|image|max:2048',
+            'new_documents.*' => 'file|mimes:pdf,doc,docx,xls,xlsx|max:5120',
         ];
     }
 
@@ -89,15 +89,17 @@ class EditKampus extends Component
         return [
             'name.required' => 'Nama harus diisi',
             'address.required' => 'Alamat harus diisi',
+            'area_size.required' => 'Luas Kawasan harus diisi',
+            'area_size.integer' => 'Luas Kawasan harus berupa angka',
             'contact.required' => 'Nomor telepon harus diisi',
             'contact.digits_between' => 'Nomor telepon harus berupa angka dan minimal 8 digit',
-            'email.required' => 'Email harus diisi',
-            'email.email' => 'Masukkan alamat email yang valid',
             'description.required' => 'Deskripsi harus diisi',
             'new_images.*.file' => 'Harus berupa file',
             'new_images.*.image' => 'File harus berupa gambar',
+            'new_images.*.max' => 'Size maksimal adalah 2MB',
             'new_documents.*.file' => 'Harus berupa file',
             'new_documents.*.mimes' => 'File harus berupa pdf, doc, docs, xls, atau xlsx',
+            'new_documents.*.max' => 'Size maksimal adalah 5MB',
         ];
     }
 
@@ -121,7 +123,7 @@ class EditKampus extends Component
         }
         $this->new_documents = [];
     }
-    
+
     public function save()
     {
         if ($this->is_pending === true)
@@ -200,8 +202,8 @@ class EditKampus extends Component
         if (
             $this->name === ($this->campus?->name ?? $this->new_data['name']) &&
             $this->address === ($this->campus?->address ?? $this->new_data['address']) &&
+            $this->address === ($this->campus?->address ?? $this->new_data['area_size']) &&
             $this->contact === ($this->campus?->contact ?? $this->new_data['contact']) &&
-            $this->email === ($this->campus?->email ?? $this->new_data['email']) &&
             $this->description === ($this->campus->description ?? $this->new_data['description']) &&
             $this->sameImages() &&
             $this->sameDocuments()

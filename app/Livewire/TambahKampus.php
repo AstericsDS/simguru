@@ -15,7 +15,7 @@ class TambahKampus extends Component
 {
     use WithFileUploads;
 
-    public $name, $address, $contact, $email, $description;
+    public $name, $address, $contact, $description;
     public $images_path = [];
     public $search = '';
 
@@ -25,7 +25,6 @@ class TambahKampus extends Component
             'name' => 'required',
             'address' => 'required',
             'contact' => 'required|min:8',
-            'email' => 'required|email',
             'description' => 'required',
             'images_path.*' => 'required|file|image',
             'images_path' => 'required|array',
@@ -39,8 +38,6 @@ class TambahKampus extends Component
             'address.required' => 'Alamat harus diisi',
             'contact.required' => 'Nomor telepon harus diisi',
             'contact.min' => 'Nomor telepon minimal 8 digit',
-            'email.required' => 'Email harus diisi',
-            'email.email' => 'Masukkan alamat email yang valid',
             'description.required' => 'Deskripsi harus diisi',
             'images_path.required' => 'Foto harus diupload',
             'images_path.image' => 'Foto harus berupa gambar',
@@ -71,7 +68,7 @@ class TambahKampus extends Component
             'reject_reason' => null,
         ]);
         if ($created) {
-            $this->reset(['name', 'address', 'contact', 'email', 'description', 'images_path']);
+            $this->reset(['name', 'address', 'contact', 'description', 'images_path']);
             $this->dispatch('close-modal');
             $this->dispatch('show-toast', status: 'success', message: 'Entri anda telah masuk dan akan segera diverifikasi.');
         } else {
@@ -79,7 +76,7 @@ class TambahKampus extends Component
             $this->dispatch('show-toast', status: 'fail', message: 'Maaf, entri anda tidak dapat diterima. Silakan coba lagi.');
         }
     }
-    
+
     public function render()
     {
         $campuses = Campus::when($this->search !== '', fn(Builder $query) => $query->where('name', 'like', '%' . $this->search . '%'))->get();

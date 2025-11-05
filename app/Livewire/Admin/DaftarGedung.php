@@ -20,7 +20,7 @@ class DaftarGedung extends Component
     use WithFileUploads;
     public Building $selectedBuilding;
 
-    public $name, $address, $floor, $area, $description, $campus_id, $slug;
+    public $name, $address, $floor, $building_area, $land_area, $description, $campus_id, $slug;
     public $search = '';
     public $campuses = [];
     public $images_path = [];
@@ -36,13 +36,14 @@ class DaftarGedung extends Component
             'slug' => 'required',
             'campus_id' => 'required',
             'address' => 'required',
-            'floor' => 'required|integer',
-            'area' => 'required|integer',
+            'floor' => 'required|integer|max:10',
+            'building_area' => 'required|integer',
+            'land_area' => 'required|integer',
             'description' => 'required',
             'images_path' => 'required|array',
-            'images_path.*' => 'file|image',
+            'images_path.*' => 'file|image|max:2048',
             'documents_path' => 'required|array',
-            'documents_path.*' => 'file|mimes:pdf,doc,docx,xls,xlsx'
+            'documents_path.*' => 'file|mimes:pdf,doc,docx,xls,xlsx|max:5120'
         ];
     }
 
@@ -52,15 +53,20 @@ class DaftarGedung extends Component
             'name.required' => 'Nama gedung harus diisi',
             'address.required' => 'Alamat harus diisi',
             'floor.required' => 'Jumlah lantai harus diisi',
-            'area.required' => 'Luas gedung harus diisi',
             'description.required' => 'Deskripsi harus diisi',
             'campus_id.required' => 'Harus pilih salah satu kampus',
             'floor.integer' => 'Jumlah lantai harus berupa angka',
-            'area.integer' => 'Luas area harus berupa angka',
+            'floor.max' => 'Jumlah lantai maksimal 10 lantai',
+            'building_area.required' => 'Luas Bangunan harus diisi',
+            'building_area.integer' => 'Luas Bangunan harus berupa angka',
+            'land_area.required' => 'Luas tanah harus diisi',
+            'land_area.integer' => 'Luas tanah harus berupa angka',
             'images_path.required' => 'Foto harus diupload',
             'images_path.*.image' => 'Foto harus berupa gambar',
+            'images_path.*.max' => 'Size maksimal adalah 2MB',
             'documents_path.required' => 'Dokumen harus diupload',
-            'documents_path.*.mimes' => 'File harus berupa pdf, doc, docs, xls, atau xlsx'
+            'documents_path.*.mimes' => 'File harus berupa pdf, doc, docs, xls, atau xlsx',
+            'documents_path.*.max' => 'Size maksimal adalah 5MB',
         ];
     }
 
@@ -104,7 +110,7 @@ class DaftarGedung extends Component
         ]);
 
         if ($created) {
-            $this->reset(['name', 'address', 'floor', 'area', 'description', 'images_path', 'documents_path']);
+            $this->reset(['name', 'address', 'floor', 'building_area', 'land_area', 'description', 'images_path', 'documents_path']);
             $this->dispatch('close-modal');
             $this->dispatch('toast', status: 'success', message: 'Entri anda telah masuk dan akan segera diverifikasi.');
         } else {

@@ -36,14 +36,39 @@
             <div class="font-bold text-4xl mb-7">{{ $room->name }}</div>
             <div class="grid grid-flow-row gap-3 font-semibold">
                 <div class="grid grid-cols-[150px_10px_auto]">
-                    <div>Kategori</div>
+                    <div>Lokasi Kampus</div>
                     <div>:</div>
-                    <div>{{ $room->category }}</div>
+                    <div>{{ $room->campus->name }}</div>
+                </div>
+                <div class="grid grid-cols-[150px_10px_auto]">
+                    <div>Lokasi Gedung</div>
+                    <div>:</div>
+                    <div>{{ $room->building->name }}</div>
+                </div>
+                <div class="grid grid-cols-[150px_10px_auto]">
+                    <div>Lantai</div>
+                    <div>:</div>
+                    <div>{{ $room->floor }}</div>
                 </div>
                 <div class="grid grid-cols-[150px_10px_auto]">
                     <div>Kapasitas</div>
                     <div>:</div>
                     <div>{{ $room->capacity }} orang</div>
+                </div>
+                <div class="grid grid-cols-[150px_10px_auto]">
+                    <div>Luas</div>
+                    <div>:</div>
+                    <div>{{ $room->length * $room->width }} m</div>
+                </div>
+                <div class="grid grid-cols-[150px_10px_auto]">
+                    <div>Tinggi</div>
+                    <div>:</div>
+                    <div>{{ $room->height }} m</div>
+                </div>
+                <div class="grid grid-cols-[150px_10px_auto]">
+                    <div>Jenis Ruang</div>
+                    <div>:</div>
+                    <div>{{ $room->category }}</div>
                 </div>
                 <div class="grid grid-cols-[150px_10px_auto]">
                     <div>Deskripsi</div>

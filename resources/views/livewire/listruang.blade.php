@@ -16,7 +16,7 @@
 
             <input wire:model.live="search" x-ref="searchInput" @keydown.escape="$refs.searchInput.blur()"
                 type="text"
-                class="border border-gray-300 rounded-lg px-3 py-2 w-full pl-12 pr-[88px] focus:outline-none focus:ring-primary text-black transition-all"
+                class="border border-gray-300 rounded-lg px-3 py-2 w-full pl-12 pr-22 focus:outline-none focus:ring-primary text-black transition-all"
                 placeholder="Cari ruang">
 
             <div class="absolute right-4 text-gray-500 top-1/2 -translate-y-1/2 flex gap-1">

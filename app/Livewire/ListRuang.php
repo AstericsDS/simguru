@@ -13,14 +13,9 @@ class ListRuang extends Component
 
     public function render()
     {
-        $rooms = Room::when($this->search !== '', fn(Builder $query) => $query->where('name', 'like', '%' . $this->search . '%'))->with('campus', 'building')->paginate(10);
-        $updates = Update::when(
-            $this->search !== '',
-            fn(Builder $query) => $query->where('new_data->name', 'like', '%' . $this->search . '%')
-        )->where('table', 'rooms')->whereIn('status', ['pending', 'rejected'])->get();
+        $rooms = Room::where('show', true)->when($this->search !== '', fn(Builder $query) => $query->where('name', 'like', '%' . $this->search . '%'))->with('campus', 'building')->paginate(10);
         return view('livewire.listruang',[
             'rooms' => $rooms,
-            'updates' => $updates,
         ]);
     }
 }

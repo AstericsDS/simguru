@@ -161,6 +161,7 @@
         <hr class="w-15 font-bold mx-auto border-gray-500 border">
     </div>
     <div class="flex flex-wrap justify-center mt-3 gap-3 lg:mx-50">
+
         @foreach ($rooms as $room)
             <div
                 class="card text-black bg-white border border-gray-300 shadow-sm card-md p-3 max-w-sm hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
@@ -206,6 +207,8 @@
             </div>
         @endforeach
     </div>
+    <button class="btn border-none shadow-none mt-5 self-center rounded-full bg-primary"><a href="/ruang">LIHAT
+            RUANG</a></button>
     <div class="text-black text-center flex flex-col gap-3 pt-20" id="statistik">
         <h1 class="text-4xl font-semibold">Grafik Statistik Informasi Manajemen Gedung dan Ruang</h1>
         <hr class="w-15 font-bold mx-auto border-gray-500 border">

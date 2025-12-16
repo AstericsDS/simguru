@@ -31,7 +31,9 @@ class Room extends Model
         'category',
         'images_path',
         'documents_path',
-        'inventory'
+        'inventory',
+        'rentable',
+        'show',
     ];
     protected $casts = [
         'images_path' => 'array',
@@ -39,11 +41,12 @@ class Room extends Model
         'inventory' => 'array'
     ];
     public const CATEGORIES = [
-        'class'       => 'Kelas',
-        'office'      => 'Kantor',
-        'laboratory'  => 'Laboratorium',
-        'rentable'    => 'Sewa',
-        'non_rentable'=> 'Tidak Disewa',
+        'class'         => 'Kelas',
+        'office'        => 'Kantor',
+        'laboratory'    => 'Laboratorium',
+        'general'       => 'Umum',
+        'open_space'    => 'Ruang Terbuka',
+        'internal_unj'  => 'Internal UNJ',
     ];
     public function getRouteKeyName()
     {

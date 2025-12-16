@@ -22,9 +22,7 @@ class Building extends Model
         'land_area',
         'floor',
         'description',
-        'address',
         'images_path',
-        'status',
         'documents_path'
     ];
     protected $casts = [

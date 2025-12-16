@@ -85,13 +85,6 @@
                                 @enderror
                             </div>
                             <div class="col-span-2">
-                                <label for="address" class="block mb-2 text-sm font-medium">Alamat</label>
-                                <input wire:model="address" type="text" id="address" class="bg-gray-50 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg block w-full p-2.5 {{ $errors->has('address') ? 'border-red-500' : 'border-gray-300' }}">
-                                @error('address')
-                                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="col-span-2">
                                 <label for="floor" class="block mb-2 text-sm font-medium">Jumlah Lantai</label>
                                 <input wire:model="floor" type="text" id="floor" class="bg-gray-50 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg block w-full p-2.5 {{ $errors->has('floor') ? 'border-red-500' : 'border-gray-300' }} }}">
                                 @error('floor')
@@ -167,9 +160,6 @@
                         <th scope="col" class="px-6 py-3">
                             Lokasi Kampus
                         </th>
-                        <th scope="col" class="px-6 py-3 w-[500px]">
-                            Alamat
-                        </th>
                         <th scope="col" class="px-6 py-3">
                             Jumlah Lantai
                         </th>
@@ -204,9 +194,6 @@
                             </th>
                             <td class="px-6 py-4">
                                 {{ $building->campus->name }}
-                            </td>
-                            <td class="px-6 py-4">
-                                {{ $building->address }}
                             </td>
                             <td class="px-6 py-4">
                                 {{ $building->floor }}
@@ -265,9 +252,6 @@
                             </th>
                             <td class="px-6 py-4">
                                 {{ $update->new_data['campus'] }}
-                            </td>
-                            <td class="px-6 py-4">
-                                {{ $update->new_data['address'] }}
                             </td>
                             <td class="px-6 py-4">
                                 {{ $update->new_data['floor'] }}

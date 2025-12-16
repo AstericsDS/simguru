@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('land_area');
             $table->integer('floor');
             $table->text('description');
-            $table->text('address');
             $table->json('images_path')->nullable();
             $table->json('documents_path')->nullable();
             $table->softDeletes();

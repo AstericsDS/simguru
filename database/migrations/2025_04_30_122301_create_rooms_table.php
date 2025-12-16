@@ -27,7 +27,9 @@ return new class extends Migration
             $table->json('images_path')->nullable();
             $table->json('documents_path')->nullable();
             $table->json('inventory')->nullable();
-            $table->enum('category', ['class', 'office', 'laboratory', 'rentable', 'non_rentable']);
+            $table->enum('category', ['class', 'office', 'laboratory', 'general', 'open_space', 'internal_unj']);
+            $table->boolean('rentable')->default(true);
+            $table->boolean('show')->default(true);
             $table->softDeletes();
             $table->timestamps();
         });

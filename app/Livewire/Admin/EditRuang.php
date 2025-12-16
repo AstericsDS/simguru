@@ -19,6 +19,8 @@ class EditRuang extends Component
     public Room $room;
     public Update $update;
     public $name, $campus_id, $building_id, $floor, $capacity, $category, $description, $length, $width, $height, $slug;
+    public bool $rentable = true;
+    public bool $show = true;
     public $images_path = [];
     public $documents_path = [];
     public $new_images = [];
@@ -76,6 +78,8 @@ class EditRuang extends Component
         $this->height = $this->new_data['height'] ?? $this->room->height;
         $this->capacity = $this->new_data['capacity'] ?? $this->room->capacity;
         $this->category = $this->new_data['category'] ?? $this->room->category;
+        $this->rentable = $this->new_data['rentable'] ?? $this->room->rentable;
+        $this->show = $this->new_data['show'] ?? $this->room->show;
         $this->description = $this->new_data['description'] ?? $this->room->description;
         $this->images_path = $this->new_data['images_path'] ?? $this->room->images_path;
         $this->documents_path = $this->new_data['documents_path'] ?? $this->room->documents_path;
@@ -113,6 +117,8 @@ class EditRuang extends Component
             'new_documents.*' => 'file|mimes:pdf,doc,docx,xls,xlsx|max:5120',
             'inventory.*.name' => 'required|string',
             'inventory.*.quantity' => 'required|integer|min:1',
+            'rentable' => 'required|boolean',
+            'show' => 'required|boolean',
         ];
     }
 
@@ -144,6 +150,10 @@ class EditRuang extends Component
             'inventory.*.quantity.required' => 'Kuantitas barang harus diisi',
             'inventory.*.quantity.integer' => 'Kuantitas barang harus berupa angka',
             'inventory.*.quantity.min' => 'Kuantitas barang minimal 1',
+            'rentable.required' => 'Harus diisi',
+            'rentable.boolean' => 'Format salah coba refresh',
+            'show.required' => 'Harus diisi',
+            'show.boolean' => 'Format salah coba refresh',
         ];
     }
 
@@ -261,6 +271,8 @@ class EditRuang extends Component
             $this->floor == ($this->room->floor ?? $this->new_data['floor']) &&
             $this->capacity == ($this->room->capacity ?? $this->new_data['capacity']) &&
             $this->category === ($this->room->category ?? $this->new_data['category']) &&
+            $this->rentable === ($this->room->rentable ?? $this->new_data['rentable']) &&
+            $this->show === ($this->room->show ?? $this->new_data['show']) &&
             $this->length === ($this->room->length ?? $this->new_data['length']) &&
             $this->width === ($this->room->width ?? $this->new_data['width']) &&
             $this->height === ($this->room->height ?? $this->new_data['height']) &&

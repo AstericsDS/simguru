@@ -33,20 +33,41 @@
             <div class="font-bold text-4xl mb-7">{{ $building->name }}</div>
             <div class="grid grid-flow-row gap-3 font-semibold">
                 <div class="grid grid-cols-[150px_10px_auto]">
+                    <div>Lokasi Kampus</div>
+                    <div>:</div>
+                    <div>{{ $building->campus->name ?? 'Pengguna Tidak Ditemukan' }}</div>
+                </div>
+                <div class="grid grid-cols-[150px_10px_auto]">
                     <div>Alamat</div>
                     <div>:</div>
                     <div>{{ $building->address }}</div>
                 </div>
                 <div class="grid grid-cols-[150px_10px_auto]">
-                    <div>Luas</div>
+                    <div>Jumlah Lantai</div>
                     <div>:</div>
-                    <div>{{ $building->area }}</div>
+                    <div>{{ $building->floor }}</div>
+                </div>
+
+                <div class="grid grid-cols-[150px_10px_auto]">
+                    <div>Luas Bangunan</div>
+                    <div>:</div>
+                    <div>{{ $building->building_area }} m&sup2</div>
                 </div>
                 <div class="grid grid-cols-[150px_10px_auto]">
+                    <div>Luas Tanah</div>
+                    <div>:</div>
+                    <div>{{ $building->land_area }} m&sup2</div>
+                </div>
+                <div class="grid grid-cols-[150px_10px_auto]">
+                    <div>Deskripsi</div>
+                    <div>:</div>
+                    <div>{{ $building->description }}</div>
+                </div>
+                {{-- <div class="grid grid-cols-[150px_10px_auto]">
                     <div>Fakultas</div>
                     <div>:</div>
                     <div>FMIPA, FT, FBS, FE, FIP, FISH, </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

@@ -57,6 +57,12 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('api_test_debug')
         ]);
 
+        User::create([
+            'role' => 2,
+            'name' => 'Senoaji Pamungkas',
+            'email' => 'senoaji.pamungkas@mhs.unj.ac.id',
+        ]);
+
         // User::create([
         //     'role' => 2,
         //     'name' => 'Admin',

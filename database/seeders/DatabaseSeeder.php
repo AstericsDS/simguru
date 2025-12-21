@@ -46,7 +46,7 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'role' => 1,
-            'name' => 'Sang Riki',
+            'name' => 'Ricky',
             'email' => 'rickymandala@unj.ac.id',
         ]);
 

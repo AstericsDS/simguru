@@ -130,7 +130,7 @@
                     <span>Kapasitas</span>
                     <div class="flex gap-3">
                         <span>:</span>
-                        <span>{{ $room->capacity ?? $pending->new_data['capacity'] }}
+                        <span>{{ $room->capacity ?? $pending->new_data['capacity'] }} orang</span>
                     </div>
                 </div>
                 <div class="grid grid-cols-[200px_1fr]">
@@ -164,15 +164,27 @@
                             <span class="px-2 py-1 rounded-lg bg-[#17A2B8] text-white">Kantor</span>
                         @elseif ($room->category === 'laboratory')
                             <span class="px-2 py-1 rounded-lg bg-[#6F42C1] text-white">Laboratorium</span>
-                        @elseif ($room->category === 'rentable')
+                        @elseif ($room->category === 'open_space')
                             <span class="px-2 py-1 rounded-lg bg-[#01a2ff] text-white">Ruang Terbuka</span>
-                        @elseif ($room->category === 'rentable')
+                        @elseif ($room->category === 'internal_unj')
                             <span class="px-2 py-1 rounded-lg bg-[#006569] text-white">Internal UNJ</span>
-                        @elseif ($room->category === 'rentable')
-                            <span class="px-2 py-1 rounded-lg bg-[#28A745] text-white">Umum (disewakan)</span>
-                        @elseif ($room->category === 'non_rentable')
-                            <span class="px-2 py-1 rounded-lg bg-[#FFC107] text-white">Umum (tidak disewakan)</span>
+                        @elseif ($room->category === 'general')
+                            <span class="px-2 py-1 rounded-lg bg-[#28A745] text-white">Umum</span>
                         @endif
+                    </div>
+                </div>
+                <div class="grid grid-cols-[200px_1fr]">
+                    <span>Disewakan</span>
+                    <div class="flex gap-3">
+                        <span>:</span>
+                        <span>{{ ($room->rentable ? 'Disewakan' : 'Tidak Disewakan') ?? $pending->new_data['rentable']}}</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-[200px_1fr]">
+                    <span>Visibilitas</span>
+                    <div class="flex gap-3">
+                        <span>:</span>
+                        <span>{{ ($room->show ? 'Publik' : 'Privat') ?? $pending->new_data['show'] }}</span>
                     </div>
                 </div>
                 <div class="grid grid-cols-[200px_1fr]">

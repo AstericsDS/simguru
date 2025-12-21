@@ -28,7 +28,7 @@ class Homepage extends Component {
     public function render(){
         $campuses = Campus::all();
         $buildings = Building::all();
-        $rooms = Room::all();
+        $rooms = Room::where('show', true)->get();
         // Campus::when($this->search !== '', fn(Builder $query) => $query->where('name', 'like', '%' . $this->search . '%'))->get();
         // dd($campuses);
         return view('livewire.homepage', [

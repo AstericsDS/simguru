@@ -20,6 +20,8 @@ class DaftarRuang extends Component
     use WithFileUploads;
     public Room $selectedRoom;
     public $name, $campus_id, $building_id, $floor, $capacity, $category, $length, $width, $height, $description, $slug;
+    public bool $rentable = true;
+    public bool $show = true;
     public $buildings = [];
     public $campuses = [];
     public $search = '';
@@ -50,6 +52,8 @@ class DaftarRuang extends Component
             'documents_path.*' => 'file|mimes:pdf,doc,docx,xls,xlsx|max:5120',
             'inventory.*.name' => 'required|string',
             'inventory.*.quantity' => 'required|integer|min:1',
+            'rentable' => 'required|boolean',
+            'show' => 'required|boolean',
         ];
     }
 
@@ -81,6 +85,10 @@ class DaftarRuang extends Component
             'inventory.*.quantity.required' => 'Kuantitas barang harus diisi',
             'inventory.*.quantity.integer' => 'Kuantitas barang harus berupa angka',
             'inventory.*.quantity.min' => 'Kuantitas barang minimal 1',
+            'rentable.required' => 'Harus diisi',
+            'rentable.boolean' => 'Format salah coba refresh',
+            'show.required' => 'Harus diisi',
+            'show.boolean' => 'Format salah coba refresh',
         ];
     }
 
@@ -129,7 +137,7 @@ class DaftarRuang extends Component
             'reject_reason' => null,
         ]);
         if ($created) {
-            $this->reset(['name', 'capacity', 'length', 'width', 'height', 'description', 'images_path', 'documents_path']);
+            $this->reset(['name', 'capacity', 'length', 'width', 'height', 'description', 'images_path', 'documents_path', 'rentable',  'show']);
             $this->dispatch('close-modal');
             $this->dispatch('toast', status: 'success', message: 'Entri anda telah masuk dan akan segera diverifikasi.');
         } else {

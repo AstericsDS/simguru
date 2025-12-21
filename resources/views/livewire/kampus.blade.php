@@ -37,9 +37,9 @@
             <div class="font-bold text-4xl mb-7">{{ $campus->name }}</div>
             <div class="grid grid-flow-row gap-3 font-semibold">
                 <div class="grid grid-cols-[150px_10px_auto]">
-                    <div>Alamat</div>
+                    <div>Nama Kampus</div>
                     <div>:</div>
-                    <div>{{ $campus->address }}</div>
+                    <div>{{ $campus->name }}</div>
                 </div>
                 <div class="grid grid-cols-[150px_10px_auto]">
                     <div>Jumlah Gedung</div>
@@ -47,10 +47,30 @@
                     <div>{{ $campus->building->count() }}</div>
                 </div>
                 <div class="grid grid-cols-[150px_10px_auto]">
+                    <div>Alamat</div>
+                    <div>:</div>
+                    <div>{{ $campus->address }}</div>
+                </div>
+                <div class="grid grid-cols-[150px_10px_auto]">
+                    <div>Luas Kawasan</div>
+                    <div>:</div>
+                    <div>{{ $campus->area_size }} m&sup2</div>
+                </div>
+                <div class="grid grid-cols-[150px_10px_auto]">
+                    <div>Nomor Telepon</div>
+                    <div>:</div>
+                    <div>{{ $campus->contact }}</div>
+                </div>
+                <div class="grid grid-cols-[150px_10px_auto]">
+                    <div>Deskripsi</div>
+                    <div>:</div>
+                    <div>{{ $campus->description }}</div>
+                </div>
+                {{-- <div class="grid grid-cols-[150px_10px_auto]">
                     <div>Fakultas</div>
                     <div>:</div>
                     <div>FMIPA, FT, FBS, FE, FIP, FISH</div>
-                </div>
+                </div> --}}
                 {{-- <div>Alamat</div> <div>:</div> <div>Jl. R.Mangun Muka Raya, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220</div>
           <div>Jumlah gedung</div> <div>:</div> <div>200</div> --}}
             </div>

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Campus;
 
 class Building extends Model
 {
@@ -21,9 +22,7 @@ class Building extends Model
         'land_area',
         'floor',
         'description',
-        'address',
         'images_path',
-        'status',
         'documents_path'
     ];
     protected $casts = [

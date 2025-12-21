@@ -20,7 +20,7 @@ class DaftarGedung extends Component
     use WithFileUploads;
     public Building $selectedBuilding;
 
-    public $name, $address, $floor, $building_area, $land_area, $description, $campus_id, $slug;
+    public $name, $floor, $building_area, $land_area, $description, $campus_id, $slug;
     public $search = '';
     public $campuses = [];
     public $images_path = [];
@@ -35,7 +35,6 @@ class DaftarGedung extends Component
             'name' => 'required|unique:buildings,name',
             'slug' => 'required',
             'campus_id' => 'required',
-            'address' => 'required',
             'floor' => 'required|integer|max:10',
             'building_area' => 'required|integer',
             'land_area' => 'required|integer',
@@ -51,7 +50,6 @@ class DaftarGedung extends Component
     {
         return [
             'name.required' => 'Nama gedung harus diisi',
-            'address.required' => 'Alamat harus diisi',
             'floor.required' => 'Jumlah lantai harus diisi',
             'description.required' => 'Deskripsi harus diisi',
             'campus_id.required' => 'Harus pilih salah satu kampus',
@@ -110,7 +108,7 @@ class DaftarGedung extends Component
         ]);
 
         if ($created) {
-            $this->reset(['name', 'address', 'floor', 'building_area', 'land_area', 'description', 'images_path', 'documents_path']);
+            $this->reset(['name', 'floor', 'building_area', 'land_area', 'description', 'images_path', 'documents_path']);
             $this->dispatch('close-modal');
             $this->dispatch('toast', status: 'success', message: 'Entri anda telah masuk dan akan segera diverifikasi.');
         } else {

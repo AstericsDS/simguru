@@ -30,7 +30,6 @@ class BuildingFactory extends Factory
             'land_area' => fake()->randomNumber(3, false),
             'floor' => fake()->numberBetween(1, 10),
             'description' => fake()->paragraph(5),
-            'address' => fake()->address(),
         ];
     }
 }

@@ -54,7 +54,8 @@ class DatabaseSeeder extends Seeder
             'role' => 1,
             'name' => 'API_TEST',
             'email' => 'api@test.com',
-            'password' => Hash::make('api_test_debug')
+            'password' => Hash::make('api_test_debug'),
+            'type' => 'dev',
         ]);
 
         User::create([
@@ -62,6 +63,23 @@ class DatabaseSeeder extends Seeder
             'name' => 'Senoaji Pamungkas',
             'email' => 'senoaji.pamungkas@mhs.unj.ac.id',
             'password' => Hash::make('SIAKAD_DEV'),
+            'type' => 'dev',
+        ]);
+
+        User::create([
+            'role' => 2,
+            'name' => 'Zikri Muhammad Madani',
+            'email' => 'forcegini@gmail.com',
+            'password' => Hash::make('SIAKAD_DEV'),
+            'type' => 'dev',
+        ]);
+
+        User::create([
+            'role' => 2,
+            'name' => 'Andhika Dwiputra Soetjiadi',
+            'email' => 'andhika.dwiputra.soetjiadi@mhs.unj.ac.id',
+            'password' => Hash::make('SIAKAD_DEV'),
+            'type' => 'dev',
         ]);
 
         // User::create([

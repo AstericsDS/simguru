@@ -53,20 +53,23 @@ class SsoController extends Controller
             return redirect(route('login'))->with('error', 'Token SSO tidak valid. Silakan coba lagi');
         }
         $user = User::where('email', $decoded->email)->first();
-        if($user) {
-            $userCreate = User::updateOrCreate(
-                ['email' => $decoded->email],
-                [
-                    'name' => $decoded->name,
-                    'password' => bcrypt($decoded->id),
-                ]
-            );
-    
-            Auth::login($userCreate, true);
-    
+        if ($user) {
+            if($user->type === 'regular') {
+                $userCreate = User::updateOrCreate(
+                    ['email' => $decoded->email],
+                    [
+                        'name' => $decoded->name,
+                        'password' => bcrypt($decoded->id),
+                    ]
+                );
+                Auth::login($userCreate, true);
+            } else {
+                Auth::login($user, true);
+            }
+
             $request->session()->forget('sso_private_key');
             $request->session()->regenerate();
-    
+
             return redirect()->intended(route('dashboard'));
         } else {
             return redirect()->intended(route('login'))->with('error', 'Kamu tidak memiliki akses');

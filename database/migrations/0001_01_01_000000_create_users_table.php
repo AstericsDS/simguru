@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('name')->nullable();
             $table->string('password')->nullable();
+            $table->enum('type', ['dev', 'regular'])->default('regular');
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();

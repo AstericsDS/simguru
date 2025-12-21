@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Api\V1;
+namespace App\Http\Controllers\API\V1;
 
-use App\Http\Controllers\Controller;
-use App\Http\Resources\V1\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\V1\UserResource;
 
 class UserController extends Controller
 {
@@ -47,5 +48,27 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+    }
+
+    public function login(Request $request)
+    {
+        $credentials = $request->only(['email', 'password']);
+
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            $token = $user->createToken('token', ['server:read']);
+            return response()->json([
+                'user' => [
+                    'email' => $user->email 
+                ],
+                'token' => $token->plainTextToken,
+                'type' => 'Bearer'
+            ], 200);
+        }
+
+        return response()->json([
+            'message' => 'Unauthenticated.'
+        ], 401);
+
     }
 }

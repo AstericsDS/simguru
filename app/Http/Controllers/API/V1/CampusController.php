@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\V1;
+namespace App\Http\Controllers\API\V1;
 
 use App\Models\Campus;
 use Illuminate\Http\Request;
@@ -18,7 +18,8 @@ class CampusController extends Controller
     {
         $campuses = QueryBuilder::for(Campus::class)
                     ->allowedFilters([
-                        AllowedFilter::partial('name')
+                        AllowedFilter::partial('name'),
+                        AllowedFilter::partial('address'),
                     ])->get();
         return CampusResource::collection($campuses);
     }

@@ -46,7 +46,15 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'role' => 1,
+            'name' => 'Sang Riki',
             'email' => 'rickymandala@unj.ac.id',
+        ]);
+
+        User::create([
+            'role' => 1,
+            'name' => 'API_TEST',
+            'email' => 'api@test.com',
+            'password' => Hash::make('api_test_debug')
         ]);
 
         // User::create([
@@ -174,5 +182,11 @@ class DatabaseSeeder extends Seeder
         //     ->count(1)
         //     ->has(Building::factory()->count(9))
         //     ->create();
+
+        User::factory()->count(3)->create();
+        Campus::factory()->count(1)->create();
+        Building::factory()->count(1)->create();
+        Room::factory()->count(1)->create();
+        Event::factory()->count(1)->create();
     }
 }

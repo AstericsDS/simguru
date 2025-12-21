@@ -17,12 +17,10 @@ class CampusResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'admin' => new UserResource(User::find($this->admin_id)),
             'name' => $this->name,
             'address' => $this->address,
             'contact' => $this->contact,
             'description' => $this->description,
-            'images_path' => $this->images_path,
         ];
     }
 }

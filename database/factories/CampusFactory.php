@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,14 +18,16 @@ class CampusFactory extends Factory
      */
     public function definition(): array
     {
+        $name = fake()->sentence();
+        $slug = Str::slug($name, '-');
         return [
-            'name' => fake()->word(),
-            'admin_id' => 2,
+            'name' => $name,
+            'admin_id' => User::inRandomOrder()->first()->id,
+            'slug' => $slug,
             'address' => fake()->address(),
+            'area_size' => fake()->randomNumber(3, false),
             'contact' => fake()->randomNumber(5, true),
-            'email' => fake()->email(),
             'description' => fake()->paragraph(),
-            'images_path' => null,
         ];
     }
 }

@@ -52,14 +52,13 @@ class SsoController extends Controller
         } catch (\Exception $e) {
             return redirect(route('login'))->with('error', 'Token SSO tidak valid. Silakan coba lagi');
         }
-
         $user = User::where('email', $decoded->email)->first();
         if($user) {
             $userCreate = User::updateOrCreate(
                 ['email' => $decoded->email],
                 [
                     'name' => $decoded->name,
-                    'password' => bcrypt(Str::random(16)),
+                    'password' => bcrypt($decoded->id),
                 ]
             );
     

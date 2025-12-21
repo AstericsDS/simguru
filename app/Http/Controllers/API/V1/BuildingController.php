@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\V1;
+namespace App\Http\Controllers\API\V1;
 
 use App\Models\Building;
 use Illuminate\Http\Request;
@@ -21,12 +21,12 @@ class BuildingController extends Controller
         $buildings = QueryBuilder::for(Building::class)
             ->allowedFilters([
                 AllowedFilter::partial('name'),
-                AllowedFilter::callback('campus_name', function($query, $value){
-                    $query->whereHas('campus', function($q) use ($value){
-                        $q->where('name', 'like', "%{$value}%");
-                    });
-                }),
+                AllowedFilter::partial('campus.name'),
+                AllowedFilter::operator('building_area', FilterOperator::DYNAMIC),
+                AllowedFilter::operator('land_area', FilterOperator::DYNAMIC),
+                AllowedFilter::operator('floor', FilterOperator::DYNAMIC),
             ])
+            ->allowedSorts('building_area', 'land_area', 'floor')
             ->get();
         return BuildingResource::collection($buildings);
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\V1;
+namespace App\Http\Controllers\API\V1;
 
 use App\Models\Room;
 use Illuminate\Http\Request;
@@ -18,20 +18,17 @@ class RoomController extends Controller
     public function index()
     {
         $rooms = QueryBuilder::for(Room::class)
-                 ->allowedFilters([
-                    AllowedFilter::partial('name'),
-                    AllowedFilter::callback('building_name', function($query, $value){
-                        $query->whereHas('building', function($q) use ($value){
-                            $q->where('name', 'like', "%{$value}%");
-                        });
-                    }),
-                    AllowedFilter::callback('campus_name', function($query, $value){
-                        $query->whereHas('campus', function($q) use ($value){
-                            $q->where('name', 'like', "%{$value}%");
-                        });
-                    }),
-                    AllowedFilter::operator('capacity', FilterOperator::DYNAMIC)
-                 ])->get();
+            ->allowedFilters([
+                AllowedFilter::partial('name'),
+                AllowedFilter::partial('campus.name'),
+                AllowedFilter::partial('building.name'),
+                AllowedFilter::operator('floor', FilterOperator::DYNAMIC),
+                AllowedFilter::operator('length', FilterOperator::DYNAMIC),
+                AllowedFilter::operator('width', FilterOperator::DYNAMIC),
+                AllowedFilter::operator('height', FilterOperator::DYNAMIC),
+                AllowedFilter::operator('capacity', FilterOperator::DYNAMIC),
+                AllowedFilter::partial('category'),
+            ])->get();
         return RoomResource::collection($rooms);
     }
 

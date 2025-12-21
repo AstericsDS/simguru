@@ -13,11 +13,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, SoftDeletes;
+    use HasFactory, Notifiable, SoftDeletes, HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
@@ -67,7 +68,7 @@ class User extends Authenticatable
     public function updates(): HasMany {
         return $this->hasMany(Update::class, 'admin_id');
     }
-    public function role(): BelongsTo {
+    public function role_id(): BelongsTo {
         return $this->belongsTo(Role::class, 'role');
     }
 }

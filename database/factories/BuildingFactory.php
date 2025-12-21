@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
+use App\Models\Campus;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,15 +19,18 @@ class BuildingFactory extends Factory
      */
     public function definition(): array
     {
+        $name = fake()->sentence();
+        $slug = Str::slug($name, '-');
         return [
-            'name' => $this->faker->word(),
-            'admin_id' => 2,
-            'floor' => $this->faker->numberBetween(1, 10),
-            'area' => $this->faker->numberBetween(20000, 30000),
-            'address' => $this->faker->address(),
-            'description' => $this->faker->paragraph(5),
-            'images_path' => $this->faker->word(),
-            'status' => $this->faker->boolean(),
+            'admin_id' => User::inRandomOrder()->value('id'),
+            'campus_id' => Campus::inRandomOrder()->value('id'),
+            'name' => $name,
+            'slug' => $slug,
+            'building_area' => fake()->randomNumber(3, false),
+            'land_area' => fake()->randomNumber(3, false),
+            'floor' => fake()->numberBetween(1, 10),
+            'description' => fake()->paragraph(5),
+            'address' => fake()->address(),
         ];
     }
 }

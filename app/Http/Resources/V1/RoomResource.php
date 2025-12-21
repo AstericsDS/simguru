@@ -18,18 +18,17 @@ class RoomResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $building = Building::find($this->building_id);
         return [
             'id' => $this->id,
-            'admin' => new UserResource(User::find($this->admin_id)),
+            'building' => new BuildingResource($this->building),
             'name' => $this->name,
-            'campus' => $building->campus->name,
-            'building' => $building->name,
             'floor' => $this->floor,
+            'length' => $this->length,
+            'width' => $this->width,
+            'height' => $this->height,
             'capacity' => $this->capacity,
             'description' => $this->description,
-            'images_path' => $this->images_path,
-            'status' => $this->status,
+            'category' => $this->category,
         ];
     }
 }

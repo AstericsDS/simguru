@@ -5,4 +5,5 @@ return [
     'login_url' => env('SSO_LOGIN_URL'),
     'redirect_url' => env('SSO_REDIRECT_URL'),
     'callback_url' => env('SSO_CALLBACK_URL'),
+    'logout_url' => env('SSO_LOGOUT')
 ];

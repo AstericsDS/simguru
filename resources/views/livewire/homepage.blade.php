@@ -7,16 +7,16 @@
             Sistem Informasi Gedung dan Ruang
         </h1>
         {{-- login button --}}
-        <a href="/login" class="btn btn-xl w-34 bg-[#FDDC00] text-primary border-none shadow-none">
-            {{-- <img src="{{ asset('logos/login.svg') }}" alt="" class="w-10 "> --}}
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="#006569" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="lucide lucide-key-round-icon lucide-key-round">
-                <path
-                    d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z" />
-                <circle cx="16.5" cy="7.5" r=".5" fill="currentColor" />
+        <a href="/admin/dashboard" class="btn btn-xl bg-[#FDDC00] text-primary border-none shadow-none flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">
+                <g fill="none" stroke="#888888" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                    <rect width="7" height="9" x="3" y="3" rx="1" />
+                    <rect width="7" height="5" x="14" y="3" rx="1" />
+                    <rect width="7" height="9" x="14" y="12" rx="1" />
+                    <rect width="7" height="5" x="3" y="16" rx="1" />
+                </g>
             </svg>
-            Login
+            <span>Dashboard</span>
         </a>
     </div>
 
@@ -174,10 +174,9 @@
                     <h1>{{ $room->building->name }}</h1>
                     <h1>{{ $room->description }}</h1>
                     <ul>
-                        <li class="flex gap-2"><svg class="stroke-primary" xmlns="http://www.w3.org/2000/svg"
-                                width="18" height="18" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round"
+                        <li class="flex gap-2"><svg class="stroke-primary" xmlns="http://www.w3.org/2000/svg" width="18"
+                                height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
                                 class="lucide lucide-building2-icon lucide-building-2 stroke-primary">
                                 <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
                                 <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
@@ -187,17 +186,19 @@
                                 <path d="M10 14h4" />
                                 <path d="M10 18h4" />
                             </svg> Lantai :
-                            {{ $room->floor }}</li>
-                        <li class="flex gap-2"><svg class="stroke-primary" xmlns="http://www.w3.org/2000/svg"
-                                width="18" height="18" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="lucide lucide-users-icon lucide-users stroke-primary">
+                            {{ $room->floor }}
+                        </li>
+                        <li class="flex gap-2"><svg class="stroke-primary" xmlns="http://www.w3.org/2000/svg" width="18"
+                                height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide lucide-users-icon lucide-users stroke-primary">
                                 <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
                                 <path d="M16 3.128a4 4 0 0 1 0 7.744" />
                                 <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
                                 <circle cx="9" cy="7" r="4" />
                             </svg>Kapasitas :
-                            {{ $room->capacity }}</li>
+                            {{ $room->capacity }}
+                        </li>
                     </ul>
                     <div class="card-actions">
                         <a href="/ruang/{{ $room->slug }}"

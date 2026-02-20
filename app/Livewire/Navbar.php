@@ -13,7 +13,7 @@ class Navbar extends Component
         Auth::logout();
         session()->invalidate();
         session()->regenerateToken();
-        return redirect(route('login'));
+        return redirect()->away(config('sso.logout_url'));
     }
 
     public function back()

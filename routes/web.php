@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\SSOLoginCallback;
+use App\Http\Middleware\EnsureMicrosoftSession;
+use App\Http\Middleware\SSO;
 use App\Livewire\Form;
 use App\Livewire\Debug;
 use App\Livewire\Login;
@@ -35,13 +38,13 @@ use App\Livewire\Admin\PeminjamanRuang;
 use App\Livewire\Admin\ReservasiRuang;
 use App\Livewire\Admin\VerifikasiJadwal;
 use App\Livewire\Admin\ManajemenUser;
-Use App\Livewire\Admin\ViewUser;
+use App\Livewire\Admin\ViewUser;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\SsoController;
 
 // Admin
-Route::middleware(['auth'])->prefix('admin')->group(function(){
+Route::middleware(EnsureMicrosoftSession::class)->prefix('admin')->group(function () {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
     Route::get('/content', Content::class)->name('content');
     Route::get('/kampus', Kampus::class)->name('kampus');
@@ -74,9 +77,9 @@ Route::middleware(['auth'])->prefix('admin')->group(function(){
 // Auth
 Route::get('/login', Login::class)->name('login');
 Route::get('/login/admin', LoginAdmin::class)->name('login-admin');
-// Route::get('/login', Login::class)->name('login');
 
 // SSO
+Route::get('/sso/silent-login', [SsoController::class, 'redirectToProviderSilent'])->name('sso.silent-login');
 Route::get('/sso/login', [SsoController::class, 'redirectToProvider'])->name('sso.login');
 Route::get('/sso/callback', [SsoController::class, 'handleProviderCallback'])->name('sso.callback');
 

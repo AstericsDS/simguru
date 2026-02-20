@@ -12,6 +12,32 @@ use Firebase\JWT\Key;
 
 class SsoController extends Controller
 {
+    public function redirectToProviderSilent()
+    {
+        $clientId = config('sso.client_id');
+        $loginUrl = config('sso.login_url');
+
+        $response = Http::post($loginUrl, [
+            'client_id' => $clientId
+        ]);
+
+        if ($response->failed()) {
+            return redirect(route('login'))->with('error', 'Gagal terhubung ke server SSO');
+        }
+
+        $data = $response->json();
+        $publicKey = $data['data']['public_key'] ?? null;
+        $privateKey = $data['data']['private_key'] ?? null;
+        if (!$publicKey || !$privateKey) {
+            return redirect(route('login'))->with('error', 'Respons tidak valid dari server SSO');
+        }
+        session(['sso_private_key' => $privateKey]);
+        
+        $ssoRedirectUrl = config('sso.redirect_url') . 'silent-login-microsoft?public_key=' . $publicKey;
+        return redirect()->away($ssoRedirectUrl);
+    }
+
+
     public function redirectToProvider()
     {
         $clientId = config('sso.client_id');
@@ -26,7 +52,6 @@ class SsoController extends Controller
         }
 
         $data = $response->json();
-
         $publicKey = $data['data']['public_key'] ?? null;
         $privateKey = $data['data']['private_key'] ?? null;
         if (!$publicKey || !$privateKey) {
@@ -34,7 +59,7 @@ class SsoController extends Controller
         }
         session(['sso_private_key' => $privateKey]);
 
-        $ssoRedirectUrl = config('sso.redirect_url') . '?public_key=' . $publicKey;
+        $ssoRedirectUrl = config('sso.redirect_url') . 'login-microsoft?public_key=' . $publicKey;
         return redirect()->away($ssoRedirectUrl);
     }
 
@@ -54,7 +79,7 @@ class SsoController extends Controller
         }
         $user = User::where('email', $decoded->email)->first();
         if ($user) {
-            if($user->type === 'regular') {
+            if ($user->type === 'regular') {
                 $userCreate = User::updateOrCreate(
                     ['email' => $decoded->email],
                     [
@@ -66,7 +91,7 @@ class SsoController extends Controller
             } else {
                 Auth::login($user, true);
             }
-
+            session(['sso_last_validated_at' => now()]);
             $request->session()->forget('sso_private_key');
             $request->session()->regenerate();
 

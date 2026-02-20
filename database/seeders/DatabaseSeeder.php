@@ -208,10 +208,10 @@ class DatabaseSeeder extends Seeder
         //     ->has(Building::factory()->count(9))
         //     ->create();
 
-        User::factory()->count(3)->create();
-        Campus::factory()->count(1)->create();
-        Building::factory()->count(1)->create();
-        Room::factory()->count(1)->create();
-        Event::factory()->count(1)->create();
+        // User::factory()->count(3)->create();
+        // Campus::factory()->count(1)->create();
+        // Building::factory()->count(1)->create();
+        // Room::factory()->count(1)->create();
+        // Event::factory()->count(1)->create();
     }
 }

@@ -17,7 +17,7 @@ class ReservasiRuang extends Component
     public int $room_id;
     #[Validate('required', message: 'Masukkan nama acara')]
     public $event_name, $lecturer, $major, $class_of, $description, $dtstart, $dtend, $day;
-    public $startRaw, $endRaw, $startDate, $startTime, $endTime;
+    public $startRaw, $endRaw, $startDate, $startTime, $endTime, $reserved_by;
 
     #[On('saveDate')]
     public function saveDate($payload)
@@ -55,7 +55,7 @@ class ReservasiRuang extends Component
             'room_id' => $this->room->id,
             'admin' => Auth::id(),
             'event_name' => $this->event_name,
-            'reserved_by' => $this->reserver_by ?? 'Umum',
+            'reserved_by' => $this->reserved_by ?? 'Umum',
             'start' => $this->startRaw,
             'end' => $this->endRaw,
             'lecturer' => $this->lecturer,

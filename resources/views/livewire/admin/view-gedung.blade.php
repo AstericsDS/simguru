@@ -75,13 +75,6 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-[200px_1fr]">
-                    <span>Alamat</span>
-                    <div class="flex gap-3">
-                        <span>:</span>
-                        <span>{{ $building->address ?? $pending->new_data['address'] }}</span>
-                    </div>
-                </div>
-                <div class="grid grid-cols-[200px_1fr]">
                     <span>Luas Bangunan</span>
                     <div class="flex gap-3">
                         <span>:</span>

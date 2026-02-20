@@ -125,10 +125,11 @@
             {{-- Slider --}}
             <div class="viewUnit w-lg relative rounded-md overflow-hidden">
                 <div class="swiper-wrapper">
-                    @foreach ($room->images_path as $image)
-                        <div class="swiper-slide"><img src="{{ asset('storage/' . $image) }}" class="h-full"></div>
-                    @endforeach
-
+                    @if(isset($room->images_path) && count($room->images_path) > 0)
+                        @foreach ($room->images_path as $image)
+                            <div class="swiper-slide"><img src="{{ asset('storage/' . $image) }}" class="h-full"></div>
+                        @endforeach
+                    @endif
                 </div>
 
                 {{-- Navigation --}}

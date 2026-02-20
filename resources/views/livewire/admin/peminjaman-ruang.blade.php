@@ -57,7 +57,7 @@
         <div class="grid grid-cols-4 gap-2 mt-8">
             @foreach ($rooms as $room)
                 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-                    <img class="rounded-t-lg h-48 w-full object-cover" src="{{ isset(asset('storage/' . $room->images_path[0])) ? asset('storage/' . $room->images_path[0]) : asset('backgrounds/DUMMY.png') }}" alt="Gambar Ruang" />
+                    <img class="rounded-t-lg h-48 w-full object-cover" src="{{ asset('storage/' . ($room->images_path[0] ?? '')) }}" alt="Gambar Ruang" />
                     <div class="p-5">
                         <div class="flex gap-4">
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $room->name }}</h5>

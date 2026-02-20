@@ -1,8 +1,7 @@
 <?php
 
-use App\Http\Controllers\SSOLoginCallback;
+use App\Http\Controllers\SsoController;
 use App\Http\Middleware\EnsureMicrosoftSession;
-use App\Http\Middleware\SSO;
 use App\Livewire\Form;
 use App\Livewire\Debug;
 use App\Livewire\Login;
@@ -16,10 +15,6 @@ use App\Livewire\Homepage;
 use App\Livewire\ListKampus;
 use App\Livewire\ListGedung;
 use App\Livewire\ListRuang;
-use App\Livewire\TambahRuang;
-use App\Livewire\ModelBinding;
-use App\Livewire\TambahGedung;
-use App\Livewire\TambahKampus;
 use App\Livewire\Admin\Dashboard;
 use App\Livewire\Admin\DetailAll;
 use App\Livewire\Admin\EditKampus;
@@ -41,21 +36,16 @@ use App\Livewire\Admin\ManajemenUser;
 use App\Livewire\Admin\ViewUser;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\SsoController;
-
 // Admin
 Route::middleware(EnsureMicrosoftSession::class)->prefix('admin')->group(function () {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
     Route::get('/content', Content::class)->name('content');
     Route::get('/kampus', Kampus::class)->name('kampus');
     Route::get('/gedung', Gedung::class)->name('gedung');
-    // Route::get('/tambah-kampus', TambahKampus::class)->name('tambah-kampus');
     Route::get('/daftar-kampus', DaftarKampus::class)->name('daftar-kampus');
     Route::get('/edit-kampus/{id}', EditKampus::class)->name('edit-kampus');
-    // Route::get('/tambah-gedung', TambahGedung::class)->name('tambah-gedung');
     Route::get('/daftar-gedung', DaftarGedung::class)->name('daftar-gedung');
     Route::get('/edit-gedung/{id}', EditGedung::class)->name('edit-gedung');
-    // Route::get('/tambah-ruang', TambahRuang::class)->name('tambah-ruang');
     Route::get('/daftar-ruang', DaftarRuang::class)->name('daftar-ruang');
     Route::get('/edit-ruang/{id}', EditRuang::class)->name('edit-ruang');
     Route::get('/detail-all', DetailAll::class)->name('detail-all');
@@ -63,7 +53,6 @@ Route::middleware(EnsureMicrosoftSession::class)->prefix('admin')->group(functio
     Route::get('/verifikasi-data', VerifikasiData::class)->name('verifikasi-data');
     Route::get('/rekapitulasi', Rekapitulasi::class)->name('rekapitulasi');
     Route::get('/campus', Campus::class)->name('campus');
-    // Route::get('/verifikasi/new', VerifikasiNew::class)->name('verifikasi-new');
     Route::get('/peminjaman-ruang', PeminjamanRuang::class)->name('peminjaman-ruang');
     Route::get('/reservasi-ruang/{room}', ReservasiRuang::class)->name('reservasi-ruang');
     Route::get('/verifikasi-jadwal', VerifikasiJadwal::class)->name('verifikasi-jadwal');
@@ -86,18 +75,12 @@ Route::get('/sso/callback', [SsoController::class, 'handleProviderCallback'])->n
 // Debug API
 Route::get('/form', Form::class)->name('form');
 Route::get('/debug', Debug::class)->name('debug');
-// Route::get('/buildings/{building}', ModelBinding::class)->name('model');
 
 // Public
 Route::get('/', Homepage::class)->name('homepage');
 Route::get('/kampus', ListKampus::class)->name('listKampus');
 Route::get('/gedung', ListGedung::class)->name('listGedung');
 Route::get('/ruang', ListRuang::class)->name('listRuang');
-// Route::get('/buildings/{building}', ModelBinding::class)->name('model');
 Route::get('/kampus/{campus:slug}', Kampus::class)->name('kampus');
 Route::get('/gedung/{building:slug}', Gedung::class)->name('gedung');
 Route::get('/ruang/{room:slug}', Ruang::class)->name('ruang');
-// Route::get('/admin/tambahgedung', TambahGedung::class)->name('admin.tambah-gedung');
-// Route::get('/admin/edit', EditKampus::class)->name('edit-kampus');
-// Route::get('/admin/dashboard', Dashboard::class)->name('admin.dashboard');
-

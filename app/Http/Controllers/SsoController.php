@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Str;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
@@ -32,11 +31,9 @@ class SsoController extends Controller
             return redirect(route('login'))->with('error', 'Respons tidak valid dari server SSO');
         }
         session(['sso_private_key' => $privateKey]);
-        
         $ssoRedirectUrl = config('sso.redirect_url') . 'silent-login-microsoft?public_key=' . $publicKey;
         return redirect()->away($ssoRedirectUrl);
     }
-
 
     public function redirectToProvider()
     {
@@ -91,7 +88,7 @@ class SsoController extends Controller
             } else {
                 Auth::login($user, true);
             }
-            session(['sso_last_validated_at' => now()]);
+            session(['sso_last_validated_at' => now(), 'sso_session_valid' => true]);
             $request->session()->forget('sso_private_key');
             $request->session()->regenerate();
 

@@ -94,7 +94,7 @@ class SsoController extends Controller
 
             return redirect()->intended(route('dashboard'));
         } else {
-            return redirect()->intended(route('login'))->with('error', 'Kamu tidak memiliki akses');
+            return redirect()->route('login')->with('error', 'Kamu tidak memiliki akses');
         }
     }
 }

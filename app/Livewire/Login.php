@@ -31,7 +31,6 @@ class Login extends Component
         // 3. THE CIRCUIT BREAKER
         if ($attempts >= 2) {
             session()->forget('sso_redirect_count');
-
             return;
         }
 

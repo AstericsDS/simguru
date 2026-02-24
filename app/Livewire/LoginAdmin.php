@@ -5,8 +5,10 @@ namespace App\Livewire;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 
 #[Layout('components.layouts.login')]
+#[Title('Login Admin')]
 class LoginAdmin extends Component
 {
     public $name, $password;

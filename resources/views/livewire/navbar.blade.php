@@ -64,7 +64,7 @@
     --}}
 
     {{-- Messages button --}}
-    <button
+    <!-- <button
       id="dropdownNotificationButton"
       data-dropdown-toggle="dropdownNotification"
       class="relative inline-flex items-center text-sm font-medium text-center text-gray-600 hover:text-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 rounded p-1"
@@ -86,10 +86,10 @@
       <div
         class="absolute block w-3 h-3 bg-red-500 border-2 border-white rounded-full -top-0.5 start-5.5"
       ></div>
-    </button>
+    </button> -->
 
     <!-- Dropdown messages -->
-    <div
+    <!-- <div
       id="dropdownNotification"
       class="z-20 hidden w-full max-w-sm bg-white divide-y divide-gray-100 rounded-lg shadow-sm"
       aria-labelledby="dropdownNotificationButton"
@@ -298,7 +298,7 @@
           View all
         </div>
       </a>
-    </div>
+    </div> -->
 
     {{-- User button --}}
     {{--
@@ -327,7 +327,7 @@
     <!-- Dropdown user -->
     <div
       id="dropdownAvatar"
-      class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44"
+      class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-64"
     >
       <div class="px-4 py-3 text-sm text-gray-900">
         @auth

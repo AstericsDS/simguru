@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('admin_id')->constrained('users');
             $table->foreignId('campus_id')->constrained('campuses');
             $table->foreignId('building_id')->constrained('buildings');
-            $table->string('name')->unique();
+            $table->string('name');
             $table->string('slug');
             $table->integer('floor');
             $table->integer('length');
@@ -31,6 +31,7 @@ return new class extends Migration
             $table->boolean('rentable')->default(true);
             $table->boolean('show')->default(true);
             $table->softDeletes();
+            $table->unique(['name', 'deleted_at']);
             $table->timestamps();
         });
     }

@@ -16,7 +16,7 @@
             ];
         @endphp
 
-        <div class="flex gap-2 text-">
+        <div class="flex gap-2 overflow-scroll text-sm sm:text-lg">
             @foreach ($statuses as $value => $label)
                 <button wire:click="setFilter('{{ $value }}')" class="btn-filter p-2 cursor-pointer transition-all {{ $filter === $value ? 'text-primary border-b-[2px] border-primary font-medium' : 'text-gray-500 hover:text-gray-800' }}">
                     {{ $label }}
@@ -79,7 +79,7 @@
                                 @endswitch
                             </td>
                             <td class="px-6 py-4">{{ $update->admin->name }}</td>
-                            <td class="px-6 py-4">{{ $update->created_at->locale('id')->translatedFormat('l, d F Y H:i:s') }}</td>
+                            <td class="px-6 py-4">{{ $update->created_at->locale('id')->translatedFormat('l, d F Y | H:i:s') }}</td>
                             <td class="px-6 py-4">
                                 @switch($update->status)
                                     @case('pending')
@@ -104,7 +104,7 @@
                             <td class="px-6 py-4">
                                 @if ($update->type === 'new')
                                     <span class="bg-blue-200 border border-blue-500 px-2 py-1 rounded-md">Baru</span>
-                                @elseif ($update->type === 'modified')
+                                @elseif ($update->type === 'modify')
                                     <span class="bg-yellow-200 border border-yellow-500 px-2 py-1 rounded-md">Edit</span>
                                 @elseif ($update->type === 'delete')
                                     <span class="bg-red-200 border border-red-500 px-2 py-1 rounded-md">Hapus</span>
@@ -158,37 +158,30 @@
                         @if (isset($selectedUpdate))
 
                             {{-- Data --}}
-                            <div class="mt-6 gap-x-6" :class="active == 'new' ? 'grid grid-cols-2' : ''">
+                            <div class="mt-6 gap-x-6" :class="active == 'new' ? 'flex flex-col-reverse xl:grid xl:grid-cols-2 gap-4' : ''">
                                 <div x-show="active === 'new'" x-transition:enter.duration.250ms>
                                     @foreach ($selectedUpdate->parsed_new_data ?? [] as $key => $value)
-                                        @if ($key !== 'Deskripsi')
-                                            <div class="grid grid-cols-2 mb-2">
-                                                <span>{{ $key }}</span>
-                                                <div class="flex gap-4">
-                                                    <span>:</span>
-                                                    <span>{{ $value }}</span>
-                                                </div>
+                                        <div class="grid grid-cols-[20%_1fr] md:grid-cols-[15%_1fr] xl:grid-cols-[20%_1fr] mb-2">
+                                            <span class="text-sm md:text-base">{{ $key }}</span>
+                                            <div class="flex gap-4">
+                                                <span class="text-sm md:text-base">:</span>
+                                                <span class="text-sm md:text-base">{{ $value }}</span>
                                             </div>
-                                        @else
-                                            <div class="flex flex-col gap-2 rounded-md p-4 border-2 border-gray-300 mt-4">
-                                                <h1>{{ $key }}</h1>
-                                                <span>{{ $value }}</span>
-                                            </div>
-                                        @endif
+                                        </div>
                                     @endforeach
 
                                     {{-- Documents --}}
-                                    <div class="border-2 border-gray-300 p-5 rounded-md mt-4">
+                                    <div class="border-2 border-gray-300 p-4 rounded-md mt-4">
 
                                         <div class="flex gap-2 items-center">
                                             <i class="fa-regular fa-file"></i>
-                                            <h1>Dokumen</h1>
+                                            <h1 class="text-sm md:text-base">Dokumen</h1>
                                         </div>
 
                                         <ul class="mt-3 space-y-1 list-disc list-inside marker:text-primary">
                                             @foreach ($new_data['documents_path'] as $document)
                                                 <li>
-                                                    <a target="_blank" href="{{ asset('storage/' . $document) }}" class="border-b-1 border-transparent hover:border-gray-500 transition-all duration-300"> {{ basename($document) }} </a>
+                                                    <a target="_blank" href="{{ asset('storage/' . $document) }}" class="text-sm md:text-base border-b border-transparent hover:border-gray-500 transition-all duration-300"> {{ basename($document) }} </a>
                                                 </li>
                                             @endforeach
                                         </ul>
@@ -199,20 +192,13 @@
                                 @if (isset($selectedUpdate->old_data))
                                     <div x-show="active === 'old'" x-transition:enter.duration.250ms>
                                         @foreach ($selectedUpdate->parsed_old_data ?? [] as $key => $value)
-                                            @if ($key !== 'Deskripsi')
-                                                <div class="grid grid-cols-2 mb-2">
-                                                    <span>{{ $key }}</span>
-                                                    <div class="flex gap-4">
-                                                        <span>:</span>
-                                                        <span>{{ $value }}</span>
-                                                    </div>
+                                            <div class="grid grid-cols-[20%_1fr] md:grid-cols-[15%_1fr] xl:grid-cols-[20%_1fr] mb-2">
+                                                <span class="text-sm md:text-base">{{ $key }}</span>
+                                                <div class="flex gap-4">
+                                                    <span class="text-sm md:text-base">:</span>
+                                                    <span class="text-sm md:text-base">{{ $value }}</span>
                                                 </div>
-                                            @else
-                                                <div class="flex flex-col space-y-2 rounded-md p-4 border-2 border-gray-300 mt-4">
-                                                    <h1>{{ $key }}</h1>
-                                                    {{ $value }}
-                                                </div>
-                                            @endif
+                                            </div>
                                         @endforeach
                                     </div>
                                 @endif

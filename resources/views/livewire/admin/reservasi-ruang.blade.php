@@ -8,8 +8,8 @@
         {{-- Informasi --}}
         <div x-data="{ show: true }" x-show="show" @toggle-calendar.window="show = !show"
             x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90"
-            x-transition:enter-end="opacity-100 scale-100" class="flex gap-4">
-            <div class="flex-1 flex flex-col gap-3">
+            x-transition:enter-end="opacity-100 scale-100" class="flex xl:gap-8 gap-2 xl:grid xl:grid-cols-2 flex-col-reverse">
+            <div class="flex flex-col flex-4 gap-3">
                 {{-- Informasi Gedung --}}
                 <div>
                     <span class="text-3xl text-primary italic">Informasi Ruang</span>
@@ -123,7 +123,7 @@
             </div>
 
             {{-- Slider --}}
-            <div class="viewUnit w-lg relative rounded-md overflow-hidden">
+            <div class="w-full xl:w-fit relative rounded-md overflow-hidden xl:flex-3">
                 <div class="swiper-wrapper">
                     @if(isset($room->images_path) && count($room->images_path) > 0)
                         @foreach ($room->images_path as $image)

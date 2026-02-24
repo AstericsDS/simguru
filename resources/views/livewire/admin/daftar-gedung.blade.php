@@ -5,20 +5,20 @@
     {{-- Content --}}
     <div class="mt-4">
 
-        <div class="flex justify-between items-center">
+        <div class="flex justify-between items-center gap-2">
 
             <div class="flex gap-3 items-center">
                 {{-- Search --}}
-                <div x-data @keyup.window="if ($event.ctrlKey && $event.key === '/') {$refs.searchInput.focus()}" class="relative w-96">
+                <div x-data @keyup.window="if ($event.ctrlKey && $event.key === '/') {$refs.searchInput.focus()}" class="relative md:w-96 w-full">
                     <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 cursor-pointer">
                         <svg class="w-5 h-5 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" />
                         </svg>
                     </span>
 
-                    <input wire:model.live="search" x-ref="searchInput" @keydown.escape="$refs.searchInput.blur()" type="text" class="border border-gray-300 rounded-lg px-3 py-2 w-full pl-12 pr-[88px] focus:outline-none focus:ring-primary text-black transition-all" placeholder="Cari gedung">
+                    <input wire:model.live="search" x-ref="searchInput" @keydown.escape="$refs.searchInput.blur()" type="text" class="border border-gray-300 rounded-lg px-3 py-2 w-full pl-12 md:pr-22 focus:outline-none focus:ring-primary text-black transition-all text-sm sm:text-lg" placeholder="Cari gedung">
 
-                    <div class="absolute right-4 text-gray-500 top-1/2 -translate-y-1/2 flex gap-1">
+                    <div class="absolute right-4 text-gray-500 top-1/2 -translate-y-1/2 md:flex gap-1 hidden">
                         <div class="border px-2 py-1 border-gray-500 rounded-md flex items-center justify-center">
                             <span class="text-xs">CTRL</span>
                         </div>
@@ -35,9 +35,9 @@
             </div>
 
             {{-- Add --}}
-            <button @click="$dispatch('modal')" class="rounded-xl border border-gray-300 size-10 flex items-center justify-center group hover:px-2 hover:w-[100px] transition-all cursor-pointer hover:bg-primary hover:border-primary hover:text-white hover:rounded-lg overflow-hidden duration-200">
+            <button @click="$dispatch('modal')" class="rounded-md px-4 py-5 border border-gray-300 size-10 flex items-center gap-2 justify-center group hover:w-32 transition-all cursor-pointer hover:bg-primary hover:border-primary hover:text-white hover:rounded-lg overflow-hidden duration-200">
                 <i class="fa-solid fa-plus"></i>
-                <span class="hidden group-hover:inline transition-all font-semibold ml-2">Tambah</span>
+                <span class="hidden group-hover:inline transition-all font-semibold">Tambah</span>
             </button>
 
         </div>
@@ -45,7 +45,7 @@
         <!-- Main modal -->
         <div x-data="{ state: false }" @modal.window="state = !state" @keydown.window.escape="state = false">
             <div x-show="state" class="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 flex items-center justify-center" x-transition:enter="transition ease-in-out duration-250" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in-out duration-250" x-transition:leave-end="opacity-0">
-                <div x-show="state" @click.outside="state = false" class="relative bg-white max-h-[90%] overflow-y-auto rounded-lg shadow-sm w-3xl p-2 opacity-100 z-50" x-transition:enter="transition ease-in-out duration-250" x-transition:enter-start="scale-50" x-transition:enter-end="scale-100" x-transition:leave="transition ease-in-out duration-250" x-transition:leave-end="scale-50">
+                <div x-show="state" @click.outside="state = false" class="relative bg-white max-h-[90%] overflow-y-auto rounded-lg shadow-sm w-3xl p-2 opacity-100 z-50 mx-5 lg:mx-0" x-transition:enter="transition ease-in-out duration-250" x-transition:enter-start="scale-50" x-transition:enter-end="scale-100" x-transition:leave="transition ease-in-out duration-250" x-transition:leave-end="scale-50">
 
                     <!-- Modal header -->
                     <div class="flex items-center justify-between p-5 border-b rounded-t border-gray-200">
@@ -107,7 +107,7 @@
                             </div>
                             <div class="col-span-2">
                                 <label class="block mb-2 text-sm font-medium text-gray-900" for="images">Upload Foto</label>
-                                <input wire:model='images_path' id="images" multiple class="block w-full text-sm text-gray-900 border rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:ring-primary transition-all {{ $errors->has('images_path') || $errors->has('images_path.*') ? 'border-red-500' : 'border-gray-300' }}" aria-describedby="user_avatar_help" id="user_avatar" type="file">
+                                <input wire:model='images_path' accept="image/*" id="images" multiple class="block w-full text-sm text-gray-900 border rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:ring-primary transition-all {{ $errors->has('images_path') || $errors->has('images_path.*') ? 'border-red-500' : 'border-gray-300' }}" aria-describedby="user_avatar_help" id="user_avatar" type="file">
                                 @error('images_path')
                                     <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
                                 @enderror
@@ -117,7 +117,7 @@
                             </div>
                             <div class="col-span-2">
                                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="multiple_files">Upload Dokumen</label>
-                                <input wire:model='documents_path' multiple class="block w-full text-sm text-gray-900 border rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:ring-primary transition-all {{ $errors->has('documents_path') || $errors->has('documents_path.*') ? 'border-red-500' : 'border-gray-300' }}" type="file">
+                                <input wire:model='documents_path' accept=".pdf,.doc,docx,.xls,.xlsx,.csv" multiple class="block w-full text-sm text-gray-900 border rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:ring-primary transition-all {{ $errors->has('documents_path') || $errors->has('documents_path.*') ? 'border-red-500' : 'border-gray-300' }}" type="file">
                                 @error('documents_path')
                                     <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
                                 @enderror
@@ -193,16 +193,20 @@
                                 @endif
                             </th>
                             <td class="px-6 py-4">
-                                {{ $building->campus->name }}
+                                @if ($building->campus)
+                                    {{ $building->campus->name }}
+                                @else
+                                    <span class="italic">Data tidak ditemukan</span>
+                                @endif
                             </td>
                             <td class="px-6 py-4">
                                 {{ $building->floor }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $building->building_area }}m<sup>2</sup>
+                                {{ number_format($building->building_area, 0, ',', '.') }}m<sup>2</sup>
                             </td>
                             <td class="px-6 py-4">
-                                {{ $building->land_area }}m<sup>2</sup>
+                                {{ number_format($building->land_area, 0, ',', '.') }}m<sup>2</sup>
                             </td>
                             <td class="px-6 py-4">
                                 <button wire:click='view({{ $building->id }})' type="button" class="transition-all cursor-pointer hover:text-primary hover:bg-primary-light rounded-xl p-2 mx-auto">
@@ -257,10 +261,10 @@
                                 {{ $update->new_data['floor'] }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $update->new_data['building_area'] }}m<sup>2</sup>
+                                {{ number_format($update->new_data['building_area'], 0, ',', '.') }}m<sup>2</sup>
                             </td>
                             <td class="px-6 py-4">
-                                {{ $update->new_data['land_area'] }}m<sup>2</sup>
+                                {{ number_format($update->new_data['land_area'], 0, ',', '.') }}m<sup>2</sup>
                             </td>
                             <td class="px-6 py-4">
                                 <button wire:click='viewPending({{ $update->id }})' type="button" class="transition-all cursor-pointer hover:text-primary hover:bg-primary-light rounded-xl p-2 mx-auto" data-tip="Gambar">
@@ -308,7 +312,7 @@
 
                 <!-- Modal body -->
                 <div class="p-8 pt-0 tooltip tooltip-accent w-full" data-tip="Scroll untuk melihat">
-                    <div class="carousel carousel-vertical rounded-box h-[500px] w-full">
+                    <div class="carousel carousel-vertical rounded-box h-125 w-full">
                         @foreach ($buildingImages as $image)
                             <div class="carousel-item h-full">
                                 <img src="{{ asset('storage/' . $image) }}" alt="campus" class="w-full object-cover rounded-md">

@@ -114,7 +114,7 @@
                             <label for="campus" class="block mb-2 text-sm font-medium {{ $errors->has('role') ? 'text-red-700' : 'text-gray-900' }}">Role User</label>
                             <select wire:model="role" id="campus" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 {{ $errors->has('role') ? 'border-red-500' : 'border-gray-300' }}">
                                 <option disabled>Pilih Role</option>
-                                {{-- <option value="1">Super Admin</option> --}}
+                                <option value="1">Super Admin</option>
                                 <option value="2">Admin</option>
                             </select>
                             @error('role')

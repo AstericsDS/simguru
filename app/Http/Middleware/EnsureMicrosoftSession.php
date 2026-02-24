@@ -12,6 +12,10 @@ class EnsureMicrosoftSession
 {
     public function handle(Request $request, Closure $next): Response
     {
+        if (Auth::user()->role == 1) {
+            return $next($request);
+        }
+
         // 1. SUCCESS PATH
         if (Auth::check()) {
             $lastCheck = session('sso_last_validated_at');

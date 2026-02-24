@@ -4,18 +4,17 @@
         <span>Kembali ke daftar kampus</span>
     </a>
     {{-- Detail Kampus --}}
-    <div class="flex gap-8">
+    <div class="flex gap-8 xl:flex-row flex-col">
 
         {{-- Media --}}
-        <div class="flex flex-col gap-4">
-
+        <div class="flex flex-col gap-4 xl:flex-3">
+            
             {{-- Slider --}}
-            <div class="viewUnit w-lg relative rounded-md overflow-hidden">
+            <div class="w-full xl:w-fit relative rounded-md overflow-hidden">
                 <div class="swiper-wrapper">
                     @foreach ($campus->images_path ?? $pending->new_data['images_path'] as $image)
                         <div class="swiper-slide"><img src="{{ asset('storage/' . $image) }}" class="h-full"></div>
                     @endforeach
-
                 </div>
 
                 {{-- Navigation --}}
@@ -32,7 +31,7 @@
             {{-- View Documents Modal --}}
             <div x-data="{ state: false }" @modal.window="state = !state" @keydown.window.escape="state = false">
                 <div x-show="state" class="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 flex items-center justify-center" x-transition:enter="transition ease-in-out duration-250" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in-out duration-250" x-transition:leave-end="opacity-0">
-                    <div x-show="state" @click.outside="state = false" class="relative bg-white max-h-[90%] overflow-y-auto rounded-lg shadow-sm w-xl p-2 opacity-100 z-50" x-transition:enter="transition ease-in-out duration-250" x-transition:enter-start="scale-50" x-transition:enter-end="scale-100" x-transition:leave="transition ease-in-out duration-250" x-transition:leave-end="scale-50">
+                    <div x-show="state" @click.outside="state = false" class="relative bg-white max-h-[90%] overflow-y-auto rounded-lg shadow-sm w-xl p-2 opacity-100 z-50 mx-4" x-transition:enter="transition ease-in-out duration-250" x-transition:enter-start="scale-50" x-transition:enter-end="scale-100" x-transition:leave="transition ease-in-out duration-250" x-transition:leave-end="scale-50">
 
                         <!-- Modal header -->
                         <div class="flex items-center justify-between p-5 border-b rounded-t border-gray-200">
@@ -64,38 +63,38 @@
         </div>
 
         {{-- Data Kampus --}}
-        <div class="flex-1">
+        <div class="flex-4">
             <h1 class="text-4xl">{{ $campus->name ?? $pending->new_data['name'] }}</h1>
             <div class="mt-4 flex flex-col gap-3">
-                <div class="grid grid-cols-[200px_1fr]">
+                <div class="grid grid-cols-[23%_1fr] lg:grid-cols-[25%_1fr]">
                     <span>Nama</span>
                     <div class="flex gap-3">
                         <span>:</span>
                         <span>{{ $campus->name ?? $pending->new_data['name'] }}</span>
                     </div>
                 </div>
-                <div class="grid grid-cols-[200px_1fr]">
+                <div class="grid grid-cols-[23%_1fr] lg:grid-cols-[25%_1fr]">
                     <span>Alamat</span>
                     <div class="flex gap-3">
                         <span>:</span>
                         <span>{{ $campus->address ?? $pending->new_data['address'] }}</span>
                     </div>
                 </div>
-                <div class="grid grid-cols-[200px_1fr]">
+                <div class="grid grid-cols-[23%_1fr] lg:grid-cols-[25%_1fr]">
                     <span>Luas Kawasan</span>
                     <div class="flex gap-3">
                         <span>:</span>
                         <span>{{ $campus->area_size ?? $pending->new_data['area_size'] }} m<sup>2</sup></span>
                     </div>
                 </div>
-                <div class="grid grid-cols-[200px_1fr]">
+                <div class="grid grid-cols-[23%_1fr] lg:grid-cols-[25%_1fr]">
                     <span>Nomor Telepon</span>
                     <div class="flex gap-3">
                         <span>:</span>
                         <span>{{ $campus->contact ?? $pending->new_data['contact'] }}</span>
                     </div>
                 </div>
-                <div class="grid grid-cols-[200px_1fr]">
+                <div class="grid grid-cols-[23%_1fr] lg:grid-cols-[25%_1fr]">
                     <span>Deskripsi</span>
                     <div class="flex gap-3">
                         <span>:</span>
@@ -110,7 +109,7 @@
     @if (isset($campus))
         {{-- Gedung Kampus --}}
         <h1 class="text-3xl mt-12">Daftar Gedung</h1>
-        <div class="grid grid-cols-4 gap-3 mt-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 xl:gap-3 mt-4">
             @foreach ($buildings as $building)
                 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
                     <a href="{{ route('view-gedung', $building->slug) }}">

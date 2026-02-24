@@ -6,14 +6,14 @@
     </a>
 
     {{-- Detail Kampus --}}
-    <div x-data="{ state: true }" x-show="state" @toggle-inventory.window="state = !state" class="flex gap-8"
+    <div x-data="{ state: true }" x-show="state" @toggle-inventory.window="state = !state" class="flex gap-8 xl:flex-row flex-col"
         x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90"
         x-transition:enter-end="opacity-100 scale-100">
 
         {{-- Media --}}
-        <div class="flex flex-col gap-4">
+        <div class="flex flex-col gap-4 xl:flex-3">
             {{-- Slider --}}
-            <div class="viewUnit w-lg relative rounded-md overflow-hidden">
+            <div class="w-full xl:w-fit relative rounded-md overflow-hidden">
                 <div class="swiper-wrapper">
                     @foreach ($room->images_path ?? $pending->new_data['images_path'] as $image)
                         <div class="swiper-slide"><img src="{{ asset('storage/' . $image) }}" class="h-full"></div>
@@ -53,7 +53,7 @@
                     x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in-out duration-250"
                     x-transition:leave-end="opacity-0">
                     <div x-show="state" @click.outside="state = false"
-                        class="relative bg-white max-h-[90%] overflow-y-auto rounded-lg shadow-sm w-xl p-2 opacity-100 z-50"
+                        class="relative bg-white max-h-[90%] overflow-y-auto rounded-lg shadow-sm w-xl p-2 opacity-100 z-50 mx-4"
                         x-transition:enter="transition ease-in-out duration-250" x-transition:enter-start="scale-50"
                         x-transition:enter-end="scale-100" x-transition:leave="transition ease-in-out duration-250"
                         x-transition:leave-end="scale-50">
@@ -95,66 +95,66 @@
 
 
         {{-- Data Kampus --}}
-        <div class="flex-1">
+        <div class="flex-4">
             <h1 class="text-4xl">{{ $room->name ?? $pending->new_data['name'] }}</h1>
             <div class="mt-4 flex flex-col gap-3">
-                <div class="grid grid-cols-[200px_1fr]">
+                <div class="grid grid-cols-[23%_1fr] lg:grid-cols-[25%_1fr]">
                     <span>Nama</span>
                     <div class="flex gap-3">
                         <span>:</span>
                         <span>{{ $room->name ?? $pending->new_data['name'] }}</span>
                     </div>
                 </div>
-                <div class="grid grid-cols-[200px_1fr]">
+                <div class="grid grid-cols-[23%_1fr] lg:grid-cols-[25%_1fr]">
                     <span>Kampus</span>
                     <div class="flex gap-3">
                         <span>:</span>
                         <span>{{ $room->campus->name ?? $pending->new_data['campus'] }}</span>
                     </div>
                 </div>
-                <div class="grid grid-cols-[200px_1fr]">
+                <div class="grid grid-cols-[23%_1fr] lg:grid-cols-[25%_1fr]">
                     <span>Gedung</span>
                     <div class="flex gap-3">
                         <span>:</span>
                         <span>{{ $room->building->name ?? $pending->new_data['building'] }}</span>
                     </div>
                 </div>
-                <div class="grid grid-cols-[200px_1fr]">
+                <div class="grid grid-cols-[23%_1fr] lg:grid-cols-[25%_1fr]">
                     <span>Lantai</span>
                     <div class="flex gap-3">
                         <span>:</span>
                         <span>{{ $room->floor ?? $pending->new_data['floor'] }}</span>
                     </div>
                 </div>
-                <div class="grid grid-cols-[200px_1fr]">
+                <div class="grid grid-cols-[23%_1fr] lg:grid-cols-[25%_1fr]">
                     <span>Kapasitas</span>
                     <div class="flex gap-3">
                         <span>:</span>
                         <span>{{ $room->capacity ?? $pending->new_data['capacity'] }} orang</span>
                     </div>
                 </div>
-                <div class="grid grid-cols-[200px_1fr]">
+                <div class="grid grid-cols-[23%_1fr] lg:grid-cols-[25%_1fr]">
                     <span>Panjang</span>
                     <div class="flex gap-3">
                         <span>:</span>
                         <span>{{ $room->length ?? $pending->new_data['length'] }} m</span>
                     </div>
                 </div>
-                <div class="grid grid-cols-[200px_1fr]">
+                <div class="grid grid-cols-[23%_1fr] lg:grid-cols-[25%_1fr]">
                     <span>Lebar</span>
                     <div class="flex gap-3">
                         <span>:</span>
                         <span>{{ $room->width ?? $pending->new_data['width'] }} m</span>
                     </div>
                 </div>
-                <div class="grid grid-cols-[200px_1fr]">
+                <div class="grid grid-cols-[23%_1fr] lg:grid-cols-[25%_1fr]">
                     <span>Tinggi</span>
                     <div class="flex gap-3">
                         <span>:</span>
                         <span>{{ $room->height ?? $pending->new_data['height'] }} m</span>
                     </div>
                 </div>
-                <div class="grid grid-cols-[200px_1fr]">
+                <div class="grid grid-cols-[23%_1fr] lg:grid-cols-[25%_1fr]">
                     <span>Jenis Ruang</span>
                     <div class="flex gap-3">
                         <span>:</span>
@@ -173,21 +173,21 @@
                         @endif
                     </div>
                 </div>
-                <div class="grid grid-cols-[200px_1fr]">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 xl:gap-3 mt-4">
                     <span>Disewakan</span>
                     <div class="flex gap-3">
                         <span>:</span>
                         <span>{{ ($room->rentable ? 'Disewakan' : 'Tidak Disewakan') ?? $pending->new_data['rentable']}}</span>
                     </div>
                 </div>
-                <div class="grid grid-cols-[200px_1fr]">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 xl:gap-3 mt-4">
                     <span>Visibilitas</span>
                     <div class="flex gap-3">
                         <span>:</span>
                         <span>{{ ($room->show ? 'Publik' : 'Privat') ?? $pending->new_data['show'] }}</span>
                     </div>
                 </div>
-                <div class="grid grid-cols-[200px_1fr]">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 xl:gap-3 mt-4">
                     <span>Deskripsi</span>
                     <div class="flex gap-3">
                         <span>:</span>

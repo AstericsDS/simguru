@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('campuses', function (Blueprint $table) {
             $table->id();
             $table->foreignId('admin_id')->nullable()->constrained('users');
-            $table->string('name')->unique();
+            $table->string('name');
             $table->string('slug');
             $table->string('address');
             $table->integer('area_size');
@@ -23,6 +23,7 @@ return new class extends Migration
             $table->softDeletes();
             $table->json('images_path')->nullable();
             $table->json('documents_path')->nullable();
+            $table->unique(['name', 'deleted_at']);
             $table->timestamps();
         });
     }

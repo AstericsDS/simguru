@@ -23,6 +23,7 @@
         "apexcharts": "^5.3.3",
         "flowbite": "^3.1.2",
         "fullcalendar": "^6.1.19",
+        "prettier-plugin-blade": "^2.1.21",
         "swiper": "^11.2.6"
     }
 }

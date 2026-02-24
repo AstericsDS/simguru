@@ -5,12 +5,12 @@
     {{-- Content --}}
     <div class="mt-4">
 
-        <div class="flex justify-between items-center">
+        <div class="flex justify-between items-center gap-2">
 
             <div class="flex gap-3 items-center">
                 {{-- Search --}}
                 <div x-data @keyup.window="if ($event.ctrlKey && $event.key === '/') {$refs.searchInput.focus()}"
-                    class="relative w-96">
+                    class="relative md:w-96 w-full">
                     <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 cursor-pointer">
                         <svg class="w-5 h-5 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                             width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -21,10 +21,10 @@
 
                     <input wire:model.live="search" x-ref="searchInput" @keydown.escape="$refs.searchInput.blur()"
                         type="text"
-                        class="border border-gray-300 rounded-lg px-3 py-2 w-full pl-12 pr-[88px] focus:outline-none focus:ring-primary text-black transition-all"
+                        class="border border-gray-300 rounded-lg px-3 py-2 w-full pl-12 md:pr-22 focus:outline-none focus:ring-primary text-black transition-all text-sm sm:text-lg"
                         placeholder="Cari ruang">
 
-                    <div class="absolute right-4 text-gray-500 top-1/2 -translate-y-1/2 flex gap-1">
+                    <div class="absolute right-4 text-gray-500 top-1/2 -translate-y-1/2 md:flex gap-1 hidden">
                         <div class="border px-2 py-1 border-gray-500 rounded-md flex items-center justify-center">
                             <span class="text-xs">CTRL</span>
                         </div>
@@ -44,9 +44,9 @@
 
             {{-- Add --}}
             <button @click="$dispatch('modal')"
-                class="rounded-xl border border-gray-300 size-10 flex items-center justify-center group hover:px-2 hover:w-[100px] transition-all cursor-pointer hover:bg-primary hover:border-primary hover:text-white hover:rounded-lg overflow-hidden duration-200">
+                class="rounded-md px-4 py-5 border border-gray-300 size-10 flex items-center gap-2 justify-center group hover:w-32 transition-all cursor-pointer hover:bg-primary hover:border-primary hover:text-white hover:rounded-lg overflow-hidden duration-200">
                 <i class="fa-solid fa-plus"></i>
-                <span class="hidden group-hover:inline transition-all font-semibold ml-2">Tambah</span>
+                <span class="hidden group-hover:inline transition-all font-semibold">Tambah</span>
             </button>
 
         </div>
@@ -58,7 +58,7 @@
                 x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in-out duration-250"
                 x-transition:leave-end="opacity-0">
                 <div x-show="state" @click.outside="state = false"
-                    class="relative bg-white max-h-[90%] overflow-y-auto rounded-lg shadow-sm w-3xl p-2 opacity-100 z-50"
+                    class="relative bg-white max-h-[90%] overflow-y-auto rounded-lg shadow-sm w-3xl p-2 opacity-100 z-50 mx-5 lg:mx-0"
                     x-transition:enter="transition ease-in-out duration-250" x-transition:enter-start="scale-50"
                     x-transition:enter-end="scale-100" x-transition:leave="transition ease-in-out duration-250"
                     x-transition:leave-end="scale-50">
@@ -152,7 +152,7 @@
                                 @enderror
                             </div>
                             <div class="col-span-2">
-                                <label for="length" class="block mb-2 text-sm font-medium">Panjang (m)</label>
+                                <label for="length" class="block mb-2 text-sm font-medium">Panjang (m<sup>2</sup>)</label>
                                 <input wire:model="length" type="text" id="length"
                                     class="bg-gray-50 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg block w-full p-2.5 {{ $errors->has('length') ? 'border-red-500' : 'border-gray-300' }} }}">
                                 @error('length')
@@ -160,7 +160,7 @@
                                 @enderror
                             </div>
                             <div class="col-span-2">
-                                <label for="width" class="block mb-2 text-sm font-medium">Lebar (m)</label>
+                                <label for="width" class="block mb-2 text-sm font-medium">Lebar (m<sup>2</sup>)</label>
                                 <input wire:model="width" type="text" id="width"
                                     class="bg-gray-50 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg block w-full p-2.5 {{ $errors->has('width') ? 'border-red-500' : 'border-gray-300' }} }}">
                                 @error('width')
@@ -168,7 +168,7 @@
                                 @enderror
                             </div>
                             <div class="col-span-2">
-                                <label for="height" class="block mb-2 text-sm font-medium">Tinggi (m)</label>
+                                <label for="height" class="block mb-2 text-sm font-medium">Tinggi (m<sup>2</sup>)</label>
                                 <input wire:model="height" type="text" id="height"
                                     class="bg-gray-50 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg block w-full p-2.5 {{ $errors->has('height') ? 'border-red-500' : 'border-gray-300' }} }}">
                                 @error('height')
@@ -200,7 +200,7 @@
                                     <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
                                 @enderror
                             </div>
-                            <div class="flex justify-between w-full">
+                            <div class="flex justify-between min-w-full">
                                 <div x-data>
                                     <div class="flex items-center mb-4">
                                         <input checked type="radio" value="1" name="rentable"
@@ -244,7 +244,7 @@
                             <div class="col-span-2">
                                 <label class="block mb-2 text-sm font-medium text-gray-900" for="user_avatar">Upload
                                     Foto</label>
-                                <input wire:model='images_path' multiple
+                                <input wire:model='images_path' multiple accept="image/*"
                                     class="block w-full text-sm text-gray-900 border rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:ring-primary transition-all {{ $errors->has('images_path') || $errors->has('images_path.*') ? 'border-red-500' : 'border-gray-300' }}"
                                     aria-describedby="user_avatar_help" id="user_avatar" type="file">
                                 @error('images_path')
@@ -256,8 +256,8 @@
                             </div>
                             <div class="col-span-2">
                                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                    for="multiple_files">Upload Dokumen</label>
-                                <input wire:model='documents_path' multiple
+                                    for="documents_path">Upload Dokumen</label>
+                                <input wire:model='documents_path' accept=".pdf,.doc,docx,.xls,.xlsx,.csv" multiple
                                     class="block w-full text-sm text-gray-900 border rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:ring-primary transition-all {{ $errors->has('documents_path') || $errors->has('documents_path.*') ? 'border-red-500' : 'border-gray-300' }}"
                                     type="file">
                                 @error('documents_path')
@@ -424,10 +424,10 @@
                                 {{ $room->capacity }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $room->length * $room->width }}m<sup>2</sup>
+                                {{ number_format($room->length * $room->width, 0, ',', '.') }}m<sup>2</sup>
                             </td>
                             <td class="px-6 py-4">
-                                {{ $room->height }}m
+                                {{ number_format($room->height, 0, ',', '.') }}m<sup>2</sup>
                             </td>
                             <td class="px-6 py-4">
                                 @if ($room->category === 'class')
@@ -588,7 +588,7 @@
             x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in-out duration-250"
             x-transition:leave-end="opacity-0">
             <div x-show="state" @click.outside="state = false"
-                class="relative bg-white max-h-screen overflow-y-auto rounded-lg shadow-sm w-5xl opacity-100 z-50"
+                class="relative bg-white max-h-screen overflow-y-auto rounded-lg shadow-sm w-5xl opacity-100 z-50 mx-4"
                 x-transition:enter="transition ease-in-out duration-250" x-transition:enter-start="scale-50"
                 x-transition:enter-end="scale-100" x-transition:leave="transition ease-in-out duration-250"
                 x-transition:leave-end="scale-50">
@@ -611,7 +611,7 @@
 
                 <!-- Modal body -->
                 <div class="p-8 pt-0 tooltip tooltip-accent w-full" data-tip="Scroll untuk melihat gambar">
-                    <div class="carousel carousel-vertical rounded-box h-[500px] w-full">
+                    <div class="carousel carousel-vertical rounded-box h-125 w-full">
                         @foreach ($room_images as $image)
                             <div class="carousel-item h-full">
                                 <img src="{{ asset('storage/' . $image) }}" alt="campus"

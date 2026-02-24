@@ -17,8 +17,8 @@ return new class extends Migration
             $table->foreignId('admin')->constrained('users');
             $table->string('event_name');
             $table->string('reserved_by');
-            $table->date('start');
-            $table->date('end');
+            $table->string('start');
+            $table->string('end');
             $table->string('lecturer')->nullable();
             $table->string('major')->nullable();
             // $table->integer('class_of')->nullable();

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('admin_id')->constrained('users');
             $table->foreignId('campus_id')->constrained('campuses');
-            $table->string('name')->unique();
+            $table->string('name');
             $table->string('slug');
             $table->string('building_area');
             $table->string('land_area');
@@ -24,6 +24,7 @@ return new class extends Migration
             $table->json('images_path')->nullable();
             $table->json('documents_path')->nullable();
             $table->softDeletes();
+            $table->unique(['name', 'deleted_at']);
             $table->timestamps();
         });
     }

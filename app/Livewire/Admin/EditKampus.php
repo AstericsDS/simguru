@@ -163,6 +163,7 @@ class EditKampus extends Component
         $updated = $this->update->update([
             'old_data' => $this->update->new_data,
             'new_data' => $validated,
+            'type' => 'modify',
             'status' => 'pending',
             'updated_at' => now(),
         ]);
@@ -202,7 +203,7 @@ class EditKampus extends Component
         if (
             $this->name === ($this->campus?->name ?? $this->new_data['name']) &&
             $this->address === ($this->campus?->address ?? $this->new_data['address']) &&
-            $this->address === ($this->campus?->address ?? $this->new_data['area_size']) &&
+            $this->area_size === ($this->campus?->area_size ?? $this->new_data['area_size']) &&
             $this->contact === ($this->campus?->contact ?? $this->new_data['contact']) &&
             $this->description === ($this->campus->description ?? $this->new_data['description']) &&
             $this->sameImages() &&

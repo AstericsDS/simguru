@@ -22,7 +22,7 @@
     {{-- Content --}}
     <div class="mt-8">
         <form wire:submit.prevent='showModal'>
-            <div class="grid grid-cols-2 gap-8 items-start">
+            <div class="flex flex-col-reverse xl:grid xl:grid-cols-2 gap-8 items-start">
                 <div class="w-full flex flex-col gap-5">
                     <div class="{{ $is_pending ? 'tooltip tooltip-accent' : '' }}" data-tip="Mohon tunggu verifikasi super admin">
                         <label for="name">Nama</label>
@@ -36,6 +36,14 @@
                         <label for="address">Alamat</label>
                         <input wire:model.live='address' type="text" id="address" class="bg-gray-50 border focus:outline-none focus:ring-primary transition-all {{ $is_pending ? 'text-gray-500' : 'text-gray-900' }} text-sm rounded-lg block w-full p-2.5 {{ $errors->has('address') ? 'border-red-500' : 'border-gray-300' }} my-2" {{ $is_pending ? 'disabled' : '' }}>
                         @error('address')
+                            <p class="text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div class="{{ $is_pending ? 'tooltip tooltip-accent' : '' }}" data-tip="Mohon tunggu verifikasi super admin">
+                        <label for="area_size">Luas Kawasan</label>
+                        <input wire:model.live='area_size' type="text" id="area_size" class="bg-gray-50 border focus:outline-none focus:ring-primary transition-all {{ $is_pending ? 'text-gray-500' : 'text-gray-900' }} text-sm rounded-lg block w-full p-2.5 {{ $errors->has('area_size') ? 'border-red-500' : 'border-gray-300' }} my-2" {{ $is_pending ? 'disabled' : '' }}>
+                        @error('area_size')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
@@ -66,7 +74,7 @@
 
                 </div>
 
-                <div class="w-full flex flex-col gap-2 my-auto">
+                <div class="w-full flex flex-col gap-5">
                     @error('new_images.*')
                         <span class="text-red-500">
                             {{ $message }}
@@ -153,7 +161,10 @@
                 </div>
             </div>
             <div class="flex justify-end mt-8">
-                <button type="submit" class="p-2 border-[2px] border-primary rounded-md px-8 transition-all font-semibold {{ $is_pending ? 'cursor-not-allowed' : 'hover:bg-primary hover:text-white cursor-pointer' }}">Simpan</button>
+                <button wire:loading.attr="disabled" type="submit" class="p-2 border-[2px] border-primary rounded-md px-8 transition-all font-semibold {{ $is_pending ? 'cursor-not-allowed' : 'hover:bg-primary hover:text-white cursor-pointer' }}">
+                    <span wire:loading.remove wire:target="new_documents,new_images">Simpan</span>
+                    <span wire:loading wire:target="new_documents,new_images">Mengupload...</span>
+                </button>
             </div>
         </form>
     </div>

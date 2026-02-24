@@ -2,15 +2,14 @@
 
 namespace App\Livewire\Admin;
 
-use App\Models\Update;
-use Livewire\Component;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Campus;
+use App\Models\Update;
 use Illuminate\Database\Eloquent\Builder;
-use Livewire\WithFileUploads;
-use Livewire\Attributes\Layout;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use Illuminate\Database\Eloquent\Collection;
+use Livewire\Attributes\Layout;
+use Livewire\Component;
+use Livewire\WithFileUploads;
 
 #[Layout('components.layouts.admin.dashboard')]
 class DaftarKampus extends Component
@@ -34,14 +33,14 @@ class DaftarKampus extends Component
     public function rules()
     {
         return [
-            'name' => 'required|unique:campuses,name',
+            'name' => 'required',
             'slug' => 'required',
             'address' => 'required',
             'area_size' => 'required|integer',
             'contact' => 'required|digits_between:8,13',
             'description' => 'required',
             'images_path' => 'required|array',
-            'images_path.*' => 'file|image|max:2048',
+            'images_path.*' => 'file|image|max:10240',
             'documents_path' => 'required|array',
             'documents_path.*' => 'file|mimes:pdf,doc,docx,xls,xlsx|max:5120'
         ];
@@ -58,8 +57,8 @@ class DaftarKampus extends Component
             'contact.digits_between' => 'Nomor telepon harus berupa angka dan minimal 8 digit',
             'description.required' => 'Deskripsi harus diisi',
             'images_path.required' => 'Foto harus diupload',
-            'new_images.*.max' => 'Size maksimal adalah 2MB',
             'images_path.*.image' => 'Foto harus berupa gambar',
+            'images_path.*.max' => 'Size maksimal adalah 10MB',
             'documents_path.required' => 'Dokumen harus diupload',
             'documents_path.*.mimes' => 'File harus berupa pdf, doc, docs, xls, atau xlsx',
             'new_documents.*.max' => 'Size maksimal adalah 5MB',
@@ -131,6 +130,10 @@ class DaftarKampus extends Component
     public function deleteModal($id)
     {
         $this->selectedUpdate = Update::where('table', 'campuses')->where('record_id', $id)->first();
+        if($this->selectedUpdate->status == 'pending') {
+            $this->dispatch('toast', status: 'fail', message: 'Data sedang dalam proses verifikasi. Silahkan tunggu hingga proses selesai.');
+            return;
+        }
         $this->dispatch('confirm-delete');
     }
 

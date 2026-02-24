@@ -65,7 +65,7 @@ class EditGedung extends Component
         $this->name = $this->new_data['name'] ?? $this->building->name;
         $this->campus_id = $this->new_data['campus_id'] ?? $this->building->campus_id;
         $this->building_area = $this->new_data['building_area'] ?? $this->building->building_area;
-        $this->building_area = $this->new_data['land_area'] ?? $this->building->land_area;
+        $this->land_area = $this->new_data['land_area'] ?? $this->building->land_area;
         $this->floor = $this->new_data['floor'] ?? $this->building->floor;
         $this->address = $this->new_data['address'] ?? $this->building->address;
         $this->description = $this->new_data['description'] ?? $this->building->description;
@@ -85,7 +85,7 @@ class EditGedung extends Component
             'floor' => 'required|integer|max:10',
             'address' => 'required',
             'description' => 'required',
-            'new_images.*' => 'file|image|max:2048',
+            'new_images.*' => 'file|image|max:10240',
             'new_documents.*' => 'file|mimes:pdf,doc,docx,xls,xlsx|max:5120',
         ];
     }
@@ -106,7 +106,7 @@ class EditGedung extends Component
             'description.required' => 'Deskripsi harus diisi',
             'new_images.*.file' => 'Harus berupa file',
             'new_images.*.image' => 'File harus berupa gambar',
-            'new_images.*.max' => 'Size maksimal adalah 2MB',
+            'new_images.*.max' => 'Size maksimal adalah 10MB',
             'new_documents.*.file' => 'Harus berupa file',
             'new_documents.*.mimes' => 'File harus berupa pdf, doc, docs, xls, atau xlsx',
             'new_documents.*.max' => 'Size maksimal adalah 5MB',
@@ -213,10 +213,9 @@ class EditGedung extends Component
         if (
             $this->name === ($this->building->name ?? $this->update->new_data['name']) &&
             $this->campus_id === ($this->building->campus_id ?? $this->update->new_data['campus_id']) &&
-            $this->area === ($this->building->area ?? $this->update->new_data['building_area']) &&
-            $this->area === ($this->building->area ?? $this->update->new_data['land_area']) &&
             $this->floor == ($this->building->floor ?? $this->update->new_data['floor']) &&
-            $this->address === ($this->building->address ?? $this->update->new_data['address']) &&
+            $this->building_area === ($this->building->building_area ?? $this->update->new_data['building_area']) &&
+            $this->land_area === ($this->building->land_area ?? $this->update->new_data['land_area']) &&
             $this->description === ($this->building->description ?? $this->update->new_data['description']) &&
             $this->sameImages() &&
             $this->sameDocuments()

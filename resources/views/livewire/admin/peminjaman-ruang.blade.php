@@ -4,10 +4,10 @@
 
     {{-- Content --}}
     <div class="mt-6">
-        <div class="flex gap-4 w-fit">
+        <div class="flex flex-col items-start xl:items-center xl:flex-row gap-4 w-fit overflow-scroll">
 
             {{-- Search --}}
-            <div x-data @keyup.window="if ($event.ctrlKey && $event.key === '/') {$refs.searchInput.focus()}" class="relative w-96">
+            <div x-data @keyup.window="if ($event.ctrlKey && $event.key === '/') {$refs.searchInput.focus()}" class="relative max-w-96">
                 <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 cursor-pointer">
                     <svg class="w-5 h-5 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" />
@@ -27,19 +27,21 @@
             </div>
 
             {{-- Filter --}}
-            <select wire:model.change="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-[150px] p-2.5 truncate">
+            <select wire:model.change="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full xl:w-37.5 p-2.5 truncate">
                 <option selected hidden>Jenis Ruang</option>
                 @foreach (\App\Models\Room::CATEGORIES as $value => $label)
                     <option value="{{ $value }}">{{ $label }}</option>
                 @endforeach
             </select>
-            <select wire:model.change="campus_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-[200px] p-2.5 truncate">
+
+            <select wire:model.change="campus_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full xl:w-50 p-2.5 truncate">
                 <option selected hidden>Pilih Kampus</option>
                 @foreach ($campuses as $campus)
                     <option value="{{ $campus->id }}">{{ $campus->name }}</option>
                 @endforeach
             </select>
-            <select {{ $campus_id ? '' : 'disabled' }} wire:model.change="building_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-[200px] p-2.5 truncate">
+
+            <select {{ $campus_id ? '' : 'disabled' }} wire:model.change="building_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full xl:w-50 p-2.5 truncate">
                 <option selected hidden>Pilih Gedung</option>
                 @foreach ($buildings ?? [] as $building)
                     @if (is_object($building))
@@ -54,7 +56,7 @@
             </button>
         </div>
 
-        <div class="grid grid-cols-4 gap-2 mt-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 mt-8">
             @foreach ($rooms as $room)
                 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
                     <img class="rounded-t-lg h-48 w-full object-cover" src="{{ asset('storage/' . ($room->images_path[0] ?? '')) }}" alt="Gambar Ruang" />

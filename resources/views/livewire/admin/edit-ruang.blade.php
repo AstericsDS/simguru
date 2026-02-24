@@ -26,7 +26,7 @@
         x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90"
         x-transition:enter-end="opacity-100 scale-100">
         <form wire:submit.prevent='showModal'>
-            <div class="grid grid-cols-2 gap-8 items-start">
+            <div class="flex flex-col-reverse xl:grid xl:grid-cols-2 gap-8 items-start">
                 <div class="w-full flex flex-col gap-5">
                     <div class="{{ $is_pending ? 'tooltip tooltip-accent' : '' }}"
                         data-tip="Mohon tunggu verifikasi super admin">
@@ -161,7 +161,7 @@
 
                 </div>
 
-                <div class="w-full flex flex-col gap-2 my-auto">
+                <div class="w-full flex flex-col gap-5">
 
                     {{-- Toggle Inventory --}}
                     <div class="flex justify-end">

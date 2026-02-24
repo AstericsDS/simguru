@@ -104,7 +104,7 @@ class ManajemenUser extends Component
     public function render()
     {
         return view('livewire.admin.manajemen-user', [
-            'users' => User::whereNotNull('email')->get()
+            'users' => User::whereNotNull('email')->whereNot('type', 'dev')->get()
         ]);
     }
 }

@@ -10,6 +10,10 @@ class Navbar extends Component
 
     public function logout()
     {
+        if(Auth::user()->role == 1) {
+            Auth::logout();
+            return redirect()->route('homepage');
+        }
         Auth::logout();
         session()->invalidate();
         session()->regenerateToken();

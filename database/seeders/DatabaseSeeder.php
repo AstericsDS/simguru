@@ -74,13 +74,13 @@ class DatabaseSeeder extends Seeder
             'type' => 'dev',
         ]);
 
-        // User::create([
-        //     'role' => 2,
-        //     'name' => 'Andhika Dwiputra Soetjiadi',
-        //     'email' => 'andhika.dwiputra.soetjiadi@mhs.unj.ac.id',
-        //     'password' => Hash::make('SIAKAD_DEV'),
-        //     'type' => 'dev',
-        // ]);
+        User::create([
+            'role' => 2,
+            'name' => 'Andhika Dwiputra Soetjiadi',
+            'email' => 'andhika.dwiputra.soetjiadi@mhs.unj.ac.id',
+            'password' => Hash::make('SIAKAD_DEV'),
+            'type' => 'dev',
+        ]);
 
         // User::create([
         //     'role' => 2,

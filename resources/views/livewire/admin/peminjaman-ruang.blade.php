@@ -131,52 +131,52 @@
             alt="Gambar Ruang"
           />
           <div class="p-5">
-            <div class="flex gap-4">
+            <div class="flex items-center gap-4 mb-4">
               <h5
-                class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+                class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
               >
                 {{ $room->name }}
               </h5>
 
               @switch($room->category)
                 @case("class")
-                  <span class="px-2 py-1 rounded-lg bg-[#007BFF] text-white">
+                  <span class="px-2 py-1 rounded-lg bg-[#007BFF] text-white flex items-center">
                     Kelas
                   </span>
 
                   @break
-                @case("not_class")
-                  <span class="px-2 py-1 rounded-lg bg-[#6C757D] text-white">
-                    Bukan Kelas
+                @case("general")
+                  <span class="px-2 py-1 rounded-lg bg-[#6C757D] text-white flex items-center">
+                    Umum
                   </span>
 
                   @break
                 @case("office")
-                  <span class="px-2 py-1 rounded-lg bg-[#17A2B8] text-white">
+                  <span class="px-2 py-1 rounded-lg bg-[#17A2B8] text-white flex items-center">
                     Kantor
                   </span>
 
                   @break
                 @case("laboratory")
-                  <span class="px-2 py-1 rounded-lg bg-[#6F42C1] text-white">
+                  <span class="px-2 py-1 rounded-lg bg-[#6F42C1] text-white flex items-center">
                     Laboratorium
                   </span>
 
                   @break
-                @case("rentable")
-                  <span class="px-2 py-1 rounded-lg bg-[#28A745] text-white">
-                    Umum (disewakan)
+                @case("open_space")
+                  <span class="px-2 py-1 rounded-lg bg-[#28A745] text-white flex items-center">
+                    Ruang Terbuka
                   </span>
 
                   @break
-                @case("non_rentable")
-                  <span class="px-2 py-1 rounded-lg bg-yellow-500 text-white">
-                    Umum (tidak disewakan)
+                @case("internal_unj")
+                  <span class="px-2 py-1 rounded-lg bg-yellow-500 text-white flex items-center">
+                    Internal UNJ
                   </span>
 
                   @break
                 @default
-                  <span class="px-2 py-1 rounded-lg bg-[#28A745] text-white">
+                  <span class="px-2 py-1 rounded-lg bg-[#28A745] text-white flex items-center">
                     nonexist
                   </span>
               @endswitch

@@ -24,7 +24,7 @@ class BuildingResource extends JsonResource
             'land_area' => $this->land_area,
             'floor' => $this->floor,
             'description' => $this->description,
-            'address' => $this->address,
+            'images' => $this->images_path
         ];
     }
 }

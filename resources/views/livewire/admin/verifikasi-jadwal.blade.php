@@ -101,13 +101,13 @@
                 <div class="flex gap-2 items-center">
                   @if ($event->status === "pending")
                     <button
-                      @click="$dispatch('confirm-modal', {id: {{ $event->id }}, action: 'accept'})"
+                      @click="$dispatch('confirm-modal', {id: '{{ $event->id }}', action: 'accept'})"
                       class="border border-green-500 size-8 rounded-xl cursor-pointer hover:bg-green-500 hover:text-white transition-all"
                     >
                       <i class="fa-solid fa-check"></i>
                     </button>
                     <button
-                      @click="$dispatch('confirm-modal', {id: {{ $event->id }}, action: 'reject'})"
+                      @click="$dispatch('confirm-modal', {id: '{{ $event->id }}', action: 'reject'})"
                       class="border border-red-500 size-8 rounded-xl cursor-pointer hover:bg-red-500 hover:text-white transition-all"
                     >
                       <i class="fa-solid fa-xmark"></i>

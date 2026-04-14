@@ -278,7 +278,7 @@
       Menu Perubahan Data
     </li>
 
-    @if (Auth::user()->role == 1)
+    @if (auth()->user()->role === $super_admin_id)
       <li>
         <a
           wire:navigate
@@ -383,7 +383,7 @@
           </span>
         </a>
       </li>
-    @elseif (Auth::user()->role == 2)
+    @elseif (auth()->user()->role === $admin_id)
       <li>
         <a
           wire:navigate

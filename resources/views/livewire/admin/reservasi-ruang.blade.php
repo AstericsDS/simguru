@@ -300,71 +300,74 @@
               :x-transition:leave-end="direction === 'right' ? '-translate-x-full opacity-0' : 'translate-x-full opacity-0'"
               class="absolute w-full gap-5"
             >
-              <div class="grid grid-cols-[275px_1fr]">
-                <span>Hari dan Tanggal</span>
-                <div class="flex gap-4">
-                  <span>:</span>
-                  <span x-text="startDate"></span>
-                </div>
-              </div>
-              <div class="grid grid-cols-[275px_1fr]">
-                <span>Waktu</span>
-                <div class="flex gap-4">
-                  <span>:</span>
-                  <span x-text="startTime + ' - ' + endTime"></span>
-                </div>
-              </div>
-              <div class="grid grid-cols-[275px_1fr]">
-                <span>Nama Acara</span>
-                <div class="flex gap-4">
-                  <span>:</span>
-                  <div class="flex flex-col">
-                    <input
-                      wire:model="event_name"
-                      type="text"
-                      class="bg-gray-50 flex-1 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg w-full {{ $errors->has("event") ? "border-red-500" : "border-gray-300" }}"
-                    />
-                    @error("event")
-                      <p class="mt-2 text-sm text-red-600">
-                        {{ $message }}
-                      </p>
-                    @enderror
+              <div class="flex gap-4 flex-col">
+
+                <div class="grid grid-cols-[275px_1fr]">
+                  <span>Hari dan Tanggal</span>
+                  <div class="flex gap-4">
+                    <span>:</span>
+                    <span x-text="startDate"></span>
                   </div>
                 </div>
-              </div>
-              <div class="grid grid-cols-[275px_1fr]">
-                <span>Peminjam</span>
-                <div class="flex gap-4">
-                  <span>:</span>
-                  <div class="flex flex-col">
-                    <input
-                      wire:model="reserved_by"
-                      type="text"
-                      class="bg-gray-50 flex-1 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg w-full {{ $errors->has("reserved_by") ? "border-red-500" : "border-gray-300" }}"
-                    />
-                    @error("event")
-                      <p class="mt-2 text-sm text-red-600">
-                        {{ $message }}
-                      </p>
-                    @enderror
+                <div class="grid grid-cols-[275px_1fr]">
+                  <span>Waktu</span>
+                  <div class="flex gap-4">
+                    <span>:</span>
+                    <span x-text="startTime + ' - ' + endTime"></span>
                   </div>
                 </div>
-              </div>
-              <div class="grid grid-cols-[275px_1fr]">
-                <span>Deskripsi</span>
-                <div class="flex gap-4">
-                  <span>:</span>
-                  <div class="flex flex-col">
-                    <input
-                      wire:model="description"
-                      type="text"
-                      class="bg-gray-50 flex-1 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg w-full {{ $errors->has("event") ? "border-red-500" : "border-gray-300" }}"
-                    />
-                    @error("event")
-                      <p class="mt-2 text-sm text-red-600">
-                        {{ $message }}
-                      </p>
-                    @enderror
+                <div class="grid grid-cols-[275px_1fr]">
+                  <span>Nama Acara</span>
+                  <div class="flex gap-4">
+                    <span>:</span>
+                    <div class="flex flex-col">
+                      <input
+                        wire:model="event_name"
+                        type="text"
+                        class="bg-gray-50 flex-1 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg w-full {{ $errors->has("event") ? "border-red-500" : "border-gray-300" }}"
+                      />
+                      @error("event")
+                        <p class="mt-2 text-sm text-red-600">
+                          {{ $message }}
+                        </p>
+                      @enderror
+                    </div>
+                  </div>
+                </div>
+                <div class="grid grid-cols-[275px_1fr]">
+                  <span>Peminjam</span>
+                  <div class="flex gap-4">
+                    <span>:</span>
+                    <div class="flex flex-col">
+                      <input
+                        wire:model="reserved_by"
+                        type="text"
+                        class="bg-gray-50 flex-1 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg w-full {{ $errors->has("reserved_by") ? "border-red-500" : "border-gray-300" }}"
+                      />
+                      @error("event")
+                        <p class="mt-2 text-sm text-red-600">
+                          {{ $message }}
+                        </p>
+                      @enderror
+                    </div>
+                  </div>
+                </div>
+                <div class="grid grid-cols-[275px_1fr]">
+                  <span>Deskripsi</span>
+                  <div class="flex gap-4">
+                    <span>:</span>
+                    <div class="flex flex-col">
+                      <input
+                        wire:model="description"
+                        type="text"
+                        class="bg-gray-50 flex-1 border focus:outline-none focus:ring-primary transition-all text-gray-900 text-sm rounded-lg w-full {{ $errors->has("event") ? "border-red-500" : "border-gray-300" }}"
+                      />
+                      @error("event")
+                        <p class="mt-2 text-sm text-red-600">
+                          {{ $message }}
+                        </p>
+                      @enderror
+                    </div>
                   </div>
                 </div>
               </div>

@@ -2,15 +2,17 @@
 
 namespace App\Livewire;
 
-use Livewire\Component;
+use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
 
 class Navbar extends Component
 {
 
     public function logout()
     {
-        if(Auth::user()->role == 1) {
+        $super_admin_id = Role::where('name', '=', 'super_admin')->value('id');
+        if(Auth::user()->role === $super_admin_id) {
             Auth::logout();
             return redirect()->route('homepage');
         }

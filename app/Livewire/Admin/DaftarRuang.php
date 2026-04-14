@@ -2,17 +2,18 @@
 
 namespace App\Livewire\Admin;
 
-use App\Models\Room;
-use App\Models\Campus;
-use App\Models\Update;
-use Livewire\Component;
 use App\Models\Building;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
-use Livewire\WithFileUploads;
-use Livewire\Attributes\Layout;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Campus;
+use App\Models\Role;
+use App\Models\Room;
+use App\Models\Update;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Livewire\Attributes\Layout;
+use Livewire\Component;
+use Livewire\WithFileUploads;
 
 #[Layout('components.layouts.admin.dashboard')]
 class DaftarRuang extends Component
@@ -31,7 +32,7 @@ class DaftarRuang extends Component
     public $rejected_rooms = [];
     public $inventory = [];
     public ?Update $selectedUpdate = null;
-
+    public $super_admin_id;
     public function rules()
     {
         return [
@@ -45,13 +46,13 @@ class DaftarRuang extends Component
             'length' => 'required|integer',
             'width' => 'required|integer',
             'height' => 'required|integer',
-            'description' => 'required',
+            'description' => 'nullable',
             'images_path' => 'required|array',
             'images_path.*' => 'file|image|max:10240',
-            'documents_path' => 'required|array',
+            'documents_path' => 'array',
             'documents_path.*' => 'file|mimes:pdf,doc,docx,xls,xlsx|max:5120',
-            'inventory.*.name' => 'required|string',
-            'inventory.*.quantity' => 'required|integer|min:1',
+            'inventory.*.name' => 'string',
+            'inventory.*.quantity' => 'integer|min:1',
             'rentable' => 'required|boolean',
             'show' => 'required|boolean',
         ];
@@ -73,22 +74,18 @@ class DaftarRuang extends Component
             'width.integer' => 'Lebar harus berupa angka',
             'height.required' => 'Tinggi Ruangan harus diisi',
             'height.integer' => 'Tinggi Ruangan harus berupa angka',
-            'description' => 'Deskripsi harus diisi',
             'images_path.required' => 'Foto harus diupload',
             'images_path.*.image' => 'Foto harus berupa gambar',
             'images_path.*.max' => 'Size maksimal adalah 10MB',
-            'documents_path.required' => 'Dokumen harus diupload',
             'documents_path.*.mimes' => 'File harus berupa pdf, doc, docs, xls, atau xlsx',
             'documents_path.*.max' => 'Size maksimal adalah 5MB',
-            'inventory.*.name.required' => 'Nama barang harus diisi',
             'inventory.*.name.string' => 'Nama barang harus berupa string',
-            'inventory.*.quantity.required' => 'Kuantitas barang harus diisi',
             'inventory.*.quantity.integer' => 'Kuantitas barang harus berupa angka',
             'inventory.*.quantity.min' => 'Kuantitas barang minimal 1',
-            'rentable.required' => 'Harus diisi',
-            'rentable.boolean' => 'Format salah coba refresh',
-            'show.required' => 'Harus diisi',
-            'show.boolean' => 'Format salah coba refresh',
+            'rentable.required' => 'Tipe sewa harus diisi',
+            'rentable.boolean' => 'Tipe sewa harus diisi',
+            'show.required' => 'Tipe visibilitas harus diisi',
+            'show.boolean' => 'Tipe visibilitas harus diisi',
         ];
     }
 
@@ -166,6 +163,7 @@ class DaftarRuang extends Component
 
     public function mount()
     {
+        $this->super_admin_id = Role::where('name', '=', 'super_admin')->value('id');
         $this->campuses = Campus::all();
         $this->category = 'class';
 

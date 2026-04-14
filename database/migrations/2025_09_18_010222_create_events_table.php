@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('events', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('room_id')->constrained('rooms');
-            $table->foreignId('admin')->constrained('users');
+            $table->uuid('id')->primary();
+            $table->foreignUuid('room_id')->constrained('rooms');
+            $table->foreignUuid('admin')->constrained('users');
             $table->string('event_name');
             $table->string('reserved_by');
             $table->string('start');

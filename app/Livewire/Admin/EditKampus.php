@@ -78,7 +78,7 @@ class EditKampus extends Component
             'address' => 'required',
             'area_size' => 'required|integer',
             'contact' => 'required|digits_between:8,13',
-            'description' => 'required',
+            'description' => 'nullable',
             'new_images.*' => 'file|image|max:2048',
             'new_documents.*' => 'file|mimes:pdf,doc,docx,xls,xlsx|max:5120',
         ];

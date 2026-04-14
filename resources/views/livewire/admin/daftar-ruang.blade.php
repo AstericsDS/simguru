@@ -174,7 +174,7 @@
             <div class="grid gap-4 mb-4 grid-cols-2">
               <div class="col-span-2">
                 <label for="name" class="block mb-2 text-sm font-medium">
-                  Nama Ruang
+                  Nama Ruang <span class="text-red-500">*</span>
                 </label>
                 <input
                   wire:model.live="name"
@@ -193,7 +193,7 @@
                   for="campus"
                   class="block mb-2 text-sm font-medium text-gray-900"
                 >
-                  Lokasi Kampus
+                  Lokasi Kampus <span class="text-red-500">*</span>
                 </label>
                 <select
                   wire:model.change="campus_id"
@@ -218,7 +218,7 @@
                   for="building"
                   class="block mb-2 text-sm font-medium text-gray-900"
                 >
-                  Lokasi Gedung
+                  Lokasi Gedung <span class="text-red-500">*</span>
                 </label>
                 <select
                   wire:model.change="building_id"
@@ -243,7 +243,7 @@
                   for="name"
                   class="block mb-2 text-sm font-medium text-gray-900"
                 >
-                  Lokasi Lantai
+                  Lokasi Lantai <span class="text-red-500">*</span>
                 </label>
                 <select
                   wire:model="floor"
@@ -263,9 +263,7 @@
               </div>
               <div class="col-span-2">
                 <label for="length" class="block mb-2 text-sm font-medium">
-                  Panjang (m
-                  <sup>2</sup>
-                  )
+                  Panjang (m) <span class="text-red-500">*</span>
                 </label>
                 <input
                   wire:model="length"
@@ -281,9 +279,7 @@
               </div>
               <div class="col-span-2">
                 <label for="width" class="block mb-2 text-sm font-medium">
-                  Lebar (m
-                  <sup>2</sup>
-                  )
+                  Lebar (m) <span class="text-red-500">*</span>
                 </label>
                 <input
                   wire:model="width"
@@ -299,9 +295,7 @@
               </div>
               <div class="col-span-2">
                 <label for="height" class="block mb-2 text-sm font-medium">
-                  Tinggi (m
-                  <sup>2</sup>
-                  )
+                  Tinggi (m) <span class="text-red-500">*</span>
                 </label>
                 <input
                   wire:model="height"
@@ -317,7 +311,7 @@
               </div>
               <div class="col-span-2">
                 <label for="capacity" class="block mb-2 text-sm font-medium">
-                  Kapasitas
+                  Kapasitas <span class="text-red-500">*</span>
                 </label>
                 <input
                   wire:model="capacity"
@@ -336,7 +330,7 @@
                   for="name"
                   class="block mb-2 text-sm font-medium text-gray-900"
                 >
-                  Kategori
+                  Kategori <span class="text-red-500">*</span>
                 </label>
                 <select
                   wire:model="category"
@@ -358,6 +352,9 @@
               </div>
               <div class="flex justify-between min-w-full">
                 <div x-data>
+                  <div class="mb-4">
+                    Tipe Sewa <span class="text-red-500">*</span>
+                  </div>
                   <div class="flex items-center mb-4">
                     <input
                       checked
@@ -397,6 +394,9 @@
                   @enderror
                 </div>
                 <div x-data>
+                  <div class="mb-4">
+                    Tipe Visibilitas <span class="text-red-500">*</span>
+                  </div>
                   <div class="flex items-center mb-4">
                     <input
                       checked
@@ -441,7 +441,7 @@
                   class="block mb-2 text-sm font-medium text-gray-900"
                   for="user_avatar"
                 >
-                  Upload Foto
+                  Upload Foto <span class="text-red-500">*</span>
                 </label>
                 <input
                   wire:model="images_path"
@@ -704,12 +704,10 @@
                 {{ $room->capacity }}
               </td>
               <td class="px-6 py-4">
-                {{ number_format($room->length * $room->width, 0, ",", ".") }}m
-                <sup>2</sup>
+                {{ number_format($room->length * $room->width, 0, ",", ".") }}m<sup>2</sup>
               </td>
               <td class="px-6 py-4">
-                {{ number_format($room->height, 0, ",", ".") }}m
-                <sup>2</sup>
+                {{ number_format($room->height, 0, ",", ".") }}m<sup>2</sup>
               </td>
               <td class="px-6 py-4">
                 @if ($room->category === "class")
@@ -766,7 +764,7 @@
                       <i class="fa-solid fa-eye"></i>
                     </button>
                   </a>
-                  @if ($room->admin_id === Auth::user()->role || Auth::user()->role === "1")
+                  @if ($room->admin_id === auth()->user()->role || auth()->user()->role === $super_admin_id)
                     <a
                       href="{{ route("edit-ruang", $room->slug) }}"
                       wire:navigate
@@ -923,7 +921,7 @@
                       <i class="fa-solid fa-eye"></i>
                     </button>
                   </a>
-                  @if ($update->admin_id === Auth::user()->role || Auth::user()->role === "1")
+                  @if ($update->admin_id === auth()->user()->role || auth()->user()->role === $super_admin_id)
                     <a
                       href="{{ route("edit-ruang", $update->id) }}"
                       wire:navigate

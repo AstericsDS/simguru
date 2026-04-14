@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 class ReservasiRuang extends Component
 {
     public Room $room;
-    public int $room_id;
+    public $room_id;
     #[Validate('required', message: 'Masukkan nama acara')]
     public $event_name, $lecturer, $major, $class_of, $description, $dtstart, $dtend, $day;
     public $startRaw, $endRaw, $startDate, $startTime, $endTime, $reserved_by;

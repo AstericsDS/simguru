@@ -141,7 +141,7 @@
             <div class="grid gap-4 mb-4 grid-cols-2">
               <div class="col-span-2">
                 <label for="name" class="block mb-2 text-sm font-medium">
-                  Nama Gedung
+                  Nama Gedung <span class="text-red-500">*</span>
                 </label>
                 <input
                   wire:model.live="name"
@@ -160,7 +160,7 @@
                   for="campus"
                   class="block mb-2 text-sm font-medium {{ $errors->has("campus_id") ? "text-red-700" : "text-gray-900" }}"
                 >
-                  Lokasi Kampus
+                  Lokasi Kampus <span class="text-red-500">*</span>
                 </label>
                 <select
                   wire:model="campus_id"
@@ -182,7 +182,7 @@
               </div>
               <div class="col-span-2">
                 <label for="floor" class="block mb-2 text-sm font-medium">
-                  Jumlah Lantai
+                  Jumlah Lantai <span class="text-red-500">*</span>
                 </label>
                 <input
                   wire:model="floor"
@@ -201,9 +201,7 @@
                   for="building_area"
                   class="block mb-2 text-sm font-medium"
                 >
-                  Luas Bangunan (m
-                  <sup>2</sup>
-                  )
+                  Luas Bangunan (m<sup>2</sup>) <span class="text-red-500">*</span>
                 </label>
                 <input
                   wire:model="building_area"
@@ -219,9 +217,7 @@
               </div>
               <div class="col-span-2">
                 <label for="land_area" class="block mb-2 text-sm font-medium">
-                  Luas Tanah (m
-                  <sup>2</sup>
-                  )
+                  Luas Tanah (m<sup>2</sup>) <span class="text-red-500">*</span>
                 </label>
                 <input
                   wire:model="land_area"
@@ -240,7 +236,7 @@
                   class="block mb-2 text-sm font-medium text-gray-900"
                   for="images"
                 >
-                  Upload Foto
+                  Upload Foto <span class="text-red-500">*</span>
                 </label>
                 <input
                   wire:model="images_path"
@@ -403,12 +399,10 @@
                 {{ $building->floor }}
               </td>
               <td class="px-6 py-4">
-                {{ number_format($building->building_area, 0, ",", ".") }}m
-                <sup>2</sup>
+                {{ number_format($building->building_area, 0, ",", ".") }}m<sup>2</sup>
               </td>
               <td class="px-6 py-4">
-                {{ number_format($building->land_area, 0, ",", ".") }}m
-                <sup>2</sup>
+                {{ number_format($building->land_area, 0, ",", ".") }}m<sup>2</sup>
               </td>
               <td class="px-6 py-4">
                 <button

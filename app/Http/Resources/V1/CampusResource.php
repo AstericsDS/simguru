@@ -21,6 +21,7 @@ class CampusResource extends JsonResource
             'address' => $this->address,
             'contact' => $this->contact,
             'description' => $this->description,
+            'images' => $this->images_path
         ];
     }
 }

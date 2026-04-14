@@ -30,28 +30,28 @@ class DatabaseSeeder extends Seeder
         // Campus::factory()->count(5)->create();
 
         // Create Roles
-        Role::create([
-            'role' => 'super_admin'
+        $super_admin = Role::create([
+            'name' => 'super_admin'
         ]);
 
-        Role::create([
-            'role' => 'admin'
+        $admin = Role::create([
+            'name' => 'admin'
         ]);
 
         User::create([
-            'role' => 1,
+            'role' => $super_admin->id,
             'name' => 'Super Admin',
             'password' => Hash::make('0001')
         ]);
 
         User::create([
-            'role' => 1,
+            'role' => $super_admin->id,
             'name' => 'Ricky',
             'email' => 'rickymandala@unj.ac.id',
         ]);
 
         User::create([
-            'role' => 1,
+            'role' => $super_admin->id,
             'name' => 'API_TEST',
             'email' => 'api@test.com',
             'password' => Hash::make('api_test_debug'),
@@ -59,7 +59,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::create([
-            'role' => 2,
+            'role' => $admin->id,
             'name' => 'Senoaji Pamungkas',
             'email' => 'senoaji.pamungkas@mhs.unj.ac.id',
             'password' => Hash::make('SIAKAD_DEV'),
@@ -67,7 +67,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::create([
-            'role' => 2,
+            'role' => $admin->id,
             'name' => 'Zikri Muhammad Madani',
             'email' => 'forcegini@gmail.com',
             'password' => Hash::make('SIAKAD_DEV'),
@@ -75,7 +75,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::create([
-            'role' => 2,
+            'role' => $admin->id,
             'name' => 'Andhika Dwiputra Soetjiadi',
             'email' => 'andhika.dwiputra.soetjiadi@mhs.unj.ac.id',
             'password' => Hash::make('SIAKAD_DEV'),

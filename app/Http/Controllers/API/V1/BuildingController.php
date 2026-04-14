@@ -20,14 +20,16 @@ class BuildingController extends Controller
     {
         $buildings = QueryBuilder::for(Building::class)
             ->allowedFilters([
+                AllowedFilter::exact('id'),
                 AllowedFilter::partial('name'),
                 AllowedFilter::partial('campus.name'),
+                AllowedFilter::exact('campus.id'),
                 AllowedFilter::operator('building_area', FilterOperator::DYNAMIC),
                 AllowedFilter::operator('land_area', FilterOperator::DYNAMIC),
                 AllowedFilter::operator('floor', FilterOperator::DYNAMIC),
             ])
             ->allowedSorts('building_area', 'land_area', 'floor')
-            ->get();
+            ->paginate();
         return BuildingResource::collection($buildings);
     }
 

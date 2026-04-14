@@ -10,109 +10,111 @@
   {{-- Detail Kampus --}}
   <div class="flex gap-8 xl:flex-row flex-col">
     {{-- Media --}}
-    <div class="flex flex-col gap-4 xl:flex-3">
-      {{-- Slider --}}
-      <div class="w-full xl:w-fit relative rounded-md overflow-hidden">
-        <div class="swiper-wrapper">
-          @foreach ($building->images_path ?? $pending->new_data["images_path"] as $image)
-            <div class="swiper-slide">
-              <img src="{{ asset("storage/" . $image) }}" class="h-full" />
-            </div>
-          @endforeach
+    @if ($building?->images_path || $pending?->new_data["images_path"])
+      <div class="flex flex-col gap-4 xl:flex-3">
+        {{-- Slider --}}
+        <div class="w-full xl:w-fit relative rounded-md overflow-hidden">
+          <div class="swiper-wrapper">
+            @foreach ($building->images_path ?? $pending->new_data["images_path"] as $image)
+              <div class="swiper-slide">
+                <img src="{{ asset("storage/" . $image) }}" class="h-full" />
+              </div>
+            @endforeach
+          </div>
+
+          {{-- Navigation --}}
+          <div class="swiper-pagination absolute bottom-1"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
         </div>
 
-        {{-- Navigation --}}
-        <div class="swiper-pagination absolute bottom-1"></div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-      </div>
+        {{-- Documents --}}
+        <div class="text-end">
+          <i
+            class="fa-regular fa-file hover:text-primary text-xl transition-all cursor-pointer"
+            @click="$dispatch('modal')"
+          ></i>
+        </div>
 
-      {{-- Documents --}}
-      <div class="text-end">
-        <i
-          class="fa-regular fa-file hover:text-primary text-xl transition-all cursor-pointer"
-          @click="$dispatch('modal')"
-        ></i>
-      </div>
-
-      {{-- View Documents Modal --}}
-      <div
-        x-data="{ state: false }"
-        @modal.window="state = !state"
-        @keydown.window.escape="state = false"
-      >
+        {{-- View Documents Modal --}}
         <div
-          x-show="state"
-          class="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 flex items-center justify-center"
-          x-transition:enter="transition ease-in-out duration-250"
-          x-transition:enter-start="opacity-0"
-          x-transition:enter-end="opacity-100"
-          x-transition:leave="transition ease-in-out duration-250"
-          x-transition:leave-end="opacity-0"
+          x-data="{ state: false }"
+          @modal.window="state = !state"
+          @keydown.window.escape="state = false"
         >
           <div
             x-show="state"
-            @click.outside="state = false"
-            class="relative bg-white max-h-[90%] overflow-y-auto rounded-lg shadow-sm w-xl p-2 opacity-100 z-50 mx-4"
+            class="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 flex items-center justify-center"
             x-transition:enter="transition ease-in-out duration-250"
-            x-transition:enter-start="scale-50"
-            x-transition:enter-end="scale-100"
+            x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100"
             x-transition:leave="transition ease-in-out duration-250"
-            x-transition:leave-end="scale-50"
+            x-transition:leave-end="opacity-0"
           >
-            <!-- Modal header -->
             <div
-              class="flex items-center justify-between p-5 border-b rounded-t border-gray-200"
+              x-show="state"
+              @click.outside="state = false"
+              class="relative bg-white max-h-[90%] overflow-y-auto rounded-lg shadow-sm w-xl p-2 opacity-100 z-50 mx-4"
+              x-transition:enter="transition ease-in-out duration-250"
+              x-transition:enter-start="scale-50"
+              x-transition:enter-end="scale-100"
+              x-transition:leave="transition ease-in-out duration-250"
+              x-transition:leave-end="scale-50"
             >
-              <h3 class="text-lg font-semibold text-gray-900">Dokumen</h3>
-              <button
-                @click="state = false"
-                type="button"
-                class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center transition-all hover:cursor-pointer"
+              <!-- Modal header -->
+              <div
+                class="flex items-center justify-between p-5 border-b rounded-t border-gray-200"
               >
-                <svg
-                  class="w-3 h-3"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 14 14"
+                <h3 class="text-lg font-semibold text-gray-900">Dokumen</h3>
+                <button
+                  @click="state = false"
+                  type="button"
+                  class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center transition-all hover:cursor-pointer"
                 >
-                  <path
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                  />
-                </svg>
-                <span class="sr-only">Close modal</span>
-              </button>
-            </div>
+                  <svg
+                    class="w-3 h-3"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 14 14"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                    />
+                  </svg>
+                  <span class="sr-only">Close modal</span>
+                </button>
+              </div>
 
-            {{-- Modal Body --}}
-            <div class="p-5 pt-0">
-              <ul
-                class="mt-3 space-y-1 list-disc list-inside marker:text-primary"
-              >
-                @foreach ($building->documents_path ?? $pending->new_data["documents_path"] as $document)
-                  <li>
-                    <a
-                      target="_blank"
-                      href="{{ asset("storage/" . $document) }}"
-                      class="border-b-1 border-transparent hover:border-gray-500 transition-all duration-300"
-                    >
-                      {{ basename($document) }}
-                      ({{ number_format(Storage::disk("public")->size($document) / 1024, 2) }}
-                      KB)
-                    </a>
-                  </li>
-                @endforeach
-              </ul>
+              {{-- Modal Body --}}
+              <div class="p-5 pt-0">
+                <ul
+                  class="mt-3 space-y-1 list-disc list-inside marker:text-primary"
+                >
+                  @foreach ($building->documents_path ?? $pending->new_data["documents_path"] as $document)
+                    <li>
+                      <a
+                        target="_blank"
+                        href="{{ asset("storage/" . $document) }}"
+                        class="border-b-1 border-transparent hover:border-gray-500 transition-all duration-300"
+                      >
+                        {{ basename($document) }}
+                        ({{ number_format(Storage::disk("public")->size($document) / 1024, 2) }}
+                        KB)
+                      </a>
+                    </li>
+                  @endforeach
+                </ul>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    @endif
 
     {{-- Data Kampus --}}
     <div class="flex-4">
@@ -175,7 +177,7 @@
           <div class="flex gap-3">
             <span>:</span>
             <span>
-              {{ $building->description ?? $pending->new_data["description"] }}
+              {{ $building->description ?? $pending->new_data["description"] ?? '-' }}
             </span>
           </div>
         </div>
@@ -193,13 +195,15 @@
         <div
           class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700"
         >
-          <a href="{{ route("view-ruang", $room->slug) }}">
-            <img
-              class="rounded-t-lg h-48 w-full object-cover"
-              src="{{ asset("storage/" . $room->images_path[0]) }}"
-              alt="Gambar Gedung"
-            />
-          </a>
+          @if ($room->images_path)
+            <a href="{{ route("view-ruang", $room->slug) }}">
+              <img
+                class="rounded-t-lg h-48 w-full object-cover"
+                src="{{ asset("storage/" . $room->images_path[0]) }}"
+                alt="Gambar Gedung"
+              />
+            </a>
+          @endif
           <div class="p-5">
             <a href="{{ route("view-ruang", $room->slug) }}">
               <h5

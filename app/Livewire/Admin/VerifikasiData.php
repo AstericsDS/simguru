@@ -25,7 +25,6 @@ class VerifikasiData extends Component
 
     #[Validate('required', message: 'Isi alasan penolakan')]
     public $reject_reason;
-
     public function confirm($id, $action)
     {
         if ($action === 'reject') {
@@ -406,9 +405,10 @@ class VerifikasiData extends Component
     {
         $this->selectedUpdate = Update::with('admin', 'approver')->find($id);
         $this->selectedUpdate = UpdateService::transform($this->selectedUpdate);
-
+        
         $this->new_data = $this->selectedUpdate->new_data;
         $this->old_data = $this->selectedUpdate->old_data;
+
 
         $this->dispatch('view');
     }

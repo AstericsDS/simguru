@@ -38,11 +38,11 @@ class DaftarGedung extends Component
             'floor' => 'required|integer|max:10',
             'building_area' => 'required|integer',
             'land_area' => 'required|integer',
-            'description' => 'required',
             'images_path' => 'required|array',
             'images_path.*' => 'file|image|max:10240',
-            'documents_path' => 'required|array',
-            'documents_path.*' => 'file|mimes:pdf,doc,docx,xls,xlsx|max:5120'
+            'documents_path' => 'array',
+            'documents_path.*' => 'file|mimes:pdf,doc,docx,xls,xlsx|max:5120',
+            'description' => 'nullable'
         ];
     }
 
@@ -51,7 +51,6 @@ class DaftarGedung extends Component
         return [
             'name.required' => 'Nama gedung harus diisi',
             'floor.required' => 'Jumlah lantai harus diisi',
-            'description.required' => 'Deskripsi harus diisi',
             'campus_id.required' => 'Harus pilih salah satu kampus',
             'floor.integer' => 'Jumlah lantai harus berupa angka',
             'floor.max' => 'Jumlah lantai maksimal 10 lantai',
@@ -62,7 +61,6 @@ class DaftarGedung extends Component
             'images_path.required' => 'Foto harus diupload',
             'images_path.*.image' => 'Foto harus berupa gambar',
             'images_path.*.max' => 'Size maksimal adalah 10MB',
-            'documents_path.required' => 'Dokumen harus diupload',
             'documents_path.*.mimes' => 'File harus berupa pdf, doc, docs, xls, atau xlsx',
             'documents_path.*.max' => 'Size maksimal adalah 5MB',
         ];

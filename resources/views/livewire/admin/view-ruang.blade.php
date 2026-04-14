@@ -229,34 +229,34 @@
           <div class="flex gap-3">
             <span>:</span>
             @if ($room->category === "class")
-              <span class="px-2 py-1 rounded-lg bg-[#007BFF] text-white">
+              <span class="px-2 py-1 text-xs rounded-lg bg-[#007BFF] text-white">
                 Kelas
               </span>
             @elseif ($room->category === "office")
-              <span class="px-2 py-1 rounded-lg bg-[#17A2B8] text-white">
+              <span class="px-2 py-1 text-xs rounded-lg bg-[#17A2B8] text-white">
                 Kantor
               </span>
             @elseif ($room->category === "laboratory")
-              <span class="px-2 py-1 rounded-lg bg-[#6F42C1] text-white">
+              <span class="px-2 py-1 text-xs rounded-lg bg-[#6F42C1] text-white">
                 Laboratorium
               </span>
             @elseif ($room->category === "open_space")
-              <span class="px-2 py-1 rounded-lg bg-[#01a2ff] text-white">
+              <span class="px-2 py-1 text-xs rounded-lg bg-[#01a2ff] text-white">
                 Ruang Terbuka
               </span>
             @elseif ($room->category === "internal_unj")
-              <span class="px-2 py-1 rounded-lg bg-[#006569] text-white">
+              <span class="px-2 py-1 text-xs rounded-lg bg-[#006569] text-white">
                 Internal UNJ
               </span>
             @elseif ($room->category === "general")
-              <span class="px-2 py-1 rounded-lg bg-[#28A745] text-white">
+              <span class="px-2 py-1 text-xs rounded-lg bg-[#28A745] text-white">
                 Umum
               </span>
             @endif
           </div>
         </div>
         <div
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 xl:gap-3 mt-4"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 xl:gap-3"
         >
           <span>Disewakan</span>
           <div class="flex gap-3">
@@ -267,7 +267,7 @@
           </div>
         </div>
         <div
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 xl:gap-3 mt-4"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 xl:gap-3"
         >
           <span>Visibilitas</span>
           <div class="flex gap-3">
@@ -278,13 +278,13 @@
           </div>
         </div>
         <div
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 xl:gap-3 mt-4"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 xl:gap-3"
         >
           <span>Deskripsi</span>
           <div class="flex gap-3">
             <span>:</span>
             <span>
-              {{ $room->description ?? $pending->new_data["description"] }}
+              {{ $room->description ?? $pending->new_data["description"] ?? '-' }}
             </span>
           </div>
         </div>

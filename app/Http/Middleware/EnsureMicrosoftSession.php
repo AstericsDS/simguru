@@ -2,8 +2,9 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
+use App\Models\Role;
 use Carbon\Carbon;
+use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,9 +13,17 @@ class EnsureMicrosoftSession
 {
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check() && Auth::user()->role === 1) {
+        // Bypass for API request
+        if (Auth::check() && $request->user()->currentAccessToken()) {
             return $next($request);
         }
+        
+        // Bypass for Super Admin
+        $super_admin_id = Role::where('name', '=', 'super_admin')->value('id');
+        if (Auth::check() && Auth::user()->role === $super_admin_id) {
+            return $next($request);
+        }
+
 
         // 1. SUCCESS PATH
         if (Auth::check()) {

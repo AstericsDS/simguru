@@ -19,8 +19,8 @@ class PeminjamanRuang extends Component
 {
     use WithPagination;
 
-    public ?int $campus_id = null;
-    public ?int $building_id = null;
+    public $campus_id = null;
+    public $building_id = null;
     public $category = null;
     public string $search = '';
     public function updatingCategory()

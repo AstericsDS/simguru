@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('rooms', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('admin_id')->constrained('users');
-            $table->foreignId('campus_id')->constrained('campuses');
-            $table->foreignId('building_id')->constrained('buildings');
+            $table->uuid('id')->primary();
+            $table->foreignUuid('admin_id')->constrained('users');
+            $table->foreignUuid('campus_id')->constrained('campuses');
+            $table->foreignUuid('building_id')->constrained('buildings');
             $table->string('name');
             $table->string('slug');
             $table->integer('floor');
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer('width');
             $table->integer('height');
             $table->integer('capacity');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->json('images_path')->nullable();
             $table->json('documents_path')->nullable();
             $table->json('inventory')->nullable();

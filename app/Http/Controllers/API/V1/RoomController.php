@@ -19,6 +19,9 @@ class RoomController extends Controller
     {
         $rooms = QueryBuilder::for(Room::class)
             ->allowedFilters([
+                AllowedFilter::exact('id'),
+                AllowedFilter::exact('building.id'),
+                AllowedFilter::exact('campus.id'),
                 AllowedFilter::partial('name'),
                 AllowedFilter::partial('campus.name'),
                 AllowedFilter::partial('building.name'),
@@ -27,8 +30,9 @@ class RoomController extends Controller
                 AllowedFilter::operator('width', FilterOperator::DYNAMIC),
                 AllowedFilter::operator('height', FilterOperator::DYNAMIC),
                 AllowedFilter::operator('capacity', FilterOperator::DYNAMIC),
-                AllowedFilter::partial('category'),
-            ])->get();
+                AllowedFilter::exact('category'),
+                AllowedFilter::exact('rentable')
+            ])->paginate();
         return RoomResource::collection($rooms);
     }
 

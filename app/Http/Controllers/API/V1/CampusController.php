@@ -18,9 +18,11 @@ class CampusController extends Controller
     {
         $campuses = QueryBuilder::for(Campus::class)
                     ->allowedFilters([
+                        AllowedFilter::partial('id'),
                         AllowedFilter::partial('name'),
                         AllowedFilter::partial('address'),
-                    ])->get();
+                    ])
+                    ->paginate();
         return CampusResource::collection($campuses);
     }
 

@@ -15,12 +15,6 @@ class ViewKampus extends Component
     public ?Campus $campus;
     public ?Update $pending;
     public Collection $buildings;
-    // public function mount(Campus $campus)
-    // {
-    //     $this->campus = $campus;
-    //     $this->buildings = Building::where('campus_id', $this->campus->id)->get();
-    // }
-
     public function mount($id)
     {
         $this->campus = Campus::where('slug', $id)->first();

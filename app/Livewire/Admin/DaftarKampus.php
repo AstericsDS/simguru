@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin;
 
 use App\Models\Campus;
+use App\Models\Role;
 use App\Models\Update;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
@@ -22,6 +23,7 @@ class DaftarKampus extends Component
     public $search = '';
     public $campusImages = [];
     public $rejected_campuses = [];
+    public $super_admin_id;
     public Campus $selectedCampus;
     public ?Update $selectedUpdate = null;
 
@@ -38,11 +40,11 @@ class DaftarKampus extends Component
             'address' => 'required',
             'area_size' => 'required|integer',
             'contact' => 'required|digits_between:8,13',
-            'description' => 'required',
             'images_path' => 'required|array',
             'images_path.*' => 'file|image|max:10240',
-            'documents_path' => 'required|array',
-            'documents_path.*' => 'file|mimes:pdf,doc,docx,xls,xlsx|max:5120'
+            'documents_path' => 'array',
+            'documents_path.*' => 'file|mimes:pdf,doc,docx,xls,xlsx|max:5120',
+            'description' => 'nullable'
         ];
     }
 
@@ -55,11 +57,9 @@ class DaftarKampus extends Component
             'area_size.integer' => 'Luas bangunan harus berupa angka',
             'contact.required' => 'Nomor telepon harus diisi',
             'contact.digits_between' => 'Nomor telepon harus berupa angka dan minimal 8 digit',
-            'description.required' => 'Deskripsi harus diisi',
             'images_path.required' => 'Foto harus diupload',
             'images_path.*.image' => 'Foto harus berupa gambar',
             'images_path.*.max' => 'Size maksimal adalah 10MB',
-            'documents_path.required' => 'Dokumen harus diupload',
             'documents_path.*.mimes' => 'File harus berupa pdf, doc, docs, xls, atau xlsx',
             'new_documents.*.max' => 'Size maksimal adalah 5MB',
         ];
@@ -68,6 +68,7 @@ class DaftarKampus extends Component
     public function mount()
     {
         $this->rejected_campuses = array_merge($this->rejected_campuses, Update::where('table', 'campuses')->where('status', 'rejected')->pluck('record_id')->toArray());
+        $this->super_admin_id = Role::where('name', '=', 'super_admin')->value('id');
     }
 
     public function save()

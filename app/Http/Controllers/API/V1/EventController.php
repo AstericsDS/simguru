@@ -19,18 +19,21 @@ class EventController extends Controller
         $events = QueryBuilder::for(Event::class)
             ->allowedIncludes(['room', 'room.building', 'room.building.campus'])
             ->allowedFilters([
+                AllowedFilter::exact('id'),
+                AllowedFilter::exact('room.id'),
+                AllowedFilter::exact('room.building.id'),
+                AllowedFilter::exact('room.building.campus.id'),
                 AllowedFilter::partial('room.building.campus.name'),
                 AllowedFilter::partial('room.building.name'),
                 AllowedFilter::partial('room.name'),
                 AllowedFilter::partial('event_name'),
                 AllowedFilter::partial('reserved_by'),
-                AllowedFilter::partial('day'),
                 AllowedFilter::partial('lecturer'),
                 AllowedFilter::partial('major'),
                 AllowedFilter::partial('description'),
             ])
             ->with('room.building.campus')
-            ->get();
+            ->paginate();
         return EventResource::collection($events);
     }
 

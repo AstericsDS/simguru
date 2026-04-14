@@ -139,7 +139,7 @@
               <td class="px-6 py-4">
                 <div class="flex gap-2 items-center">
                   <button
-                    wire:click="view({{ $update->id }})"
+                    wire:click="view('{{ $update->id }}')"
                     type="button"
                     class="transition-all cursor-pointer hover:text-blue-500 hover:bg-gray-300 rounded-xl p-2 mx-auto"
                   >
@@ -147,13 +147,16 @@
                   </button>
                   @if ($update->status === "pending")
                     <button
-                      @click="$dispatch('confirm', {id: {{ $update->id }}, action: 'accept'})"
+                      @click="$dispatch('confirm', {id: '{{ $update->id }}', action: 'accept'})"
+                      wire:loading.class="cursor-progress"
+                      wire:target="confirm"
+                      wire:loading.attr="disabled"
                       class="border border-green-500 size-8 rounded-xl cursor-pointer hover:bg-green-500 hover:text-white transition-all"
                     >
                       <i class="fa-solid fa-check"></i>
                     </button>
                     <button
-                      @click="$dispatch('confirm', {id: {{ $update->id }}, action: 'reject'})"
+                      @click="$dispatch('confirm', {id: '{{ $update->id }}', action: 'reject'})"
                       class="border border-red-500 size-8 rounded-xl cursor-pointer hover:bg-red-500 hover:text-white transition-all"
                     >
                       <i class="fa-solid fa-xmark"></i>
@@ -267,28 +270,30 @@
                   @endforeach
 
                   {{-- Documents --}}
-                  <div class="border-2 border-gray-300 p-4 rounded-md mt-4">
-                    <div class="flex gap-2 items-center">
-                      <i class="fa-regular fa-file"></i>
-                      <h1 class="text-sm md:text-base">Dokumen</h1>
-                    </div>
+                  @if ($new_data['documents_path'])
+                    <div class="border-2 border-gray-300 p-4 rounded-md mt-4">
+                      <div class="flex gap-2 items-center">
+                        <i class="fa-regular fa-file"></i>
+                        <h1 class="text-sm md:text-base">Dokumen</h1>
+                      </div>
 
-                    <ul
-                      class="mt-3 space-y-1 list-disc list-inside marker:text-primary"
-                    >
-                      @foreach ($new_data["documents_path"] as $document)
-                        <li>
-                          <a
-                            target="_blank"
-                            href="{{ asset("storage/" . $document) }}"
-                            class="text-sm md:text-base border-b border-transparent hover:border-gray-500 transition-all duration-300"
-                          >
-                            {{ basename($document) }}
-                          </a>
-                        </li>
-                      @endforeach
-                    </ul>
-                  </div>
+                      <ul
+                        class="mt-3 space-y-1 list-disc list-inside marker:text-primary"
+                      >
+                        @foreach ($new_data["documents_path"] as $document)
+                          <li>
+                            <a
+                              target="_blank"
+                              href="{{ asset("storage/" . $document) }}"
+                              class="text-sm md:text-base border-b border-transparent hover:border-gray-500 transition-all duration-300"
+                            >
+                              {{ basename($document) }}
+                            </a>
+                          </li>
+                        @endforeach
+                      </ul>
+                    </div>
+                  @endif
                 </div>
 
                 @if (isset($selectedUpdate->old_data))
@@ -454,6 +459,9 @@
             <div class="flex gap-6">
               <button
                 @click="$wire.confirm(confirmData.id, confirmData.action); state = false"
+                wire:loading.class="cursor-progress"
+                wire:target="confirm"
+                wire:loading.attr="disabled"
                 class="px-8 py-2 rounded-md bg-primary hover:bg-unj-dark transition-all cursor-pointer text-white text-xl"
               >
                 Iya
@@ -478,6 +486,9 @@
             <div class="flex gap-6">
               <button
                 @click="$wire.confirm(confirmData.id, confirmData.action)"
+                wire:loading.class="cursor-progress"
+                wire:target="confirm"
+                wire:loading.attr="disabled"
                 class="px-8 py-2 rounded-md bg-primary hover:bg-unj-dark transition-all cursor-pointer text-white text-xl"
               >
                 Iya

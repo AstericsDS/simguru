@@ -35,9 +35,22 @@ class UpdateService
                 'floor' => 'Lantai',
                 'capacity' => 'Kapasitas',
                 'description' => 'Deskripsi',
-                'category' => fn($v) => [
-                    'Kategori' => $v === 'class' ? 'Kelas' : 'Bukan Kelas'
-                ],
+                'category' => function($v) {
+                    $labels = [
+                        'class' => 'Kelas',
+                        'office' => 'Kantor',
+                        'laboratory' => 'Laboratorium',
+                        'general' => 'Umum',
+                        'open_space' => 'Ruang Terbuka',
+                        'internal_unj' => 'Internal UNJ'
+                    ];
+                    return ['Kategori' => $labels[$v] ?? $v];
+                },
+                'length' => fn($v) => ['Panjang' => $v . 'm'],
+                'width' => fn($v) => ['Lebar' => $v . 'm'],
+                'height' => fn($v) => ['Tinggi' => $v . 'm'],
+                'rentable' => fn($v) => ['Tipe Sewa' => $v ? 'Disewakan' : 'Tidak Disewakan'],
+                'show' => fn($v) => ['Tipe Visibilitas' => $v ? 'Publik' : 'Privat']
             ],
         ];
 

@@ -17,6 +17,7 @@ class EventResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'room' => new RoomResource(Room::find($this->room_id)),
             'event_name' => $this->event_name,
             'reserved_by' => $this->reserved_by,

@@ -11,15 +11,15 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('updates', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('admin_id')->constrained('users');
+            $table->uuid('id')->primary();
+            $table->foreignUuid('admin_id')->constrained('users');
+            $table->foreignUuid('approved_by')->nullable()->constrained('users');
             $table->enum('type', ['modify', 'new', 'delete'])->default('new');
             $table->enum('table', ['campuses', 'buildings', 'rooms']);
             $table->string('record_id')->nullable();
             $table->json('old_data')->nullable();
             $table->json('new_data');
             $table->enum('status', ['pending', 'approved', 'rejected', 'deleted'])->default('pending');
-            $table->foreignId('approved_by')->nullable()->constrained('users');
             $table->text('reject_reason')->nullable();
             $table->softDeletes();
             $table->timestamps();

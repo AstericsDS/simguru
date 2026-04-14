@@ -12,14 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('campuses', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('admin_id')->nullable()->constrained('users');
+            $table->uuid('id')->primary();
+            $table->foreignUuid('admin_id')->nullable()->constrained('users');
             $table->string('name');
             $table->string('slug');
             $table->string('address');
             $table->integer('area_size');
             $table->string('contact');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->softDeletes();
             $table->json('images_path')->nullable();
             $table->json('documents_path')->nullable();

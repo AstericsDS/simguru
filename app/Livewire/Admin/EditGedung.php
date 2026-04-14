@@ -17,7 +17,7 @@ class EditGedung extends Component
     use WithFileUploads;
     public Building $building;
     public Update $update;
-    public $name, $campus_id, $building_area, $land_area, $floor, $address, $description, $slug;
+    public $name, $campus_id, $building_area, $land_area, $floor, $description, $slug;
     public $images_path = [];
     public $documents_path = [];
     public $new_images = [];
@@ -67,7 +67,6 @@ class EditGedung extends Component
         $this->building_area = $this->new_data['building_area'] ?? $this->building->building_area;
         $this->land_area = $this->new_data['land_area'] ?? $this->building->land_area;
         $this->floor = $this->new_data['floor'] ?? $this->building->floor;
-        $this->address = $this->new_data['address'] ?? $this->building->address;
         $this->description = $this->new_data['description'] ?? $this->building->description;
         $this->images_path = $this->new_data['images_path'] ?? $this->building->images_path;
         $this->documents_path = $this->new_data['documents_path'] ?? $this->building->documents_path;
@@ -83,7 +82,6 @@ class EditGedung extends Component
             'building_area' => 'required|integer',
             'land_area' => 'required|integer',
             'floor' => 'required|integer|max:10',
-            'address' => 'required',
             'description' => 'required',
             'new_images.*' => 'file|image|max:10240',
             'new_documents.*' => 'file|mimes:pdf,doc,docx,xls,xlsx|max:5120',
@@ -102,7 +100,6 @@ class EditGedung extends Component
             'floor.required' => 'Jumlah lantai harus diisi',
             'floor.integer' => 'Jumlah lantai harus berupa angka',
             'floor.max' => 'Jumlah lantai maksimal adalah 10 lantai',
-            'address.required' => 'Alamat harus diisi',
             'description.required' => 'Deskripsi harus diisi',
             'new_images.*.file' => 'Harus berupa file',
             'new_images.*.image' => 'File harus berupa gambar',

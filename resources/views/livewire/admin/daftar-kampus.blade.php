@@ -70,7 +70,7 @@
       </div>
 
       {{-- Add --}}
-      @if (auth()->user()->role == 1)
+      @if (auth()->user()->role === $super_admin_id)
         <button
           @click="$dispatch('modal')"
           class="rounded-md px-4 py-5 border border-gray-300 size-10 flex items-center gap-2 justify-center group hover:w-32 transition-all cursor-pointer hover:bg-primary hover:border-primary hover:text-white hover:rounded-lg overflow-hidden duration-200"
@@ -143,7 +143,7 @@
             <div class="grid gap-4 mb-4 grid-cols-2">
               <div class="col-span-2">
                 <label for="name" class="block mb-2 text-sm font-medium">
-                  Nama Kampus
+                  Nama Kampus <span class="text-red-500">*</span>
                 </label>
                 <input
                   wire:model.live="name"
@@ -159,7 +159,7 @@
               </div>
               <div class="col-span-2">
                 <label for="address" class="block mb-2 text-sm font-medium">
-                  Alamat
+                  Alamat <span class="text-red-500">*</span>
                 </label>
                 <input
                   wire:model="address"
@@ -175,9 +175,7 @@
               </div>
               <div class="col-span-2">
                 <label for="area_size" class="block mb-2 text-sm font-medium">
-                  Luas Kawasan (m
-                  <sup>2</sup>
-                  )
+                  Luas Kawasan (m<sup>2</sup>) <span class="text-red-500">*</span>
                 </label>
                 <input
                   wire:model="area_size"
@@ -193,7 +191,7 @@
               </div>
               <div class="col-span-2">
                 <label for="name" class="block mb-2 text-sm font-medium">
-                  Nomor Telepon
+                  Nomor Telepon <span class="text-red-500">*</span>
                 </label>
                 <input
                   wire:model="contact"
@@ -212,7 +210,7 @@
                   class="block mb-2 text-sm font-medium text-gray-900"
                   for="user_avatar"
                 >
-                  Upload Foto
+                  Upload Foto <span class="text-red-500">*</span>
                 </label>
                 <input
                   wire:model="images_path"
@@ -371,8 +369,7 @@
                 {{ $campus->address }}
               </td>
               <td class="px-6 py-4">
-                {{ number_format($campus->area_size, 0, ",", ".") }}m
-                <sup class="text-xs">2</sup>
+                {{ number_format($campus->area_size, 0, ",", ".") }}m<sup class="text-xs">2</sup>
               </td>
               <td class="px-6 py-4">
                 {{ $campus->contact }}
@@ -409,7 +406,7 @@
                       <i class="fa-solid fa-pen-to-square"></i>
                     </a>
                     <button
-                      wire:click="deleteModal({{ $campus->id }})"
+                      wire:click="deleteModal('{{ $campus->id }}')"
                       class="hover:text-red-500 hover:bg-red-200 p-2 rounded-xl transition-all cursor-pointer"
                     >
                       <i class="fa-solid fa-trash"></i>
@@ -482,8 +479,7 @@
                 {{ $update->new_data["address"] }}
               </td>
               <td class="px-6 py-4">
-                {{ number_format($update->new_data["area_size"], 0, ",", ".") }}m
-                <sup>2</sup>
+                {{ number_format($update->new_data["area_size"], 0, ",", ".") }}m<sup>2</sup>
               </td>
               <td class="px-6 py-4">
                 {{ $update->new_data["contact"] }}

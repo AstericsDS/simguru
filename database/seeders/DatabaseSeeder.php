@@ -213,5 +213,6 @@ class DatabaseSeeder extends Seeder
         // Building::factory()->count(1)->create();
         // Room::factory()->count(1)->create();
         // Event::factory()->count(1)->create();
+        $this->call(CampusEntitySeeder::class);
     }
 }

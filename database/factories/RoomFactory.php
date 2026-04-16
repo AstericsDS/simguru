@@ -34,7 +34,7 @@ class RoomFactory extends Factory
             'height' => fake()->randomNumber(3, false),
             'capacity' => fake()->numberBetween(10,40),
             'description' => fake()->sentence,
-            'category' => fake()->randomElement(['class', 'office', 'laboratory', 'rentable', 'non_rentable']),
+            'category' => fake()->randomElement(['class', 'office', 'laboratory', 'general', 'open_space', 'internal_unj']),
         ];
     }
 }
